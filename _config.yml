@@ -1,0 +1,12 @@
+safe:        false
+auto:        false
+server:      false
+baseurl:     /
+
+future:      true
+lsi:         false
+pygments:    false
+markdown:    maruku
+permalink:   title
+
+exclude: ['README.md']

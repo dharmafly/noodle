@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+		<head>
+			<meta charset="utf-8" />
+			<meta name="viewport" content="width=device-width" />
+			<title>SITE TITLE</title>
+			<link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic|Copse" rel="stylesheet" />
+			<link href="./css/global.css" rel="stylesheet" />
+		</head>
+		<body>
+			<header>
+				<h1 class="title">SITE TITLE</h1>
+			</header>
+			<nav id="navigation">
+				<ul>
+					<li><a href="#getting-started">Getting Started</a></li>
+					<li><a href="#download">Download</a></li>
+					<li><a href="#changelog">Change Log</a></li>
+					<li><a href="#reference">Reference</a></li>
+				</ul>
+			</nav>
+			<section>
+				<h1><a id="getting-started" class="permalink" href="#getting-started">#</a> Getting Started</h1>
+				{% for post in site.posts reversed %}
+					{% if forloop.first %}
+						<article class="embedded markdown">
+						{{ post.content }}
+						</article>
+					{% endif %}
+				{% endfor %}
+			</section>
+			<section>
+				<h1><a id="download" class="permalink" href="#download">#</a> Download</h1>
+				<p>The current version of GITHUB_PROJECT_NAME is <b>GITHUB_CURRENT_VERSION</b> you can download it below.</p>
+				<p class="buttons">
+					<a class="button" href="GITHUB_PROJECT_URL">GITHUB_PROJECT_NAME</a>
+				</p>
+			</section>
+			<section class="change-log">
+				<h1><a id="changelog" class="permalink" href="#changelog">#</a> Change Log</h1>
+				<ul>
+					<li>
+						<h2>GITHUB_CURRENT_VERSION</h2>
+						<ul>
+							<li>Initial Release</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h1><a id="reference" class="permalink" href="#reference">#</a> Reference</h1>
+				<p>REFERENCE_OVERVIEW<p>
+				{% for post in site.posts reversed %}
+					{% unless forloop.first %}
+						<article class="embedded markdown">
+						{{ post.content }}
+						</article>
+					{% endunless %}
+				{% endfor %}
+			</section>
+			<footer>
+				<p>
+				A <a href="http://dharmafly.com">Dharmafly</a> project.
+				Source on <a href="GITHUB_PROJECT_URL">GitHub</a>.
+				Built with <a href="https://github.com/mojombo/jekyll">Jekyll</a> and <a href="http://ajaxorg.github.com/ace/">Ace</a>.
+				</p>
+			</footer>
+			<script src="./javascript/main.js"></script>
+			<script src="./javascript/jquery.js"></script>
+           
+            <!--
+                INCLUDE PROJECT SCRIPTS HERE
+            -->
+
+			<script src="./javascript/ace/ace.js"></script>
+			<script src="./javascript/ace/theme/theme-clouds.js"></script>
+			<script src="./javascript/ace/mode-javascript.js"></script>
+			<script src="./javascript/hijs.js"></script>
+			<script src="./javascript/demo.js"></script>
+		</body>
+</html>
