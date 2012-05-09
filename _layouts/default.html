@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+		<head>
+			<meta charset="utf-8" />
+			<meta name="viewport" content="width=device-width" />
+			<title>{{ page.title }}</title>
+			<link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic|Copse" rel="stylesheet" />
+			<link href="./css/global.css" rel="stylesheet" />
+		</head>
+		<body>
+			<header>
+				<h1 class="title">{{ page.title }}</h1>
+			</header>
+			<nav id="navigation">
+				<ul>
+					<li><a href="#getting-started">Getting Started</a></li>
+					<li><a href="#download">Download</a></li>
+					<li><a href="#changelog">Change Log</a></li>
+					<li><a href="#reference">Reference</a></li>
+				</ul>
+			</nav>
+            
+            {{ content }}
+            
+            <footer>
+				<p>
+				A <a href="http://dharmafly.com">Dharmafly</a> project.
+				Source on <a href="GITHUB_PROJECT_URL">GitHub</a>.
+				Built with <a href="https://github.com/mojombo/jekyll">Jekyll</a> and <a href="http://ajaxorg.github.com/ace/">Ace</a>.
+				</p>
+			</footer>
+			<script src="./javascript/main.js"></script>
+			<script src="./javascript/jquery.js"></script>
+           
+            <!--
+                INCLUDE PROJECT SCRIPTS HERE
+            -->
+
+			<script src="./javascript/ace/ace.js"></script>
+			<script src="./javascript/ace/theme/theme-clouds.js"></script>
+			<script src="./javascript/ace/mode-javascript.js"></script>
+			<script src="./javascript/hijs.js"></script>
+			<script src="./javascript/demo.js"></script>
+		</body>
+</html>

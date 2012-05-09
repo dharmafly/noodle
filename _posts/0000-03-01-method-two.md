@@ -1,4 +1,9 @@
-Method Two
+---
+layout: post
+title: Method Two
+---
+
+{{ page.title }}
 =====================
 
 Method two overview
@@ -8,7 +13,7 @@ Example one
 
 
 
-   /* jQuery.promises.timer(
+    /* jQuery.promises.timer(
         // milliseconds
         500,
 
@@ -21,14 +26,14 @@ Example one
         function(){
             alert("Error!");
         }
-    );*/
+    ); */
 
 Example two
 ------------------------------------
 
-    var flag = window.flagBg;
+    /* var flag = window.flagBg;
 
-   /* jQuery.promises.timer(
+    jQuery.promises.timer(
 
         // milliseconds
         500,
@@ -48,5 +53,5 @@ Example two
         function(){
             alert("Error");
         }
-    );*/
+    ); */
 

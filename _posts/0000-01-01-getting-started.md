@@ -1,3 +1,7 @@
-##Getting Started
+---
+layout: post
+title: Getting Started
+---
 
-Getting started content here
+{{ page.title }}
+=====================

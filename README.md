@@ -1,7 +1,9 @@
 Dharmafly Docs Documentation
 =============================
 
-Dharmafly Docs uses github's in-built Jekyll to build a project website. 
+Dharmafly Docs uses github's in-built [Jekyll] (https://github.com/mojombo/jekyll) to build a project website.
+
+It is automatically transformed by Jekyll into a static site whenever this repository is pushed to GitHub. 
 
 Dharmafly Docs has its own project website and styleguide at [http://dharmafly.github.com/dharmafly-docs/] (http://dharmafly.github.com/dharmafly-docs/)
 

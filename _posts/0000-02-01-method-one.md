@@ -1,4 +1,9 @@
-Method one
+---
+layout: post
+title: Method One
+---
+
+{{ page.title }}
 =====================
 
 Method one overview
