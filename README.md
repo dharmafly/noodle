@@ -13,10 +13,10 @@ The very first post in the directory will be used for the Getting Started
 section of the site. Subsequent entries will be inserted in the Reference
 section.
 
-Pages
+Posts
 -----
 
-All documentation pages should be put in the *_pages* directory. These must have
+All documentation sections should be put in the *_posts* directory. These must have
 the format `YYYY-MM-DD-{postname}.md` (as we use Jekyll). The posts will be ordered by date when inserted.
 
 The format used doesn't have to be a real date (e.g. `0000-{section}-{chapter}-{postname}`, `0000-03-01-examples.md`).
