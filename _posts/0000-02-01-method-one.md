@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Method One
+permalink: method-one
 ---
 
 {{ page.title }}
