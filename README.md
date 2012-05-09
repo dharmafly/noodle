@@ -1,7 +1,9 @@
 Dharmafly Docs Documentation
 =============================
 
-The documentation uses Jekyll to build the website. 
+Dharmafly Docs uses github's in-built Jekyll to build a project website. 
+
+Dharmafly Docs has its own project website and styleguide at [http://dharmafly.github.com/dharmafly-docs/] (http://dharmafly.github.com/dharmafly-docs/)
 
 All API documentation should be put in the *_posts* directory. 
 
