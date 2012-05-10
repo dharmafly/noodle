@@ -4,5 +4,7 @@ title: Getting Started
 permalink: getting-started
 ---
 
-{{ page.title }}
+Starting with Project Name
 =====================
+
+How to set up project name
