@@ -1,6 +1,5 @@
 ---
 layout: default
-project: Project Name
 ---
 
            <nav id="navigation">
@@ -20,16 +19,16 @@ project: Project Name
 				{% endfor %}
 			<section>
 				<h1><a id="download" class="permalink" href="#download">#</a> Download</h1>
-				<p>The current version of GITHUB_PROJECT_NAME is <b>GITHUB_CURRENT_VERSION</b> you can download it below.</p>
+				<p>The current version of {{ site.PROJECT_NAME }} is <b>{{ site.GITHUB_CURRENT_VERSION }}</b> you can download it below.</p>
 				<p class="buttons">
-					<a class="button" href="GITHUB_PROJECT_URL">GITHUB_PROJECT_NAME</a>
+					<a class="button" href="{{ site.GITHUB_PROJECT_URL }}">{{ site.PROJECT_NAME }}</a>
 				</p>
 			</section>
 			<section class="change-log">
 				<h1><a id="changelog" class="permalink" href="#changelog">#</a> Change Log</h1>
 				<ul>
 					<li>
-						<h2>GITHUB_CURRENT_VERSION</h2>
+						<h2>{{ site.GITHUB_CURRENT_VERSION }}</h2>
 						<ul>
 							<li>Initial Release</li>
 						</ul>
