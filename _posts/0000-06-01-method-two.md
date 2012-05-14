@@ -1,6 +1,7 @@
 ---
 category: reference
 ---
+
 Method two
 =====================
 
