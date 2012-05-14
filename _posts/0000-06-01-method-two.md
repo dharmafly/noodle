@@ -12,7 +12,7 @@ Example one
 
 
 
-    /* jQuery.promises.timer(
+    jQuery.promises.timer(
         // milliseconds
         500,
 
@@ -25,12 +25,12 @@ Example one
         function(){
             alert("Error!");
         }
-    ); */
+    );
 
 Example two
 ------------------------------------
 
-    /* var flag = window.flagBg;
+    var flag = window.flagBg;
 
     jQuery.promises.timer(
 
@@ -52,5 +52,5 @@ Example two
         function(){
             alert("Error");
         }
-    ); */
+    );
 

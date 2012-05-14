@@ -1,14 +1,19 @@
-# Project details
+# Your project's details
 PROJECT_NAME: Project Name
 GITHUB_CURRENT_VERSION: 1.0
 GITHUB_PROJECT_URL: https://github.com/dharmafly/dharmafly-docs
 
 
-# Name of link/page for Reference/API documentation
+# Location of Reference/API page
 REFERENCE: 
   name: Reference
   link: reference
-
+  
+  
+# Add your project's scripts here to be available to any examples
+PROJECT_SCRIPTS:
+- location: https://raw.github.com/dharmafly/jquery.promises/master/image.js
+- location: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
 
 ###############################
 

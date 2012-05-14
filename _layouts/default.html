@@ -33,7 +33,7 @@
                  {% for post in about reversed %}
                   <li><a href="{{ page_path }}#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a></li>
                 {% endfor %}
-                 <li><a href="./{{ site.REFERENCE.link }}">{{ site.REFERENCE.name }}</a></li>
+                 <li><a href="{{ relative_path }}{{ site.REFERENCE.link }}">{{ site.REFERENCE.name }}</a></li>
             </nav>
             
             {{ content }}
@@ -48,9 +48,9 @@
 			<script src="{{ relative_path }}javascript/main.js"></script>
 			<script src="{{ relative_path }}javascript/jquery.js"></script>
            
-            <!--
-                INCLUDE PROJECT SCRIPTS HERE
-            -->
+            {% for script in site.PROJECT_SCRIPTS %}
+            <script src="{{ script.location }}"></script>
+            {% endfor %}
 
 			<script src="{{ relative_path }}javascript/ace/ace.js"></script>
 			<script src="{{ relative_path }}javascript/ace/theme/theme-clouds.js"></script>
