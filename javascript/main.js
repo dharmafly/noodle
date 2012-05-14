@@ -18,8 +18,9 @@ if (document.querySelectorAll) {
           last;
 
       clearTimeout(timer);
-
+      
       (function doScroll() {
+      
         if (last && window.scrollY !== last) {
           // Manually moved by the user so stop scrolling.
           return clearTimeout(timer);
@@ -29,7 +30,14 @@ if (document.querySelectorAll) {
             direction  = difference < 1 ? 1 : -1,
             modifier   = Math.abs(difference) / total,
             increment  = Math.ceil(start * modifier);
-
+        
+        if(increment){
+        console.log("difference = " + difference)
+        console.log("direction = " + direction)
+        console.log("modifier = " + modifier)
+        console.log("increment = " + increment)
+        }
+        
         if (difference !== last && (direction < 0 || window.innerHeight + window.scrollY !== root.scrollHeight)) {
           if (difference < increment && difference > increment * -1) {
             increment = Math.abs(difference);
@@ -60,6 +68,10 @@ if (document.querySelectorAll) {
     document.body.addEventListener('click', function (event) {
       var section = event.target.hash && $(event.target.hash),
           offset  = window.scrollY;
+          
+      console.log("section")
+      console.log(section)
+      console.log("offset = " + offset)
 
       if (section) {
         // Set the location hash and reset the browser scroll position.
