@@ -1,0 +1,23 @@
+---
+layout: default
+layout_type: subpage
+---
+{% assign reference = site.categories.reference %}
+<section>
+    <ul>
+    {% for post in reference reversed %}
+      <li><a href="#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a></li>
+    {% endfor %}
+    </ul>
+</section>
+
+{% for post in reference reversed %}
+    <section>
+        <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">#</a>{{ post.title }}</h1>
+        <article class="embedded markdown">
+        {{ post.content }}
+        </article>
+    </section>
+{% endfor %}
+
+
