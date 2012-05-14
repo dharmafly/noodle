@@ -7,7 +7,7 @@ future:      true
 lsi:         false
 pygments:    false
 markdown:    maruku
-permalink:   title
+permalink:   /:title
 
 exclude: ['README.md']
 
