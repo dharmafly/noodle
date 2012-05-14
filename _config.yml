@@ -1,17 +1,30 @@
+# Project details
+PROJECT_NAME: Project Name
+GITHUB_CURRENT_VERSION: 1.0
+GITHUB_PROJECT_URL: https://github.com/dharmafly/dharmafly-docs
+
+
+# Name of link/page for Reference/API documentation
+REFERENCE: 
+  name: Reference
+  link: reference
+
+
+###############################
+
+
+
+# Jekyll options
+
 safe:        false
 auto:        false
 server:      false
-baseurl:     /
 
 future:      true
 lsi:         false
 pygments:    false
 markdown:    maruku
 permalink:   /:title
+baseurl:     /
 
 exclude: ['README.md']
-
-
-PROJECT_NAME: Project Name
-GITHUB_CURRENT_VERSION: 1.0
-GITHUB_PROJECT_URL: https://github.com/dharmafly/dharmafly-docs

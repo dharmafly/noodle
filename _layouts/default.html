@@ -1,3 +1,16 @@
+{% assign about = site.categories.about %}
+{% assign reference = site.categories.reference %}
+
+
+{% assign relative_path  = "./" %}
+{% assign page_path  = "" %}
+
+{% if page.layout_type == 'subpage' %} 
+    {% assign relative_path  = "../" %}
+    {% assign page_path  = "/" %}
+{% endif %}
+
+
 <!doctype html>
 <html>
 		<head>
@@ -5,12 +18,23 @@
 			<meta name="viewport" content="width=device-width" />
 			<title>{{ site.PROJECT_NAME }}</title>
 			<link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic|Copse" rel="stylesheet" />
-			<link href="./css/global.css" rel="stylesheet" />
+			<link href="{{ relative_path }}css/global.css" rel="stylesheet" />
 		</head>
 		<body>
 			<header>
-				<h1 class="title">{{ site.PROJECT_NAME }}</h1>
+				<h1 class="title">
+                    {% if page.layout_type == 'subpage' %} <a href="../"> {% endif %}
+                    {{ site.PROJECT_NAME }}
+                    {% if page.layout_type == 'subpage' %} </a> {% endif %}
+                </h1>
 			</header>
+
+           <nav id="navigation">
+                 {% for post in about reversed %}
+                  <li><a href="{{ page_path }}#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a></li>
+                {% endfor %}
+                 <li><a href="./{{ site.REFERENCE.link }}">{{ site.REFERENCE.name }}</a></li>
+            </nav>
             
             {{ content }}
             
@@ -21,17 +45,17 @@
 				Built with <a href="https://github.com/mojombo/jekyll">Jekyll</a> and <a href="http://ajaxorg.github.com/ace/">Ace</a>.
 				</p>
 			</footer>
-			<script src="./javascript/main.js"></script>
-			<script src="./javascript/jquery.js"></script>
+			<script src="{{ relative_path }}javascript/main.js"></script>
+			<script src="{{ relative_path }}javascript/jquery.js"></script>
            
             <!--
                 INCLUDE PROJECT SCRIPTS HERE
             -->
 
-			<script src="./javascript/ace/ace.js"></script>
-			<script src="./javascript/ace/theme/theme-clouds.js"></script>
-			<script src="./javascript/ace/mode-javascript.js"></script>
-			<script src="./javascript/hijs.js"></script>
-			<script src="./javascript/demo.js"></script>
+			<script src="{{ relative_path }}javascript/ace/ace.js"></script>
+			<script src="{{ relative_path }}javascript/ace/theme/theme-clouds.js"></script>
+			<script src="{{ relative_path }}javascript/ace/mode-javascript.js"></script>
+			<script src="{{ relative_path }}javascript/hijs.js"></script>
+			<script src="{{ relative_path }}javascript/demo.js"></script>
 		</body>
 </html>

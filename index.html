@@ -4,11 +4,7 @@ layout: default
 {% assign about = site.categories.about %}
 {% assign reference = site.categories.reference %}
 
-           <nav id="navigation">
-                 {% for post in about reversed %}
-                  <li><a href="#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a></li>
-                {% endfor %}
-            </nav>
+
             {% for post in about reversed %}
                 {% if forloop.first %}
                     <section>
@@ -34,14 +30,6 @@ layout: default
 						{{ post.content }}
 						</article>
                         {% endunless %}
-				{% endfor %}
-			</section>
-			<section>
-				<h1><a id="reference" class="permalink" href="#reference">#</a> Reference</h1>
-				{% for post in reference reversed %}
-						<article class="embedded markdown">
-						{{ post.content }}
-						</article>
 				{% endfor %}
 			</section>
 			
