@@ -1,16 +1,18 @@
 ---
 layout: default
 ---
+{% assign about = site.categories.about %}
+{% assign reference = site.categories.reference %}
 
            <nav id="navigation">
-                 {% for post in site.posts reversed %}
-                  <li><a href="#{{ post.url }}">{{ post.title }}</a></li>
+                 {% for post in about reversed %}
+                  <li><a href="#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a></li>
                 {% endfor %}
             </nav>
-            {% for post in site.posts reversed %}
+            {% for post in about reversed %}
                 {% if forloop.first %}
                     <section>
-                        <h1><a id="{{ post.url }}" class="permalink" href="{{ post.url }}">#</a>{{ post.title }}</h1>
+                        <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">#</a>{{ post.title }}</h1>
 						<article class="embedded markdown">
 						{{ post.content }}
 						</article>
@@ -24,26 +26,22 @@ layout: default
 					<a class="button" href="{{ site.GITHUB_PROJECT_URL }}">{{ site.PROJECT_NAME }}</a>
 				</p>
 			</section>
-			<section class="change-log">
-				<h1><a id="changelog" class="permalink" href="#changelog">#</a> Change Log</h1>
-				<ul>
-					<li>
-						<h2>{{ site.GITHUB_CURRENT_VERSION }}</h2>
-						<ul>
-							<li>Initial Release</li>
-						</ul>
-					</li>
-				</ul>
-			</section>
 			<section>
-				<h1><a id="reference" class="permalink" href="#reference">#</a> Reference</h1>
-				<p>REFERENCE_OVERVIEW<p>
-				{% for post in site.posts reversed %}
-					{% unless forloop.first %}
+				{% for post in about reversed %}
+                        {% unless forloop.first %}
+                        <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">#</a>{{ post.title }}</h1>
 						<article class="embedded markdown">
 						{{ post.content }}
 						</article>
-					{% endunless %}
+                        {% endunless %}
+				{% endfor %}
+			</section>
+			<section>
+				<h1><a id="reference" class="permalink" href="#reference">#</a> Reference</h1>
+				{% for post in reference reversed %}
+						<article class="embedded markdown">
+						{{ post.content }}
+						</article>
 				{% endfor %}
 			</section>
 			
