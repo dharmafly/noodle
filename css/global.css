@@ -5,7 +5,13 @@ body {
 	padding: 0;
 	margin: 0;
 	color: #303948;
-    background-color:#336a36;
+    background: #87c980; /* Old browsers */
+    background: -moz-linear-gradient(top,  #87c980 0%, #a5d5a6 50%, #87c980 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87c980), color-stop(50%,#a5d5a6), color-stop(100%,#87c980)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #87c980 0%,#a5d5a6 50%,#87c980 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #87c980 0%,#a5d5a6 50%,#87c980 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #87c980 0%,#a5d5a6 50%,#87c980 100%); /* IE10+ */
+    background: linear-gradient(top,  #87c980 0%,#a5d5a6 50%,#87c980 100%); /* W3C */
 }
 
 a {
@@ -192,9 +198,11 @@ section {
 }
 
 section.content {
-    background-color:#dbe5d7;
-    margin-bottom:0;
-    padding-top:3em;
+    background-color: #dbe5d7;
+    margin-bottom: 0;
+    padding-top: 3em;
+    position: relative;
+    z-index: 10;
 }
 
 section:after {
@@ -204,14 +212,24 @@ section:after {
 	margin: 5em -2em 0;
 }
 
-/*body.content:after{
-    content:"";
-    display:block;
-    width:768px;
-    height:1024px;
-    margin:0;
-    background:url(./svg/wing.svg) no-repeat left top;
-}*/
+section.content:after{
+    content: "";
+    display: block;
+    width: 506px;
+    height: 231px;
+    margin: 0;
+    background: url(./svg/wing.svg) no-repeat left top;
+    -webkit-transform: rotate(270deg);
+   -moz-transform: rotate(270deg);
+   -ms-transform: rotate(270deg);
+   -o-transform: rotate(270deg);
+   transform: rotate(270deg);
+   position: absolute;
+    bottom: 177px;
+    left: -347px;
+    opacity: 0.2;
+    z-index: 5;
+}
 
 section > h1 {
 	position: relative;
