@@ -5,6 +5,7 @@ body {
 	padding: 0;
 	margin: 0;
 	color: #303948;
+    background-color:#336a36;
 }
 
 a {
@@ -19,10 +20,11 @@ h1, h2, h3, h4, h5, h6, p, pre, ul, ol {
 }
 
 h1, h2 {
-	font-family: Copse, "Helvetica Neue";
+	font-family: Forum, "Helvetica Neue";
 	font-weight: 400;
 	margin-bottom: 0.75em;
-	color: #2b4254}
+	color: #2b4254;
+}
 
 h1 {
 	font-size: 2.6em;
@@ -102,7 +104,7 @@ header h1 {
 	font-size: 4.2em;
 	text-align: center;
 	padding: 1em 0 0.5em;
-	background-color: #2c3c4d;
+	background-color: #2f4430;
 	color: #fff;
 	margin: 0;
 	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -115,7 +117,7 @@ header a {
 
 nav {
 	display: block;
-	margin: 0 0 3em;
+	margin: 0;
 	padding: 1em;
 	border: 3px solid;
 	border-left: none;
@@ -189,12 +191,27 @@ section {
 	margin: 0 2em 5em;
 }
 
+section.content {
+    background-color:#dbe5d7;
+    margin-bottom:0;
+    padding-top:3em;
+}
+
 section:after {
 	content: "";
 	display: block;
 	margin-top: 5em;
 	margin: 5em -2em 0;
 }
+
+/*body.content:after{
+    content:"";
+    display:block;
+    width:768px;
+    height:1024px;
+    margin:0;
+    background:url(./svg/wing.svg) no-repeat left top;
+}*/
 
 section > h1 {
 	position: relative;
@@ -353,7 +370,7 @@ section .permalink:hover {
 		font-size: 1.8em;
 	}
 
-	section {
+	section.content {
 		max-width: 52.5em;
 		margin-left: auto;
 		margin-right: auto;
