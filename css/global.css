@@ -4,7 +4,7 @@ body {
 	font: 62.5%/1 Lato, serif;
 	padding: 0;
 	margin: 0;
-	color: #303948;
+	color: #2f4430;
     background: #87c980; /* Old browsers */
     background: -moz-linear-gradient(top,  #87c980 0%, #a5d5a6 50%, #87c980 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87c980), color-stop(50%,#a5d5a6), color-stop(100%,#87c980)); /* Chrome,Safari4+ */
@@ -15,7 +15,15 @@ body {
 }
 
 a {
-	color: #496d87;
+	color: #2f4430;
+    text-decoration:underline;
+}
+
+a:hover,
+a:focus,
+a:active {
+    color:#039b0a;
+    text-decoration:none;
 }
 
 h1, h2, h3, h4, h5, h6, p, pre, ul, ol {
@@ -29,7 +37,6 @@ h1, h2 {
 	font-family: Forum, "Helvetica Neue";
 	font-weight: 400;
 	margin-bottom: 0.75em;
-	color: #2b4254;
 }
 
 h1 {
@@ -113,7 +120,6 @@ header h1 {
 	background-color: #2f4430;
 	color: #fff;
 	margin: 0;
-	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 header a {
@@ -123,23 +129,39 @@ header a {
 
 nav {
 	display: block;
+    text-transform: uppercase;
 	margin: 0;
 	padding: 1em;
-	border: 3px solid;
-	border-left: none;
-	border-right: none;
+	border-bottom: 1px #5d6f5d solid;
+	border-top: 1px #5d6f5d solid;
 	text-align: left;
 	overflow: hidden;
-	box-shadow: 0 -4px 7px rgba(0, 0, 0, 0.3);
 }
 
-nav, pre, code {
-	border-color: #e9f4fc;
-	background-color: #f4f9f9;
+section.overview {
+    padding:20px 15px;
+    border-radius: 7px;
 }
 
-pre, code {
-	background-color: #f9fefe;
+nav, pre, code, section.overview {
+	background-color: #2f4430;
+    color:#9cd4a2;
+}
+
+nav a,
+section.overview a {
+    color:#9cd4a2;
+}
+
+
+nav a:hover,
+nav a:focus,
+nav a:active,
+section.overview a:hover,
+section.overview a:focus,
+section.overview a:active {
+    color:#039b0a;
+    text-decoration:underline;
 }
 
 nav.float {
@@ -205,12 +227,12 @@ section.content {
     z-index: 10;
 }
 
-section:after {
+/* section:after {
 	content: "";
 	display: block;
 	margin-top: 5em;
 	margin: 5em -2em 0;
-}
+} */
 
 section.content:after{
     content: "";
@@ -251,6 +273,7 @@ section .permalink {
 section .permalink:hover {
 	color: #000;
 }
+
 
 /* Embedded Markdown Docs */
 .embedded h1 {
@@ -389,7 +412,7 @@ section .permalink:hover {
 	}
 
 	section.content {
-		max-width: 52.5em;
+		max-width: 61em;
 		margin-left: auto;
 		margin-right: auto;
 	}

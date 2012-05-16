@@ -7,7 +7,7 @@ layout: default
 
             {% for post in about reversed %}
                 {% if forloop.first %}
-                    <section>
+                    <section class="overview">
                         <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">#</a>{{ post.title }}</h1>
 						<article class="embedded markdown">
 						{{ post.content }}
