@@ -112,19 +112,29 @@ pre code {
 	line-height: 1.2em;
 }
 
+header,
+footer {
+	background-color: #2f4430;
+	color: #fff;
+	text-align: center;
+    color: white;
+}
+
 
 header h1 {
 	font-size: 4.2em;
-	text-align: center;
-	padding: 1em 0 0.5em;
-	background-color: #2f4430;
-	color: #fff;
 	margin: 0;
 }
 
-header a {
+header a,
+footer a {
     color: white;
     text-decoration: none;
+}
+
+footer p {
+	font-size: 1.2em;
+	margin: 0;
 }
 
 nav {
@@ -139,7 +149,7 @@ nav {
 }
 
 section.overview {
-    padding:20px 15px;
+    padding:2em 3em;
     border-radius: 7px;
 }
 
@@ -204,25 +214,14 @@ nav a {
 	text-decoration: none;
 }
 
-footer {
-	color: #4d4d4c;
-	text-align: center;
-	margin: -2em 0 3em;
-}
-
-footer p {
-	font-size: 1.2em;
-	margin: 0;
-}
-
 section {
-	margin: 0 2em 5em;
+	margin: 0 5em 5em;
 }
 
 section.content {
     background-color: #dbe5d7;
     margin-bottom: 0;
-    padding-top: 3em;
+    padding: 3em 0;
     position: relative;
     z-index: 10;
 }
@@ -404,8 +403,12 @@ section .permalink:hover {
 
 @media (min-width:35em) {
 	header h1 {
-		font-size: 6.4em;
+		font-size: 5.4em;
 	}
+    
+    header img {
+        width: 281px;
+    }
 
 	nav li {
 		font-size: 1.8em;
