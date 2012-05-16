@@ -406,9 +406,7 @@ section .permalink:hover {
 }
 
 @media (min-width:35em) {
-	header h1 {
-		font-size: 5.4em;
-	}
+
     
     header img {
         width: 281px;
@@ -417,13 +415,20 @@ section .permalink:hover {
 	nav li {
 		font-size: 1.8em;
 	}
-
+    
+    header h1,
 	section.content {
 		max-width: 61em;
 		margin-left: auto;
 		margin-right: auto;
 	}
 	
+    header h1 {
+		font-size: 5.4em;
+        padding: 2em 5.55em 0.27em 0.55em; /* placeholder for wing graphic */
+		max-width: 5.75em; /* as above but with modifier for font-size */
+	}
+    
 	section:after {
 		margin-left: -4em;
 		margin-right: -4em;
