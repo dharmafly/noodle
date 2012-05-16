@@ -67,7 +67,6 @@ Set in _config.yml in the form
     # Location of Reference/API page - This is the name you'll give to the reference section, it could be 'API', for example.
     REFERENCE: 
       name: Reference
-      link: reference
       
       
     # Add your project's scripts here to be available to any examples or demos you run in the page (see Code Blocks in Posts)
