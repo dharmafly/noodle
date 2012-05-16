@@ -391,6 +391,14 @@ section .permalink:hover {
 	opacity: 0!important;
 }
 
+.ace_editor .ace_sb{
+    overflow-y: auto !important;
+}
+
+.ace-monokai .ace_scroller {
+    background-color: transparent !important;
+}
+
 @media (min-width:340px) {
 	nav {
 		text-align: center;
@@ -448,5 +456,6 @@ section .permalink:hover {
 		margin-right: -4.5em;
 		padding-left: 5em;
 		padding-right: 5em;
+        max-width:65em;
 	}
 }
