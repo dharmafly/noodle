@@ -239,17 +239,21 @@ section.content:after{
     width: 506px;
     height: 231px;
     margin: 0;
-    background: url(./svg/wing.svg) no-repeat left top;
+    background: transparent;
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-image: url(./svg/wing.svg) ;
     -webkit-transform: rotate(270deg);
-   -moz-transform: rotate(270deg);
-   -ms-transform: rotate(270deg);
-   -o-transform: rotate(270deg);
-   transform: rotate(270deg);
-   position: absolute;
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+    position: absolute;
     bottom: 177px;
     left: -347px;
     opacity: 0.2;
     z-index: 5;
+    -webkit-filter: hue-rotate(108deg);
 }
 
 section > h1 {
