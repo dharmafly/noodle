@@ -302,6 +302,31 @@ section .permalink:hover {
 	margin-left: 26px;
 }
 
+button {
+    color:white;
+    border: 1px solid #5c8c5f;
+    border-radius: 3px;
+    background: #9cd4a2; 
+    background: -moz-linear-gradient(top, #9cd4a2 0%, #9cd4a2 18%, #5c9e5e 78%, #5c9e5e 100%); 
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#9cd4a2), color-stop(18%,#9cd4a2), color-stop(78%,#5c9e5e), color-stop(100%,#5c9e5e)); 
+    background: -webkit-linear-gradient(top, #9cd4a2 0%,#9cd4a2 18%,#5c9e5e 78%,#5c9e5e 100%); 
+    background: -o-linear-gradient(top, #9cd4a2 0%,#9cd4a2 18%,#5c9e5e 78%,#5c9e5e 100%);
+    background: -ms-linear-gradient(top, #9cd4a2 0%,#9cd4a2 18%,#5c9e5e 78%,#5c9e5e 100%); 
+    background: linear-gradient(top, #9cd4a2 0%,#9cd4a2 18%,#5c9e5e 78%,#5c9e5e 100%); 
+}
+
+button:hover,
+button:focus,
+button:active {
+    background: #45b64a; 
+    background: -moz-linear-gradient(top, #45b64a 0%, #376a38 100%); 
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45b64a), color-stop(100%,#376a38)); 
+    background: -webkit-linear-gradient(top, #45b64a 0%,#376a38 100%);
+    background: -o-linear-gradient(top, #45b64a 0%,#376a38 100%);
+    background: -ms-linear-gradient(top, #45b64a 0%,#376a38 100%); 
+    background: linear-gradient(top, #45b64a 0%,#376a38 100%); 
+}
+
 .buttons {
 	margin-top: 1.5em;
 }
