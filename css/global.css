@@ -433,12 +433,14 @@ button:active {
 	nav li, nav li:nth-child(even) {
 		width: auto;
 		display: inline;
-		margin-right: 2em;
+		padding-left: 1em;
+		padding-right: 1em;
+        border-left:1px solid #9CD4A2;
 		float: none;
 	}
 	
-	nav li:last-child {
-		margin-right: 0;
+	nav li:first-child {
+		border-left-width:0;
 	}
 }
 
