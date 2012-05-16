@@ -10,7 +10,7 @@ function createAceEditor(dom) {
     session = editor.getSession();
     JavaScriptMode = require("ace/mode/javascript").Mode;
 
-    editor.setTheme("ace/theme/monokai");
+    editor.setTheme("ace/theme/dharmafly");
     editor.setHighlightActiveLine(false);
     editor.setShowPrintMargin(false);
     editor.renderer.setShowGutter(false);
