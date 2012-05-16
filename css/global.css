@@ -395,9 +395,6 @@ section .permalink:hover {
     overflow-y: auto !important;
 }
 
-.ace-monokai .ace_scroller {
-    background-color: transparent !important;
-}
 
 @media (min-width:340px) {
 	nav {
