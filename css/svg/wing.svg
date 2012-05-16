@@ -1,6 +1,7 @@
+<?xml-stylesheet type="text/css" href="./svg-stylesheet.css" ?>  
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="505.475px" height="230.989px" viewBox="128.603 394.596 505.475 230.989" enable-background="new 128.603 394.596 505.475 230.989" xml:space="preserve">
 <style>
-	.style0{
+/*	.style0{
 		fill:	#2F4430;
 	}
 	.style1{
@@ -14,8 +15,9 @@
 		stroke-width:	4;
 		stroke-miterlimit:	10;
 		fill:	none;
-	}
-</style><g>
+	}*/
+</style>
+<g>
 	<path d="M332.848 541.025c4.643 0 8 3 8 8.398c0 4.641-3.76 8.399-8.4 8 c-4.639 0-8.397-3.761-8.397-8.399C324.448 544 328 541 332 541 M332.848 533 c-9.042 0-16.397 7.355-16.397 16.398s7.355 16 16 16.399c9.043 0 16.4-7.356 16.4-16.399S341.891 533 332 533 L332.848 533.025z" class="style0"/>
 </g>
 <g>
