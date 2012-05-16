@@ -7,8 +7,6 @@ GITHUB_PROJECT_URL: https://github.com/dharmafly/dharmafly-docs
 # Location of Reference/API page
 REFERENCE: 
   name: Reference
-  link: reference
-  
   
 # Add your project's scripts here to be available to any examples
 PROJECT_SCRIPTS:
