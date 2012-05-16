@@ -86,8 +86,6 @@ code {
 	font-family: Monaco, monospace;
 	font-size: 0.8em;
 	padding: 2px 3px;
-	border: 1px solid;
-	border-radius: 3px;
 	color: #4d4d4c;
 }
 
@@ -101,9 +99,11 @@ pre {
 	tab-size: 2;
 	margin: 0 -2em 2em;
 	padding: 1.5em 3em;
-	border: 3px solid;
-	border-left: 0;
-	border-right: 0;
+	border: 10px solid #dbe5d7;
+    border-radius: 17px;
+    -webkit-box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.45) inset;
+    -moz-box-shadow:    4px 4px 5px rgba(0, 0, 0, 0.45) inset;
+    box-shadow:         4px 4px 5px rgba(0, 0, 0, 0.45) inset;
 }
 
 pre code {
@@ -355,8 +355,8 @@ section .permalink:hover {
 .run .eval {
 	z-index: 100;
 	position: absolute;
-	top: 15px;
-	left: -40px;
+    top: 23px;
+    left: -53px;
 	cursor: pointer;
 }
 
@@ -393,6 +393,10 @@ section .permalink:hover {
 
 .ace_editor .ace_sb{
     overflow-y: auto !important;
+}
+
+.ace_scroller {
+    overflow-x: auto !important;
 }
 
 
@@ -449,10 +453,10 @@ section .permalink:hover {
 	}
 	
 	section pre {
-		margin-left: -4.5em;
-		margin-right: -4.5em;
+		margin-left: -7em;
+		margin-right: -7em;
 		padding-left: 5em;
-		padding-right: 5em;
+		padding-right: 2.5em;
         max-width:65em;
 	}
 }
