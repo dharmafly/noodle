@@ -14,6 +14,10 @@ body {
     background: linear-gradient(top,  #87c980 0%,#a5d5a6 50%,#87c980 100%); /* W3C */
 }
 
+i, em {
+    font-family: "Lato italic", serif;
+}
+
 a {
 	color: #2f4430;
     text-decoration:underline;
@@ -133,7 +137,6 @@ footer a {
 }
 
 footer p {
-	font-size: 1.2em;
 	margin: 0;
 }
 
@@ -416,6 +419,7 @@ section .permalink:hover {
 		font-size: 1.8em;
 	}
     
+    footer > div,
     header h1,
 	section.content {
 		max-width: 61em;
@@ -428,6 +432,11 @@ section .permalink:hover {
         padding: 2em 5.55em 0.27em 0.55em; /* placeholder for wing graphic */
 		max-width: 5.75em; /* as above but with modifier for font-size */
 	}
+    
+    footer > div {
+        text-align: right;
+        padding:2em 2em 2em 0;
+    }
     
 	section:after {
 		margin-left: -4em;
