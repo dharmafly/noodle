@@ -3,13 +3,13 @@ layout: default
 layout_type: subpage
 ---
 {% assign reference = site.categories.reference %}
-<section>
+<nav class="subnav">
     <ul>
     {% for post in reference reversed %}
       <li><a href="#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a></li>
     {% endfor %}
     </ul>
-</section>
+</nav>
 
 {% for post in reference reversed %}
     <section>
