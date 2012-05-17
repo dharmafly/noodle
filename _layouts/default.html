@@ -30,18 +30,49 @@
                 </h1>
 			</header>
 
+            {% comment %}
+            <!-- First Link | Download | Remaining links | ...link | ...link | Reference -->
+            {% endcomment %}
+            
            <nav id="navigation">
-                 {% for post in about reversed %}
-                  <li><a href="{{ page_path }}#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a></li>
+                {% for post in about reversed %}
+                    {% if forloop.first %}                    
+                <li><a href="{{ page_path }}#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a></li>
+                    {% endif %}
                 {% endfor %}
-                 <li><a href="{{ relative_path }}/reference">{{ site.REFERENCE.name }}</a></li>
+                <li><a href="{{ page_path }}#download">Download</a></li>
+                {% for post in about reversed %}
+                    {% unless forloop.first %}
+                <li><a href="{{ page_path }}#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a></li>
+                    {% endunless %}
+                {% endfor %}
+                <li><a href="{{ relative_path }}/reference">{{ site.REFERENCE.name }}</a></li>
             </nav>
+            
+            <aside>
+                <ul>
+                    <li class="github"><a href="{{ site.GITHUB_PROJECT_URL }}">{{ site.PROJECT_NAME }} on Github</a></li>
+                    <li class="twitter"><a href="{{ site.TWITTER_PROJECT_URL }}">{{ site.PROJECT_NAME }} on Twitter</a></li>
+                    <li class="code-{{ site.CODE_TYPE }}">This site uses {{ site.CODE_TYPE }}</li>
+                </ul>
+            </aside>
             
             <section class="content">
             
             {{ content }}
             
+                {% if site.PROJECT_QUOTE.quote %}
+                <section class="quote">
+                    <blockquote>
+                        {{ site.PROJECT_QUOTE.quote }}
+                    </blockquote>
+                    <cite>{{ site.PROJECT_QUOTE.attr }}</cite>
+                </section>
+                {% endif %}
+            
             </section>
+            
+            
             
             <footer>
                 <div>

@@ -82,6 +82,29 @@ ul li {
 	padding-left: 0;
 }
 
+blockquote, cite {
+    text-align:center;
+    display:block;
+}
+
+blockquote{
+    font-size: 1.5em;
+    line-height: 1.46em;
+    padding: 0 3em;
+}
+
+blockquote:before {
+    content: "\201C"
+}
+blockquote:after {
+    content: "\201D"
+}
+
+cite {
+    font-size: 1.3em;
+    font-style: normal;
+}
+
 code {
 	font-family: Monaco, monospace;
 	font-size: 0.8em;
@@ -103,6 +126,7 @@ pre {
     border-radius: 17px;
     -webkit-box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.45) inset;
     -moz-box-shadow:    4px 4px 5px rgba(0, 0, 0, 0.45) inset;
+    -o-box-shadow:    4px 4px 5px rgba(0, 0, 0, 0.45) inset;
     box-shadow:         4px 4px 5px rgba(0, 0, 0, 0.45) inset;
 }
 
@@ -355,6 +379,13 @@ section .permalink:hover {
 }
 
 
+/* Hanging indent */
+
+article > ul,
+section > ul {
+    margin-left: -1em;
+}
+
 article > p,
 section > p {
     padding-left: 1em;
@@ -416,6 +447,7 @@ button:active {
 
 .buttons {
 	margin-top: 1.5em;
+    margin-left: -1em;
 }
 
 .button {
@@ -426,9 +458,10 @@ button:active {
 	background: #B8810D;
 	background-image: -webkit-linear-gradient(top, #B8810D, #D59F0D);
 	background-image: -moz-linear-gradient(top, #B8810D, #D59F0D);
+	background-image: -o-linear-gradient(top, #B8810D, #D59F0D);
 	background-image: linear-gradient(top, #B8810D, #D59F0D);
 	border-radius: 5px;
-	border: 2px solid #fff;
+	border: 2px solid white;
     font-family: 'Lato', sans-serif;
     font-weight: bold;
     font-size:112.5%;
@@ -439,6 +472,7 @@ button:active {
     color:white;
 	background-image: -webkit-linear-gradient(top, #B8810D, #E6C026);
 	background-image: -moz-linear-gradient(top, #B8810D, #E6C026);
+	background-image: -o-linear-gradient(top, #B8810D, #E6C026);
 	background-image: linear-gradient(top, #B8810D, #E6C026);
     -webkit-transition: background-image 0.3s ease-out;
 }
@@ -499,6 +533,7 @@ button:active {
 	border-right: 0;
 	-webkit-transition: border-color 1.5s, background-color 1.5s;
 	-moz-transition: border-color 1.5s, background-color 1.5s;
+	-o-transition: border-color 1.5s, background-color 1.5s;
 	-ms-transition: border-color 1.5s, background-color 1.5s;
 	transition: border-color 1.5s, background-color 1.5s;
 }
