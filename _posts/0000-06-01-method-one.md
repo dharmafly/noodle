@@ -2,9 +2,6 @@
 category: reference
 ---
 
-Method One
-=====================
-
 Method one overview
 
 Example one

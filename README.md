@@ -29,6 +29,23 @@ These must have the format `YYYY-MM-DD-{postname}.md`. The posts will be ordered
 
 The format used doesn't have to be a real date (e.g. `0000-{section}-{chapter}-{postname}`, `0000-03-01-examples.md`).
 
+Required posts
+----------------
+
+A main overview, this will be the first post in your *_posts* directory.
+
+Special sections
+----------------
+
+To add a highlighted version of text (for example for your project name) within the overview section, add the following html.
+
+    <span class="project_name">Project Name</span>
+
+If this is at the beginning of the line, you need to add an invisible unicode character as follows, do to [this bug] (http://groups.google.com/group/pdoc/browse_thread/thread/725e4809de2fcc18)
+
+    &#8291;<span class="project_name">Project Name</span>
+
+
 Updating the main nav
 ---------------------
 

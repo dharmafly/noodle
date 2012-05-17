@@ -155,7 +155,7 @@ footer p {
 }
 
 section.overview {
-    padding:2em 3em;
+    padding:2em 3.5em;
     border-radius: 7px;
 }
 
@@ -286,7 +286,7 @@ section.overview a:active {
 
 */
 section {
-	margin: 0 5em 5em;
+	margin: 0 3.5em 3.5em;
 }
 
 section.content {
@@ -347,6 +347,24 @@ section .permalink {
 section .permalink:hover {
 	color: #000;
 }
+
+.project-name {
+    font-family: 'Forum', serif;
+    font-size: 162.5%;
+    color: white;
+}
+
+
+article > p,
+section > p {
+    padding-left: 1em;
+}
+
+article > p:first-of-type,
+section > p:first-of-type {
+    text-indent: -1em;
+}
+
 
 
 /* Embedded Markdown Docs */
@@ -465,7 +483,7 @@ button:active {
 .run output {
 	font-family: Menlo, mono-space;
 	display: block;
-	background-color: #fafafa;
+	background-color: #DBE5D7;
 	font-size: 1.4em; /* Fixes odd issue in FF */
 	overflow: auto;
 	overflow-y: hidden;
