@@ -574,18 +574,27 @@ aside li  span{
     overflow: hidden;
     padding-top: 3.025em;
     display:block;
+    background: url(./img/icon-sprite.png) no-repeat
 }
 
-aside li.github {
-
+aside li.github a{
+    background-position: -5px -3px;
 }
 
-aside li.twitter {
-
+aside li.twitter a{
+    background-position: -2px -128px;
 }
 
-aside li.code-javascript {
+aside li.code-javascript span{
+    background-position: -6px -246px;
+}
 
+aside li.code-html5 span{
+    background-position: -5px -240px;
+}
+
+aside li.code-css span{
+    background-position: -5px -240px;
 }
 
 .ace_cursor.ace_hidden {
