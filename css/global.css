@@ -361,7 +361,8 @@ section > p {
 }
 
 article > p:first-of-type,
-section > p:first-of-type {
+section > p:first-of-type,
+article > h2 + p {
     text-indent: -1em;
 }
 
