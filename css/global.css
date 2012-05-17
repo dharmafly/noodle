@@ -543,6 +543,51 @@ button:active {
 	background-color: #fdfdea;
 }
 
+aside {
+    position: absolute;
+    top: 3em;
+    right: -10em;
+}
+
+aside:after{
+    content: "";
+    display: block;
+    width: 90px;
+    height: 240px;
+    margin: 0;
+    background: transparent;
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-image: url(./svg/icon-stem.svg) ;
+    position: absolute;
+    bottom: -210px;
+    left: -43px;
+}
+
+aside li  a,
+aside li  span{
+    width: 3.025em;
+    height: 0em;
+    margin-bottom: 1.5em;
+    border: 0.625em solid #dbe5d7;
+    border-radius: 3.025em;
+    overflow: hidden;
+    padding-top: 3.025em;
+    display:block;
+}
+
+aside li.github {
+
+}
+
+aside li.twitter {
+
+}
+
+aside li.code-javascript {
+
+}
+
 .ace_cursor.ace_hidden {
 	opacity: 0!important;
 }

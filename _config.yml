@@ -2,6 +2,8 @@
 PROJECT_NAME: Project Name
 GITHUB_CURRENT_VERSION: 1.0
 GITHUB_PROJECT_URL: https://github.com/dharmafly/dharmafly-docs
+
+# Optional extras
 TWITTER_PROJECT_URL: https://twitter.com/#!/dharmafly
 # javascript, css or html5
 CODE_TYPE: javascript
@@ -16,6 +18,7 @@ PROJECT_SCRIPTS:
 - location: https://raw.github.com/dharmafly/jquery.promises/master/image.js
 - location: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
 
+# A quote to add at the footer of your project page
 PROJECT_QUOTE:
   quote:  Promises are the uniquely human way of ordering the future, making it predictable and reliable to the extent that this is humanly possible.
   attr: Hannah Arendt
