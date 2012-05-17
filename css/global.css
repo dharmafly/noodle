@@ -131,6 +131,9 @@ header h1 {
 }
 
 header a,
+header a:hover,
+header a:focus,
+header a:active,
 footer a {
     color: white;
     text-decoration: none;
@@ -164,7 +167,10 @@ section.overview {
 #navigation a,
 section.overview a {
     color:#9cd4a2;
-    -webkit-transition : color 0.3s ease-in;
+    -webkit-transition : color 0.1s ease-in;
+    -moz-transition : color 0.1s ease-in;
+    -o-transition : color 0.1s ease-in;
+    transition : color 0.1s ease-in;
 }
 
 
@@ -175,7 +181,10 @@ section.overview a:hover,
 section.overview a:focus,
 section.overview a:active {
     color:#039b0a;
-    -webkit-transition : color 0.3s ease-in;
+    -webkit-transition : color 0.1s ease-in;
+    -moz-transition : color 0.1s ease-in;
+    -o-transition : color 0.1s ease-in;
+    transition : color 0.1s ease-in;
 }
 
 #navigation.float {
@@ -235,11 +244,17 @@ section.overview a:active {
     padding: 0 1.5em 0.5em 1em; 
     background: url(underline.png) no-repeat 0em 1.3em;
     -webkit-transition: background-position 0.5s ease-out, color 0.5s ease-out;
+    -moz-transition: background-position 0.5s ease-out, color 0.5s ease-out;
+    -o-transition: background-position 0.5s ease-out, color 0.5s ease-out;
+    transition: background-position 0.5s ease-out, color 0.5s ease-out;
 }
 
 .subnav a:hover {
     background-position: 4em 1.3em;
-    -webkit-transition: background-position 0.5s ease-out ,color 0.5s ease-out;
+    -webkit-transition: background-position 0.5s ease-out, color 0.5s ease-out;
+    -moz-transition: background-position 0.5s ease-out, color 0.5s ease-out;
+    -o-transition: background-position 0.5s ease-out, color 0.5s ease-out;
+    transition: background-position 0.5s ease-out, color 0.5s ease-out;
 }
 
 /*
