@@ -403,25 +403,34 @@ button:active {
 	text-decoration: none;
 	display: inline-block;
 	padding: 0.5em;
-	background: #0b88d3;
-	background-image: -webkit-linear-gradient(top, #008afb, #0b88d3);
-	background-image: -moz-linear-gradient(top, #008afb, #0b88d3);
-	background-image: linear-gradient(top, #008afb, #0b88d3);
+	background: #B8810D;
+	background-image: -webkit-linear-gradient(top, #B8810D, #D59F0D);
+	background-image: -moz-linear-gradient(top, #B8810D, #D59F0D);
+	background-image: linear-gradient(top, #B8810D, #D59F0D);
 	border-radius: 5px;
-	border: 4px double #fff;
-	font-family: "Droid Serif";
-	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+	border: 2px solid #fff;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size:112.5%;
 }
 
 .button:hover {
-	background: #fc951e;
-	background-image: -webkit-linear-gradient(top, #ffc629, #fc951e);
-	background-image: -moz-linear-gradient(top, #ffc629, #fc951e);
-	background-image: linear-gradient(top, #fc951e, #fc951e);
+	background: #B8810D;
+    color:white;
+	background-image: -webkit-linear-gradient(top, #B8810D, #E6C026);
+	background-image: -moz-linear-gradient(top, #B8810D, #E6C026);
+	background-image: linear-gradient(top, #B8810D, #E6C026);
+    -webkit-transition: background-image 0.3s ease-out;
 }
 
 .button:active {
-	background: #ffc629;
+	background: #E6C026;
+    color:white;
+}
+
+.button .version{
+    color: #315a2f;
+    font-size:77%;
 }
 
 .button:first-child {
