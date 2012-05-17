@@ -574,7 +574,13 @@ aside li  span{
     overflow: hidden;
     padding-top: 3.025em;
     display:block;
-    background: url(./img/icon-sprite.png) no-repeat
+    background: url(./img/icon-sprite.png) no-repeat;
+    -webkit-transition: border-color 0.3s ease-out;
+}
+
+aside li  a:hover{
+    border-color: #ccc;
+    -webkit-transition: border-color 0.3s ease-out;
 }
 
 aside li.github a{
