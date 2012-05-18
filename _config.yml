@@ -18,8 +18,8 @@ sections:
   
 # Add your project's scripts here to be available to any examples
 PROJECT_SCRIPTS:
-- location: https://raw.github.com/dharmafly/jquery.promises/master/image.js
-- location: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
+- src: https://raw.github.com/dharmafly/jquery.promises/master/image.js
+- src: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
 
 # A quote to add at the footer of your project page
 PROJECT_QUOTE:

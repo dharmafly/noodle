@@ -89,8 +89,8 @@ Set in _config.yml in the form
       
     # Add your project's scripts here to be available to any examples or demos you run in the page (see Code Blocks in Posts)
     PROJECT_SCRIPTS:
-    - location: https://raw.github.com/dharmafly/jquery.promises/master/image.js
-    - location: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
+    - src: https://raw.github.com/dharmafly/jquery.promises/master/image.js
+    - src: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
 
 
 
