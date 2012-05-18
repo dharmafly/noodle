@@ -5,7 +5,7 @@ layout: default
 
             <nav class="subnav">
                 <ul>
-            {% for post in about reversed %}
+                {% for post in about reversed %}
                     {% if forloop.first %}                    
                 <li><a href="{{ page_path }}#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a></li>
                     {% endif %}

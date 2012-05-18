@@ -11,7 +11,7 @@ CODE_TYPE: javascript
 
 # Page names (paths are currently hard-coded to match directory names / site categories)
 sections:
- - path: about
+ - path: 
    name: Overview 
  - path: reference
    name: Reference 

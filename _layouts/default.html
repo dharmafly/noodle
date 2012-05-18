@@ -1,6 +1,5 @@
 {% assign sections = site.sections %}
 
-
 {% assign relative_path  = "./" %}
 {% assign page_path  = "" %}
 
@@ -25,19 +24,14 @@
                     {% if page.layout_type == 'subpage' %} <a href="../"> {% endif %}
                     {{ site.PROJECT_NAME }}
                     {% if page.layout_type == 'subpage' %} </a> {% endif %}
-                    <!-- img src="{{ relative_path }}css/svg/wing.svg" -->
                 </h1>
 			</header>
-
-            {% comment %}
-            <!-- First Link | Download | Remaining links | ...link | ...link | Reference -->
-            {% endcomment %}
             
            <nav id="navigation">
                 <ul>
                     {% for section in sections %}
                     <li>
-                        <a href="{{ relative_path }}{% unless forloop.first %}{{ section.path }}{% endunless %}">
+                        <a href="{{ relative_path }}{{ section.path }}">
                         {{ section.name }} 
                         </a>
                     </li>
