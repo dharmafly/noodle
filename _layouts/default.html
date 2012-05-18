@@ -1,4 +1,3 @@
-{% assign about = site.categories.about %}
 {% assign sections = site.sections %}
 
 
@@ -35,20 +34,15 @@
             {% endcomment %}
             
            <nav id="navigation">
-                {% for post in about reversed %}
-                    {% if forloop.first %}                    
-                <li><a href="{{ page_path }}#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a></li>
-                    {% endif %}
-                {% endfor %}
-                <li><a href="{{ page_path }}#download">Download</a></li>
-                {% for post in about reversed %}
-                    {% unless forloop.first %}
-                <li><a href="{{ page_path }}#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a></li>
-                    {% endunless %}
-                {% endfor %}
-                {% for section in sections %}
-                <li><a href="{{ relative_path }}{{ section.path }}">{{ section.name }}</a></li>
-                {% endfor %}
+                <ul>
+                    {% for section in sections %}
+                    <li>
+                        <a href="{{ relative_path }}{% unless forloop.first %}{{ section.path }}{% endunless %}">
+                        {{ section.name }} 
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
             </nav>
             
             

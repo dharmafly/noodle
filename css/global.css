@@ -255,18 +255,18 @@ section.overview a:active {
     padding: 0 1.25em 0.5em 1em; 
     background: transparent no-repeat 0em 1.3em;
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAAJCAYAAAAcoXrzAAADBUlEQVRo3u1awW7UMBDdIipxQuKE1EMBUaQise5h8gfO1fsp8Antn2+93e0qid/MvKSQCpjDUxSvPR7bm/fsGW/2+/2m/7U9IX2ozy8V3yquKt7kWl7uZbO77xoMy7U6499kANzu+Z3p02uj2xLTjvVu2WzH2sE6Xpk3HrPdQzeZ646YRwH+d4qvQ7vi1J/WEfe30vgtxjpYfoszB+M+Dt9BIBCYh81AQK6rWEg/QH3/UZ9v8YfdQSFgCEW315az9jzC1clXzoTkC4ZA4mv7aclZn7+xXUTqDJYIoicEbPtCCsmU/Fkx9uxP7c2dpwOCDAKBhQJSheJ9PX3IVEAOZfX5WfuI8Y6c2fF1DWm39j1xavvGRCMm2bCnEx468Rdlx1wUEStQeLj59siZEw9R1wufLEQ9MXDi5Le3T2ECx6eLewhIIPA7TiCfciscAGnwTOf33LRB5UmxdawHTj9A0Ka2x/V1nxOsm6HvbR9IWPNPrT/UdyLqMmP1/GrXwVoDMIc3yI88ATfv49+Y9ll54vppNMbn9cjm//fPIK+ONEK/KrYrY72x5QbrrGf/inip72cB0YgCf/BpwR9gTNi5IYMERGrrCBkvGgyxamXMvGh+2fO4NQUYC7dP2pmaRyQm6QbVy66wJ0pQdP8TJSrZFeY0+m+tif4fx/8lkq8lln+fKJ8E5Cl5Dj/IuphfCwgNcHFpHF4qSjJZC3VMbXCJdoFhICtUNi+mb4dEmDh8UcIsbZjohAcvTCez80Z2WdfkgPwku30xYOeEIXfmGosa7rMS5EyOLsIRgcDyENZFPt68mu6m7ur7Oz+u39HxbC45iwVII0pGkDRSssnIj5+3eQ3uhpKX1PfyK5owFnj7SJy8gy8k9vqiywbiCgvqn0vc2/ky+4YWXsMgg0DgZbewLio+VtxWfD+GtdJlr17jbZOqy29jMclooW4mIcEZkpwlGFgARN19M6cqfk6EJnDtOnSBN8L4U4g1vjmnFsZf3tbcDYi4GxNUHmQQCCwUkEAgEAgE5uIRJoUS9SlwYSAAAAAASUVORK5CYII=); /* ./img/underline.png */
-    -webkit-transition: background-position 0.5s ease-out, color 0.5s ease-out;
-    -moz-transition: background-position 0.5s ease-out, color 0.5s ease-out;
-    -o-transition: background-position 0.5s ease-out, color 0.5s ease-out;
-    transition: background-position 0.5s ease-out, color 0.5s ease-out;
+    -webkit-transition: background-position 0.3s ease-out, color 0.3s ease-out;
+    -moz-transition: background-position 0.3s ease-out, color 0.3s ease-out;
+    -o-transition: background-position 0.3s ease-out, color 0.3s ease-out;
+    transition: background-position 0.3s ease-out, color 0.3s ease-out;
 }
 
 .subnav a:hover {
     background-position: 4em 1.3em;
-    -webkit-transition: background-position 0.5s ease-out, color 0.5s ease-out;
-    -moz-transition: background-position 0.5s ease-out, color 0.5s ease-out;
-    -o-transition: background-position 0.5s ease-out, color 0.5s ease-out;
-    transition: background-position 0.5s ease-out, color 0.5s ease-out;
+    -webkit-transition: background-position 0.3s ease-out, color 0.3s ease-out;
+    -moz-transition: background-position 0.3s ease-out, color 0.3s ease-out;
+    -o-transition: background-position 0.3s ease-out, color 0.3s ease-out;
+    transition: background-position 0.3s ease-out, color 0.3s ease-out;
 }
 
 /*
@@ -344,8 +344,9 @@ section .permalink {
 	text-decoration: none;
 	color: #ccc;
 	float: left;
-	margin-right: 0.5em;
+	margin-right: 0.2em;
 	visibility: hidden;
+    font-family: Code2000, "DejaVu Sans", "DejaVu Sans Bold", "DejaVu Sans Bold Oblique", "DejaVu Sans Condensed", "DejaVu Sans Condensed Bold", "DejaVu Sans Condensed Bold Oblique", "DejaVu Sans Condensed Oblique", "DejaVu Sans Mono", "DejaVu Sans Mono Bold", "DejaVu Sans Oblique", "EversonMono", "EversonMono-Oblique", "LastResort", "Symbola"
 }
 
 section .permalink:hover {
@@ -667,7 +668,8 @@ aside li.code-css span{
 
 @media (min-width:340px) {
 	#navigation {
-		text-align: center;
+		text-align: left;
+		/* text-align: center; */
 	}
 
 	#navigation li, #navigation li:nth-child(even) {
@@ -695,6 +697,7 @@ aside li.code-css span{
 		font-size: 1.8em;
 	}
 
+    #navigation ul,
     footer > div,
     header h1,
 	section.content {

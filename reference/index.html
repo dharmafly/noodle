@@ -13,7 +13,7 @@ layout_type: subpage
 
 {% for post in reference reversed %}
     <section>
-        <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">#</a>{{ post.title }}</h1>
+        <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>{{ post.title }}</h1>
         <article class="embedded markdown">
         {{ post.content }}
         </article>

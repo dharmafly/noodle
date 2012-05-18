@@ -3,11 +3,26 @@ layout: default
 ---
 {% assign about = site.categories.about %}
 
-
+            <nav class="subnav">
+                <ul>
+            {% for post in about reversed %}
+                    {% if forloop.first %}                    
+                <li><a href="{{ page_path }}#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                <li><a href="{{ page_path }}#download">Download</a></li>
+                {% for post in about reversed %}
+                    {% unless forloop.first %}
+                <li><a href="{{ page_path }}#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a></li>
+                    {% endunless %}
+                {% endfor %}
+                </ul>
+            </nav>
+            
             {% for post in about reversed %}
                 {% if forloop.first %}
                     <section class="overview">
-                        <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">#</a>{{ post.title }}</h1>
+                        <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>{{ post.title }}</h1>
 						<article class="embedded markdown">
 						{{ post.content }}
 						</article>
@@ -15,7 +30,7 @@ layout: default
 					{% endif %}
 				{% endfor %}
 			<section>
-				<h1><a id="download" class="permalink" href="#download">#</a> Download</h1>
+				<h1><a id="download" class="permalink" href="#download">&#9875;</a> Download</h1>
 				<p>The current version of {{ site.PROJECT_NAME }} is {{ site.GITHUB_CURRENT_VERSION }} you can download it below.</p>
 				<p class="buttons">
 					<a class="button" href="{{ site.GITHUB_PROJECT_URL }}">{{ site.PROJECT_NAME }} <span class="version">v{{ site.GITHUB_CURRENT_VERSION }}</span></a>
@@ -24,7 +39,7 @@ layout: default
 			<section>
 				{% for post in about reversed %}
                         {% unless forloop.first %}
-                        <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">#</a>{{ post.title }}</h1>
+                        <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>{{ post.title }}</h1>
 						<article class="embedded markdown">
 						{{ post.content }}
 						</article>
@@ -35,7 +50,7 @@ layout: default
             {% for section in site.sections %}
                 {% if section.path == 'reference' %}
             <section>
-                <h1><a id="reference" class="permalink" href="#reference">#</a><a href="{{ relative_path }}/{{ section.path }}">{{ section.name }}</a></h1>
+                <h1><a id="reference" class="permalink" href="#reference">&#9875;</a><a href="{{ relative_path }}/{{ section.path }}">{{ section.name }}</a></h1>
                 <p>Complete documentation can be found here: <a href="{{ relative_path }}/{{ section.path }}">{{ section.name }}</a></p>
             </section>
                 {% endif %}

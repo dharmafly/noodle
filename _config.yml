@@ -9,10 +9,12 @@ TWITTER_PROJECT_URL: https://twitter.com/dharmafly
 CODE_TYPE: javascript
 
 
-# Name of Reference/API page
-sections: 
+# Page names (paths are currently hard-coded to match directory names / site categories)
+sections:
+ - path: about
+   name: Overview 
  - path: reference
-   name: Reference
+   name: Reference 
   
 # Add your project's scripts here to be available to any examples
 PROJECT_SCRIPTS:
