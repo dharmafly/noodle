@@ -5,13 +5,14 @@ body {
 	padding: 0;
 	margin: 0;
 	color: #2f4430;
-    background: #87c980; /* Old browsers */
-    background: -moz-linear-gradient(top,  #87c980 0%, #a5d5a6 50%, #87c980 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87c980), color-stop(50%,#a5d5a6), color-stop(100%,#87c980)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #87c980 0%,#a5d5a6 50%,#87c980 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #87c980 0%,#a5d5a6 50%,#87c980 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #87c980 0%,#a5d5a6 50%,#87c980 100%); /* IE10+ */
-    background: linear-gradient(top,  #87c980 0%,#a5d5a6 50%,#87c980 100%); /* W3C */
+    background: #87c980; 
+    background-image: url(./img/tile.png);
+    background-image: url(./img/tile.png) -moz-linear-gradient(left, #87c980 0%, #a5d5a6 50%, #87c980 100%);
+    background-image: url(./img/tile.png) -webkit-gradient(linear, left top, right top, color-stop(0%,#87c980), color-stop(50%,#a5d5a6), color-stop(100%,#87c980));
+    background-image: url(./img/tile.png) -webkit-linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%); 
+    background-image: url(./img/tile.png) -o-linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%); 
+    background-image: url(./img/tile.png) -ms-linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%);
+    background-image: url(./img/tile.png) linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%);
 }
 
 i, em {
@@ -123,6 +124,10 @@ pre code {
 	line-height: 1.2em;
 }
 
+header {
+    background : url(./img/tile.png);
+}
+
 header,
 footer {
 	background-color: #2f4430;
@@ -130,7 +135,6 @@ footer {
 	text-align: center;
     color: white;
 }
-
 
 header h1 {
 	font-size: 4.2em;
@@ -236,19 +240,19 @@ section.overview a:active {
 
 .subnav {
     position: absolute;
-    left: -45em;
+    left: -42em;
     text-align: right;
     width: 40em;
 }
 
 .subnav li {
     margin: 0;
-    padding: 1.2em 0 0.5em 0;
+    padding: 0.8em 0 0.5em 0;
 }
 
 .subnav a {
     text-decoration: none;
-    padding: 0 1.5em 0.5em 1em; 
+    padding: 0 1.25em 0.5em 1em; 
     background: transparent no-repeat 0em 1.3em;
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAAJCAYAAAAcoXrzAAADBUlEQVRo3u1awW7UMBDdIipxQuKE1EMBUaQise5h8gfO1fsp8Antn2+93e0qid/MvKSQCpjDUxSvPR7bm/fsGW/2+/2m/7U9IX2ozy8V3yquKt7kWl7uZbO77xoMy7U6499kANzu+Z3p02uj2xLTjvVu2WzH2sE6Xpk3HrPdQzeZ646YRwH+d4qvQ7vi1J/WEfe30vgtxjpYfoszB+M+Dt9BIBCYh81AQK6rWEg/QH3/UZ9v8YfdQSFgCEW315az9jzC1clXzoTkC4ZA4mv7aclZn7+xXUTqDJYIoicEbPtCCsmU/Fkx9uxP7c2dpwOCDAKBhQJSheJ9PX3IVEAOZfX5WfuI8Y6c2fF1DWm39j1xavvGRCMm2bCnEx468Rdlx1wUEStQeLj59siZEw9R1wufLEQ9MXDi5Le3T2ECx6eLewhIIPA7TiCfciscAGnwTOf33LRB5UmxdawHTj9A0Ka2x/V1nxOsm6HvbR9IWPNPrT/UdyLqMmP1/GrXwVoDMIc3yI88ATfv49+Y9ll54vppNMbn9cjm//fPIK+ONEK/KrYrY72x5QbrrGf/inip72cB0YgCf/BpwR9gTNi5IYMERGrrCBkvGgyxamXMvGh+2fO4NQUYC7dP2pmaRyQm6QbVy66wJ0pQdP8TJSrZFeY0+m+tif4fx/8lkq8lln+fKJ8E5Cl5Dj/IuphfCwgNcHFpHF4qSjJZC3VMbXCJdoFhICtUNi+mb4dEmDh8UcIsbZjohAcvTCez80Z2WdfkgPwku30xYOeEIXfmGosa7rMS5EyOLsIRgcDyENZFPt68mu6m7ur7Oz+u39HxbC45iwVII0pGkDRSssnIj5+3eQ3uhpKX1PfyK5owFnj7SJy8gy8k9vqiywbiCgvqn0vc2/ky+4YWXsMgg0DgZbewLio+VtxWfD+GtdJlr17jbZOqy29jMclooW4mIcEZkpwlGFgARN19M6cqfk6EJnDtOnSBN8L4U4g1vjmnFsZf3tbcDYi4GxNUHmQQCCwUkEAgEAgE5uIRJoUS9SlwYSAAAAAASUVORK5CYII=); /* ./img/underline.png */
     -webkit-transition: background-position 0.5s ease-out, color 0.5s ease-out;
@@ -356,7 +360,7 @@ section .permalink:hover {
 
 
 
-.quote blockquote, .quot cite {
+.quote blockquote, .quote cite {
     text-align:center;
     display:block;
 }
