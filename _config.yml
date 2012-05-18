@@ -6,7 +6,7 @@ GITHUB_PROJECT_URL: https://github.com/dharmafly/dharmafly-docs
 # Optional extras
 TWITTER_PROJECT_URL: https://twitter.com/dharmafly
 # javascript, css or html5
-CODE_TYPE: javascript
+LANG: javascript
 
 
 # Page names (paths are currently hard-coded to match directory names / site categories)
