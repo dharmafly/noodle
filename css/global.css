@@ -342,7 +342,6 @@ section.content:after{
     -o-transform: rotate(270deg);
     transform: rotate(270deg);
     opacity: 0.2;
-    -webkit-filter: hue-rotate(108deg);
 }
 
 section > h1 {
