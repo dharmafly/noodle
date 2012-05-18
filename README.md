@@ -97,11 +97,13 @@ Set in _config.yml in the form
 Code Blocks in Posts
 ---------------------
 
-Each code block is given access to a `$output` variable. This refers to a
-jQuery wrapped `<output>` element inserted after the code block. 
+Any  code blocks in the markdown will be formatted as syntax highlighted code blocks in the website.
 
 If the example uses the `$output` variable or `alert()` then a "run" button will appear next to
 the code block allowing the user to run the example.
+
+Each code block is given access to a `$output` variable. This refers to a
+jQuery wrapped `<output>` element inserted after the code block. 
 
 For example:
 
