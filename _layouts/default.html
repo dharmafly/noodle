@@ -1,5 +1,5 @@
 {% assign about = site.categories.about %}
-{% assign reference = site.categories.reference %}
+{% assign sections = site.sections %}
 
 
 {% assign relative_path  = "./" %}
@@ -46,7 +46,9 @@
                 <li><a href="{{ page_path }}#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a></li>
                     {% endunless %}
                 {% endfor %}
-                <li><a href="{{ relative_path }}/reference">{{ site.REFERENCE.name }}</a></li>
+                {% for section in sections %}
+                <li><a href="{{ relative_path }}{{ section.path }}">{{ section.name }}</a></li>
+                {% endfor %}
             </nav>
             
             
@@ -90,7 +92,7 @@
             <footer>
                 <div>
                     <p>
-                    <em>By</em> <a href="http://dharmafly.com">Dharmafly</a>
+                    <em>by</em> <a href="http://dharmafly.com">Dharmafly</a>
                     </p>
                 </div>
 			</footer>
