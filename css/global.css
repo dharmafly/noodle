@@ -82,27 +82,10 @@ ul li {
 	padding-left: 0;
 }
 
-blockquote, cite {
-    text-align:center;
-    display:block;
-}
-
-blockquote{
-    font-size: 1.5em;
-    line-height: 1.46em;
-    padding: 0 3em;
-}
-
-blockquote:before {
-    content: "\201C"
-}
-blockquote:after {
-    content: "\201D"
-}
-
-cite {
-    font-size: 1.3em;
-    font-style: normal;
+hr {
+    border:0;
+    border-bottom: 1px solid #ccc;
+    margin: 2em 0 3em 0;
 }
 
 code {
@@ -372,11 +355,41 @@ section .permalink:hover {
 }
 
 
+
+.quote blockquote, .quot cite {
+    text-align:center;
+    display:block;
+}
+
+.quote blockquote{
+    font-size: 1.5em;
+    line-height: 1.46em;
+    padding: 0 3em;
+}
+
+.quote blockquote:before {
+    content: "\201C"
+}
+.quote blockquote:after {
+    content: "\201D"
+}
+
+.quote cite {
+    font-size: 1.3em;
+    font-style: normal;
+}
+
+
 /* Hanging indent */
 
-article > ul,
-section > ul {
+.embedded > ul,
+.embedded > ul {
     margin-left: -1em;
+}
+
+.embedded > ol,
+.embedded > ol {
+    margin-left: 1.5em;
 }
 
 article > p,
@@ -386,7 +399,10 @@ section > p {
 
 article > p:first-of-type,
 section > p:first-of-type,
-article > h2 + p {
+article > h2 + p,
+.embedded > h3 + p,
+.embedded > h4 + p,
+.embedded > h5 + p {
     text-indent: -1em;
 }
 
@@ -403,14 +419,50 @@ article > h2 + p {
 
 .embedded h3 {
 	font-size: 1.6em;
-	font-family: Menlo;
-	font-weight: 700;
+	margin: 2em 0 1em;
+}
+
+.embedded h4{
+	font-size: 1.5em;
+	margin: 2em 0 1em;
+}
+
+.embedded h5{
+	font-size: 1.4em;
 	margin: 2em 0 1em;
 }
 
 .embedded ul li {
 	list-style-type: circle;
 	margin-left: 26px;
+}
+
+.embedded p.image-left,
+.embedded p.image-right {
+    text-indent: 0;
+    padding-left: 0;
+}
+
+.embedded .image-left img{
+    float: left;
+    margin: 0 1em 1em 0;
+}
+
+.embedded .image-right img{
+    float: right;
+    margin: 0 0 1em 1em;
+}
+
+.embedded .image-right:before,
+.embedded .image-right:after,
+.embedded .image-left:before,
+.embedded .image-left:after {
+    content:"";
+    display:table;
+}
+.embedded .image-left:after,
+.embedded .image-right:after {
+    clear:both;
 }
 
 button {

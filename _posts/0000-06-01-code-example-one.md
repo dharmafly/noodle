@@ -2,7 +2,7 @@
 category: reference
 ---
 
-Method one overview
+These code examples are taken from [jquery promises] (http://jquerypromises.com). The code is parsed by [Ace] (https://github.com/ajaxorg/ace)
 
 Example one
 ----------------
