@@ -81,9 +81,10 @@ Set in _config.yml in the form
     GITHUB_PROJECT_URL: https://github.com/dharmafly/your-project
 
 
-    # Location of Reference/API page - This is the name you'll give to the reference section, it could be 'API', for example.
-    REFERENCE: 
-      name: Reference
+    # name of Reference/API page - This is the name you'll give to the reference section, it could be 'API', for example (path is hardcoded as 'reference' currently).
+    sections: 
+     - path: reference
+       name: API Documentation
       
       
     # Add your project's scripts here to be available to any examples or demos you run in the page (see Code Blocks in Posts)

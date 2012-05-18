@@ -10,8 +10,9 @@ CODE_TYPE: javascript
 
 
 # Name of Reference/API page
-REFERENCE: 
-  name: Reference
+sections: 
+ - path: reference
+   name: Reference
   
 # Add your project's scripts here to be available to any examples
 PROJECT_SCRIPTS:
@@ -24,10 +25,6 @@ PROJECT_QUOTE:
   attr: Hannah Arendt
 
 ###############################
-
-sections: 
- - path: reference
-   name: Reference
 
 
 # Jekyll options
