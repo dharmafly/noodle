@@ -198,7 +198,7 @@ section.overview a:active {
     transition : color 0.1s ease-in;
 }
 
-
+.subnav.float,
 #navigation.float {
 	z-index: 101;
 	position: fixed;
@@ -211,6 +211,9 @@ section.overview a:active {
 
 .subnav.float {
     top: 6em;
+    left: -15em;
+    box-shadow: none;
+    /* calculate left offset dynamically */
 }
 
 #navigation[hidden] {
@@ -274,33 +277,6 @@ section.overview a:active {
     transition: background-position 0.3s ease-out, color 0.3s ease-out;
 }
 
-/*
-.subnav a:hover {
-    border-bottom-color: red;
-    -webkit-transition: border-bottom-color 1s ease-in-out;
-}
-.subnav a:hover {
-    border-bottom-color: red;
-    -webkit-transition: border-bottom-color 1s ease-in-out;
-}
-
-.subnav a:after {
-    content: "";
-    display: block;
-    width: 0.8em;
-    height: 0.8em;
-    position: absolute;
-    bottom: -0.4em;
-    left: -0.4em;
-    border-radius: 0.4em;
-    background-color:#77b173;
-}
-.subnav a:hover:after {
-    background-color: red;
-    -webkit-transition: background-color 1s ease-in-out;
-}
-
-*/
 section {
 	margin: 0 3.5em 3.5em;
 }
@@ -689,10 +665,27 @@ aside li.code-css span{
 	#navigation li:first-child {
 		border-left-width:0;
 	}
+    
+    aside, 
+    .subnav {
+        display: none;
+    }
 }
+/*
+@media (min-width:52em) {
+
+    aside {
+         display: none;
+    } 
+    
+}
+*/
 
 @media (min-width:35em) {
-
+    
+    aside {
+        display: block;
+    }
     
     header img {
         width: 281px;
@@ -710,6 +703,10 @@ aside li.code-css span{
 		margin-left: auto;
 		margin-right: auto;
 	}
+    
+    .subnav {
+        display: block;
+    }
 
     header h1 {
 		font-size: 5.4em;

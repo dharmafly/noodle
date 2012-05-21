@@ -60,7 +60,7 @@ if (document.querySelectorAll) {
       
       cloned[isHidden ? 'setAttribute' : 'removeAttribute']('hidden', '');
       subnav.classList[isHidden ? 'remove' : 'add']('float');
-      subnav[isHidden ? 'removeAttribute' : 'setAttribute']('style', 'top:' + subnavOffsetY + 'px');
+      // subnav[isHidden ? 'removeAttribute' : 'setAttribute']('style', 'top:' + subnavOffsetY + 'px'); // TO DO as Xoffset, as this is less used
       return onScroll;
     })(), false);
 
