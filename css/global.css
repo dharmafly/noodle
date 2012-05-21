@@ -209,6 +209,7 @@ section.overview a:active {
 	box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
 }
 
+.subnav[hidden],
 #navigation[hidden] {
 	display: none;
 }
@@ -752,7 +753,6 @@ aside li.code-css span{
     .subnav.float {
         position: fixed;
         top: 6em;
-        left: -15em;
         /* calculate left offset dynamically */
     }
     

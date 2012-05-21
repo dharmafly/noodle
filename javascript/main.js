@@ -3,14 +3,22 @@ if (document.querySelectorAll) {
     var navigation = $('#navigation'),
         subnav = $('.subnav'),
         cloned = navigation.cloneNode(true),
+        subnavCloned = subnav.cloneNode(true),
         offset = navigation.offsetTop,
         root   = document.documentElement,
-        height, timer, throttle;
+        height, timer, throttle, subnavOffset;
         
     // Append the cloned navigation item.
     cloned.classList.add('float');
     document.body.appendChild(cloned);
     height = cloned.getBoundingClientRect().height;
+    
+    // Get offset of subnav
+    subnavCloned.setAttribute('hidden', '');
+    document.body.appendChild(subnavCloned);
+    subnavOffset = window.getComputedStyle(subnavCloned, null).getPropertyValue("left");
+    document.body.removeChild(subnavCloned);
+    console.log("subnavOffset = " + subnavOffset);
 
     // Animate a scroll to the provided offset.
     function scrollTo(offset) {
@@ -57,10 +65,24 @@ if (document.querySelectorAll) {
       
       cloned[isHidden ? 'setAttribute' : 'removeAttribute']('hidden', '');
       subnav.classList[isHidden ? 'remove' : 'add']('float');
-      // subnav[isHidden ? 'removeAttribute' : 'setAttribute']('style', 'top:' + subnavOffsetY + 'px'); // TO DO as Xoffset, as this is less used
+     console.log("isHidden = " + isHidden);
+      onResize(isHidden);
+  
       return onScroll;
     })(), false);
-
+    
+    // Show/Hide the navigation on scroll.
+    window.addEventListener('resize', onResize);
+    
+    function onResize(isHidden) {
+    
+    
+    console.log("isHidden = " + isHidden);
+    console.log("subnavOffset = " + subnavOffset);
+        
+        subnav.style.left = isHidden === true ? subnavOffset  : (((window.innerWidth / 2) - (subnav.clientWidth) - $('section.content').clientWidth / 2) - 30) + "px";
+    }
+    
     // Handle scroll between inter-document links.
     document.body.addEventListener('click', function (event) {
       var section = event.target.hash && $(event.target.hash),
@@ -76,6 +98,7 @@ if (document.querySelectorAll) {
         event.preventDefault();
       }
     }, false);
+    
 
   })(function () { return document.querySelector.apply(document, arguments); });
 }
