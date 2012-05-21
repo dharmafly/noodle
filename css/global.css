@@ -199,7 +199,6 @@ section.overview a:active {
     transition : color 0.1s ease-in;
 }
 
-.subnav.float,
 #navigation.float {
 	z-index: 101;
 	position: fixed;
@@ -208,13 +207,6 @@ section.overview a:active {
 	right: 0;
 	margin: 0;
 	box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
-}
-
-.subnav.float {
-    top: 6em;
-    left: -15em;
-    box-shadow: none;
-    /* calculate left offset dynamically */
 }
 
 #navigation[hidden] {
@@ -253,6 +245,13 @@ section.overview a:active {
     text-align: right;
     width: 40em;
 }
+
+aside, 
+.subnav {
+    margin-left : -100%;
+}
+
+/* TO DO display icon to reveal subnav on click */
 
 .subnav li {
     margin: 0;
@@ -657,19 +656,12 @@ aside li.code-css span{
 		border-left-width:0;
 	}
     
-    aside, 
-    .subnav {
-        display: none;
-    }
 }
 
 
 @media (min-width:35em) {
     
-    aside {
-        display: block;
-    }
-    
+
     header img {
         width: 281px;
     }
@@ -687,9 +679,6 @@ aside li.code-css span{
 		margin-right: auto;
 	}
     
-    .subnav {
-        display: block;
-    }
 
     header h1 {
 		font-size: 5.4em;
@@ -717,6 +706,12 @@ aside li.code-css span{
 }
 
 @media (min-width:52em) {
+
+    aside,
+    .subnav {
+        margin-left: 0;
+    }
+    
 
     aside {
         position: absolute;
@@ -751,6 +746,14 @@ aside li.code-css span{
         position: absolute;
         bottom: -210px;
         left: -43px;
+    }
+    
+    
+    .subnav.float {
+        position: fixed;
+        top: 6em;
+        left: -15em;
+        /* calculate left offset dynamically */
     }
     
 }
