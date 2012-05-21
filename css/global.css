@@ -198,6 +198,7 @@ section.overview a:active {
     transition : color 0.1s ease-in;
 }
 
+
 #navigation.float {
 	z-index: 101;
 	position: fixed;
@@ -206,6 +207,10 @@ section.overview a:active {
 	right: 0;
 	margin: 0;
 	box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+.subnav.float {
+    top: 6em;
 }
 
 #navigation[hidden] {
@@ -561,7 +566,7 @@ button:active {
 	z-index: 100;
 	position: absolute;
     top: 23px;
-    left: -53px;
+    left: -40px;
 	cursor: pointer;
 }
 
@@ -723,8 +728,8 @@ aside li.code-css span{
 	}
 	
 	section pre {
-		margin-left: -7em;
-		margin-right: -7em;
+		margin-left: -5.6em;
+		margin-right: -5.6em;
 		padding-left: 5em;
 		padding-right: 2.5em;
         max-width:65em;

@@ -1,11 +1,14 @@
 if (document.querySelectorAll) {
   (function ($, $$) {
     var navigation = $('#navigation'),
+        subnav = $('.subnav'),
+        subnavOffset = subnav.offsetTop,
+        headerHeight = $("header").clientHeight,
         cloned = navigation.cloneNode(true),
         offset = navigation.offsetTop,
         root   = document.documentElement,
         height, timer, throttle;
-
+        
     // Append the cloned navigation item.
     cloned.classList.add('float');
     document.body.appendChild(cloned);
@@ -31,13 +34,6 @@ if (document.querySelectorAll) {
             modifier   = Math.abs(difference) / total,
             increment  = Math.ceil(start * modifier);
         
-        if(increment){
-        console.log("difference = " + difference)
-        console.log("direction = " + direction)
-        console.log("modifier = " + modifier)
-        console.log("increment = " + increment)
-        }
-        
         if (difference !== last && (direction < 0 || window.innerHeight + window.scrollY !== root.scrollHeight)) {
           if (difference < increment && difference > increment * -1) {
             increment = Math.abs(difference);
@@ -59,8 +55,12 @@ if (document.querySelectorAll) {
         throttle = null;
       }, 1000 / 60);
 
-      var isHidden = window.scrollY < offset;
+      var isHidden = window.scrollY < offset
+          subnavOffsetY = window.scrollY + subnavOffset + 50 - headerHeight;
+      
       cloned[isHidden ? 'setAttribute' : 'removeAttribute']('hidden', '');
+      subnav.classList[isHidden ? 'remove' : 'add']('float');
+      subnav[isHidden ? 'removeAttribute' : 'setAttribute']('style', 'top:' + subnavOffsetY + 'px');
       return onScroll;
     })(), false);
 
@@ -68,10 +68,6 @@ if (document.querySelectorAll) {
     document.body.addEventListener('click', function (event) {
       var section = event.target.hash && $(event.target.hash),
           offset  = window.scrollY;
-          
-      console.log("section")
-      console.log(section)
-      console.log("offset = " + offset)
 
       if (section) {
         // Set the location hash and reset the browser scroll position.
