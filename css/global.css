@@ -277,6 +277,7 @@ section.overview a:active {
     transition: background-position 0.3s ease-out, color 0.3s ease-out;
 }
 
+aside,
 section {
 	margin: 0 3.5em 3.5em;
 }
@@ -574,33 +575,22 @@ button:active {
 	background-color: #fdfdea;
 }
 
-aside {
-    position: absolute;
-    top: 3em;
-    right: -10em;
+aside li {
+    float: left;
+    margin-right: 1em;
 }
 
 aside:after{
     content: "";
     display: block;
-    width: 90px;
-    height: 240px;
-    margin: 0;
-    background: transparent;
-    background-repeat: no-repeat;
-    background-position: left top;
-    background-image: url(./svg/icon-stem.svg) ;
-    position: absolute;
-    bottom: -210px;
-    left: -43px;
+    clear: both;
 }
 
 aside li  a,
 aside li  span{
     width: 3.025em;
     height: 0em;
-    margin-bottom: 1.5em;
-    border: 0.625em solid #dbe5d7;
+    border: 0.625em solid #cbdac5;
     border-radius: 3.025em;
     overflow: hidden;
     padding-top: 3.025em;
@@ -610,7 +600,7 @@ aside li  span{
 }
 
 aside li  a:hover{
-    border-color: #ccc;
+    border-color: #DBE5D7;
     -webkit-transition: border-color 0.3s ease-out;
 }
 
@@ -671,15 +661,7 @@ aside li.code-css span{
         display: none;
     }
 }
-/*
-@media (min-width:52em) {
 
-    aside {
-         display: none;
-    } 
-    
-}
-*/
 
 @media (min-width:35em) {
     
@@ -731,4 +713,43 @@ aside li.code-css span{
 		padding-right: 2.5em;
         max-width:65em;
 	}
+}
+
+@media (min-width:52em) {
+
+    aside {
+        position: absolute;
+        top: 3em;
+        right: -10em;
+        margin: 0;
+    }
+    
+    aside li {
+        float: none;
+        margin-right: 0;
+    }
+    
+    aside li  a,
+    aside li  span{
+        border-color: #DBE5D7;
+        margin-bottom: 1.5em;
+    }
+
+    aside li  a:hover{
+        border-color: #cbdac5;
+    }
+        
+    aside:after{
+        width: 90px;
+        height: 240px;
+        margin: 0;
+        background: transparent;
+        background-repeat: no-repeat;
+        background-position: left top;
+        background-image: url(./svg/icon-stem.svg) ;
+        position: absolute;
+        bottom: -210px;
+        left: -43px;
+    }
+    
 }

@@ -27,8 +27,11 @@ layout: default
 						{{ post.content }}
 						</article>
                     </section>
-					{% endif %}
-				{% endfor %}
+                {% endif %}
+            {% endfor %}
+            
+            {% include aside.liquid %}
+            
 			<section>
 				<h1><a id="download" class="permalink" href="#download">&#9875;</a> Download</h1>
 				<p>The current version of {{ site.PROJECT_NAME }} is {{ site.GITHUB_CURRENT_VERSION }} you can download it below.</p>

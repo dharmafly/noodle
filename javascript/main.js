@@ -2,8 +2,6 @@ if (document.querySelectorAll) {
   (function ($, $$) {
     var navigation = $('#navigation'),
         subnav = $('.subnav'),
-        subnavOffset = subnav.offsetTop,
-        headerHeight = $("header").clientHeight,
         cloned = navigation.cloneNode(true),
         offset = navigation.offsetTop,
         root   = document.documentElement,
@@ -55,8 +53,7 @@ if (document.querySelectorAll) {
         throttle = null;
       }, 1000 / 60);
 
-      var isHidden = window.scrollY < offset
-          subnavOffsetY = window.scrollY + subnavOffset + 50 - headerHeight;
+      var isHidden = window.scrollY < offset;
       
       cloned[isHidden ? 'setAttribute' : 'removeAttribute']('hidden', '');
       subnav.classList[isHidden ? 'remove' : 'add']('float');
