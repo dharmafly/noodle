@@ -90,8 +90,8 @@ hr {
 }
 
 code {
-	font-family: Monaco, monospace;
-	font-size: 0.8em;
+	font-family: Inconsolata, monospace;
+	font-size: 1em;
 	padding: 2px 3px;
 	color: #4d4d4c;
 }
@@ -642,6 +642,11 @@ aside li.code-css span{
 
 .ace_cursor.ace_hidden {
 	opacity: 0!important;
+}
+
+.ace_editor{
+	font-family: Inconsolata, monospace !important;
+    font-size: 1.6em !important;
 }
 
 .ace_editor .ace_sb{
