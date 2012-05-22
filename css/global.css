@@ -566,6 +566,7 @@ button:active {
 	display: block;
 	background-color: #DBE5D7;
 	font-size: 1.4em; /* Fixes odd issue in FF */
+    min-height:1em;
 	overflow: auto;
 	overflow-y: hidden;
 	-webkit-tab-size: 2;
