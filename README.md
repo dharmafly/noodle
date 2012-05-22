@@ -62,12 +62,13 @@ or
     category: about
     ---
 
-
 The very first 'about' post in the directory will be used for the project overview (it will be displayed in a highlighted box).
 
 The remaining posts with `category: about` will appear in the main nav and on the front page.
 
 `category: reference` posts will appear in the *Reference* sub-page.
+
+(INFO: These are examples of [YAML Front Matter] (https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) ) 
 
 ### How to rename the items in the main nav
 
@@ -91,14 +92,12 @@ To rename the items in the main nav, change the `name` variable. For example
 Would change the main nav items to *About | API Documentation*. 
 
 It's not currently possible to change the path of the site pages.       
-
-(INFO: These are examples of [YAML Front Matter] (https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) ) 
     
 
 Changing the language icon
 --------------------------
 
-The language icon is on the top right hand side of the main content under the github and twitter icons. 
+The language icon is on the top right hand side of the main content under the github and twitter icons. It's there to quickly show site visitors the main focus of the project.
 
 To change the language icon, edit the `_config.yml` 
 
