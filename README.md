@@ -34,16 +34,17 @@ Required posts
 
 A main overview, this will be the first post in your *_posts* directory.
 
-Special sections
-----------------
+Site variables
+==================
 
-To add a highlighted version of text (for example for your project name) within the overview section, add the following html.
+Set in `_config.yml` in the form
 
-    <span class="project_name">Project Name</span>
+    # Your project's details
+    PROJECT_NAME: Project Name
+    GITHUB_CURRENT_VERSION: 1.0
+    GITHUB_PROJECT_URL: https://github.com/dharmafly/your-project
 
-If this is at the beginning of the line, you need to add an invisible unicode character as follows, due to [this bug] (http://groups.google.com/group/pdoc/browse_thread/thread/725e4809de2fcc18)
-
-    &#8291;<span class="project_name">Project Name</span>
+There are many more optional variables that can be updated.
 
 
 Updating the main nav
@@ -64,35 +65,90 @@ or
 
 The very first 'about' post in the directory will be used for the project overview (it will be displayed in a highlighted box).
 
-The remaining posts with *category: about* will appear in the main nav and on the front page.
+The remaining posts with `category: about` will appear in the main nav and on the front page.
 
-*category: reference* posts will appear in the *Reference* sub-page.
-    
-(INFO: These are examples of [YAML Front Matter] (https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) ) 
-    
-Site variables
----------------------
+`category: reference` posts will appear in the *Reference* sub-page.
 
-Set in _config.yml in the form
+### How to rename the items in the main nav
 
-    # Your project's details
-    PROJECT_NAME: Project Name
-    GITHUB_CURRENT_VERSION: 1.0
-    GITHUB_PROJECT_URL: https://github.com/dharmafly/your-project
+Edit the `_config/yml`:
 
+    # Page names (paths are currently hard-coded to match directory names / site categories)
+    sections:
+     - path: 
+       name: Overview 
+     - path: reference
+       name: Reference 
+       
+To rename the items in the main nav, change the `name` variable. For example
 
-    # name of Reference/API page - This is the name you'll give to the reference section, it could be 'API', for example (path is hardcoded as 'reference' currently).
-    sections: 
+    sections:
+     - path: 
+       name: About 
      - path: reference
        name: API Documentation
-      
-      
-    # Add your project's scripts here to be available to any examples or demos you run in the page (see Code Blocks in Posts)
-    PROJECT_SCRIPTS:
-    - src: https://raw.github.com/dharmafly/jquery.promises/master/image.js
-    - src: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
+
+Would change the main nav items to *About | API Documentation*. 
+
+It's not currently possible to change the path of the site pages.       
+
+(INFO: These are examples of [YAML Front Matter] (https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) ) 
+    
+
+Changing the language icon
+--------------------------
+
+The language icon is on the top right hand side of the main content under the github and twitter icons. 
+
+To change the language icon, edit the `_config.yml` 
+
+    # javascript, css or html5
+    LANG: javascript
+
+There are icons for JavaScript, CSS and HTML5.
+
+Adding a link to your twitter account
+-------------------------------------
+
+If your project has a twitter account, you can add a link to it in the `_config.yml`.
+
+    TWITTER_PROJECT_URL: https://twitter.com/dharmafly
+    
+An icon will appear on the right hand side under the github icon for your project.
 
 
+Adding a download button
+------------------------
+
+The site will already include a link to your project. If you have a downloadable zip of your project, you can add this by editing the `_config.yml`.
+
+    GITHUB_ZIP_URL: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
+    
+This will add a download button to your site.
+
+Adding a quote to your project
+------------------------------
+
+If you have a quote that sums up the ideas in your project, you can optionally add it by editing the `_config.yml`.
+
+    PROJECT_QUOTE:
+      quote:  Promises are the uniquely human way of ordering the future, making it predictable and reliable to the extent that this is humanly possible.
+      cite: Hannah Arendt
+
+      
+Formatting your posts
+====================
+
+Special sections
+----------------
+
+To add a highlighted version of text (for example for your project name) within the overview section, add the following html.
+
+    <span class="project_name">Project Name</span>
+
+If this is at the beginning of the line, you need to add an invisible unicode character as follows, due to [this bug] (http://groups.google.com/group/pdoc/browse_thread/thread/725e4809de2fcc18)
+
+    &#8291;<span class="project_name">Project Name</span>
 
 Code Blocks in Posts
 ---------------------
@@ -113,5 +169,15 @@ For example:
       $output.append(image);
     }
 
-The code snippet will appear with a run button. When the image has loaded then
+The code snippet will appear with a run button. In this example, when the image has loaded then
 the element will be appended to the output.
+
+### Adding your project code to the page
+
+To add your own JavaScript files to the page to be available to the code blocks, edit the `_config.yml`:
+
+    PROJECT_SCRIPTS:
+    - src: https://raw.github.com/dharmafly/jquery.promises/master/image.js
+    - src: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
+    
+The examples here use files from the jquery.promises project.
