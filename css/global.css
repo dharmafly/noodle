@@ -214,6 +214,7 @@ section.overview a:active {
     margin: -0.1em 1em 0 0;
     float: left;
     font-size: 1.8em;
+    color: white;
 }
 
 #navigation.float h1 a {
@@ -316,7 +317,7 @@ section.content:after{
     background: transparent;
     background-repeat: no-repeat;
     background-position: left top;
-    background-image: url(./svg/wing.svg) ;
+    background-image: url(./svg/node-wing.svg) ;
     -webkit-transform: rotate(270deg);
     -moz-transform: rotate(270deg);
     -ms-transform: rotate(270deg);
