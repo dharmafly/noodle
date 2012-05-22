@@ -32,7 +32,7 @@ The format used doesn't have to be a real date (e.g. `0000-{section}-{chapter}-{
 Required posts
 ----------------
 
-A main overview, this will be the first post in your *_posts* directory.
+There are no required posts, however the first post in your `_posts` directory will be styled as an overview section on the index page.
 
 Site variables
 ==================
