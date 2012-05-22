@@ -16,9 +16,20 @@ if (document.querySelectorAll) {
     height = cloned.getBoundingClientRect().height;
     
     // Get offset of subnav
-    subnavCloned.setAttribute('hidden', '');
     document.body.appendChild(subnavCloned);
     subnavOffset = window.getComputedStyle(subnavCloned, null).getPropertyValue("left");
+    
+    // Get visible width of subnav
+    var subnavLinks = subnavCloned.querySelectorAll("a"),
+        subnavWidth = 0, currentWidth;
+        
+    for (var i = 0; i < subnavLinks.length; ++i) {
+       currentWidth = subnavLinks[i].getBoundingClientRect().width;
+        subnavWidth = currentWidth > subnavWidth ? currentWidth : subnavWidth;
+    }
+    
+    console.log("subnavWidth = " + subnavWidth);
+    
     document.body.removeChild(subnavCloned);
 
     // Animate a scroll to the provided offset.
