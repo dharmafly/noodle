@@ -209,6 +209,17 @@ section.overview a:active {
 	box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
 }
 
+#navigation.float h1 {
+    text-transform: none; 
+    margin: -0.1em 1em 0 0;
+    float: left;
+    font-size: 1.8em;
+}
+
+#navigation.float h1 a {
+    color: white;
+}
+
 .subnav[hidden],
 #navigation[hidden] {
 	display: none;
@@ -704,6 +715,11 @@ aside li.code-css span{
 		padding-right: 2.5em;
         max-width:65em;
 	}
+   
+   
+    #navigation.float h1 {
+        font-size: 2.6em;
+    }
 }
 
 @media (min-width:52em) {
@@ -755,5 +771,7 @@ aside li.code-css span{
         top: 6em;
         /* calculate left offset dynamically */
     }
+    
+    
     
 }

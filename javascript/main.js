@@ -11,6 +11,7 @@ if (document.querySelectorAll) {
         
     // Append the cloned navigation item.
     cloned.classList.add('float');
+    cloned.querySelector("ul").appendChild($('h1.title').cloneNode(true));
     document.body.appendChild(cloned);
     height = cloned.getBoundingClientRect().height;
     
@@ -19,7 +20,6 @@ if (document.querySelectorAll) {
     document.body.appendChild(subnavCloned);
     subnavOffset = window.getComputedStyle(subnavCloned, null).getPropertyValue("left");
     document.body.removeChild(subnavCloned);
-    console.log("subnavOffset = " + subnavOffset);
 
     // Animate a scroll to the provided offset.
     function scrollTo(offset) {
