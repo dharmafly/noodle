@@ -554,8 +554,10 @@ button:active {
 .run .eval {
 	z-index: 100;
 	position: absolute;
-    top: 23px;
-    left: -40px;
+    top: auto;
+    left: auto;
+    bottom: 104px;
+    right: -6px;
 	cursor: pointer;
 }
 
@@ -719,6 +721,16 @@ aside li.code-css span{
    
     #navigation.float h1 {
         font-size: 2.6em;
+    }
+    
+    .run .eval {
+        z-index: 100;
+        position: absolute;
+        top: 23px;
+        left: -40px;
+        bottom: auto;
+        right: auto;
+        cursor: pointer;
     }
 }
 
