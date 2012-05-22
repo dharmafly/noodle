@@ -6,6 +6,7 @@ if (document.querySelectorAll) {
         subnavCloned = subnav.cloneNode(true),
         offset = navigation.offsetTop,
         root   = document.documentElement,
+        isHeaderVisible = true,
         height, timer, throttle, subnavOffset;
         
     // Append the cloned navigation item.
@@ -65,8 +66,9 @@ if (document.querySelectorAll) {
       
       cloned[isHidden ? 'setAttribute' : 'removeAttribute']('hidden', '');
       subnav.classList[isHidden ? 'remove' : 'add']('float');
-     console.log("isHidden = " + isHidden);
-      onResize(isHidden);
+      
+      isHeaderVisible = isHidden;
+      onResize();
   
       return onScroll;
     })(), false);
@@ -74,13 +76,12 @@ if (document.querySelectorAll) {
     // Show/Hide the navigation on scroll.
     window.addEventListener('resize', onResize);
     
-    function onResize(isHidden) {
-    
-    
-    console.log("isHidden = " + isHidden);
-    console.log("subnavOffset = " + subnavOffset);
+    function onResize() {
         
-        subnav.style.left = isHidden === true ? subnavOffset  : (((window.innerWidth / 2) - (subnav.clientWidth) - $('section.content').clientWidth / 2) - 30) + "px";
+        var justLeftOfContent = (((window.innerWidth / 2) - (subnav.clientWidth) - $('section.content').clientWidth / 2) - 30) + "px"
+        
+        subnav.style.left = isHeaderVisible ? subnavOffset  : justLeftOfContent;  
+        
     }
     
     // Handle scroll between inter-document links.
