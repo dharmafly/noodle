@@ -593,19 +593,21 @@ button:active {
 	background-color: #fdfdea;
 }
 
-aside li {
+aside li,
+.buttons .icon {
     float: left;
     margin-right: 1em;
 }
 
-aside:after{
+aside:after {
     content: "";
     display: block;
     clear: both;
 }
 
 aside li  a,
-aside li  span{
+aside li  span,
+.buttons .icon {
     width: 3.025em;
     height: 0em;
     border: 0.625em solid #cbdac5;
@@ -617,12 +619,20 @@ aside li  span{
     -webkit-transition: border-color 0.3s ease-out;
 }
 
-aside li  a:hover{
+.buttons .icon {
+    border-width: 0.2em;
+    width: 2.5em;
+    border-radius: 2.5em;
+    padding-top: 2.5em;
+}
+
+aside li  a:hover,
+.buttons .icon:hover {
     border-color: #DBE5D7;
     -webkit-transition: border-color 0.3s ease-out;
 }
 
-aside li.github a{
+aside li.github a {
     background-position: -5px -3px;
 }
 
@@ -630,15 +640,19 @@ aside li.twitter a{
     background-position: -2px -128px;
 }
 
-aside li.code-javascript span{
+aside li.code-javascript span {
     background-position: -6px -246px;
 }
 
-aside li.code-html5 span{
+.buttons .icon.github {
+    background-position: -1px -359px;
+}
+
+aside li.code-html5 span {
     background-position: -5px -240px;
 }
 
-aside li.code-css span{
+aside li.code-css span {
     background-position: -5px -240px;
 }
 
@@ -646,12 +660,12 @@ aside li.code-css span{
 	opacity: 0!important;
 }
 
-.ace_editor{
+.ace_editor {
 	font-family: Inconsolata, monospace !important;
     font-size: 1.6em !important;
 }
 
-.ace_editor .ace_sb{
+.ace_editor .ace_sb {
     overflow-y: auto !important;
 }
 
