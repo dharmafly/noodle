@@ -351,9 +351,11 @@ section .permalink:hover {
 .project-name {
     font-family: 'Forum', serif;
     font-size: 162.5%;
-    color: white;
 }
 
+.overview .project-name {
+    color: white;
+}
 
 
 .quote blockquote, .quote cite {

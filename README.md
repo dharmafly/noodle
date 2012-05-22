@@ -41,7 +41,7 @@ To add a highlighted version of text (for example for your project name) within 
 
     <span class="project_name">Project Name</span>
 
-If this is at the beginning of the line, you need to add an invisible unicode character as follows, do to [this bug] (http://groups.google.com/group/pdoc/browse_thread/thread/725e4809de2fcc18)
+If this is at the beginning of the line, you need to add an invisible unicode character as follows, due to [this bug] (http://groups.google.com/group/pdoc/browse_thread/thread/725e4809de2fcc18)
 
     &#8291;<span class="project_name">Project Name</span>
 
