@@ -7,6 +7,9 @@ if (document.querySelectorAll) {
         offset = navigation.offsetTop,
         root   = document.documentElement,
         isHeaderVisible = true,
+        subnavContainer = subnav.clientWidth,
+        halfContentWidth = $('section.content').clientWidth / 2,
+        subnavMargin = 30,
         height, timer, throttle, subnavOffset;
         
     // Append the cloned navigation item.
@@ -14,10 +17,6 @@ if (document.querySelectorAll) {
     cloned.querySelector("ul").appendChild($('h1.title').cloneNode(true));
     document.body.appendChild(cloned);
     height = cloned.getBoundingClientRect().height;
-    
-    // Get offset of subnav
-    document.body.appendChild(subnavCloned);
-    subnavOffset = window.getComputedStyle(subnavCloned, null).getPropertyValue("left");
     
     // Get visible width of subnav
     var subnavLinks = subnavCloned.querySelectorAll("a"),
@@ -27,8 +26,6 @@ if (document.querySelectorAll) {
        currentWidth = subnavLinks[i].getBoundingClientRect().width;
         subnavWidth = currentWidth > subnavWidth ? currentWidth : subnavWidth;
     }
-    
-    console.log("subnavWidth = " + subnavWidth);
     
     document.body.removeChild(subnavCloned);
 
@@ -84,14 +81,17 @@ if (document.querySelectorAll) {
       return onScroll;
     })(), false);
     
-    // Show/Hide the navigation on scroll.
+    //  Move the navigation on resize to keep it's position relative to the browser port.
     window.addEventListener('resize', onResize);
     
     function onResize() {
         
-        var justLeftOfContent = (((window.innerWidth / 2) - (subnav.clientWidth) - $('section.content').clientWidth / 2) - 30) + "px"
+        var halfWindowWidth = window.innerWidth / 2,
+            subnavOffset = (halfWindowWidth - subnavContainer - halfContentWidth - subnavMargin) + "px";
         
-        subnav.style.left = isHeaderVisible ? subnavOffset  : justLeftOfContent;  
+        subnav.classList[(subnavWidth + subnavMargin + halfContentWidth) > halfWindowWidth ? 'add' : 'remove']('off-left');
+         
+        subnav.style.left = isHeaderVisible ? null  : subnavOffset;  
         
     }
     
