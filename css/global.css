@@ -6,13 +6,13 @@ body {
 	margin: 0;
 	color: #2f4430;
     background: #87c980; 
-    background-image: url(./img/tile.png);
-    background-image: url(./img/tile.png) -moz-linear-gradient(left, #87c980 0%, #a5d5a6 50%, #87c980 100%);
-    background-image: url(./img/tile.png) -webkit-gradient(linear, left top, right top, color-stop(0%,#87c980), color-stop(50%,#a5d5a6), color-stop(100%,#87c980));
-    background-image: url(./img/tile.png) -webkit-linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%); 
-    background-image: url(./img/tile.png) -o-linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%); 
-    background-image: url(./img/tile.png) -ms-linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%);
-    background-image: url(./img/tile.png) linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%);
+   /* background-image: url(./img/tile.png); */
+    background-image: -moz-linear-gradient(left, #87c980 0%, #a5d5a6 50%, #87c980 100%);
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0%,#87c980), color-stop(50%,#a5d5a6), color-stop(100%,#87c980));
+    background-image: -webkit-linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%); 
+    background-image: -o-linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%); 
+    background-image: -ms-linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%);
+    background-image: linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%);
 }
 
 i, em {
@@ -166,6 +166,10 @@ footer p {
 	overflow: hidden;
 }
 
+#navigation.show-subnav-button {
+    padding-bottom:0.5em;
+}
+
 section.overview {
     padding:2em 3.5em;
     border-radius: 7px;
@@ -221,7 +225,6 @@ section.overview a:active {
     color: white;
 }
 
-.subnav[hidden],
 #navigation[hidden] {
 	display: none;
 }
@@ -252,41 +255,42 @@ section.overview a:active {
 	text-decoration: none;
 }
 
-.subnav {
+#subnav {
     position: absolute;
     left: -42em;
     text-align: right;
     width: 40em;
 }
 
+
 aside, 
-.subnav {
+#subnav,
+#subnav.off-left  {
     margin-left : -100%;
 }
 
-/* TO DO display icon to reveal subnav on click */
-
-.subnav li {
+#subnav li {
     margin: 0;
     padding: 0.8em 0 0.5em 0;
 }
 
-.subnav a {
+#subnav a {
     text-decoration: none;
-    padding: 0 1.25em 0.5em 1em; 
-    background: transparent no-repeat 0em 1.3em;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAAJCAYAAAAcoXrzAAADBUlEQVRo3u1awW7UMBDdIipxQuKE1EMBUaQise5h8gfO1fsp8Antn2+93e0qid/MvKSQCpjDUxSvPR7bm/fsGW/2+/2m/7U9IX2ozy8V3yquKt7kWl7uZbO77xoMy7U6499kANzu+Z3p02uj2xLTjvVu2WzH2sE6Xpk3HrPdQzeZ646YRwH+d4qvQ7vi1J/WEfe30vgtxjpYfoszB+M+Dt9BIBCYh81AQK6rWEg/QH3/UZ9v8YfdQSFgCEW315az9jzC1clXzoTkC4ZA4mv7aclZn7+xXUTqDJYIoicEbPtCCsmU/Fkx9uxP7c2dpwOCDAKBhQJSheJ9PX3IVEAOZfX5WfuI8Y6c2fF1DWm39j1xavvGRCMm2bCnEx468Rdlx1wUEStQeLj59siZEw9R1wufLEQ9MXDi5Le3T2ECx6eLewhIIPA7TiCfciscAGnwTOf33LRB5UmxdawHTj9A0Ka2x/V1nxOsm6HvbR9IWPNPrT/UdyLqMmP1/GrXwVoDMIc3yI88ATfv49+Y9ll54vppNMbn9cjm//fPIK+ONEK/KrYrY72x5QbrrGf/inip72cB0YgCf/BpwR9gTNi5IYMERGrrCBkvGgyxamXMvGh+2fO4NQUYC7dP2pmaRyQm6QbVy66wJ0pQdP8TJSrZFeY0+m+tif4fx/8lkq8lln+fKJ8E5Cl5Dj/IuphfCwgNcHFpHF4qSjJZC3VMbXCJdoFhICtUNi+mb4dEmDh8UcIsbZjohAcvTCez80Z2WdfkgPwku30xYOeEIXfmGosa7rMS5EyOLsIRgcDyENZFPt68mu6m7ur7Oz+u39HxbC45iwVII0pGkDRSssnIj5+3eQ3uhpKX1PfyK5owFnj7SJy8gy8k9vqiywbiCgvqn0vc2/ky+4YWXsMgg0DgZbewLio+VtxWfD+GtdJlr17jbZOqy29jMclooW4mIcEZkpwlGFgARN19M6cqfk6EJnDtOnSBN8L4U4g1vjmnFsZf3tbcDYi4GxNUHmQQCCwUkEAgEAgE5uIRJoUS9SlwYSAAAAAASUVORK5CYII=); /* ./img/underline.png */
+    padding: 0 1.25em 0.55em 1em; 
+    background: transparent no-repeat 0em 1.2em;
+   /* background-image: url('data:image/svg+xml;utf8,<svg width="403" height="8" xmlns="http://www.w3.org/2000/svg"><line stroke="#7DB378" stroke-width="2" x1="4" y1="4" x2="400" y2="4" /><circle fill="#7DB378" cx="4" cy="4" r="4" /></svg>'); */
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAzIiBoZWlnaHQ9IjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGxpbmUgc3Ryb2tlPSIjN0RCMzc4IiBzdHJva2Utd2lkdGg9IjIiIHgxPSI0IiB5MT0iNCIgeDI9IjQwMCIgeTI9IjQiIC8+PGNpcmNsZSBmaWxsPSIjN0RCMzc4IiBjeD0iNCIgY3k9IjQiIHI9IjQiIC8+PC9zdmc+');
     -webkit-transition: background-position 0.3s ease-out, color 0.3s ease-out;
     -moz-transition: background-position 0.3s ease-out, color 0.3s ease-out;
     -o-transition: background-position 0.3s ease-out, color 0.3s ease-out;
     transition: background-position 0.3s ease-out, color 0.3s ease-out;
 }
 
-.subnav a:hover {
+#subnav a:hover {
     background-position: 4em 1.3em;
     -webkit-transition: background-position 0.3s ease-out, color 0.3s ease-out;
     -moz-transition: background-position 0.3s ease-out, color 0.3s ease-out;
-    -o-transition: background-position 0.3s ease-out, color 0.3s ease-out;
+    -o-transition: background-position 0.3s ease-out, color 0.3s ease-out;2
     transition: background-position 0.3s ease-out, color 0.3s ease-out;
 }
 
@@ -538,6 +542,41 @@ button:active {
 	margin-right: 1em;
 }
 
+.icon {
+    height: 0;
+    width: 24px;
+    padding-top: 24px;
+    border-radius: 5px;
+    display: block;
+    overflow: hidden;
+    background:#2D432E;
+    background-image: url(./img/button-icon-sprite.png);
+    background-image: url(./img/button-icon-sprite.png) -moz-linear-gradient(top, #2d432e 0%, #152e16 100%);
+    background-image: url(./img/button-icon-sprite.png) -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2d432e), color-stop(100%,#152e16));
+    background-image: url(./img/button-icon-sprite.png) -webkit-linear-gradient(top, #2d432e 0%,#152e16 100%);
+    background-image: url(./img/button-icon-sprite.png) -o-linear-gradient(top, #2d432e 0%,#152e16 100%);
+    background-image: url(./img/button-icon-sprite.png) -ms-linear-gradient(top, #2d432e 0%,#152e16 100%);
+    background-image: url(./img/button-icon-sprite.png) linear-gradient(top, #2d432e 0%,#152e16 100%);
+    background-repeat: no-repeat;
+    background-size: 37px 200px; /* 2/3 size */
+    border: 1px solid #152E16;
+}
+
+.show-subnav .icon{
+    background-position: 3px 5px;
+    float: left;
+}
+
+#navigation li.show-subnav {
+    float: left;
+    margin-top: -0.3em;
+    border-right:0;
+}
+
+#navigation.show-subnav-button li.show-subnav + li {
+    border-left-width:1px;
+}
+
 /* Change Log Section */
 .change-log li h2 {
 	font-size: 1em;
@@ -594,7 +633,7 @@ button:active {
 }
 
 aside li,
-.buttons .icon {
+.buttons .badge {
     float: left;
     margin-right: 1em;
 }
@@ -607,7 +646,7 @@ aside:after {
 
 aside li  a,
 aside li  span,
-.buttons .icon {
+.buttons .badge {
     width: 3.025em;
     height: 0em;
     border: 0.625em solid #cbdac5;
@@ -619,7 +658,7 @@ aside li  span,
     -webkit-transition: border-color 0.3s ease-out;
 }
 
-.buttons .icon {
+.buttons .badge {
     border-width: 0.2em;
     width: 2.5em;
     border-radius: 2.5em;
@@ -627,7 +666,7 @@ aside li  span,
 }
 
 aside li  a:hover,
-.buttons .icon:hover {
+.buttons .badge:hover {
     border-color: #DBE5D7;
     -webkit-transition: border-color 0.3s ease-out;
 }
@@ -644,7 +683,7 @@ aside li.code-javascript span {
     background-position: -6px -246px;
 }
 
-.buttons .icon.github {
+.buttons .badge.github {
     background-position: -1px -359px;
 }
 
@@ -686,11 +725,13 @@ aside li.code-css span {
 		padding-left: 1em;
 		padding-right: 1em;
         border-left:1px solid #9CD4A2;
+        border-right:1px solid #9CD4A2;
+        border-left-width:0;
 		float: none;
 	}
 	
-	#navigation li:first-child {
-		border-left-width:0;
+	#navigation li:last-child {
+		border-right-width:0;
 	}
     
 }
@@ -755,15 +796,35 @@ aside li.code-css span {
         right: auto;
         cursor: pointer;
     }
+    
+    .icon {
+        width: 31px;
+        padding-top: 31px;
+        border-radius: 7px;
+        background-size: auto;
+    }
+    .show-subnav .icon{
+        background-position: 4px 6px;
+    }
+    
+    #navigation li.show-subnav{
+        display:none;
+    }
+    #navigation.show-subnav-button  li.show-subnav{
+        display:block;
+    }
 }
 
 @media (min-width:52em) {
 
     aside,
-    .subnav {
+    #subnav {
         margin-left: 0;
     }
     
+    #subnav.off-left  {
+        margin-left : -100%;
+    }
 
     aside {
         position: absolute;
@@ -801,7 +862,7 @@ aside li.code-css span {
     }
     
     
-    .subnav.float {
+    #subnav.float {
         position: fixed;
         top: 6em;
         /* calculate left offset dynamically */

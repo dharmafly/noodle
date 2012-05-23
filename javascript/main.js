@@ -1,7 +1,7 @@
 if (document.querySelectorAll) {
   (function ($, $$) {
     var navigation = $('#navigation'),
-        subnav = $('.subnav'),
+        subnav = $('#subnav'),
         cloned = navigation.cloneNode(true),
         subnavCloned = subnav.cloneNode(true),
         offset = navigation.offsetTop,
@@ -18,7 +18,9 @@ if (document.querySelectorAll) {
     document.body.appendChild(cloned);
     height = cloned.getBoundingClientRect().height;
     
+    
     // Get visible width of subnav
+    document.body.appendChild(subnavCloned);
     var subnavLinks = subnavCloned.querySelectorAll("a"),
         subnavWidth = 0, currentWidth;
         
@@ -26,7 +28,6 @@ if (document.querySelectorAll) {
        currentWidth = subnavLinks[i].getBoundingClientRect().width;
         subnavWidth = currentWidth > subnavWidth ? currentWidth : subnavWidth;
     }
-    
     document.body.removeChild(subnavCloned);
 
     // Animate a scroll to the provided offset.
@@ -87,10 +88,14 @@ if (document.querySelectorAll) {
     function onResize() {
         
         var halfWindowWidth = window.innerWidth / 2,
-            subnavOffset = (halfWindowWidth - subnavContainer - halfContentWidth - subnavMargin) + "px";
+            subnavOffset = (halfWindowWidth - subnavContainer - halfContentWidth - subnavMargin) + "px",
+            isOffScreen = (subnavWidth + subnavMargin + halfContentWidth) > halfWindowWidth;
+            toggleClass = isOffScreen ? 'add' : 'remove'
         
-        subnav.classList[(subnavWidth + subnavMargin + halfContentWidth) > halfWindowWidth ? 'add' : 'remove']('off-left');
-         
+        subnav.classList[toggleClass]('off-left');
+        cloned.classList[toggleClass]('show-subnav-button');
+        navigation.classList[toggleClass]('show-subnav-button');
+        
         subnav.style.left = isHeaderVisible ? null  : subnavOffset;  
         
     }
