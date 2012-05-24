@@ -1,14 +1,16 @@
 if (document.querySelectorAll) {
   (function ($, $$) {
     var navigation = $('#navigation'),
-        subnav = $('#subnav'),
+        subnavId = 'subnav',
+        content = $('section.content'),
+        subnav = $('#' + subnavId),
         cloned = navigation.cloneNode(true),
         subnavCloned = subnav.cloneNode(true),
         offset = navigation.offsetTop,
         root   = document.documentElement,
         isHeaderVisible = true,
         subnavContainer = subnav.clientWidth,
-        halfContentWidth = $('section.content').clientWidth / 2,
+        halfContentWidth = content.clientWidth / 2,
         subnavMargin = 30,
         height, timer, throttle, subnavOffset;
         
@@ -98,22 +100,55 @@ if (document.querySelectorAll) {
         
         subnav.style.left = isHeaderVisible ? null  : subnavOffset;  
         
+        // Alternative implementation: 
+        
+        // remove the nav, create a section.content, append to body, append cloned nav. This will stick to the cloned section
+        
     }
     
     // Handle scroll between inter-document links.
     document.body.addEventListener('click', function (event) {
-      var section = event.target.hash && $(event.target.hash),
-          offset  = window.scrollY;
+      var hashId = event.target.hash,
+          section = hashId && $(hashId),
+          offset  = window.scrollY,
+          id = hashId ? hashId.substring(1, hashId.length) : null;
+        
+        
+        if(id === subnavId) {
+       
+            event.preventDefault();
+            console.log('show-subnav button');
+                subnav.classList.add("show-nav");
+                content.style.left = subnavWidth + "px";
+                
+              
+        } else if (section) {
+                
+            var parent = event.target.parentNode,
+                isSubnavLink = false;
+                
+            while(parent){
+                if (parent.id = subnavId){
+                    isSubnavLink = true;
+                    break;
+                }
+                parent =  parent.parentNode;
+            }
+            
+            if(isSubnavLink) {
+                subnav.classList.remove("show-nav");
+                content.style.left = null;
+            }
+                
+            // Set the location hash and reset the browser scroll position.
+            window.location.hash = event.target.hash;
+            window.scrollTo(0, offset);
 
-      if (section) {
-        // Set the location hash and reset the browser scroll position.
-        window.location.hash = event.target.hash;
-        window.scrollTo(0, offset);
-
-        // Animate to the element.
-        scrollTo(section.parentNode.offsetTop - height - 20);
-        event.preventDefault();
-      }
+            // Animate to the element.
+            scrollTo(section.parentNode.offsetTop - height - 20);
+            event.preventDefault();
+        }
+        
     }, false);
     
 

@@ -125,7 +125,7 @@ pre code {
 }
 
 header {
-    background : url(./img/tile.png);
+   /* background : url(./img/tile.png); */
 }
 
 header,
@@ -261,12 +261,21 @@ section.overview a:active {
     text-align: right;
     width: 40em;
 }
+    
+#subnav.float {
+    position: fixed;
+    top: 6em;
+    /* calculate left offset dynamically */
+}
 
 
 aside, 
 #subnav,
 #subnav.off-left  {
     margin-left : -100%;
+}
+#subnav.show-nav {
+    margin-left : 0;
 }
 
 #subnav li {
@@ -817,14 +826,16 @@ aside li.code-css span {
 
 @media (min-width:52em) {
 
-    aside,
-    #subnav {
-        margin-left: 0;
-    }
-    
     #subnav.off-left  {
         margin-left : -100%;
     }
+    
+    aside,
+    #subnav,
+    #subnav.show-nav {
+        margin-left: 0;
+    }
+    
 
     aside {
         position: absolute;
@@ -859,15 +870,7 @@ aside li.code-css span {
         position: absolute;
         bottom: -210px;
         left: -43px;
-    }
-    
-    
-    #subnav.float {
-        position: fixed;
-        top: 6em;
-        /* calculate left offset dynamically */
-    }
-    
+    }    
     
     
 }
