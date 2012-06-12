@@ -330,7 +330,7 @@ section.content:after{
     background: transparent;
     background-repeat: no-repeat;
     background-position: left top;
-    background-image: url(./svg/node-wing.svg) ;
+    background-image: url(./svg/nodewing.svg) ;
     -webkit-transform: rotate(270deg);
     -moz-transform: rotate(270deg);
     -ms-transform: rotate(270deg);
@@ -750,7 +750,7 @@ aside li.code-css span {
     
 
     header img {
-        width: 281px;
+      width: 281px;
     }
 
 	#navigation li {

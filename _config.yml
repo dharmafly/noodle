@@ -44,4 +44,4 @@ markdown:    maruku
 permalink:   /:title
 baseurl:     /
 
-exclude: ['README.md', 'assets']
+exclude: ['README.md', 'assets', 'FiddlerRules.farx']
