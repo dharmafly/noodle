@@ -79,30 +79,39 @@ if (document.querySelectorAll) {
       subnav.classList[isHidden ? 'remove' : 'add']('float');
       
       isHeaderVisible = isHidden;
-      onResize();
+      resetSubnav();
   
       return onScroll;
     })(), false);
     
     //  Move the navigation on resize to keep it's position relative to the browser port.
-    window.addEventListener('resize', onResize);
+    window.addEventListener('resize', resetSubnav);
     
-    function onResize() {
+    function resetSubnav() {
         
         var halfWindowWidth = window.innerWidth / 2,
-            subnavOffset = (halfWindowWidth - subnavContainer - halfContentWidth - subnavMargin) + "px",
-            isOffScreen = (subnavWidth + subnavMargin + halfContentWidth) > halfWindowWidth;
-            toggleClass = isOffScreen ? 'add' : 'remove'
+            navOffset = subnavWidth + subnavMargin + halfContentWidth,
+            navOffScreen = navOffset > halfWindowWidth,
+            subnavOffset = navOffScreen ? (halfWindowWidth - subnavContainer - subnavMargin - halfContentWidth + subnavWidth ) + "px" : (halfWindowWidth - subnavContainer - halfContentWidth - subnavMargin) + "px", 
+            toggleClass = navOffScreen ? 'add' : 'remove';
         
         subnav.classList[toggleClass]('off-left');
         cloned.classList[toggleClass]('show-subnav-button');
         navigation.classList[toggleClass]('show-subnav-button');
         
+        if(navOffScreen === false) {
+          content.style.left = null;
+        }else {
+          // subnav.classList.remove('show-nav');
+        } // %DE% // Need to refine conditions for when we hide the nav after resize - once page is too wide, on narrowing, does not hide off screen
+        
         subnav.style.left = isHeaderVisible ? null  : subnavOffset;  
+        
         
         // Alternative implementation: 
         
-        // remove the nav, create a section.content, append to body, append cloned nav. This will stick to the cloned section
+        // if the nav's off screen remove the nav, create a section.content, append to body, append cloned nav. This will stick to the cloned section
+        // as soon as the nav's onscreen, do the opposite.. !
         
     }
     
@@ -117,18 +126,22 @@ if (document.querySelectorAll) {
         if(id === subnavId) {
        
             event.preventDefault();
-            console.log('show-subnav button');
+            
+            if(subnav.classList.contains("show-nav")){
+                subnav.classList.remove("show-nav");
+                content.style.left = 0;
+            }else{
                 subnav.classList.add("show-nav");
                 content.style.left = subnavWidth + "px";
-                
-              
+            }
+            
         } else if (section) {
                 
             var parent = event.target.parentNode,
                 isSubnavLink = false;
                 
             while(parent){
-                if (parent.id = subnavId){
+                if (parent.id === subnavId){
                     isSubnavLink = true;
                     break;
                 }

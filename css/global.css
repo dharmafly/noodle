@@ -6,13 +6,13 @@ body {
 	margin: 0;
 	color: #2f4430;
     background: #87c980; 
-   /* background-image: url(./img/tile.png); */
-    background-image: -moz-linear-gradient(left, #87c980 0%, #a5d5a6 50%, #87c980 100%);
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(0%,#87c980), color-stop(50%,#a5d5a6), color-stop(100%,#87c980));
-    background-image: -webkit-linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%); 
-    background-image: -o-linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%); 
-    background-image: -ms-linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%);
-    background-image: linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%);
+    background-image: url(./img/tile.png); 
+    background-image: url(./img/tile.png) -moz-linear-gradient(left, #87c980 0%, #a5d5a6 50%, #87c980 100%);
+    background-image: url(./img/tile.png) -webkit-gradient(linear, left top, right top, color-stop(0%,#87c980), color-stop(50%,#a5d5a6), color-stop(100%,#87c980));
+    background-image: url(./img/tile.png) -webkit-linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%); 
+    background-image: url(./img/tile.png) -o-linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%); 
+    background-image: url(./img/tile.png) -ms-linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%);
+    background-image: url(./img/tile.png) linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%);
 }
 
 i, em {
@@ -125,7 +125,7 @@ pre code {
 }
 
 header {
-   /* background : url(./img/tile.png); */
+  background : url(./img/tile.png); 
 }
 
 header,
@@ -276,6 +276,11 @@ aside,
 }
 #subnav.show-nav {
     margin-left : 0;
+    /*-webkit-transition: margin-left 300ms ease-in-out;
+    -moz-transition: margin-left 300ms ease-in-out;
+    -o-transition: margin-left 300ms ease-in-out;
+    -ms-transition: margin-left 300ms ease-in-out;
+    transition: margin-left 300ms ease-in-out;*/
 }
 
 #subnav li {
@@ -296,7 +301,7 @@ aside,
 }
 
 #subnav a:hover {
-    background-position: 4em 1.3em;
+    background-position: 4em 1.2em;
     -webkit-transition: background-position 0.3s ease-out, color 0.3s ease-out;
     -moz-transition: background-position 0.3s ease-out, color 0.3s ease-out;
     -o-transition: background-position 0.3s ease-out, color 0.3s ease-out;2
@@ -313,6 +318,12 @@ section.content {
     margin-bottom: 0;
     padding: 3em 0;
     position: relative;
+    left: 0;
+    -webkit-transition: left 300ms ease-in-out;
+    -moz-transition: left 300ms ease-in-out;
+    -o-transition: left 300ms ease-in-out;
+    -ms-transition: left 300ms ease-in-out;
+    transition: left 300ms ease-in-out;
 }
 
 
@@ -749,17 +760,17 @@ aside li.code-css span {
 @media (min-width:35em) {
     
 
-    header img {
-      width: 281px;
-    }
+  header img {
+    width: 281px;
+  }
 
 	#navigation li {
 		font-size: 1.8em;
 	}
 
-    #navigation ul,
-    footer > div,
-    header h1,
+  #navigation ul,
+  footer > div,
+  header h1,
 	section.content {
 		max-width: 61em;
 		margin-left: auto;
@@ -767,16 +778,22 @@ aside li.code-css span {
 	}
     
 
-    header h1 {
+  header h1 {
 		font-size: 5.4em;
-        padding: 2em 5.55em 0.27em 0.55em; /* placeholder for wing graphic */
+    padding: 2em 5.55em 0.27em 0.55em; /* placeholder for wing graphic */
+    background-image: url(./svg/nodewing.svg);
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-size: 280px 126px;
+    max-width: 5.75em;
+    background-color: transparent;
 		max-width: 5.75em; /* as above but with modifier for font-size */
 	}
     
-    footer > div {
-        text-align: right;
-        padding:2em 2em 2em 0;
-    }
+  footer > div {
+      text-align: right;
+      padding:2em 2em 2em 0;
+  }
     
 	section:after {
 		margin-left: -4em;
@@ -791,37 +808,37 @@ aside li.code-css span {
         max-width:65em;
 	}
    
-   
-    #navigation.float h1 {
-        font-size: 2.6em;
-    }
-    
-    .run .eval {
-        z-index: 100;
-        position: absolute;
-        top: 23px;
-        left: -40px;
-        bottom: auto;
-        right: auto;
-        cursor: pointer;
-    }
-    
-    .icon {
-        width: 31px;
-        padding-top: 31px;
-        border-radius: 7px;
-        background-size: auto;
-    }
-    .show-subnav .icon{
-        background-position: 4px 6px;
-    }
-    
-    #navigation li.show-subnav{
-        display:none;
-    }
-    #navigation.show-subnav-button  li.show-subnav{
-        display:block;
-    }
+  #navigation.float h1 {
+      font-size: 2.6em;
+  }
+  
+  .run .eval {
+      z-index: 100;
+      position: absolute;
+      top: 23px;
+      left: -40px;
+      bottom: auto;
+      right: auto;
+      cursor: pointer;
+  }
+  
+  .icon {
+      width: 31px;
+      padding-top: 31px;
+      border-radius: 7px;
+      background-size: auto;
+  }
+  .show-subnav .icon{
+      background-position: 4px 6px;
+  }
+  
+  #navigation li.show-subnav{
+      display:none;
+  }
+  #navigation.show-subnav-button  li.show-subnav{
+      display:block;
+  }
+  
 }
 
 @media (min-width:52em) {
