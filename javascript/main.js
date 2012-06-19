@@ -17,7 +17,7 @@ if (document.querySelectorAll) {
         
     // Append the cloned navigation item.
     cloned.classList.add('float');
-    cloned.querySelector("ul").appendChild($('h1.title').cloneNode(true));
+    cloned.querySelector("ul").insertBefore($('h1.title').cloneNode(true), cloned.querySelector('.show-subnav').nextSibling);
     document.body.appendChild(cloned);
     height = cloned.getBoundingClientRect().height;
     

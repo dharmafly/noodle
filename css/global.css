@@ -215,10 +215,13 @@ section.overview a:active {
 
 #navigation.float h1 {
     text-transform: none; 
-    margin: -0.1em 1em 0 0;
+    margin:  0;
+    padding-right: 1em;
     float: left;
     font-size: 1.8em;
     color: white;
+    border-right:1px solid #9CD4A2;
+    display: none; /* only shown above 35em */
 }
 
 #navigation.float h1 a {
@@ -234,20 +237,17 @@ section.overview a:active {
 }
 
 #navigation li {
-	display: inline;
-	font-size: 1.4em;
-	font-weight: 700;
-	white-space: nowrap;
-	width: 60%;
-	margin: 0;
-	float: left;
+  display: inline;
+  padding-left: 1em;
+  padding-right: 1em;
+      border-left:1px solid #9CD4A2;
+      border-right:1px solid #9CD4A2;
+      border-left-width:0;
+  float: none;
 }
-
-#navigation li:nth-child(even) {
-	width: 40%;
-}
-
-#navigation li:last-child {
+	
+#navigation li:last-child{
+  border-right-width:0;
 	margin: 0;
 }
 
@@ -739,22 +739,7 @@ aside li.code-css span {
 	#navigation {
 		text-align: left;
 		/* text-align: center; */
-	}
-
-	#navigation li, #navigation li:nth-child(even) {
-		width: auto;
-		display: inline;
-		padding-left: 1em;
-		padding-right: 1em;
-        border-left:1px solid #9CD4A2;
-        border-right:1px solid #9CD4A2;
-        border-left-width:0;
-		float: none;
-	}
-	
-	#navigation li:last-child {
-		border-right-width:0;
-	}
+	}  
     
 }
 
@@ -779,6 +764,7 @@ aside li.code-css span {
 		margin-right: auto;
 	}
     
+
 
   header h1 {
 		font-size: 5.4em;
@@ -807,11 +793,13 @@ aside li.code-css span {
 		margin-right: -5.6em;
 		padding-left: 5em;
 		padding-right: 2.5em;
-        max-width:65em;
+    max-width:65em;
 	}
    
   #navigation.float h1 {
-      font-size: 2.6em;
+    font-size: 2.6em;
+    margin-top: -0.1em;
+    display: block;
   }
   
   .run .eval {
