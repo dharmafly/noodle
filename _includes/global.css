@@ -39,7 +39,7 @@ h1, h2, h3, h4, h5, h6, p, pre, ul, ol {
 }
 
 h1, h2 {
-	font-family: {{ site.font }}, "Helvetica Neue";
+	font-family: {{ page.font}}, "Helvetica Neue";
 	font-weight: 400;
 	margin-bottom: 0.75em;
 }
@@ -379,7 +379,7 @@ section .permalink:hover {
 }
 
 .project-name {
-    font-family: {{ site.font }}, serif;
+    font-family: {{ page.font}}, serif;
     font-size: 162.5%;
 }
 
@@ -410,7 +410,7 @@ section .permalink:hover {
 .quote cite {
     font-size: 1.3em;
     font-style: italic;
-    font-family: {{ site.font }} , serif;
+    font-family: {{ page.font}} , serif;
 }
 
 .quote {
