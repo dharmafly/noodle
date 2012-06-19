@@ -12,6 +12,7 @@ if (document.querySelectorAll) {
         subnavContainer = subnav.clientWidth,
         halfContentWidth = content.clientWidth / 2,
         subnavMargin = 30,
+        contentMargin = content.clientWidth - content.offsetWidth,
         height, timer, throttle, subnavOffset;
         
     // Append the cloned navigation item.
@@ -89,6 +90,7 @@ if (document.querySelectorAll) {
     
     function resetSubnav() {
         
+        
         var halfWindowWidth = window.innerWidth / 2,
             navOffset = subnavWidth + subnavMargin + halfContentWidth,
             navOffScreen = navOffset > halfWindowWidth,
@@ -101,17 +103,10 @@ if (document.querySelectorAll) {
         
         if(navOffScreen === false) {
           content.style.left = null;
-        }else {
-          // subnav.classList.remove('show-nav');
-        } // %DE% // Need to refine conditions for when we hide the nav after resize - once page is too wide, on narrowing, does not hide off screen
+          subnav.classList.remove("show-nav")
+        }
         
-        subnav.style.left = isHeaderVisible ? null  : subnavOffset;  
-        
-        
-        // Alternative implementation: 
-        
-        // if the nav's off screen remove the nav, create a section.content, append to body, append cloned nav. This will stick to the cloned section
-        // as soon as the nav's onscreen, do the opposite.. !
+        subnav.style.left = isHeaderVisible ? null  : subnavOffset; 
         
     }
     
@@ -129,10 +124,12 @@ if (document.querySelectorAll) {
             
             if(subnav.classList.contains("show-nav")){
                 subnav.classList.remove("show-nav");
-                content.style.left = 0;
+                subnav.style.left = null;
+                content.style.left = null;
             }else{
                 subnav.classList.add("show-nav");
-                content.style.left = subnavWidth + "px";
+                subnav.style.left = subnav.classList.contains("float") ? (0 - subnavWidth)  + "px" : (0 - subnavContainer - subnavMargin) + "px";
+                content.style.left = (subnavWidth - contentMargin) + "px";
             }
             
         } else if (section) {

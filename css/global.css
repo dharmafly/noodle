@@ -273,14 +273,16 @@ aside,
 #subnav,
 #subnav.off-left  {
     margin-left : -100%;
+    opacity: 0;
 }
 #subnav.show-nav {
     margin-left : 0;
-    /*-webkit-transition: margin-left 300ms ease-in-out;
+    opacity : 1;
+    -webkit-transition: margin-left,opacity 300ms ease-in-out;
     -moz-transition: margin-left 300ms ease-in-out;
     -o-transition: margin-left 300ms ease-in-out;
     -ms-transition: margin-left 300ms ease-in-out;
-    transition: margin-left 300ms ease-in-out;*/
+    transition: margin-left 300ms ease-in-out;
 }
 
 #subnav li {
@@ -851,6 +853,7 @@ aside li.code-css span {
     #subnav,
     #subnav.show-nav {
         margin-left: 0;
+        opacity : 1;
     }
     
 
