@@ -12,8 +12,8 @@ if (document.querySelectorAll) {
         subnavContainer = subnav.clientWidth,
         halfContentWidth = content.clientWidth / 2,
         subnavMargin = 30,
-        contentMargin = content.clientWidth - content.offsetWidth,
-        height, timer, throttle, subnavOffset;
+        height, timer, throttle, subnavOffset, openSubnavOffset;
+        
         
     // Append the cloned navigation item.
     cloned.classList.add('float');
@@ -106,7 +106,9 @@ if (document.querySelectorAll) {
           subnav.classList.remove("show-nav")
         }
         
-        subnav.style.left = isHeaderVisible ? null  : subnavOffset; 
+        subnavOffset = subnav.classList.contains("show-nav") ? openSubnavOffset  : subnavOffset; // set on open via button
+        
+        subnav.style.left = subnav.classList.contains("float")  ? subnavOffset  : null; 
         
     }
     
@@ -128,8 +130,9 @@ if (document.querySelectorAll) {
                 content.style.left = null;
             }else{
                 subnav.classList.add("show-nav");
-                subnav.style.left = subnav.classList.contains("float") ? (0 - subnavWidth)  + "px" : (0 - subnavContainer - subnavMargin) + "px";
-                content.style.left = (subnavWidth - contentMargin) + "px";
+                openSubnavOffset = ((0 - subnavContainer) + (subnavWidth + subnavMargin))  + "px"; // stored value reapplied on scroll
+                subnav.style.left = subnav.classList.contains("float") ? openSubnavOffset : null; 
+                content.style.left = (0 - content.offsetLeft + subnavWidth + (subnavMargin * 2)) + "px";
             }
             
         } else if (section) {
