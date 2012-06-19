@@ -39,7 +39,7 @@ h1, h2, h3, h4, h5, h6, p, pre, ul, ol {
 }
 
 h1, h2 {
-	font-family: Forum, "Helvetica Neue";
+	font-family: {{ site.font }}, "Helvetica Neue";
 	font-weight: 400;
 	margin-bottom: 0.75em;
 }
@@ -342,7 +342,7 @@ section.content:after{
     margin: 0;
     position: absolute;
     bottom: 177px;
-    left: -347px;
+    left: -336px;
     z-index: -1;
     background: transparent;
     background-repeat: no-repeat;
@@ -379,7 +379,7 @@ section .permalink:hover {
 }
 
 .project-name {
-    font-family: 'Forum', serif;
+    font-family: {{ site.font }}, serif;
     font-size: 162.5%;
 }
 
@@ -397,6 +397,7 @@ section .permalink:hover {
     font-size: 1.5em;
     line-height: 1.46em;
     padding: 0 3em;
+    margin-top: 0;
 }
 
 .quote blockquote:before {
@@ -408,9 +409,40 @@ section .permalink:hover {
 
 .quote cite {
     font-size: 1.3em;
-    font-style: normal;
+    font-style: italic;
+    font-family: {{ site.font }} , serif;
 }
 
+.quote {
+  padding-top: 6em;
+  position:relative;
+}
+
+.quote:before,
+.quote:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width:88px;
+    height: 39px;
+    margin: 0;
+    background-image: url(./svg/nodewing.svg);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 100%;
+    background-color: transparent;
+}
+
+.quote:after {
+  left: 18.6em;
+  -webkit-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
 
 /* Hanging indent */
 
@@ -772,15 +804,26 @@ aside li.code-css span {
 
   header h1 {
 		font-size: 5.4em;
-    padding: 2em 5.55em 0.27em 0.55em; /* placeholder for wing graphic */
+    padding:  2em 5.55em 0.27em 0.55em;
+    position:relative;
+    display: inline-block;
+	}
+  
+  header h1:after{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    width:280px;
+    height: 126px;
     background-image: url(./svg/nodewing.svg);
     background-repeat: no-repeat;
     background-position: right top;
-    background-size: 280px 126px;
-    max-width: 5.75em;
+    background-size: 100%;
     background-color: transparent;
-		max-width: 5.75em; /* as above but with modifier for font-size */
-	}
+    -webkit-filter: saturate(4.8);
+  }
     
   footer > div {
       text-align: right;
