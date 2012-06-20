@@ -29,7 +29,7 @@ How Can I set up a new Dharmafly project website?
       git checkout gh-pages
       
 3. Add a link the the dharmafly-docs repository: `git remote add gh-pages git@github.com:dharmafly/dharmafly-docs.git`
-4. Get the boilerplate content from dharmafly-docs: `git pull gh-pages gh-pages`
+4. Get the boilerplate content from dharmafly-docs: `git pull gh-pages gh-pages` - you will need be added as a collaborator in the dharmafly-docs project.
 5. Remove the link to dharmafly-docs: `git remote rm gh-pages`
 
 Make your changes to the pages in the `_posts` directory and update `_config.yml` (see the rest of this README for details)
