@@ -16,13 +16,6 @@ How Can I set up a new Dharmafly project website?
 
 See the [documentation on the gh-pages branch] (https://github.com/dharmafly/dharmafly-docs/tree/gh-pages#how-can-i-set-up-a-new-dharmafly-project-website)
 
-How Can I update the styling or format of all Dharmafly project websites?
-------------------------------
-
-Changes made to this repository won't automatically be reflected in projects previously created using the code in this repository and the github pages facility.
-
-An [issue exists] (https://github.com/dharmafly/dharmafly-docs/issues/8) for this enhancement.
-
 What does this project ([dharmafly-docs] (https://github.com/dharmafly/dharmafly-docs)) contain?
 ------------------------------------------------------------------------
 
@@ -33,6 +26,13 @@ This branch (master) contains only this README, which gives instructions on sett
 The other branch, [gh-pages] (https://github.com/dharmafly/dharmafly-docs/tree/gh-pages) shows you how to update existing Dharmafly project websites.
 
 It contains a Dharmafly project website template (which also acts as a styleguide) showing all modules you can use in your project site.
+
+How Can I update the styling or format of all Dharmafly project websites?
+------------------------------
+
+Changes made to this repository won't automatically be reflected in projects previously created using the code in this repository and the github pages facility.
+
+An [issue exists] (https://github.com/dharmafly/dharmafly-docs/issues/8) for this enhancement.
 
 How Can I add a new page (not a new post) to a Dharmafly project
 -----------------------------------------------
