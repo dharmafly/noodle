@@ -44,3 +44,8 @@ Is there a process for automatically generating new project websites from projec
 ----------------------------
 
 There is no process as yet, the process for doing this would be along the lines of the [build script for lanyrd.js] (https://github.com/dharmafly/lanyrd.js/blob/gh-pages/_bin/build), as outlined in [this issue] (https://github.com/dharmafly/dharmafly-docs/issues/2)
+
+How do I add a new icon for the coding language my project's about? 
+-------------------------------------------------
+
+If the language exists as an icon, please see the [documentation on the gh-pages branch] (https://github.com/dharmafly/dharmafly-docs/tree/gh-pages#changing-the-language-icon). If not, you can [create a new icon to be available to all projects using dharmafly-docs] (https://github.com/dharmafly/dharmafly-docs/wiki/Adding-a-new-language-icon-to-the-sidebar)
