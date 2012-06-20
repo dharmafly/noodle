@@ -44,7 +44,7 @@ Set in `_config.yml` in the form
     GITHUB_CURRENT_VERSION: 1.0
     GITHUB_PROJECT_URL: https://github.com/dharmafly/your-project
 
-There are many more optional variables that can be updated.
+There are many more optional variables that can be updated:
 
 
 Updating the main nav
@@ -134,6 +134,18 @@ If you have a quote that sums up the ideas in your project, you can optionally a
       quote:  Promises are the uniquely human way of ordering the future, making it predictable and reliable to the extent that this is humanly possible.
       cite: Hannah Arendt
 
+Including Google Analytics tracking
+-----------------------------------
+
+Add your Google Analytics web property ID (in the form 'UA-XXXXX-X') within `_config.yml`. E.g.
+
+    GA_ID: UA-XXXXX-X
+
+
+Changing the project colourscheme and style
+-------------------------------------------
+
+Currently, only the default theme is available. Once alternate themes are implemented, you can chnage theme by updating the `PROJECT_THEME` variable. 
       
 Formatting your posts
 ====================
