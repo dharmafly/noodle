@@ -1,15 +1,7 @@
 ---
 category: about
 ---
-* Version number    
+* V1 
 
-    - change details
-
-* Version number    
-
-    - change details
-
-* Version number    
-
-    - change details
+    - First viable version of docs project
 

@@ -4,14 +4,8 @@ category: about
 Starting with {{ site.PROJECT_NAME }}
 =====================
 
-How to set up [this project] (https://dharmafly.github.com/dharmafly-docs).
+If a project has a website hosted on github pages it will have a gh-pages branch.
 
-Corn cabbage scallion tomato arugula celtuce sea lettuce gourd lotus root squash. 
+The project website will either be hosted at dharmafly.github.com/project-name/ or at a custom domain.
 
-Soko pea sprouts squash turnip maize catsear soko nori cucumber artichoke. 
-
-Kohlrabi spring onion okra desert raisin garlic caulie. 
-
-Gourd yarrow spring onion taro bok choy sweet pepper parsnip dulse courgette ricebean peanut cabbage kakadu plum. 
-
-Celery salad celery cress epazote aubergine arugula water spinach tomato sierra leone bologi courgette bell pepper cabbage seakale.
+All project documentation should be put as markdown pages in the `_posts` directory.
