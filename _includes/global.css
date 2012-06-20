@@ -740,6 +740,12 @@ aside li.twitter a{
 aside li.code-javascript span {
     background-position: -6px -246px;
 }
+aside li.code-html5 span {
+    background-position: -6px -246px;
+}
+aside li.code-css span {
+    background-position: -6px -246px;
+}
 
 .buttons .badge.github {
     background-position: -1px -359px;
