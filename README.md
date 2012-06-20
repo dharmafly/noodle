@@ -4,9 +4,9 @@ Dharmafly Docs Documentation
 About this project
 -------------------
 
-Dharmafly Docs uses github's in-built [Jekyll] (https://github.com/mojombo/jekyll) to build a project website.
+Dharmafly Docs uses github's in-built Github Pages facility to build a project website.
 
-It is automatically transformed by Jekyll into a static site whenever this repository is pushed to GitHub. 
+It is automatically transformed by [Jekyll] (https://github.com/mojombo/jekyll) into a static site whenever this repository is pushed to GitHub. 
 
 Dharmafly Docs itself has a project website and styleguide at [http://dharmafly.github.com/dharmafly-docs/] (http://dharmafly.github.com/dharmafly-docs/)
 
@@ -44,6 +44,16 @@ Github pages will run jekyll over your posts and publish to < your username >.gi
 
 If you'd like to test the changes to your documentation site locally before you push, [install jekyll] (https://github.com/mojombo/jekyll/wiki/Install) and [run the server locally] (https://github.com/mojombo/jekyll/wiki/usage). 
 
+Changing the domain for your project's site
+---------------------------------------------
+
+All Github Pages sites are hosted at < your username >.github.com/< your project name > by default. 
+
+If you'd like a custom domain name for your project's site, 
+1. Create a file called `CNAME` containing only the custom domain name.
+2. Add it to your project's `gh-pages` branch root folder.
+
+More details on updating DNS settings, etc on [Github Pages documentation] (https://help.github.com/articles/setting-up-a-custom-domain-with-pages)
 
 Posts
 -----
