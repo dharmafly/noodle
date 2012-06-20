@@ -14,9 +14,14 @@ See the other branch, [gh-pages] (https://github.com/dharmafly/dharmafly-docs/tr
 How Can I set up a new Dharmafly project website?
 ----------------------------
 
+See the [documentation on the gh-pages branch] (https://github.com/dharmafly/dharmafly-docs/tree/gh-pages#how-can-i-set-up-a-new-dharmafly-project-website)
+
 How Can I update the styling or format of all Dharmafly project websites?
 ------------------------------
 
+Changes made to this repository won't automatically be reflected in projects previously created using the code in this repository and the github pages facility.
+
+An [issue exists] (https://github.com/dharmafly/dharmafly-docs/issues/8) for this enhancement.
 
 What does this project ([dharmafly-docs] (https://github.com/dharmafly/dharmafly-docs)) contain?
 ------------------------------------------------------------------------
