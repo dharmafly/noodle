@@ -2,7 +2,9 @@
 category: reference
 ---
 
-&#8291;<span class="project-name">This document</span> shows a complete set of markdown elements and any additional html and class attributes needed to test the CSS.
+&#8291;<span class="project-name">This document</span> shows a complete set of markdown elements and any additional html and class attributes needed to test the CSS. 
+
+It works more as a styleguide than, for example, an API documentation
 
 Adding a higlighted project name
 --------------
