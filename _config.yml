@@ -1,5 +1,5 @@
 # Your project's details
-PROJECT_NAME: Project Name
+PROJECT_NAME: Dharmafly Docs
 GITHUB_CURRENT_VERSION: 1.0
 GITHUB_PROJECT_URL: https://github.com/dharmafly/dharmafly-docs
 
@@ -10,12 +10,15 @@ TWITTER_PROJECT_URL: https://twitter.com/dharmafly
 LANG: javascript
 
 
-# Page names (paths are currently hard-coded to match directory names / site categories)
+# Page names -- paths should not be updated and 
+# are currently hard-coded to match directory names / site categories. 
+# (They're here as placeholders for future work to
+# allow new sections to be dynamically created)
 sections:
  - path: 
    name: Overview 
- - path: reference
-   name: Reference 
+ - path: reference 
+   name: Styleguide 
   
 # Add your project's scripts here to be available to any examples
 PROJECT_SCRIPTS:
@@ -24,8 +27,8 @@ PROJECT_SCRIPTS:
 
 # A quote to add at the footer of your project page
 PROJECT_QUOTE:
-  quote:  Promises are the uniquely human way of ordering the future, making it predictable and reliable to the extent that this is humanly possible.
-  cite: Hannah Arendt
+  quote: Ink is better than the best memory.
+  cite: Chinese proverb
 
 # The style for your site (currently only default)
 PROJECT_THEME: default

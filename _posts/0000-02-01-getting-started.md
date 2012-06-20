@@ -1,7 +1,7 @@
 ---
 category: about
 ---
-Starting with Project Name
+Starting with {{ site.PROJECT_NAME }}
 =====================
 
 How to set up [this project] (https://dharmafly.github.com/dharmafly-docs).
