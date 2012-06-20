@@ -64,6 +64,30 @@ These must have the format `YYYY-MM-DD-{postname}.md`. The posts will be ordered
 
 The format used doesn't have to be a real date (e.g. `0000-{section}-{chapter}-{postname}`, `0000-03-01-examples.md`).
 
+### Required post formatting
+
+In order to differentiate between posts in the main nav and those in the reference section, each post should begin with the following:
+
+    ---
+    category: reference
+    ---
+
+or 
+
+    ---
+    category: about
+    ---
+    
+WARNING: If posts do not have either one of these prologues, they won't be displayed.
+
+The very first 'about' post in the directory will be used for the project overview (it will be displayed in a highlighted box).
+
+The remaining posts with `category: about` will appear in the main nav and on the front page.
+
+`category: reference` posts will appear in the *Reference* sub-page.
+
+(INFO: These are examples of [YAML Front Matter] (https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) ) 
+
 Required posts
 ----------------
 
@@ -84,26 +108,6 @@ There are many more optional variables that can be updated:
 
 Updating the main nav
 ---------------------
-
-In order to differentiate between posts in the main nav and those in the reference section, each post should begin with the following:
-
-    ---
-    category: reference
-    ---
-
-or 
-
-    ---
-    category: about
-    ---
-
-The very first 'about' post in the directory will be used for the project overview (it will be displayed in a highlighted box).
-
-The remaining posts with `category: about` will appear in the main nav and on the front page.
-
-`category: reference` posts will appear in the *Reference* sub-page.
-
-(INFO: These are examples of [YAML Front Matter] (https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) ) 
 
 ### How to rename the items in the main nav
 
