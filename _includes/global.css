@@ -741,22 +741,14 @@ aside li.code-javascript span {
     background-position: -6px -246px;
 }
 aside li.code-html5 span {
-    background-position: -6px -246px;
+    background-position: 0 -460px;
 }
 aside li.code-css span {
-    background-position: -6px -246px;
+    background-position: 0 -552px;
 }
 
 .buttons .badge.github {
     background-position: -1px -359px;
-}
-
-aside li.code-html5 span {
-    background-position: -5px -240px;
-}
-
-aside li.code-css span {
-    background-position: -5px -240px;
 }
 
 .ace_cursor.ace_hidden {

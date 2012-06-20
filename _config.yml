@@ -11,7 +11,7 @@ PROJECT_THEME: default
 GITHUB_ZIP_URL: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
 TWITTER_PROJECT_URL: https://twitter.com/dharmafly
 # javascript, css or html5
-LANG: javascript
+LANG: css
 
 # Add your project's scripts here to be available to any examples
 PROJECT_SCRIPTS:
