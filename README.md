@@ -21,9 +21,9 @@ What does this project ([dharmafly-docs] (https://github.com/dharmafly/dharmafly
 
 This project comprises two branches: *master* and *gh-pages*.
 
-This branch (master) contains only this README, which gives instructions on setting up project websites for any Dharmafly projects
+This branch (master) contains only this README, which gives instructions on updating and managing dharmafly docs in general.
 
-The other branch, [gh-pages] (https://github.com/dharmafly/dharmafly-docs/tree/gh-pages) shows you how to update existing Dharmafly project websites.
+The other branch, [gh-pages] (https://github.com/dharmafly/dharmafly-docs/tree/gh-pages) shows you how to update existing Dharmafly project websites and set up project websites for any Dharmafly projects.
 
 It contains a Dharmafly project website template (which also acts as a styleguide) showing all modules you can use in your project site.
 
