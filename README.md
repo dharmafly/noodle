@@ -5,9 +5,9 @@ nsql can be used to scrape pages from a client side browser. It uses the standar
 DOM query selector to extract information from web pages and returns the data in JSON 
 format.
 
-You just specify the source 'url', the 'selector', and what you want to 'extract'.
+You just specify the source `url`, the `selector`, and what you want to `extract`.
 
-If no 'extract' is specified the DOM list will be returned instead.
+If no `extract` is specified the DOM list will be returned instead.
 
 Usage
 -----
