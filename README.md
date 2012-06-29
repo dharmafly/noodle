@@ -13,7 +13,7 @@ Usage
 -----
 
 Send the following command to the server. The `extract` property should be the HTML's 
-attribute. Having `html` as the 'extract' value will return the containing HTML.
+attribute. Having `"html"` as the `extract` value will return the containing HTML.
 
 ```
 {
