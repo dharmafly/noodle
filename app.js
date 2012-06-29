@@ -3,12 +3,13 @@ var connect = require('connect'),
     scraper = require('./scraper');
 
 var app = connect()
+          .use(connect.static('public'))
           .use(connect.json())
           .use(handle);
 
 function handle (req, res) {
   var query = (Object.keys(req.body).length > 0) ?  req.body : false;
-
+  console.log(req.body, query);
   if (query) {
     scraper.scrape(query, function (err, results) {
       finish(res, {error: err, results: results});
