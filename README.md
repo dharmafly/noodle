@@ -33,3 +33,10 @@ To retrieve the following data:
    "http://lanyrd.com/profile/chrisnewtn/"
  ]
 ```
+
+Possibly
+--------
+
+Perhaps this will also be possible:  
+
+`FROM url SELECT selector AND EXTRACT`
