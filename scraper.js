@@ -24,22 +24,33 @@ function scrape (query, callback) {
 function select (jq, selector, extract, callback) {
   var results = [];
 
-  if (extract === 'html') {
+  if (jq.isArray(extract)) {
     jq(selector).each(function (i, elem) {
-      results.push(jq(elem).html());
+      extract.forEach(function (ext) {
+        if (ext === 'html') {
+          results.push(jq(elem).html());
+        } else {
+          results.push(jq(elem).attr(ext));
+        }
+      });
     });
-    callback(false, JSON.stringify(results));
-  } else if (extract) {
+  }
+  else if (extract) {
     jq(selector).each(function (i, elem) {
-      results.push(jq(elem).attr(extract));
+      if (extract === 'html') {
+        results.push(jq(elem).html());
+      } else {
+        results.push(jq(elem).attr(ext));
+      }
     });
-    callback(false, JSON.stringify(results));
-  } else {
+  }
+  else {
     jq(selector).each(function (i, elem) {
       results.push(elem.outerHTML);
     });
-    callback(false, JSON.stringify(results));
   }
+
+  callback(false, JSON.stringify(results));
 }
 
 // Check if query supplied is OK
