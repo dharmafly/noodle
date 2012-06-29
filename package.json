@@ -1,0 +1,24 @@
+{
+  "name": "nsql",
+  "version": "0.0.0",
+  "description": "Node scrape query language is a node server which clients can query to scrape pages",
+  "main": "app.js",
+  "dependencies": {
+    "jsdom": "~0.2.14",
+    "connect": "~2.3.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dharmafly/nsql.git"
+  },
+  "keywords": [
+    "scraper",
+    "proxy"
+  ],
+  "author": "Dharmafly",
+  "license": "BSD"
+}
