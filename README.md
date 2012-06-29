@@ -15,17 +15,17 @@ Usage
 Send the following command to the server. The `extract` property should be the HTML's 
 attribute. Having `"html"` as the `extract` value will return the containing HTML.
 
-```
+```JSON
 {
-  'url': 'http://chrisnewtn.com',
-  'selector': 'ul.social li a',
-  'extract': 'href'
+  "url": "http://chrisnewtn.com",
+  "selector": "ul.social li a",
+  "extract": "href"
 }
 ```
 
 To retrieve the following data:
 
-```
+```JavaScript
  [
    "http://twitter.com/chrisnewtn",
    "http://plus.google.com/u/0/111845796843095584341",
@@ -33,10 +33,3 @@ To retrieve the following data:
    "http://lanyrd.com/profile/chrisnewtn/"
  ]
 ```
-
-Possibly
---------
-
-Perhaps this will also be possible:  
-
-`FROM url SELECT selector AND EXTRACT`
