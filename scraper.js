@@ -35,7 +35,10 @@ function select (jq, selector, extract, callback) {
     });
     callback(false, JSON.stringify(results));
   } else {
-    callback('error');
+    jq(selector).each(function (i, elem) {
+      results.push(elem.outerHTML);
+    });
+    callback(false, JSON.stringify(results));
   }
 }
 
