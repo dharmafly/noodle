@@ -17,7 +17,7 @@ attribute. Having `"html"` as the `extract` value will return the containing HTM
 
 ```
 {
-  source: 'http://chrisnewtn.com',
+  url: 'http://chrisnewtn.com',
   selector: 'ul.social li a',
   extract: 'href'
 }
