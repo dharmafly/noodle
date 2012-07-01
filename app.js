@@ -9,7 +9,7 @@ var app = connect()
 
 function handle (req, res) {
   var query = (Object.keys(req.body).length > 0) ?  req.body : false;
-  console.log(req.body, query);
+
   if (query) {
     scraper.scrape(query, function (err, results) {
       finish(res, {error: err, results: results});
@@ -28,4 +28,6 @@ function finish (res, params) {
   }
 }
 
-http.createServer(app).listen(8888);
+http.createServer(app).listen(8888, function () {
+  console.log('App listening on 8888');
+});
