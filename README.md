@@ -80,5 +80,29 @@ and you will recieve the following data:
 Errors
 ------
 
-The return of an empty array signifies an incorrect combination of selection 
-and extract parameters.
+nsql fails silently and assumes error handling to be handled by the client side. 
+Consider the following JSON response to a partially incorrect query.
+
+Query:
+
+```JSON
+{
+  "url": "http://chrisnewtn.com",
+  "selector": "ul.social li a",
+  "extract": ["href", "nonexistent"]
+}
+```
+
+Response:
+
+```JSON
+{
+  "text": [
+      "Twitter",
+      "Google+",
+      "Github",
+      "Lanyrd"
+  ],
+  "nonexistent": []  
+}
+```
