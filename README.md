@@ -33,12 +33,14 @@ HTML within that element.
 To retrieve the following data:
 
 ```JSON
- [
+{
+ "href": [
    "http://twitter.com/chrisnewtn",
    "http://plus.google.com/u/0/111845796843095584341",
    "http://github.com/chrisnewtn",
    "http://lanyrd.com/profile/chrisnewtn/"
  ]
+}
 ```
 
 It is also possible to request multiple properties to extract in one query by using 
