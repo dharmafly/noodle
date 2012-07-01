@@ -7,6 +7,12 @@ format.
 
 You just specify the source `url`, the `selector`, and what you want to `extract`.
 
+Getting started
+---------------
+
+`git clone https://github.com/dharmafly/nsql.git`  
+`npm install`  
+
 Usage
 -----
 
