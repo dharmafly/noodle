@@ -23,14 +23,23 @@ exports.scrape = function (query, callback) {
 function select (window, selector, extract, callback) {
   var results  = {},
       document = window.document,
-      elems    = window.jQuery(selector),
+      jQueyr   = window.jQuery,
+      elems    = jQuery(selector),
       i        = 0;
 
   function extractProperty (elem, property) {
-    return (property === 'text') ? elem.innerHTML : elem.getAttribute(property);
+    if (property === 'text')  {
+      return jQuery(elem).text();
+    }
+    else if (property === 'html'|| property === 'innerHTML') {
+      return jQuery(elem).html();
+    }
+    else {
+      return elem.getAttribute(property);
+    }
   };
 
-  extract = (window.jQuery.isArray(extract)) ? extract : [extract];
+  extract = (jQuery.isArray(extract)) ? extract : [extract];
 
   // Prepare results object
 
@@ -43,7 +52,8 @@ function select (window, selector, extract, callback) {
 
   extract.forEach(function (property) {
     elems.each(function (i, elem) {
-      results[property].push(extractProperty(elem, property));
+      var extracted = extractProperty(elem, property);
+      if (extracted) results[property].push(extracted);
     });
   });
 
