@@ -27,7 +27,7 @@ function select (window, selector, extract, callback) {
       i        = 0;
 
   function extractProperty (elem, property) {
-    return (property === 'html') ? elem.innerHTML : elem.getAttribute(property);
+    return (property === 'text') ? elem.innerHTML : elem.getAttribute(property);
   };
 
   extract = (window.jQuery.isArray(extract)) ? extract : [extract];
