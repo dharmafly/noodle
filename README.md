@@ -13,6 +13,7 @@ Getting started
 `git clone https://github.com/dharmafly/nsql.git`  
 `cd nsql`  
 `npm install`  
+`node app.js`  
 
 Usage
 -----
