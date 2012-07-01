@@ -76,3 +76,9 @@ and you will recieve the following data:
   ]
 }
 ```
+
+Errors
+------
+
+The return of an empty array signifies an incorrect combination of selection 
+and extract parameters.
