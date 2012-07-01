@@ -23,19 +23,20 @@ exports.scrape = function (query, callback) {
 function select (window, selector, extract, callback) {
   var results  = {},
       document = window.document,
-      jQueyr   = window.jQuery,
+      jQuery   = window.jQuery,
       elems    = jQuery(selector),
       i        = 0;
 
   function extractProperty (elem, property) {
+    elem = jQuery(elem);
     if (property === 'text')  {
-      return jQuery(elem).text();
+      return elem.text();
     }
     else if (property === 'html'|| property === 'innerHTML') {
-      return jQuery(elem).html();
+      return elem.html();
     }
     else {
-      return elem.getAttribute(property);
+      return elem.attr(property);
     }
   };
 
