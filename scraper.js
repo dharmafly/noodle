@@ -1,59 +1,55 @@
-var jsdom = require('jsdom');
+var jsdom  = require('jsdom'),
+    utils  = require('util');
 
-exports.scrape = scrape;
+jsdom.defaultDocumentFeatures = {
+  QuerySelector: true
+};
 
-function scrape (query, callback) {
-  if(valid(query)){
+exports.scrape = function (query, callback) {
+  if (valid(query)) {
     jsdom.env({
       html: query.url,
-      scripts: ['http://code.jquery.com/jquery-1.5.min.js'],
       done: function (error, window) {
         if (!error) {
-          select(window.jQuery, query.selector, query.extract, callback);
+          select(window.document, query.selector, query.extract, callback);
         } else {
           callback('error');
         }
       }
     });
-
   } else {
     callback('error');
   };
 }
 
-function select (jq, selector, extract, callback) {
-  var results = [];
+function select (document, selector, extract, callback) {
+  var results  = {},
+      elems    = document.querySelector(selector),
+      i        = 0;
 
-  if (jq.isArray(extract)) {
-    jq(selector).each(function (i, elem) {
-      extract.forEach(function (ext) {
-        if (ext === 'html') {
-          results.push(jq(elem).html());
-        } else {
-          results.push(jq(elem).attr(ext));
-        }
-      });
-    });
-  }
-  else if (extract) {
-    jq(selector).each(function (i, elem) {
-      if (extract === 'html') {
-        results.push(jq(elem).html());
-      } else {
-        results.push(jq(elem).attr(ext));
-      }
-    });
-  }
-  else {
-    jq(selector).each(function (i, elem) {
-      results.push(elem.outerHTML);
-    });
-  }
+  function extractProperty (elem, property) {
+    return (property === 'html') ? elem.innerHTML : elem.getAttribute(property);
+  };
+
+  // Prepare results object
+
+  extract.forEach(function (property) {
+    results[property] = [];
+  });
+
+  // For each extraction property (either html or an html attribute)
+  //   then gather all values in the resepcted results key
+
+  extract.forEach(function (property) {
+    for (i; i < elems.length; i++) {
+      elems[i].push(extractProperty(elems[i], property));
+    };
+  });
 
   callback(false, JSON.stringify(results));
 }
 
 // Check if query supplied is OK
 function valid (query) {
-  return (query.url && query.selector) ? true : false;
+  return (query.url && query.selector && query.extract) ? true : false;
 }
