@@ -89,7 +89,7 @@ Query:
 {
   "url": "http://chrisnewtn.com",
   "selector": "ul.social li a",
-  "extract": ["href", "nonexistent"]
+  "extract": ["text", "nonexistent"]
 }
 ```
 
