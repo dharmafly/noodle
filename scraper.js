@@ -1,14 +1,13 @@
 var jsdom  = require('jsdom'),
-    utils  = require('util');
-
-jsdom.defaultDocumentFeatures = {
-  QuerySelector: true
-};
+    utils  = require('util'),
+    fs     = require('fs'),
+    jquery = fs.readFileSync('./vendor/jquery-1.4.3.min.js');
 
 exports.scrape = function (query, callback) {
   if (valid(query)) {
     jsdom.env({
       html: query.url,
+      scripts: [jquery],
       done: function (error, window) {
         if (!error) {
           select(window.document, query.selector, query.extract, callback);
@@ -24,7 +23,7 @@ exports.scrape = function (query, callback) {
 
 function select (document, selector, extract, callback) {
   var results  = {},
-      elems    = document.querySelector(selector),
+      elems    = jQuery(selector),
       i        = 0;
 
   function extractProperty (elem, property) {
@@ -41,9 +40,9 @@ function select (document, selector, extract, callback) {
   //   then gather all values in the resepcted results key
 
   extract.forEach(function (property) {
-    for (i; i < elems.length; i++) {
-      elems[i].push(extractProperty(elems[i], property));
-    };
+    elems.each(function (i, elem) {
+      results.push(extractProperty(elem, property));
+    });
   });
 
   callback(false, JSON.stringify(results));
