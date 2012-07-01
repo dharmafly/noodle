@@ -1,16 +1,15 @@
 var jsdom  = require('jsdom'),
-    utils  = require('util'),
     fs     = require('fs'),
-    jquery = fs.readFileSync('./vendor/jquery-1.4.3.min.js');
+    jquery = fs.readFileSync('./vendor/jquery-1.4.3.min.js').toString();
 
 exports.scrape = function (query, callback) {
   if (valid(query)) {
     jsdom.env({
       html: query.url,
-      scripts: [jquery],
+      src: [jquery],
       done: function (error, window) {
         if (!error) {
-          select(window.document, query.selector, query.extract, callback);
+          select(window, query.selector, query.extract, callback);
         } else {
           callback('error');
         }
@@ -21,14 +20,17 @@ exports.scrape = function (query, callback) {
   };
 }
 
-function select (document, selector, extract, callback) {
+function select (window, selector, extract, callback) {
   var results  = {},
-      elems    = jQuery(selector),
+      document = window.document,
+      elems    = window.jQuery(selector),
       i        = 0;
 
   function extractProperty (elem, property) {
     return (property === 'html') ? elem.innerHTML : elem.getAttribute(property);
   };
+
+  extract = (window.jQuery.isArray(extract)) ? extract : [extract];
 
   // Prepare results object
 
@@ -41,7 +43,7 @@ function select (document, selector, extract, callback) {
 
   extract.forEach(function (property) {
     elems.each(function (i, elem) {
-      results.push(extractProperty(elem, property));
+      results[property].push(extractProperty(elem, property));
     });
   });
 
