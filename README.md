@@ -47,6 +47,9 @@ To retrieve the following data:
 }
 ```
 
+Multiple extract rules
+----------------------
+
 It is also possible to request multiple properties to extract in one query by using 
 an array.
 
