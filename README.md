@@ -19,8 +19,12 @@ Usage
 -----
 
 Send the following command to the server. The `extract` property should be the HTML 
-element's attribute. Having `"text"` as the `extract` value will return the containing 
+element's attribute. 
+
+Having `"html"` or `"innerHTML"` as the `extract` value will return the containing 
 HTML within that element.
+
+Having `"text"` as the `extract` value will return only the text.
 
 ```JSON
 {
