@@ -1,33 +1,45 @@
 var connect = require('connect'),
     http    = require('http'),
-    scraper = require('./scraper');
+    scraper = require('./scraper'),
 
-var app = connect()
-          .use(connect.static('public'))
-          .use(connect.json())
-          .use(handle);
+    port    = process.argv[2] || 8888,
+
+    app     = connect()
+              .use(connect.query())
+              .use(connect.json())
+              .use(handle);
+
+
+// Handle requested query via scraper module
 
 function handle (req, res) {
   var query = (Object.keys(req.body).length > 0) ?  req.body : false;
-
+  console.log('req.query:', req.query);
   if (query) {
     scraper.scrape(query, function (err, results) {
-      finish(res, {error: err, results: results});
+      finish(res, {error: err, results: results, callback: req.query.callback});
     });
   } else {
     finish(res, {error: 'No query'});
   }
 }
 
+// Finish request by handling for JSONP
+
 function finish (res, params) {
   if (params.error) {
     res.end('nsql: ' + params.error);
   } else {
     res.writeHead('200', {'Content-type':'application/json'});
-    res.end(params.results);
+    if (params.callback) {
+      res.end(params.callback + '(' + params.results + ')');
+    } else {
+      res.end(params.results);
+    }
   }
 }
 
-http.createServer(app).listen(8888, function () {
-  console.log('App listening on 8888');
+
+http.createServer(app).listen(port, function () {
+  console.log('nsql serving on ' + port);
 });
