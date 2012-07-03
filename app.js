@@ -14,7 +14,6 @@ var connect = require('connect'),
 
 function handle (req, res) {
   var query = (Object.keys(req.body).length > 0) ?  req.body : false;
-  console.log('req.query:', req.query);
   if (query) {
     scraper.scrape(query, function (err, results) {
       finish(res, {error: err, results: results, callback: req.query.callback});
