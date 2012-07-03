@@ -3,7 +3,7 @@ node-scrape-query-language
 
 nsql can be used to scrape pages from a client side browser. It uses the standard 
 DOM query selector to extract information from web pages and returns the data in JSON 
-format.
+and JSONP (?callback=foo) format.
 
 You just specify the source `url`, the `selector`, and what you want to `extract`.
 
