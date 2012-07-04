@@ -114,23 +114,21 @@ Query:
 
 Response:
 
+Not how the extract "nonexistent" property is left out.
+
 ```JSON
 [
   {
     "href" : "twitter",
-    "nonexistent" : null
   },
   {
     "href" : "google",
-    "nonexistent" : null
   },
   {
     "href" : "github",
-    "nonexistent" : null
   },
   {
     "href" : "lanyrd",
-    "nonexistent" : null
   }
 ]
 ```
@@ -138,15 +136,17 @@ Response:
 If the selector is invalid or none of the extract rules match up then you will receive 
 an empty array.
 
+Query:
+
 ```JSON
 {
   "url": "http://chrisnewtn.com",
   "selector": "ul.social li a",
-  "extract": ["text", "nonexistent"]
+  "extract": ["nonexistent", "nonexistent2"]
 }
 ```
 
-response:
+Response:
 
 ```JSON
 []
