@@ -1,12 +1,13 @@
 node-scrape-query-language
 ==========================
 
-nsql can be used to scrape pages from a client side browser. It uses the
-standard DOM query selector to extract information from web pages and returns
-the data in JSON and JSONP (?callback=foo) format.
+nsql is a server which can be used to scrape pages from the client side browser.
+It uses the jQuery query selector to extract information from web pages and
+returns the data in JSON. The server also supports JSONP (?callback=foo) format
+for making calls.
 
-You just specify the source `url`, the `selector`, and what you want to
-`extract`.
+In your calls to the server your just specify the source `url`, the `selector`,
+and what you want to `extract`.
 
 Getting started
 ---------------
@@ -30,13 +31,7 @@ You may specify a port number as a command line argument
 Usage
 -----
 
-Send the following JSON command to the server. The `extract` property should be
-the HTML element's attribute.
-
-Having `"html"` or `"innerHTML"` as the `extract` value will return the
-containing HTML within that element.
-
-Having `"text"` as the `extract` value will return only the text.
+One can send the following JSON command to the server.
 
 ```JSON
 {
@@ -46,24 +41,39 @@ Having `"text"` as the `extract` value will return only the text.
 }
 ```
 
-To retrieve the following data:
+The `extract` property could be the HTML element's attribute.
+
+Having `"html"` or `"innerHTML"` as the `extract` value will return the
+containing HTML within that element.
+
+Having `"text"` as the `extract` value will return only the text.
+
+Return data looks like this:
 
 ```JSON
-{
- "href": [
-   "http://twitter.com/chrisnewtn",
-   "http://plus.google.com/u/0/111845796843095584341",
-   "http://github.com/chrisnewtn",
-   "http://lanyrd.com/profile/chrisnewtn/"
- ]
-}
+[
+  {
+    "href": "http://twitter.com/chrisnewtn"
+  },
+  {
+    "href": http://plus.google.com/u/0/111845796843095584341"
+  },
+  {
+    "href": http://github.com/chrisnewtn"
+  },
+  {
+    "href": http://lanyrd.com/profile/chrisnewtn/"
+  }
+]
 ```
 
 Multiple extract rules
 ----------------------
 
-It is also possible to request multiple properties to extract in one query by using
-an array.
+It is also possible to request multiple properties to extract in one query via
+array.
+
+Query:
 
 ```JSON
 {
@@ -73,7 +83,7 @@ an array.
 }
 ```
 
-and you will recieve the following data:
+Response:
 
 ```JSON
 [
@@ -114,7 +124,8 @@ Query:
 
 Response:
 
-Not how the extract "nonexistent" property is left out.
+Not how the extract "nonexistent" property is left out because it was not found
+on the element.
 
 ```JSON
 [
@@ -133,7 +144,7 @@ Not how the extract "nonexistent" property is left out.
 ]
 ```
 
-If the selector is invalid or none of the extract rules match up then you will receive 
+If the selector is invalid or none of the extract rules match up then you will receive
 an empty array.
 
 Query:
