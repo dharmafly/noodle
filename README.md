@@ -115,7 +115,7 @@ Query:
 Response:
 
 ```JSON
-{
+[
   {
     "href" : "twitter",
     "nonexistent" : null
@@ -132,7 +132,7 @@ Response:
     "href" : "lanyrd",
     "nonexistent" : null
   }
-}
+]
 ```
 
 If the selector is invalid or none of the extract rules match up then you will receive 
