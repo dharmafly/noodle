@@ -53,12 +53,6 @@ Return data looks like this:
 ```JSON
 [
   {
-    "href": "http://twitter.com/chrisnewtn"
-  },
-  {
-    "href": "http://plus.google.com/u/0/111845796843095584341"
-  },
-  {
     "href": "http://github.com/chrisnewtn"
   },
   {
@@ -87,14 +81,6 @@ Response:
 
 ```JSON
 [
-  {
-    "href" : "http://twitter.com/chrisnewtn",
-    "text" : "twitter"
-  },
-  {
-   "href" : "http://plus.google.com/u/0/111845796843095584341",
-   "text" : "google"
-  },
   {
    "href" : "http://github.com/chrisnewtn",
    "text" : "github"
@@ -129,12 +115,6 @@ on the element.
 
 ```JSON
 [
-  {
-    "href" : "twitter",
-  },
-  {
-    "href" : "google",
-  },
   {
     "href" : "github",
   },
