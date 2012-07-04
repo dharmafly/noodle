@@ -61,8 +61,7 @@ Return data looks like this:
 ]
 ```
 
-Multiple extract rules
-----------------------
+### Multiple extract rules
 
 It is also possible to request multiple properties to extract in one query via
 array.
@@ -92,8 +91,7 @@ Response:
 ]
 ```
 
-Errors
-------
+### Errors
 
 nsql fails silently and assumes error handling to be handled by the client side.
 Consider the following JSON response to a partially incorrect query.
