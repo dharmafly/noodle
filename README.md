@@ -124,7 +124,7 @@ Query:
 
 Response:
 
-Not how the extract "nonexistent" property is left out because it was not found
+Note how the extract "nonexistent" property is left out because it was not found
 on the element.
 
 ```JSON
