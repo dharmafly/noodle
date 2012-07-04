@@ -56,13 +56,13 @@ Return data looks like this:
     "href": "http://twitter.com/chrisnewtn"
   },
   {
-    "href": http://plus.google.com/u/0/111845796843095584341"
+    "href": "http://plus.google.com/u/0/111845796843095584341"
   },
   {
-    "href": http://github.com/chrisnewtn"
+    "href": "http://github.com/chrisnewtn"
   },
   {
-    "href": http://lanyrd.com/profile/chrisnewtn/"
+    "href": "http://lanyrd.com/profile/chrisnewtn/"
   }
 ]
 ```
