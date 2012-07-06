@@ -1,7 +1,7 @@
 {
   "name": "nsql",
   "version": "0.0.0",
-  "description": "Node scrape query language is a node server which clients can query to scrape pages",
+  "description": "nsql is a proxy server which channels DOM query seletions from a url to the client.",
   "main": "app.js",
   "dependencies": {
     "jsdom": "~0.2.14",
@@ -9,7 +9,11 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "bin/nsql-server"
+  },
+  "engines": {
+    "node": "0.6.x"
   },
   "repository": {
     "type": "git",
@@ -20,5 +24,6 @@
     "proxy"
   ],
   "author": "Dharmafly",
-  "license": "BSD"
+  "license": "BSD",
+  "subdomain": "dharmafly.nsql"
 }
