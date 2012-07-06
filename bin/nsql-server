@@ -13,6 +13,7 @@ var connect = require('connect'),
 
 
 // Handle requested query via scraper module
+// Handle for JSONP
 
 function handle (req, res) {
   var query = (Object.keys(req.body).length > 0) ?  req.body : false;
@@ -25,18 +26,21 @@ function handle (req, res) {
   }
 }
 
-// Finish request by handling for JSONP
+// Respond to request
 
 function finish (res, params) {
+  res.writeHead('200', {'Content-type':'application/json'});
+
   if (params.error) {
-    res.end('nsql: ' + params.error);
+    // Error as JSON
+    res.end('{"error": "' + params.error + '"}');
+  } else if (params.callback) {
+    // Results as JSONP
+    res.end(params.callback + '(' + params.results + ')');
+
   } else {
-    res.writeHead('200', {'Content-type':'application/json'});
-    if (params.callback) {
-      res.end(params.callback + '(' + params.results + ')');
-    } else {
-      res.end(params.results);
-    }
+    // Results as JSON
+    res.end(params.results);
   }
 }
 
