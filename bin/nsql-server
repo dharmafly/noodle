@@ -20,18 +20,18 @@ function handle (req, res) {
   var query = (Object.keys(req.body).length > 0) ?  req.body : false;
 
   // Check querystring for scrape query
-  query = query || {
-                      url: req.query.url,
-                      selector: req.query.selector,
-                      extract: req.query.extract
-                   };
+  if (!query && req.query.url && req.query.selector && req.query.extract) {
+    query = {
+              url: req.query.url,
+              selector: req.query.selector,
+              extract: req.query.extract
+            };
+  }
 
   if (query) {
-
     scraper.scrape(query, function (err, results) {
       finish(res, {error: err, results: results, callback: req.query.callback});
     });
-
   } else {
     finish(res, {error: 'No query', callback: req.query.callback});
   }
