@@ -31,15 +31,15 @@ function handle (req, res) {
 function finish (res, params) {
   res.writeHead('200', {'Content-type':'application/json'});
 
-  if (params.error) {
-    // Error as JSON
-
-    res.end('{"error": "' + params.error + '"}');
-
-  } else if (params.error && params.callback) {
+  if (params.error && params.callback) {
     // Error as JSONP
 
     res.end(params.callback + '({"error": "' + params.error + '"})');
+
+  } else if (params.error) {
+    // Error as JSON
+
+    res.end('{"error": "' + params.error + '"}');
 
   } else if (params.callback) {
     // Results as JSONP
