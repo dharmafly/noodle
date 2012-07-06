@@ -6,7 +6,7 @@ It uses the jQuery query selector to extract information from web pages and
 returns the data in JSON. The server also supports JSONP (?callback=foo) format
 for making calls.
 
-In your calls to the server your just specify the source `url`, the `selector`,
+In your call to the server you just specify the source `url`, the `selector`,
 and what you want to `extract`.
 
 Getting started
@@ -31,7 +31,8 @@ You may specify a port number as a command line argument
 Usage
 -----
 
-One can send the following JSON command to the server.
+The server accepts JSON commands or url encoded querystring parameters for JSONP
+requests.
 
 ```JSON
 {
