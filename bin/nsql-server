@@ -22,7 +22,7 @@ function handle (req, res) {
       finish(res, {error: err, results: results, callback: req.query.callback});
     });
   } else {
-    finish(res, {error: 'No query'});
+    finish(res, {error: 'No query', callback: req.query.callback});
   }
 }
 
