@@ -33,13 +33,22 @@ function finish (res, params) {
 
   if (params.error) {
     // Error as JSON
+
     res.end('{"error": "' + params.error + '"}');
+
+  } else if (params.error && params.callback) {
+    // Error as JSONP
+
+    res.end(params.callback + '({"error": "' + params.error + '"})');
+
   } else if (params.callback) {
     // Results as JSONP
+
     res.end(params.callback + '(' + params.results + ')');
 
   } else {
     // Results as JSON
+
     res.end(params.results);
   }
 }
