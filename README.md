@@ -25,8 +25,8 @@ How Can I set up a new Dharmafly project website?
 1. Firstly, navigate to your project's local directory.
 2. Create a `gh-pages` branch: 
 
-      git branch gh-pages
-      git checkout gh-pages
+      `git branch gh-pages
+      git checkout gh-pages`
       
 3. Add a link the the dharmafly-docs repository: `git remote add gh-pages git@github.com:dharmafly/dharmafly-docs.git`
 4. Get the boilerplate content from dharmafly-docs: `git pull gh-pages gh-pages` - you will need be added as a collaborator in the dharmafly-docs project.
@@ -36,11 +36,11 @@ Make your changes to the pages in the `_posts` directory and update `_config.yml
 
 6. Once that's all done and you're happy with the documentation, commit and push to your project's `gh-pages` branch: 
 
-    git add -A
+    `git add -A
     git commit -m "Created project documentation with dharmafly docs"
-    git push origin gh-pages
+    git push origin gh-pages`
     
-Github pages will run jekyll over your posts and publish to < your username >.github.com/< your project name >
+Github pages will run jekyll over your posts and publish to `< your username >.github.com/< your project name >`
 
 If you'd like to test the changes to your documentation site locally before you push, [install jekyll] (https://github.com/mojombo/jekyll/wiki/Install) and [run the server locally] (https://github.com/mojombo/jekyll/wiki/usage). 
 
