@@ -927,7 +927,7 @@ aside li.code-css span {
         background: transparent;
         background-repeat: no-repeat;
         background-position: left top;
-        background-image: url(./svg/icon-stem.svg) ;
+        background-image: url({{ page.icon_stem }}) ;
         position: absolute;
         bottom: -210px;
         left: -43px;

@@ -37,6 +37,10 @@ subnav_underline: PHN2ZyB3aWR0aD0iNDAzIiBoZWlnaHQ9IjgiIHhtbG5zPSJodHRwOi8vd3d3Ln
   
   #<svg width="23" height="20" xmlns="http://www.w3.org/2000/svg"> <style> line, circle { stroke: #7DB378; fill: #7DB378; } </style> <line y2="4" x2="23" y1="4" x1="4" /> <line y2="10" x2="23" y1="10" x1="4" /> <line y2="16" x2="23" y1="16" x1="4" /> <circle r="2.5" cy="4" cx="4" /> <circle r="2.5" cy="10" cx="4" /> <circle r="2.5" cy="16" cx="4" /> </svg> 
 show_subnav_icon: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjMiIGhlaWdodD0iMjMiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+IDxzdHlsZT4gbGluZSwgY2lyY2xlIHsgc3Ryb2tlOiAjN0RCMzc4OyBzdHJva2Utd2lkdGg6IDJweDsgZmlsbDogIzdEQjM3ODsgfSBjaXJjbGUgeyBzdHJva2Utd2lkdGg6IDA7IH0gPC9zdHlsZT4gPGxpbmUgeTI9IjQiIHgyPSIyMyIgeTE9IjQiIHgxPSI0IiAvPiA8bGluZSB5Mj0iMTEiIHgyPSIyMyIgeTE9IjExIiB4MT0iNCIgLz4gPGxpbmUgeTI9IjE4IiB4Mj0iMjMiIHkxPSIxOCIgeDE9IjQiIC8+IDxjaXJjbGUgcj0iMiIgY3k9IjQiIGN4PSI0IiAvPiA8Y2lyY2xlIHI9IjIiIGN5PSIxMSIgY3g9IjQiIC8+IDxjaXJjbGUgcj0iMiIgY3k9IjE4IiBjeD0iNCIgLz4gPC9zdmc+IA=='
+ 
+  # ./svg/icon-stem.svg
+  # <svg width="90" height="240" xmlns="http://www.w3.org/2000/svg"> <style>path { stroke:	#dbe5d7; fill: none; stroke-width: 9; }</style> <path  d="m77.66501,1.668c0,0 6,56.64099 -15.09601,98c-18.13898,35.608 -34.23698,67.72299 -34.23698,67.72299s-22,40.66803 -22,70"/></svg>
+icon_stem: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTAiIGhlaWdodD0iMjQwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPiA8c3R5bGU+cGF0aCB7IHN0cm9rZToJI2RiZTVkNzsgZmlsbDogbm9uZTsgc3Ryb2tlLXdpZHRoOiA5OyB9PC9zdHlsZT4gPHBhdGggIGQ9Im03Ny42NjUwMSwxLjY2OGMwLDAgNiw1Ni42NDA5OSAtMTUuMDk2MDEsOThjLTE4LjEzODk4LDM1LjYwOCAtMzQuMjM2OTgsNjcuNzIyOTkgLTM0LjIzNjk4LDY3LjcyMjk5cy0yMiw0MC42NjgwMyAtMjIsNzAiLz48L3N2Zz4='
 
 ---
 
