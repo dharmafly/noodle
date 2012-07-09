@@ -603,6 +603,7 @@ button:active {
 	margin-right: 1em;
 }
 
+/* before SVG was # ./img/button-icon-sprite.png */
 .icon {
     height: 0;
     width: 24px;
@@ -619,12 +620,12 @@ button:active {
     background-image: url({{ page.show_subnav_icon }}) -ms-linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
     background-image: url({{ page.show_subnav_icon }}) linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
     background-repeat: no-repeat;
-    background-size: 37px 200px; /* 2/3 size */
+    background-size: 80%;
     border: 1px solid {{ page.icon_border }};
 }
 
 .show-subnav .icon{
-    background-position: 3px 5px;
+    background-position: 2px 3px;
     float: left;
 }
 
@@ -867,7 +868,7 @@ aside li.code-css span {
       background-size: auto;
   }
   .show-subnav .icon{
-      background-position: 4px 6px;
+      background-position: 3px 5px;
   }
   
   #navigation li.show-subnav{

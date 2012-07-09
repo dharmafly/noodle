@@ -32,11 +32,11 @@ icon_border: "#152E16"
 
 svg_asset: nodewing.svg
 
-   # background-image: url('data:image/svg+xml;utf8,<svg width="403" height="8" xmlns="http://www.w3.org/2000/svg"><line stroke="#7DB378" stroke-width="2" x1="4" y1="4" x2="400" y2="4" /><circle fill="#7DB378" cx="4" cy="4" r="4" /></svg>');
+   # <svg width="403" height="8" xmlns="http://www.w3.org/2000/svg"><line stroke="#7DB378" stroke-width="2" x1="4" y1="4" x2="400" y2="4" /><circle fill="#7DB378" cx="4" cy="4" r="4" /></svg>
 subnav_underline: PHN2ZyB3aWR0aD0iNDAzIiBoZWlnaHQ9IjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGxpbmUgc3Ryb2tlPSIjN0RCMzc4IiBzdHJva2Utd2lkdGg9IjIiIHgxPSI0IiB5MT0iNCIgeDI9IjQwMCIgeTI9IjQiIC8+PGNpcmNsZSBmaWxsPSIjN0RCMzc4IiBjeD0iNCIgY3k9IjQiIHI9IjQiIC8+PC9zdmc+
-
-  #'data:image/svg+xml;base64,
-show_subnav_icon: ./img/button-icon-sprite.png
+  
+  #<svg width="23" height="20" xmlns="http://www.w3.org/2000/svg"> <style> line, circle { stroke: #7DB378; fill: #7DB378; } </style> <line y2="4" x2="23" y1="4" x1="4" /> <line y2="10" x2="23" y1="10" x1="4" /> <line y2="16" x2="23" y1="16" x1="4" /> <circle r="2.5" cy="4" cx="4" /> <circle r="2.5" cy="10" cx="4" /> <circle r="2.5" cy="16" cx="4" /> </svg> 
+show_subnav_icon: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjMiIGhlaWdodD0iMjMiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+IDxzdHlsZT4gbGluZSwgY2lyY2xlIHsgc3Ryb2tlOiAjN0RCMzc4OyBzdHJva2Utd2lkdGg6IDJweDsgZmlsbDogIzdEQjM3ODsgfSBjaXJjbGUgeyBzdHJva2Utd2lkdGg6IDA7IH0gPC9zdHlsZT4gPGxpbmUgeTI9IjQiIHgyPSIyMyIgeTE9IjQiIHgxPSI0IiAvPiA8bGluZSB5Mj0iMTEiIHgyPSIyMyIgeTE9IjExIiB4MT0iNCIgLz4gPGxpbmUgeTI9IjE4IiB4Mj0iMjMiIHkxPSIxOCIgeDE9IjQiIC8+IDxjaXJjbGUgcj0iMiIgY3k9IjQiIGN4PSI0IiAvPiA8Y2lyY2xlIHI9IjIiIGN5PSIxMSIgY3g9IjQiIC8+IDxjaXJjbGUgcj0iMiIgY3k9IjE4IiBjeD0iNCIgLz4gPC9zdmc+IA=='
 
 ---
 
