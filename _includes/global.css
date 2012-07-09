@@ -302,8 +302,7 @@ aside,
     text-decoration: none;
     padding: 0 1.25em 0.55em 1em; 
     background: transparent no-repeat 0em 1.2em;
-   /* background-image: url('data:image/svg+xml;utf8,<svg width="403" height="8" xmlns="http://www.w3.org/2000/svg"><line stroke="#7DB378" stroke-width="2" x1="4" y1="4" x2="400" y2="4" /><circle fill="#7DB378" cx="4" cy="4" r="4" /></svg>'); */
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAzIiBoZWlnaHQ9IjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGxpbmUgc3Ryb2tlPSIjN0RCMzc4IiBzdHJva2Utd2lkdGg9IjIiIHgxPSI0IiB5MT0iNCIgeDI9IjQwMCIgeTI9IjQiIC8+PGNpcmNsZSBmaWxsPSIjN0RCMzc4IiBjeD0iNCIgY3k9IjQiIHI9IjQiIC8+PC9zdmc+');
+    background-image: url('data:image/svg+xml;base64,{{ page.subnav_underline }}');
     -webkit-transition: background-position 0.3s ease-out, color 0.3s ease-out;
     -moz-transition: background-position 0.3s ease-out, color 0.3s ease-out;
     -o-transition: background-position 0.3s ease-out, color 0.3s ease-out;
@@ -351,7 +350,7 @@ section.content:after{
     background: transparent;
     background-repeat: no-repeat;
     background-position: left top;
-    background-image: url(./svg/nodewing.svg) ;
+    background-image: url(./svg/{{ page.svg_asset }}) ;
     -webkit-transform: rotate(270deg);
     -moz-transform: rotate(270deg);
     -ms-transform: rotate(270deg);
@@ -432,7 +431,7 @@ section .permalink:hover {
     width:88px;
     height: 39px;
     margin: 0;
-    background-image: url(./svg/nodewing.svg);
+    background-image: url(./svg/{{ page.svg_asset }});
     background-repeat: no-repeat;
     background-position: center top;
     background-size: 100%;
@@ -612,13 +611,13 @@ button:active {
     display: block;
     overflow: hidden;
     background: {{ page.icon_colour }};
-    background-image: url(./img/button-icon-sprite.png);
-    background-image: url(./img/button-icon-sprite.png) -moz-linear-gradient(top, {{ page.icon_colour }} 0%, {{ page.icon_stop }} 100%);
-    background-image: url(./img/button-icon-sprite.png) -webkit-gradient(linear, left top, left bottom, color-stop(0%,{{ page.icon_colour }}), color-stop(100%,{{ page.icon_stop }}));
-    background-image: url(./img/button-icon-sprite.png) -webkit-linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
-    background-image: url(./img/button-icon-sprite.png) -o-linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
-    background-image: url(./img/button-icon-sprite.png) -ms-linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
-    background-image: url(./img/button-icon-sprite.png) linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
+    background-image: url({{ page.show_subnav_icon }});
+    background-image: url({{ page.show_subnav_icon }}) -moz-linear-gradient(top, {{ page.icon_colour }} 0%, {{ page.icon_stop }} 100%);
+    background-image: url({{ page.show_subnav_icon }}) -webkit-gradient(linear, left top, left bottom, color-stop(0%,{{ page.icon_colour }}), color-stop(100%,{{ page.icon_stop }}));
+    background-image: url({{ page.show_subnav_icon }}) -webkit-linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
+    background-image: url({{ page.show_subnav_icon }}) -o-linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
+    background-image: url({{ page.show_subnav_icon }}) -ms-linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
+    background-image: url({{ page.show_subnav_icon }}) linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
     background-repeat: no-repeat;
     background-size: 37px 200px; /* 2/3 size */
     border: 1px solid {{ page.icon_border }};
@@ -819,7 +818,7 @@ aside li.code-css span {
     right: 10px;
     width:280px;
     height: 126px;
-    background-image: url(./svg/nodewing.svg);
+    background-image: url(./svg/{{ page.svg_asset }});
     background-repeat: no-repeat;
     background-position: right top;
     background-size: 100%;

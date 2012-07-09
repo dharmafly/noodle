@@ -1,5 +1,8 @@
 ---
 font: Forum
+
+#colours
+
 copy_colour: "#2f4430" 
 lowlight_background: "#2f4430" 
 lowlight_colour: "#9cd4a2"
@@ -14,16 +17,27 @@ highlight_colour: "#fff"
 greyed_out: "#ccc"
 code_colour: "#9cd4a2"
 code_background: "#2f4430"
-button_border : "#5c8c5f"
-button_mid_stop  : "#5c9e5e"
-button_colour  : "#45b64a"
-button_colour_highlight   : "#376a38"
-large_button_colour  : "#B8810D"
-large_button_stop   : "#D59F0D"
-large_button_highlight   : "#E6C026"
-icon_colour  : "#2D432E"
-icon_stop   : "#152e16"
-icon_border   : "#152E16"
+button_border: "#5c8c5f"
+button_mid_stop: "#5c9e5e"
+button_colour: "#45b64a"
+button_colour_highlight: "#376a38"
+large_button_colour: "#B8810D"
+large_button_stop: "#D59F0D"
+large_button_highlight: "#E6C026"
+icon_colour: "#2D432E"
+icon_stop: "#152e16"
+icon_border: "#152E16"
+
+# svg
+
+svg_asset: nodewing.svg
+
+   # background-image: url('data:image/svg+xml;utf8,<svg width="403" height="8" xmlns="http://www.w3.org/2000/svg"><line stroke="#7DB378" stroke-width="2" x1="4" y1="4" x2="400" y2="4" /><circle fill="#7DB378" cx="4" cy="4" r="4" /></svg>');
+subnav_underline: PHN2ZyB3aWR0aD0iNDAzIiBoZWlnaHQ9IjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGxpbmUgc3Ryb2tlPSIjN0RCMzc4IiBzdHJva2Utd2lkdGg9IjIiIHgxPSI0IiB5MT0iNCIgeDI9IjQwMCIgeTI9IjQiIC8+PGNpcmNsZSBmaWxsPSIjN0RCMzc4IiBjeD0iNCIgY3k9IjQiIHI9IjQiIC8+PC9zdmc+
+
+  #'data:image/svg+xml;base64,
+show_subnav_icon: ./img/button-icon-sprite.png
+
 ---
 
 {% include global.css %}
