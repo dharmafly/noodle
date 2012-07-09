@@ -169,7 +169,7 @@ Adding a quote to your project
 
 If you have a quote that sums up the ideas in your project, you can optionally add it by editing the `_config.yml`.
 
-    PROJECT_QUOTE:
+    QUOTE:
       quote:  Promises are the uniquely human way of ordering the future, making it predictable and reliable to the extent that this is humanly possible.
       cite: Hannah Arendt
 
@@ -226,7 +226,7 @@ the element will be appended to the output.
 
 To add your own JavaScript files to the page to be available to the code blocks, edit the `_config.yml`:
 
-    PROJECT_SCRIPTS:
+    SCRIPTS:
     - src: https://raw.github.com/dharmafly/jquery.promises/master/image.js
     - src: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
     

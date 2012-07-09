@@ -14,12 +14,12 @@ TWITTER_PROJECT_URL: https://twitter.com/dharmafly
 LANG: css
 
 # Add your project's scripts here to be available to any examples
-PROJECT_SCRIPTS:
+SCRIPTS:
 - src: https://raw.github.com/dharmafly/jquery.promises/master/image.js
 - src: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
 
 # A quote to add at the footer of your project page
-PROJECT_QUOTE:
+QUOTE:
   quote: Ink is better than the best memory.
   cite: Chinese proverb
 

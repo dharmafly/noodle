@@ -45,12 +45,12 @@
             
             {{ content }}
             
-                {% if site.PROJECT_QUOTE.quote %}
+                {% if site.QUOTE.quote %}
                 <section class="quote">
                     <blockquote>
-                        {{ site.PROJECT_QUOTE.quote }}
+                        {{ site.QUOTE.quote }}
                     </blockquote>
-                    <cite>{{ site.PROJECT_QUOTE.cite }}</cite>
+                    <cite>{{ site.QUOTE.cite }}</cite>
                 </section>
                 {% endif %}
             
@@ -73,7 +73,7 @@
 			<script src="{{ relative_path }}javascript/main.js"></script>
 			<script src="{{ relative_path }}javascript/jquery.js"></script>
            
-            {% for script in site.PROJECT_SCRIPTS %}
+            {% for script in site.SCRIPTS %}
             <script src="{{ script.src }}"></script>
             {% endfor %}
 
