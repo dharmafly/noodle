@@ -175,7 +175,8 @@ section.overview {
 }
 
 pre, code {
-  color: {{ page.lowlight_colour }};
+  color: {{ page.code_colour }};
+	background-color: {{ page.code_background }};
 }
 
 #navigation, section.overview {
@@ -548,13 +549,13 @@ button {
 button:hover,
 button:focus,
 button:active {
-    background: #45b64a; 
-    background: -moz-linear-gradient(top, #45b64a 0%, #376a38 100%); 
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45b64a), color-stop(100%,#376a38)); 
-    background: -webkit-linear-gradient(top, #45b64a 0%,#376a38 100%);
-    background: -o-linear-gradient(top, #45b64a 0%,#376a38 100%);
-    background: -ms-linear-gradient(top, #45b64a 0%,#376a38 100%); 
-    background: linear-gradient(top, #45b64a 0%,#376a38 100%); 
+    background: {{ page.button_colour }}; 
+    background: -moz-linear-gradient(top, {{ page.button_colour }} 0%, {{ page.button_colour_highlight }} 100%); 
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,{{ page.button_colour }}), color-stop(100%,{{ page.button_colour_highlight }})); 
+    background: -webkit-linear-gradient(top, {{ page.button_colour }} 0%,{{ page.button_colour_highlight }} 100%);
+    background: -o-linear-gradient(top, {{ page.button_colour }} 0%,{{ page.button_colour_highlight }} 100%);
+    background: -ms-linear-gradient(top, {{ page.button_colour }} 0%,{{ page.button_colour_highlight }} 100%); 
+    background: linear-gradient(top, {{ page.button_colour }} 0%,{{ page.button_colour_highlight }} 100%); 
 }
 
 .buttons {
@@ -567,11 +568,11 @@ button:active {
 	text-decoration: none;
 	display: inline-block;
 	padding: 0.5em;
-	background: #B8810D;
-	background-image: -webkit-linear-gradient(top, #B8810D, #D59F0D);
-	background-image: -moz-linear-gradient(top, #B8810D, #D59F0D);
-	background-image: -o-linear-gradient(top, #B8810D, #D59F0D);
-	background-image: linear-gradient(top, #B8810D, #D59F0D);
+	background:{{ page.large_button_colour }};
+	background-image: -webkit-linear-gradient(top,{{ page.large_button_colour }}, {{ page.large_button_stop }});
+	background-image: -moz-linear-gradient(top,{{ page.large_button_colour }}, {{ page.large_button_stop }});
+	background-image: -o-linear-gradient(top,{{ page.large_button_colour }}, {{ page.large_button_stop }});
+	background-image: linear-gradient(top,{{ page.large_button_colour }}, {{ page.large_button_stop }});
 	border-radius: 5px;
 	border: 2px solid {{ page.highlight_colour }};
     font-family: 'Lato', sans-serif;
@@ -580,22 +581,22 @@ button:active {
 }
 
 .button:hover {
-	background: #B8810D;
+	background:{{ page.large_button_colour }};
   color:{{ page.highlight_colour }};
-	background-image: -webkit-linear-gradient(top, #B8810D, #E6C026);
-	background-image: -moz-linear-gradient(top, #B8810D, #E6C026);
-	background-image: -o-linear-gradient(top, #B8810D, #E6C026);
-	background-image: linear-gradient(top, #B8810D, #E6C026);
+	background-image: -webkit-linear-gradient(top,{{ page.large_button_colour }}, {{ page.large_button_highlight }});
+	background-image: -moz-linear-gradient(top,{{ page.large_button_colour }}, {{ page.large_button_highlight }});
+	background-image: -o-linear-gradient(top,{{ page.large_button_colour }}, {{ page.large_button_highlight }});
+	background-image: linear-gradient(top,{{ page.large_button_colour }}, {{ page.large_button_highlight }});
     -webkit-transition: background-image 0.3s ease-out;
 }
 
 .button:active {
-	background: #E6C026;
+	background: {{ page.large_button_highlight }};
   color:{{ page.highlight_colour }};
 }
 
 .button .version{
-  color: #315a2f;
+  color: {{ page.copy_colour }};
   font-size:77%;
 }
 
@@ -610,17 +611,17 @@ button:active {
     border-radius: 5px;
     display: block;
     overflow: hidden;
-    background:#2D432E;
+    background: {{ page.icon_colour }};
     background-image: url(./img/button-icon-sprite.png);
-    background-image: url(./img/button-icon-sprite.png) -moz-linear-gradient(top, #2d432e 0%, #152e16 100%);
-    background-image: url(./img/button-icon-sprite.png) -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2d432e), color-stop(100%,#152e16));
-    background-image: url(./img/button-icon-sprite.png) -webkit-linear-gradient(top, #2d432e 0%,#152e16 100%);
-    background-image: url(./img/button-icon-sprite.png) -o-linear-gradient(top, #2d432e 0%,#152e16 100%);
-    background-image: url(./img/button-icon-sprite.png) -ms-linear-gradient(top, #2d432e 0%,#152e16 100%);
-    background-image: url(./img/button-icon-sprite.png) linear-gradient(top, #2d432e 0%,#152e16 100%);
+    background-image: url(./img/button-icon-sprite.png) -moz-linear-gradient(top, {{ page.icon_colour }} 0%, {{ page.icon_stop }} 100%);
+    background-image: url(./img/button-icon-sprite.png) -webkit-gradient(linear, left top, left bottom, color-stop(0%,{{ page.icon_colour }}), color-stop(100%,{{ page.icon_stop }}));
+    background-image: url(./img/button-icon-sprite.png) -webkit-linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
+    background-image: url(./img/button-icon-sprite.png) -o-linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
+    background-image: url(./img/button-icon-sprite.png) -ms-linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
+    background-image: url(./img/button-icon-sprite.png) linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
     background-repeat: no-repeat;
     background-size: 37px 200px; /* 2/3 size */
-    border: 1px solid #152E16;
+    border: 1px solid {{ page.icon_border }};
 }
 
 .show-subnav .icon{
@@ -667,7 +668,7 @@ button:active {
 .run output {
 	font-family: Menlo, mono-space;
 	display: block;
-	background-color: #DBE5D7;
+	background-color: {{ page.content_bg_colour }};
 	font-size: 1.4em; /* Fixes odd issue in FF */
     min-height:1em;
 	overflow: auto;
@@ -710,7 +711,7 @@ aside li  span,
 .buttons .badge {
     width: 3.025em;
     height: 0em;
-    border: 0.625em solid {{ page.content_bg_colour }};
+    border: 0.625em solid {{ page.content_hover_colour }};
     border-radius: 3.025em;
     overflow: hidden;
     padding-top: 3.025em;
