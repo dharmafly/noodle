@@ -1,10 +1,20 @@
 ---
 font: Forum
-copy_colour: "#2f4430"
+copy_colour: "#2f4430" 
+lowlight_background: "#2f4430" 
+lowlight_colour: "#9cd4a2"
+lowlight_border: "#5d6f5d" 
 body_background_colour: "#87c980"
 background_mid_stop: "#a5d5a6"
 link_colour: "#039b0a"
-content_bg_colour : "#dbe5d7"
+content_bg_colour: "#dbe5d7"
+content_hover_colour: "#cbdac5"
+nav_link_colour: "#9CD4A2"
+highlight_colour: "#fff"
+greyed_out: "#ccc"
+code_colour: "#4d4d4c"
+button_border : "#5c8c5f"
+button_mid_stop  : "#5c9e5e"
 ---
 
 {% include global.css %}
