@@ -224,7 +224,7 @@ section.overview a:active {
     float: left;
     font-size: 1.8em;
     color: {{ page.highlight_colour }};
-    border-right:1px solid {{ page.nav_link_colour }};
+    border-right:1px solid {{ page.nav_border_colour }};
     display: none; /* only shown above 35em */
 }
 
@@ -244,8 +244,8 @@ section.overview a:active {
   display: inline;
   padding-left: 1em;
   padding-right: 1em;
-  border-left:1px solid {{ page.nav_link_colour }};
-  border-right:1px solid {{ page.nav_link_colour }};
+  border-left:1px solid {{ page.nav_border_colour }};
+  border-right:1px solid {{ page.nav_border_colour }};
   border-left-width:0;
   float: none;
 }

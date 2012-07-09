@@ -1,29 +1,47 @@
 ---
 font: 'Advent Pro'
-copy_colour: "#2f4430" 
-lowlight_background: "#2f4430" 
-lowlight_colour: "#9cd4a2"
+
+#colours
+
+copy_colour: "#2F475F" 
+lowlight_background: "#2F475F" 
+lowlight_colour: "#9CCDD2"
 lowlight_border: "#5d6f5d" 
-body_background_colour: "#87c980"
-background_mid_stop: "#a5d5a6"
-link_colour: "#039b0a"
-content_bg_colour: "#dbe5d7"
+body_background_colour: "#88B8DC"
+background_mid_stop: "#97C2E4"
+link_colour: "#5DC4FF"
+content_bg_colour: "#CDDEF2"
 content_hover_colour: "#cbdac5"
-nav_link_colour: "#9CD4A2"
+nav_border_colour: "#9CD4A2"
 highlight_colour: "#fff"
 greyed_out: "#ccc"
-code_colour: "#9cd4a2"
-code_background: "#2f4430"
-button_border : "#5c8c5f"
-button_mid_stop  : "#5c9e5e"
-button_colour  : "#45b64a"
-button_colour_highlight   : "#376a38"
-large_button_colour  : "#B8810D"
-large_button_stop   : "#D59F0D"
-large_button_highlight   : "#E6C026"
-icon_colour  : "#2D432E"
-icon_stop   : "#152e16"
-icon_border   : "#152E16"
+code_colour: "#9CCDD2"
+code_background: "#2F475F"
+button_border: "#5c8c5f"
+button_mid_stop: "#5c9e5e"
+button_colour: "#45b64a"
+button_colour_highlight: "#376a38"
+large_button_colour: "#B8810D"
+large_button_stop: "#D59F0D"
+large_button_highlight: "#E6C026"
+icon_colour: "#2D432E"
+icon_stop: "#152e16"
+icon_border: "#152E16"
+
+# svg
+
+svg_asset: nodewing_alt.svg
+
+   # <svg width="403" height="8" xmlns="http://www.w3.org/2000/svg"><line stroke="#6C94B8" stroke-width="2" x1="4" y1="4" x2="400" y2="4" /><circle fill="#6C94B8" cx="4" cy="4" r="4" /></svg>
+subnav_underline: PHN2ZyB3aWR0aD0iNDAzIiBoZWlnaHQ9IjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGxpbmUgc3Ryb2tlPSIjNkM5NEI4IiBzdHJva2Utd2lkdGg9IjIiIHgxPSI0IiB5MT0iNCIgeDI9IjQwMCIgeTI9IjQiIC8+PGNpcmNsZSBmaWxsPSIjNkM5NEI4IiBjeD0iNCIgY3k9IjQiIHI9IjQiIC8+PC9zdmc+
+  
+  #<svg width="23" height="20" xmlns="http://www.w3.org/2000/svg"> <style> line, circle { stroke: #6C94B8; fill: #6C94B8; } </style> <line y2="4" x2="23" y1="4" x1="4" /> <line y2="10" x2="23" y1="10" x1="4" /> <line y2="16" x2="23" y1="16" x1="4" /> <circle r="2.5" cy="4" cx="4" /> <circle r="2.5" cy="10" cx="4" /> <circle r="2.5" cy="16" cx="4" /> </svg> 
+show_subnav_icon: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjMiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+IDxzdHlsZT4gbGluZSwgY2lyY2xlIHsgc3Ryb2tlOiAjNkM5NEI4OyBmaWxsOiAjNkM5NEI4OyB9IDwvc3R5bGU+IDxsaW5lIHkyPSI0IiB4Mj0iMjMiIHkxPSI0IiB4MT0iNCIgLz4gPGxpbmUgeTI9IjEwIiB4Mj0iMjMiIHkxPSIxMCIgeDE9IjQiIC8+IDxsaW5lIHkyPSIxNiIgeDI9IjIzIiB5MT0iMTYiIHgxPSI0IiAvPiA8Y2lyY2xlIHI9IjIuNSIgY3k9IjQiIGN4PSI0IiAvPiA8Y2lyY2xlIHI9IjIuNSIgY3k9IjEwIiBjeD0iNCIgLz4gPGNpcmNsZSByPSIyLjUiIGN5PSIxNiIgY3g9IjQiIC8+IDwvc3ZnPg=='
+ 
+  # ./svg/icon-stem.svg
+  # <svg width="90" height="240" xmlns="http://www.w3.org/2000/svg"> <style>path { stroke:	#CDDEF2; fill: none; stroke-width: 9; }</style> <path  d="m77.66501,1.668c0,0 6,56.64099 -15.09601,98c-18.13898,35.608 -34.23698,67.72299 -34.23698,67.72299s-22,40.66803 -22,70"/></svg>
+icon_stem: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTAiIGhlaWdodD0iMjQwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPiA8c3R5bGU+cGF0aCB7IHN0cm9rZToJI0NEREVGMjsgZmlsbDogbm9uZTsgc3Ryb2tlLXdpZHRoOiA5OyB9PC9zdHlsZT4gPHBhdGggIGQ9Im03Ny42NjUwMSwxLjY2OGMwLDAgNiw1Ni42NDA5OSAtMTUuMDk2MDEsOThjLTE4LjEzODk4LDM1LjYwOCAtMzQuMjM2OTgsNjcuNzIyOTkgLTM0LjIzNjk4LDY3LjcyMjk5cy0yMiw0MC42NjgwMyAtMjIsNzAiLz48L3N2Zz4='
+
 ---
 
 {% include global.css %}
