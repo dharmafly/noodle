@@ -4,15 +4,15 @@ body {
 	font: 62.5%/1 Lato, serif;
 	padding: 0;
 	margin: 0;
-	color: #2f4430;
-    background: #87c980; 
+	color: {{ page.copy_colour }};
+    background: {{ page.body_background_colour }}; 
     background-image: url(./img/tile.png); 
-    background-image: url(./img/tile.png) -moz-linear-gradient(left, #87c980 0%, #a5d5a6 50%, #87c980 100%);
-    background-image: url(./img/tile.png) -webkit-gradient(linear, left top, right top, color-stop(0%,#87c980), color-stop(50%,#a5d5a6), color-stop(100%,#87c980));
-    background-image: url(./img/tile.png) -webkit-linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%); 
-    background-image: url(./img/tile.png) -o-linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%); 
-    background-image: url(./img/tile.png) -ms-linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%);
-    background-image: url(./img/tile.png) linear-gradient(left, #87c980 0%,#a5d5a6 50%,#87c980 100%);
+    background-image: url(./img/tile.png) -moz-linear-gradient(left, {{ page.body_background_colour }} 0%, {{ page.background_mid_stop }} 50%, {{ page.body_background_colour }} 100%);
+    background-image: url(./img/tile.png) -webkit-gradient(linear, left top, right top, color-stop(0%,{{ page.body_background_colour }}), color-stop(50%,{{ page.background_mid_stop }}), color-stop(100%,{{ page.body_background_colour }}));
+    background-image: url(./img/tile.png) -webkit-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%); 
+    background-image: url(./img/tile.png) -o-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%); 
+    background-image: url(./img/tile.png) -ms-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
+    background-image: url(./img/tile.png) linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
 }
 
 i, em {
@@ -20,14 +20,14 @@ i, em {
 }
 
 a {
-	color: #2f4430;
+	color: {{ page.copy_colour }};
     text-decoration:underline;
 }
 
 a:hover,
 a:focus,
 a:active {
-    color:#039b0a;
+    color:{{ page.link_colour }};
     text-decoration:none;
 }
 
@@ -39,7 +39,7 @@ h1, h2, h3, h4, h5, h6, p, pre, ul, ol {
 }
 
 h1, h2 {
-	font-family: {{ page.font}}, "Helvetica Neue";
+	font-family: {{ page.font }}, "Helvetica Neue";
 	font-weight: 400;
 	margin-bottom: 0.75em;
 }
@@ -106,7 +106,7 @@ pre {
 	tab-size: 2;
 	margin: 0 -2em 2em;
 	padding: 1.5em 3em;
-	border: 10px solid #dbe5d7;
+	border: 10px solid {{ page.content_bg_colour }};
     border-radius: 17px;
     -webkit-box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.45) inset;
     -moz-box-shadow:    4px 4px 5px rgba(0, 0, 0, 0.45) inset;
@@ -130,7 +130,7 @@ header {
 
 header,
 footer {
-	background-color: #2f4430;
+	background-color: {{ page.copy_colour }};
 	color: #fff;
 	text-align: center;
     color: white;
@@ -176,7 +176,7 @@ section.overview {
 }
 
 #navigation, pre, code, section.overview {
-	background-color: #2f4430;
+	background-color: {{ page.copy_colour }};
     color:#9cd4a2;
 }
 
@@ -196,7 +196,7 @@ section.overview a {
 section.overview a:hover,
 section.overview a:focus,
 section.overview a:active {
-    color:#039b0a;
+    color:{{ page.link_colour }};
     -webkit-transition : color 0.1s ease-in;
     -moz-transition : color 0.1s ease-in;
     -o-transition : color 0.1s ease-in;
@@ -240,9 +240,9 @@ section.overview a:active {
   display: inline;
   padding-left: 1em;
   padding-right: 1em;
-      border-left:1px solid #9CD4A2;
-      border-right:1px solid #9CD4A2;
-      border-left-width:0;
+  border-left:1px solid #9CD4A2;
+  border-right:1px solid #9CD4A2;
+  border-left-width:0;
   float: none;
 }
 	
@@ -320,7 +320,7 @@ section {
 }
 
 section.content {
-    background-color: #dbe5d7;
+    background-color: {{ page.content_bg_colour }};
     margin-bottom: 0;
     padding: 3em 0;
     position: relative;
@@ -379,7 +379,7 @@ section .permalink:hover {
 }
 
 .project-name {
-    font-family: {{ page.font}}, serif;
+    font-family: {{ page.font }}, serif;
     font-size: 162.5%;
 }
 

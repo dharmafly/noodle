@@ -184,7 +184,7 @@ Add your Google Analytics web property ID (in the form 'UA-XXXXX-X') within `_co
 Changing the project colourscheme and style
 -------------------------------------------
 
-Currently, only the default theme is available. Once alternate themes are implemented, you can chnage theme by updating the `PROJECT_THEME` variable. 
+Currently, only the default theme is available. Once alternate themes are implemented, you can chnage theme by updating the `THEME` variable. 
       
 Formatting your posts
 ====================

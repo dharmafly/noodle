@@ -1,10 +1,9 @@
 ---
-font: Forum
+font: 'Advent Pro'
 copy_colour: "#2f4430"
 body_background_colour: "#87c980"
 background_mid_stop: "#a5d5a6"
 link_colour: "#039b0a"
-content_bg_colour : "#dbe5d7"
 ---
 
 {% include global.css %}

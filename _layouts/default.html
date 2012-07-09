@@ -1,3 +1,4 @@
+
 {% assign sections = site.sections %}
 
 {% assign relative_path  = "./" %}
@@ -15,8 +16,8 @@
 			<meta charset="utf-8" />
 			<meta name="viewport" content="width=device-width" />
 			<title>{{ site.PROJECT_NAME }}</title>
-			<link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic|Forum|Inconsolata" rel="stylesheet" />
-			<link href="{{ relative_path }}css/{{ site.PROJECT_THEME }}.css" rel="stylesheet" />
+      {% include googlefonts.liquid %}
+      <link href="{{ relative_path }}css/{{ site.THEME }}.css" rel="stylesheet" />
 		</head>
 		<body>
 			<header>
