@@ -37,7 +37,7 @@ How Can I set up a new Dharmafly project website?
 
 3. Add a link to the dharmafly-docs repository: `git remote add dharmafly-docs git@github.com:dharmafly/dharmafly-docs.git`
 
-4. Get the boilerplate content from dharmafly-docs: `git pull dharmafly gh-pages` &mdash; you will need be added as a collaborator in the dharmafly-docs project.
+4. Get the boilerplate content from dharmafly-docs: `git pull dharmafly-docs gh-pages` &mdash; you will need be added as a collaborator in the dharmafly-docs project.
 
 5. Remove the link to dharmafly-docs: `git remote rm dharmafly-docs`
 
