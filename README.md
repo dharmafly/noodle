@@ -52,6 +52,8 @@ How Can I set up a new Dharmafly project website?
 
 Github pages will run jekyll over your posts and publish to `< project username >.github.com/< project name >`
 
+### Testing your project site locally
+
 If you'd like to test the changes to your documentation site locally before you push, [install jekyll] (https://github.com/mojombo/jekyll/wiki/Install) and [run the server locally] (https://github.com/mojombo/jekyll/wiki/usage).
 
 Changing the domain for your project's site
