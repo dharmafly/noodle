@@ -351,12 +351,13 @@ section.content:after{
     background-repeat: no-repeat;
     background-position: left top;
     background-image: url(./svg/{{ page.svg_asset }}) ;
-    -webkit-transform: rotate(270deg);
-    -moz-transform: rotate(270deg);
-    -ms-transform: rotate(270deg);
-    -o-transform: rotate(270deg);
-    transform: rotate(270deg);
+    -webkit-transform: rotate({{ page.svg_asset_rotation }});
+    -moz-transform: rotate({{ page.svg_asset_rotation }});
+    -ms-transform: rotate({{ page.svg_asset_rotation }});
+    -o-transform: rotate({{ page.svg_asset_rotation }});
+    transform: rotate({{ page.svg_asset_rotation }});
     opacity: 0.2;
+    background-size: {{ page.svg_asset_size }} 
 }
 
 section > h1 {
@@ -423,28 +424,33 @@ section .permalink:hover {
 
 .quote:before,
 .quote:after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width:88px;
-    height: 39px;
-    margin: 0;
-    background-image: url(./svg/{{ page.svg_asset }});
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: 100%;
-    background-color: transparent;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width:88px;
+  height: 39px;
+  margin: 0;
+  background-image: url(./svg/{{ page.svg_asset }});
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100%;
+  background-color: transparent;
+  -webkit-transform: {{ page.quote_svg_left_transform }};
+  -moz-transform: {{ page.quote_svg_left_transform }};
+  -ms-transform: {{ page.quote_svg_left_transform }};
+  -o-transform: {{ page.quote_svg_left_transform }};
+  transform: {{ page.quote_svg_left_transform }};
 }
 
 .quote:after {
   left: 18.6em;
-  -webkit-transform: scaleX(-1);
-    -moz-transform: scaleX(-1);
-    -ms-transform: scaleX(-1);
-    -o-transform: scaleX(-1);
-    transform: scaleX(-1);
+  -webkit-transform: {{ page.quote_svg_right_transform }};
+  -moz-transform: {{ page.quote_svg_right_transform }};
+  -ms-transform: {{ page.quote_svg_right_transform }};
+  -o-transform: {{ page.quote_svg_right_transform }};
+  transform: {{ page.quote_svg_right_transform }};
 }
 
 /* Hanging indent */

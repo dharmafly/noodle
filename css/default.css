@@ -31,6 +31,10 @@ icon_border: "#152E16"
 # svg
 
 svg_asset: nodewing.svg
+svg_asset_size: 100%
+svg_asset_rotation: 270deg
+quote_svg_left_transform: none
+quote_svg_right_transform: scaleX(-1)
 
    # <svg width="403" height="8" xmlns="http://www.w3.org/2000/svg"><line stroke="#7DB378" stroke-width="2" x1="4" y1="4" x2="400" y2="4" /><circle fill="#7DB378" cx="4" cy="4" r="4" /></svg>
 subnav_underline: PHN2ZyB3aWR0aD0iNDAzIiBoZWlnaHQ9IjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGxpbmUgc3Ryb2tlPSIjN0RCMzc4IiBzdHJva2Utd2lkdGg9IjIiIHgxPSI0IiB5MT0iNCIgeDI9IjQwMCIgeTI9IjQiIC8+PGNpcmNsZSBmaWxsPSIjN0RCMzc4IiBjeD0iNCIgY3k9IjQiIHI9IjQiIC8+PC9zdmc+
