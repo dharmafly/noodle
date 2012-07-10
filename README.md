@@ -33,8 +33,7 @@ How Can I set up a new Dharmafly project website?
 
      `git rm -rf .`
 
-(INFO: Make sure to remove any untracked files as well as these also are candidates for
-merge conflicts. Preferably remove hidden files like .DS_STORE)
+  (INFO: Make sure to remove any untracked files as well, as these may be candidates for merge conflicts. For example, hidden files like `.DS_STORE`)
 
 3. Add a link to the dharmafly-docs repository: `git remote add dharmafly-docs git@github.com:dharmafly/dharmafly-docs.git`
 
@@ -71,7 +70,7 @@ Posts
 
 All documentation sections should be put in the *_posts* directory.
 
-These must have the format `YYYY-MM-DD-{postname}.md`. The posts will be ordered by date when inserted.
+These must have the format `YYYY-MM-DD-{postname}.md`. The posts will be ordered by date when inserted. `{postname}` will be the section heading within the page on your project website.
 
 The format used doesn't have to be a real date (e.g. `0000-{section}-{chapter}-{postname}`, `0000-03-01-examples.md`).
 
