@@ -64,8 +64,8 @@ layout: default
             {% for section in site.sections %}
                 {% if section.path == 'reference' %}
             <section>
-                <h1><a id="reference" class="permalink" href="#reference">&#9875;</a><a href="{{ relative_path }}/{{ section.path }}">{{ section.name }}</a></h1>
-                <p>Complete documentation can be found here: <a href="{{ relative_path }}/{{ section.path }}">{{ relative_path }}{{ section.name }}</a></p>
+                <h1><a id="reference" class="permalink" href="#reference">&#9875;</a><a href="{{ relative_path }}{{ section.path }}">{{ section.name }}</a></h1>
+                <p>Complete documentation can be found here: <a href="{{ relative_path }}{{ section.path }}">{{ section.name }}</a></p>
             </section>
                 {% endif %}
             {% endfor %}
