@@ -3,6 +3,14 @@ layout: default
 ---
 {% assign about = site.categories.about %}
 
+{% assign relative_path  = "./" %}
+{% assign page_path  = "" %}
+
+{% if page.layout_type == 'subpage' %} 
+    {% assign relative_path  = "../" %}
+    {% assign page_path  = "../" %}
+{% endif %}
+
             <nav id="subnav">
                 <ul>
                 {% for post in about reversed %}
@@ -56,8 +64,8 @@ layout: default
             {% for section in site.sections %}
                 {% if section.path == 'reference' %}
             <section>
-                <h1><a id="reference" class="permalink" href="#reference">&#9875;</a><a href="{{ relative_path }}/{{ section.path }}">{{ section.name }}</a></h1>
-                <p>Complete documentation can be found here: <a href="{{ relative_path }}/{{ section.path }}">{{ section.name }}</a></p>
+                <h1><a id="reference" class="permalink" href="#reference">&#9875;</a><a href="{{ relative_path }}{{ section.path }}">{{ section.name }}</a></h1>
+                <p>Complete documentation can be found here: <a href="{{ relative_path }}{{ section.path }}">{{ section.name }}</a></p>
             </section>
                 {% endif %}
             {% endfor %}
