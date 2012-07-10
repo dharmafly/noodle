@@ -36,9 +36,9 @@ Make your changes to the pages in the `_posts` directory and update `_config.yml
 
 6. Once that's all done and you're happy with the documentation, commit and push to your project's `gh-pages` branch: 
 
-    `git add -A
-    git commit -m "Created project documentation with dharmafly docs"
-    git push origin gh-pages`
+    `git add -A`
+    `git commit -m "Created project documentation with dharmafly docs"`
+    `git push origin gh-pages`
     
 Github pages will run jekyll over your posts and publish to `< your username >.github.com/< your project name >`
 
