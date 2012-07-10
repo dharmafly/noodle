@@ -1,0 +1,104 @@
+
+{% assign sections = site.sections %}
+
+{% assign relative_path  = "./" %}
+{% assign page_path  = "" %}
+
+{% if page.layout_type == 'subpage' %} 
+    {% assign relative_path  = "../" %}
+    {% assign page_path  = "../" %}
+{% endif %}
+
+
+<!doctype html>
+<html>
+		<head>
+			<meta charset="utf-8" />
+			<meta name="viewport" content="width=device-width" />
+			<title>{{ site.PROJECT_NAME }}</title>
+      {% include googlefonts.liquid %}
+      <link href="{{ relative_path }}css/{{ site.THEME }}.css" rel="stylesheet" />
+		</head>
+		<body>
+			<header>
+				<h1 class="title">
+                    {% if page.layout_type == 'subpage' %} <a href="../"> {% endif %}
+                    {{ site.PROJECT_NAME }}
+                    {% if page.layout_type == 'subpage' %} </a> {% endif %}
+                </h1>
+			</header>
+            
+           <nav id="navigation">
+                <ul>
+                    <li class="show-subnav"><a href="#subnav" class="icon">Go to navigation for this page</a></li>
+                    {% for section in sections %}
+                    <li>
+                        <a href="{{ relative_path }}{{ section.path }}">
+                        {{ section.name }} 
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+            
+            
+            <section class="content">
+            
+            {{ content }}
+            
+                {% if site.QUOTE.quote %}
+                <section class="quote">
+                    <blockquote>
+                        {{ site.QUOTE.quote }}
+                    </blockquote>
+                    <cite>{{ site.QUOTE.cite }}</cite>
+                </section>
+                {% endif %}
+            
+            </section>
+            
+            
+            
+            <footer>
+                <div>
+                    <p>
+                    <em>by</em> <a href="http://dharmafly.com">Dharmafly</a>
+                    </p>
+                </div>
+			</footer>
+            
+            <!--[if lt IE 9]>
+                <script src="{{ relative_path }}javascript/html5shiv.js"></script>
+            <![endif]-->
+            
+			<script src="{{ relative_path }}javascript/main.js"></script>
+			<script src="{{ relative_path }}javascript/jquery.js"></script>
+           
+            {% for script in site.SCRIPTS %}
+            <script src="{{ script.src }}"></script>
+            {% endfor %}
+
+			<script src="{{ relative_path }}javascript/ace/ace.js"></script>
+			<script src="{{ relative_path }}javascript/ace/theme/theme-dharmafly.js"></script>
+			<script src="{{ relative_path }}javascript/ace/mode-javascript.js"></script>
+			<script src="{{ relative_path }}javascript/hijs.js"></script>
+			<script src="{{ relative_path }}javascript/demo.js"></script>
+      
+
+      {% if site.GA_ID %}
+      <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', '{{ site.GA_ID }}']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+      </script>
+      {% endif %}
+      
+		</body>
+</html>

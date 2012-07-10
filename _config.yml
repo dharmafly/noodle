@@ -1,0 +1,56 @@
+# Your project's details
+PROJECT_NAME: Dharmafly Docs
+GITHUB_CURRENT_VERSION: 1.0
+GITHUB_PROJECT_URL: https://github.com/dharmafly/dharmafly-docs
+
+# The style for your site (currently only default)
+THEME: default
+    
+############ Optional extras
+
+GITHUB_ZIP_URL: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
+TWITTER_PROJECT_URL: https://twitter.com/dharmafly
+# javascript, css or html5
+LANG: css
+
+# Add your project's scripts here to be available to any examples
+SCRIPTS:
+- src: https://raw.github.com/dharmafly/jquery.promises/master/image.js
+- src: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
+
+# A quote to add at the footer of your project page
+QUOTE:
+  quote: Ink is better than the best memory.
+  cite: Chinese proverb
+
+# Your google analytics id
+GA_ID: 
+
+##############
+
+# Page names -- paths should not be updated and 
+# are currently hard-coded to match directory names / site categories. 
+# (They're here as placeholders for future work to
+# allow new sections to be dynamically created)
+sections:
+ - path: 
+   name: Overview 
+ - path: reference 
+   name: Reference   
+   
+###############################
+
+# Jekyll options
+
+safe:        false
+auto:        false
+server:      false
+
+future:      true
+lsi:         false
+pygments:    false
+markdown:    maruku
+permalink:   /:title
+baseurl:     /
+
+exclude: ['README.md', 'assets', 'FiddlerRules.farx']

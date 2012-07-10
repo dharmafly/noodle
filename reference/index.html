@@ -1,0 +1,39 @@
+---
+layout: default
+layout_type: subpage
+---
+{% assign reference = site.categories.reference %}
+
+
+<nav id="subnav">
+    <ul>
+    {% for post in reference reversed %}
+      <li><a href="#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a></li>
+    {% endfor %}
+    </ul>
+</nav>
+
+{% for post in reference reversed %}
+    {% if forloop.first %}
+    <section>
+        <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>{{ post.title }}</h1>
+        <article class="embedded markdown">
+        {{ post.content }}
+        </article>
+    </section>
+    {% endif %}
+{% endfor %}
+
+
+{% include aside.liquid %}
+
+{% for post in reference reversed %}
+    {% unless forloop.first %}
+    <section>
+        <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>{{ post.title }}</h1>
+        <article class="embedded markdown">
+        {{ post.content }}
+        </article>
+    </section>
+    {% endunless %}
+{% endfor %}

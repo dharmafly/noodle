@@ -1,0 +1,19 @@
+ <aside>
+    <ul>
+        <li class="github"><a href="{{ site.GITHUB_PROJECT_URL }}" title="{{ site.PROJECT_NAME }} on Github">{{ site.PROJECT_NAME }} on Github</a></li>
+        {% if site.TWITTER_PROJECT_URL %}
+        <li class="twitter"><a href="{{ site.TWITTER_PROJECT_URL }}" title="{{ site.PROJECT_NAME }} on Twitter">
+        {{ site.PROJECT_NAME }} on Twitter</a></li>
+        {% endif %}
+        {% case site.LANG %} 
+          {% when 'javascript' %} 
+            <li class="code-javascript" title="This is a JavaScript project"><span>This is a JavaScript project</span></li>
+          {% when 'html5' %} 
+            <li class="code-html5" title="This is an HTML5 project"><span>This is an HTML5 project</span></li>
+          {% when 'css' %} 
+            <li class="code-css" title="This is a CSS project"><span>This is a CSS project</span></li>
+          {% else %} 
+            
+        {% endcase %} 
+    </ul>
+</aside>
