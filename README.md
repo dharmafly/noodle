@@ -29,12 +29,12 @@ How Can I set up a new Dharmafly project website?
      `git checkout --orphan gh-pages`
 
 3. To prevent merge conflicts when you pull from dharmafly-docs, remove any files
- which came from your previous branch.
+ which came from the last branch you were working on.
 
      `git rm -rf .`
 
-(INFO: Make sure to remove any untracked as well as these also are candidates for
-merge conflicts.)
+(INFO: Make sure to remove any untracked files as well as these also are candidates for
+merge conflicts. Preferably remove hidden files like .DS_STORE)
 
 3. Add a link to the dharmafly-docs repository: `git remote add dharmafly-docs git@github.com:dharmafly/dharmafly-docs.git`
 
