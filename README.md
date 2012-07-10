@@ -6,7 +6,7 @@ About this project
 
 Dharmafly Docs uses github's in-built Github Pages facility to build a project website.
 
-It is automatically transformed by [Jekyll] (https://github.com/mojombo/jekyll) into a static site whenever this repository is pushed to GitHub. 
+It is automatically transformed by [Jekyll] (https://github.com/mojombo/jekyll) into a static site whenever this repository is pushed to GitHub.
 
 Dharmafly Docs itself has a project website and styleguide at [http://dharmafly.github.com/dharmafly-docs/] (http://dharmafly.github.com/dharmafly-docs/)
 
@@ -23,33 +23,33 @@ How Can I set up a new Dharmafly project website?
 ----------------------------
 
 1. Firstly, navigate to your project's local directory.
-2. Create a `gh-pages` branch:  
-  
-     `git branch gh-pages`  
-     ` git checkout gh-pages`  
-     
+2. Create a `gh-pages` branch:
+
+     `git branch gh-pages`
+     ` git checkout gh-pages`
+
 3. Add a link the the dharmafly-docs repository: `git remote add dharmafly-docs git@github.com:dharmafly/dharmafly-docs.git`
 4. Get the boilerplate content from dharmafly-docs: `git pull gh-pages gh-pages` - you will need be added as a collaborator in the dharmafly-docs project.
 5. Remove the link to dharmafly-docs: `git remote rm dharmafly-docs`
 
 Make your changes to the pages in the `_posts` directory and update `_config.yml` (see the rest of this README for details).
 
-6. Once that's all done and you're happy with the documentation, commit and push to your project's `gh-pages` branch: 
+6. Once that's all done and you're happy with the documentation, commit and push to your project's `gh-pages` branch:
 
-    `git add -A`  
-    `git commit -m "Created project documentation with dharmafly docs"`  
-    `git push origin gh-pages`  
-    
+    `git add -A`
+    `git commit -m "Created project documentation with dharmafly docs"`
+    `git push origin gh-pages`
+
 Github pages will run jekyll over your posts and publish to `< your username >.github.com/< your project name >`
 
-If you'd like to test the changes to your documentation site locally before you push, [install jekyll] (https://github.com/mojombo/jekyll/wiki/Install) and [run the server locally] (https://github.com/mojombo/jekyll/wiki/usage). 
+If you'd like to test the changes to your documentation site locally before you push, [install jekyll] (https://github.com/mojombo/jekyll/wiki/Install) and [run the server locally] (https://github.com/mojombo/jekyll/wiki/usage).
 
 Changing the domain for your project's site
 ---------------------------------------------
 
-All Github Pages sites are hosted at < your username >.github.com/< your project name > by default. 
+All Github Pages sites are hosted at < your username >.github.com/< your project name > by default.
 
-If you'd like a custom domain name for your project's site, 
+If you'd like a custom domain name for your project's site,
 1. Create a file called `CNAME` containing only the custom domain name.
 2. Add it to your project's `gh-pages` branch root folder.
 
@@ -58,7 +58,7 @@ More details on updating DNS settings, etc on [Github Pages documentation] (http
 Posts
 -----
 
-All documentation sections should be put in the *_posts* directory. 
+All documentation sections should be put in the *_posts* directory.
 
 These must have the format `YYYY-MM-DD-{postname}.md`. The posts will be ordered by date when inserted.
 
@@ -72,12 +72,12 @@ In order to differentiate between posts in the main nav and those in the referen
     category: reference
     ---
 
-or 
+or
 
     ---
     category: about
     ---
-    
+
 WARNING: If posts do not have either one of these prologues, they won't be displayed.
 
 The very first 'about' post in the directory will be used for the project overview (it will be displayed in a highlighted box).
@@ -86,7 +86,7 @@ The remaining posts with `category: about` will appear in the main nav and on th
 
 `category: reference` posts will appear in the *Reference* sub-page.
 
-(INFO: These are examples of [YAML Front Matter] (https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) ) 
+(INFO: These are examples of [YAML Front Matter] (https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) )
 
 Required posts
 ----------------
@@ -115,35 +115,49 @@ Edit the `_config/yml`:
 
     # Page names (paths are currently hard-coded to match directory names / site categories)
     sections:
-     - path: 
-       name: Overview 
+     - path:
+       name: Overview
      - path: reference
-       name: Reference 
-       
+       name: Reference
+
 To rename the items in the main nav, change the `name` variable. For example
 
     sections:
-     - path: 
-       name: About 
+     - path:
+       name: About
      - path: reference
        name: API Documentation
 
-Would change the main nav items to *About | API Documentation*. 
+Would change the main nav items to *About | API Documentation*.
 
-It's not currently possible to change the path of the site pages.       
-    
+It's not currently possible to change the path of the site pages.
+
 
 Changing the language icon
 --------------------------
 
 The language icon is on the top right hand side of the main content under the github and twitter icons. It's there to quickly show site visitors the main focus of the project.
 
-To change the language icon, edit the `_config.yml` 
+To change the language icon, edit the `_config.yml`
 
     # javascript, css or html5
     LANG: javascript
 
 There are icons for JavaScript, CSS and HTML5.
+
+Adding your project code to the page
+----------------------------------------
+
+To add your own JavaScript files to the page to be available to the code blocks, edit the `_config.yml`:
+
+    SCRIPTS:
+    - src: https://raw.github.com/dharmafly/jquery.promises/master/image.js
+    - src: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
+
+Otherwise just leave the 'src' blank.
+
+The examples here use files from the [jquery.promises](http://jquerypromises.com/) project.
+
 
 Adding a link to your twitter account
 -------------------------------------
@@ -151,7 +165,7 @@ Adding a link to your twitter account
 If your project has a twitter account, you can add a link to it in the `_config.yml`.
 
     TWITTER_PROJECT_URL: https://twitter.com/dharmafly
-    
+
 An icon will appear on the right hand side under the github icon for your project.
 
 
@@ -161,7 +175,7 @@ Adding a download button
 The site will already include a link to your project. If you have a downloadable zip of your project, you can add this by editing the `_config.yml`.
 
     GITHUB_ZIP_URL: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
-    
+
 This will add a download button to your site.
 
 Adding a quote to your project
@@ -184,8 +198,8 @@ Add your Google Analytics web property ID (in the form 'UA-XXXXX-X') within `_co
 Changing the project colourscheme and style
 -------------------------------------------
 
-Currently, only the default theme is available. Once alternate themes are implemented, you can chnage theme by updating the `THEME` variable. 
-      
+Currently, only the default theme is available. Once alternate themes are implemented, you can chnage theme by updating the `THEME` variable.
+
 Formatting your posts
 ====================
 
@@ -209,7 +223,7 @@ If the example uses the `$output` variable or `alert()` then a "run" button will
 the code block allowing the user to run the example.
 
 Each code block is given access to a `$output` variable. This refers to a
-jQuery wrapped `<output>` element inserted after the code block. 
+jQuery wrapped `<output>` element inserted after the code block.
 
 For example:
 
@@ -221,13 +235,3 @@ For example:
 
 The code snippet will appear with a run button. In this example, when the image has loaded then
 the element will be appended to the output.
-
-### Adding your project code to the page
-
-To add your own JavaScript files to the page to be available to the code blocks, edit the `_config.yml`:
-
-    SCRIPTS:
-    - src: https://raw.github.com/dharmafly/jquery.promises/master/image.js
-    - src: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
-    
-The examples here use files from the jquery.promises project.
