@@ -428,7 +428,7 @@ section .permalink:hover {
   display: block;
   position: absolute;
   top: 0;
-  left: 50%;
+  left: {{ page.quote_svg_left_pos }};
   width:88px;
   height: 39px;
   margin: 0;
@@ -445,7 +445,7 @@ section .permalink:hover {
 }
 
 .quote:after {
-  left: 18.6em;
+  left: {{ page.quote_svg_right_pos }};
   -webkit-transform: {{ page.quote_svg_right_transform }};
   -moz-transform: {{ page.quote_svg_right_transform }};
   -ms-transform: {{ page.quote_svg_right_transform }};
@@ -830,7 +830,12 @@ aside li.code-css span {
     background-position: right top;
     background-size: 100%;
     background-color: transparent;
-    -webkit-filter: saturate(4.8);
+    -webkit-filter: {{ page.svg_title_filter }};
+     -webkit-transform: {{ page.svg_title_rotation }};
+    -moz-transform: {{ page.svg_title_rotation }};
+    -ms-transform: {{ page.svg_title_rotation }};
+    -o-transform: {{ page.svg_title_rotation }};
+    transform: {{ page.svg_title_rotation }};
   }
     
   footer > div {
