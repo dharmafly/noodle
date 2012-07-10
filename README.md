@@ -42,9 +42,8 @@ merge conflicts. Preferably remove hidden files like .DS_STORE)
 
 5. Remove the link to dharmafly-docs: `git remote rm dharmafly-docs`
 
-6. Configure your project website and add your posts. This can be done with the
-`_config.yml` and the `_posts` directory. See the README below for the rest of the
-details.
+6. Configure your project website and add your posts. This is a major step and may involve updating the
+`_config.yml` and adding your posts to the `_posts` directory. See the [Posts] (https://github.com/dharmafly/dharmafly-docs/tree/gh-pages#posts) below for details on adding posts to your project website and [Site variables] (https://github.com/dharmafly/dharmafly-docs/tree/gh-pages#site-variables) for details on configuring your site.
 
 7. Once that's all done and you're happy with the documentation, commit and push to your project's `gh-pages` branch:
 
