@@ -23,18 +23,30 @@ How Can I set up a new Dharmafly project website?
 ----------------------------
 
 1. Firstly, navigate to your project's local directory.
-2. Create a `gh-pages` branch:
 
-     `git branch gh-pages`
-     ` git checkout gh-pages`
+2. Create an empty `gh-pages` branch:
 
-3. Add a link the the dharmafly-docs repository: `git remote add dharmafly-docs git@github.com:dharmafly/dharmafly-docs.git`
-4. Get the boilerplate content from dharmafly-docs: `git pull gh-pages gh-pages` - you will need be added as a collaborator in the dharmafly-docs project.
+     `git checkout --orphan gh-pages`
+
+3. To prevent merge conflicts when you pull from dharmafly-docs, remove any files
+ which came from your previous branch.
+
+     `git rm -rf .`
+
+(INFO: Make sure to remove any untracked as well as these also are candidates for
+merge conflicts.)
+
+3. Add a link to the dharmafly-docs repository: `git remote add dharmafly-docs git@github.com:dharmafly/dharmafly-docs.git`
+
+4. Get the boilerplate content from dharmafly-docs: `git pull dharmafly gh-pages` &mdash; you will need be added as a collaborator in the dharmafly-docs project.
+
 5. Remove the link to dharmafly-docs: `git remote rm dharmafly-docs`
 
-Make your changes to the pages in the `_posts` directory and update `_config.yml` (see the rest of this README for details).
+6. Configure your project website and add your posts. This can be done with the
+`_config.yml` and the `_posts` directory. See the README below for the rest of the
+details.
 
-6. Once that's all done and you're happy with the documentation, commit and push to your project's `gh-pages` branch:
+7. Once that's all done and you're happy with the documentation, commit and push to your project's `gh-pages` branch:
 
     `git add -A`
     `git commit -m "Created project documentation with dharmafly docs"`
