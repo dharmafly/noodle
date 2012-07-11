@@ -272,11 +272,6 @@ For example:
 The code snippet will appear with a run button. In this example, when the image has loaded then
 the element will be appended to the output.
 
-How can I update my site with the latest Dharmafly Docs code?
-----------------------------------------------
-
-See [below] ()
-
 The `dharmafly-docs` project
 ==============================
 
