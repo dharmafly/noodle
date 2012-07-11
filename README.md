@@ -285,13 +285,16 @@ How can I get bugfixes and enhancements for my `dharmafly-docs` project instance
 
 First recreate the link between your project and `dharmafly-docs`
 
-`git remote ...`
+`git remote add dharmafly-docs git@github.com:dharmafly/dharmafly-docs.git`
 
-Then pull from Dharmafly Docs
+Making sure you are in your project's gh-page branch, pull from the 
+Dharmafly Docs master branch
 
 `git pull origin dharmafly-docs-master`
 
-You may find conflicts in your documentation...
+You may find minor merge conflicts occur. This would more than likely be 
+in the _config.yml. This is because it is a file implementers edit but is prone 
+to development changes.
 
 
 How can I update the styling or format of all Dharmafly project websites?
