@@ -287,15 +287,12 @@ First recreate the link between your project and `dharmafly-docs`
 
 `git remote add dharmafly-docs git@github.com:dharmafly/dharmafly-docs.git`
 
-Making sure you are in your project's gh-page branch, pull from the 
+Making sure you are in your project's `gh-pages` branch, pull from the 
 Dharmafly Docs master branch
 
-`git pull origin dharmafly-docs-master`
+`git pull dharmafly-docs master`
 
-You may find minor merge conflicts occur. This would more than likely be 
-in the _config.yml.  
-This is because it is a file you the implementer edits but is also prone to development changes.
-
+You may find minor merge conflicts occur in the `_config.yml`, as it needs to be updated for a project website instance, but is likely to be updated and enhanced in the Dharmafly Docs` `master` branch.
 
 How can I update the styling or format of all Dharmafly project websites?
 ------------------------------
