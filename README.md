@@ -293,8 +293,8 @@ Dharmafly Docs master branch
 `git pull origin dharmafly-docs-master`
 
 You may find minor merge conflicts occur. This would more than likely be 
-in the _config.yml. This is because it is a file implementers edit but is prone 
-to development changes.
+in the _config.yml.  
+This is because it is a file you the implementer edits but is also prone to development changes.
 
 
 How can I update the styling or format of all Dharmafly project websites?
