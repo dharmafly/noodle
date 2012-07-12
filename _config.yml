@@ -8,7 +8,7 @@ THEME: ocean
     
 ############ Optional extras
 
-GITHUB_ZIP_URL: #https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
+GITHUB_ZIP_URL: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
 TWITTER_PROJECT_URL: https://twitter.com/dharmafly
 # javascript, css or html5
 LANG: css
