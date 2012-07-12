@@ -94,7 +94,7 @@ code {
 	color: {{ page.code_colour }};
 }
 
-.content section:before, .cf:before {
+.content section:after, .cf:after {
 	content: ".";
 	display: block;
 	clear: both;
