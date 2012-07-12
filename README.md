@@ -41,6 +41,10 @@ To update the [`master` branch] (https://github.com/dharmafly/dharmafly-docs), s
 The site structure
 ------------------------
 
+The main frameworks (`<head>`,`<body>` tags, and so on) are within the `_layouts` folder. The `default.html` layout is used currently on all pages.
+
+This contains a liquid tag for the variable `{{ content }}`, a liquid reserved word, used for the content of 'this' page. So if the user has gone to the site home page, then `index.html` will be the `content`. If you've gone to `/reference/`, then `/reference/index.html` will be the `content`
+
 Adding new pages
 -------------------
 
