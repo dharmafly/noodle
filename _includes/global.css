@@ -94,6 +94,16 @@ code {
 	color: {{ page.code_colour }};
 }
 
+.content section:before, .cf:before {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+
 pre {
 	font-size: 10px; /* Fixes odd issue in FF */
 	overflow: auto;
