@@ -456,6 +456,7 @@ section .permalink:hover {
 .embedded > ul,
 .embedded > ul {
     margin-left: -1em;
+    padding-bottom: 1em;
 }
 
 .embedded > ol,
