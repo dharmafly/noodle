@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'json'
 
 
 ### Configuration variables
@@ -65,12 +66,13 @@ task :update do
   # Switch to site branch
   `git checkout #{site_branch}`
 
-  # Empty the _posts directory if it exists, add it if it doesn't
+  # Delete the posts directory if it exists
   if File.directory?(posts_dir)
-    empty_dir(posts_dir)
-  else
-    Dir.mkdir(posts_dir)
+    `git rm -rf #{posts_dir}`
   end
+
+  # Recreate the posts directory
+  Dir.mkdir(posts_dir)
 
   # Repopulate _posts directory with updated posts
   create_posts(cached_docs, posts_dir)
@@ -96,22 +98,20 @@ task :server do
   sh "jekyll --server"
 end
 
-namespace :post do
+#namespace :post do
 
-  desc "Create a new post"
-  task :new, :title do |t, args|
-    raise "You're not in the #{site_branch} branch!" if active_branch != site_branch
-    puts args.title
-  end
+#  desc "Create a new post"
+#  task :new, :title do |t, args|
+#    raise "You're not in the #{site_branch} branch!" if active_branch != site_branch
+#    puts args.title
+#  end
 
-end
+#end
 
 
 
 
 ### methods
-
-
 
 
 
