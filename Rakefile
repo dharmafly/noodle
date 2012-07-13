@@ -39,8 +39,8 @@ task :generate do
   # Remove the dharmafly-docs repo
   `git remote rm dharmafly-docs`
 
-  # Make the _posts directory
-  Dir.mkdir(posts_dir)
+  # Make the _posts directory if it doesn't exist
+  Dir.mkdir(posts_dir) unless File.directory?(posts_dir)
 
   # Create a post for each doc
   create_posts(cached_docs, posts_dir)
@@ -65,8 +65,12 @@ task :update do
   # Switch to site branch
   `git checkout #{site_branch}`
 
-  # Empty the _posts directory
-  empty_dir(posts_dir)
+  # Empty the _posts directory if it exists, add it if it doesn't
+  if File.directory?(posts_dir)
+    empty_dir(posts_dir)
+  else
+    Dir.mkdir(posts_dir)
+  end
 
   # Repopulate _posts directory with updated posts
   create_posts(cached_docs, posts_dir)
@@ -102,8 +106,45 @@ namespace :post do
 
 end
 
+
+
+
 ### methods
 
+
+
+
+
+
+# Converts the filename of a doc to the Jekyll post format
+def postify(filename)
+  number = ""
+  post_title_start = 0
+
+  # get the number out of the filename string
+  filename.split("").each_with_index do |c, i|
+    post_title_start = i + 1
+    break if c == " " or c == "-"
+    next if not c.is_numeric?
+    number += c
+  end
+
+  # add preceding zeros if number is less then 4 digits
+  number = "1" + number until number.length >= 4
+
+  # add rest of fake date
+  post_name = number + "-01-01-" 
+
+  # built post title
+  post_title = filename[post_title_start..-1]
+  post_title = post_title.downcase()
+  post_title = post_title.sub(" ", "-")
+
+  # add it all together and return it
+  post_name += post_title
+end
+
+# Add front matter if it doesn't already exist
 def add_front_matter(file_contents)
   if has_front_matter?(file_contents)
     return file_contents
@@ -176,5 +217,39 @@ def create_posts (cached_docs, posts_dir)
     file = File.new("#{posts_dir}/#{new_name}", "w")
     file << add_front_matter(contents)
     file.close()
+  end
+end
+
+# Create a hash out of each doc in the docs_dir
+def cache_docs (docs_dir)
+  rtn = Hash.new()
+
+  Dir.foreach(docs_dir) do |item|
+    next if item[0] === "." or File.directory?(item)
+    rtn[item] = File.read("#{docs_dir}/#{item}")
+  end
+
+  return rtn
+end
+
+# Create posts for each cached doc
+def create_posts (cached_docs, posts_dir)
+  cached_docs.each do |old_name, contents|
+
+    new_name = postify(old_name)
+
+    file = File.new("#{posts_dir}/#{new_name}", "w")
+    file << add_front_matter(contents)
+    file.close()
+  end
+end
+
+
+### helper functions
+
+
+class String
+  def is_numeric?
+    true if Float(self) rescue false
   end
 end
