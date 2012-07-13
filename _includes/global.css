@@ -383,7 +383,7 @@ section .permalink {
 	float: left;
 	margin-right: 0.2em;
 	visibility: hidden;
-    font-family: Code2000, "DejaVu Sans", "DejaVu Sans Bold", "DejaVu Sans Bold Oblique", "DejaVu Sans Condensed", "DejaVu Sans Condensed Bold", "DejaVu Sans Condensed Bold Oblique", "DejaVu Sans Condensed Oblique", "DejaVu Sans Mono", "DejaVu Sans Mono Bold", "DejaVu Sans Oblique", "EversonMono", "EversonMono-Oblique", "LastResort", "Symbola"
+  font-family: Code2000, "DejaVu Sans", "DejaVu Sans Bold", "DejaVu Sans Bold Oblique", "DejaVu Sans Condensed", "DejaVu Sans Condensed Bold", "DejaVu Sans Condensed Bold Oblique", "DejaVu Sans Condensed Oblique", "DejaVu Sans Mono", "DejaVu Sans Mono Bold", "DejaVu Sans Oblique", "EversonMono", "EversonMono-Oblique", "Symbola"
 }
 
 section .permalink:hover {
