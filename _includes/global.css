@@ -283,7 +283,7 @@ section.overview a:active {
 aside, 
 #subnav,
 #subnav.off-left  {
-    margin-left : -100%;
+    // margin-left : -100%;
 }
 
 #subnav,
@@ -292,13 +292,13 @@ aside,
 }
 
 #subnav.show-nav {
-    margin-left : 0;
+    // margin-left : 0;
     opacity : 1;
-    -webkit-transition: margin-left,opacity 300ms ease-in-out;
-    -moz-transition margin-left,opacity: margin-left 300ms ease-in-out;
-    -o-transition: margin-left 300ms ease-in-out;
-    -ms-transition: margin-left 300ms ease-in-out;
-    transition: margin-left 300ms ease-in-out;
+    -webkit-transition: opacity 300ms ease-in-out;
+    -moz-transition opacity: margin-left 300ms ease-in-out;
+    -o-transition: opacity 300ms ease-in-out;
+    -ms-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
 }
 
 #subnav li {
@@ -930,13 +930,13 @@ aside .github a:after ,
 @media (min-width:52em) {
 
     #subnav.off-left  {
-        margin-left : -100%;
+       // margin-left : -100%;
     }
     
     aside,
     #subnav,
     #subnav.show-nav {
-        margin-left: 0;
+      //  margin-left: 0;
     }
     
     #subnav,
@@ -989,7 +989,9 @@ aside .github a:after ,
   section.content,
   #subnav.show-nav {
     -webkit-transition: none;
-    -webkit-transform:scale3d(1,1,1);
   }
-  body {background-image: url(./img/tile.png);}
+  body {
+    background-image: url(./img/tile.png);
+    //-webkit-transform:scale3d(1,1,1);
+  }
 }
