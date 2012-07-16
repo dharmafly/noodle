@@ -177,11 +177,11 @@ if (document.querySelectorAll) {
         window.scrollTo(0, offset);
 
         // Animate to the element.
-        var mobile = false,
+        var screenWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width,
             scrollYPos = section.parentNode.offsetTop - height - 20;
             
-        if(mobile){ 
-          window.scrollTo(0, scrollYPos); // No animation 
+        if(screenWidth < 480){ 
+          window.scrollTo(0, scrollYPos); // No animation on small screens (long length)
         } else {
           scrollTo(section.parentNode.offsetTop - height - 20); 
         }
