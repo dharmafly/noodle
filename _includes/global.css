@@ -295,7 +295,7 @@ aside,
     margin-left : 0;
     opacity : 1;
     -webkit-transition: margin-left,opacity 300ms ease-in-out;
-    -moz-transition: margin-left 300ms ease-in-out;
+    -moz-transition margin-left,opacity: margin-left 300ms ease-in-out;
     -o-transition: margin-left 300ms ease-in-out;
     -ms-transition: margin-left 300ms ease-in-out;
     transition: margin-left 300ms ease-in-out;
@@ -342,6 +342,7 @@ section.content {
     -ms-transition: left 300ms ease-in-out;
     transition: left 300ms ease-in-out;
 }
+
 
 
 
@@ -980,4 +981,15 @@ aside .github a:after ,
     }    
     
     
+}
+
+/* Force hardware acceleration on very small screens (assuming mobile device), optimise background */
+
+@media only screen and (min-device-width: 320px)  and (max-device-width: 480px) {
+  section.content,
+  #subnav.show-nav {
+    -webkit-transition: none;
+    -webkit-transform:scale3d(1,1,1);
+  }
+  body {background-image: url(./img/tile.png);}
 }
