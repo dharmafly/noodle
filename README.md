@@ -63,8 +63,22 @@ Blocks of code in posts
 
 ### Allowing users to edit code inline
 
-Responsive design - scrolling and resizing
+Responsive design
 -------------------------------------
+
+### Breakpoints
+
+### Scrolling
+
+### Resizing
+
+### The subnav
+
+The subnav is shown by default. If the user resizes the screen to a size where the width of the widest link in the subnav is pushed off-screen, then two things happen: the subnav is set `.off-left` and the `.show-subnav` icon is shown in the navigation. Additionally, the subnav is hidden.
+
+If the user clicks on the show subnav icon, then the subnav is set `off-left show-nav`. So it's technically off screen but visible, as the `.content` area's left position is set to a position based on the width of the subnav.
+
+The animation is done by css transforms set on certain properties of those classes.
 
 SVG - how and where it's used
 -----------------------------
