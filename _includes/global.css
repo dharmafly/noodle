@@ -868,7 +868,7 @@ aside .github a:after ,
     background-size: 100%;
     background-color: transparent;
     -webkit-filter: {{ page.svg_title_filter }};
-     -webkit-transform: {{ page.svg_title_rotation }};
+    -webkit-transform: {{ page.svg_title_rotation }};
     -moz-transform: {{ page.svg_title_rotation }};
     -ms-transform: {{ page.svg_title_rotation }};
     -o-transform: {{ page.svg_title_rotation }};
