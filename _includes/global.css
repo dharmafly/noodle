@@ -283,7 +283,7 @@ section.overview a:active {
 aside, 
 #subnav,
 #subnav.off-left  {
-    margin-left : -100%;
+    // margin-left : -100%;
 }
 
 #subnav,
@@ -292,13 +292,13 @@ aside,
 }
 
 #subnav.show-nav {
-    margin-left : 0;
+    // margin-left : 0;
     opacity : 1;
-    -webkit-transition: margin-left,opacity 300ms ease-in-out;
-    -moz-transition: margin-left 300ms ease-in-out;
-    -o-transition: margin-left 300ms ease-in-out;
-    -ms-transition: margin-left 300ms ease-in-out;
-    transition: margin-left 300ms ease-in-out;
+    -webkit-transition: opacity 300ms ease-in-out;
+    -moz-transition opacity: margin-left 300ms ease-in-out;
+    -o-transition: opacity 300ms ease-in-out;
+    -ms-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
 }
 
 #subnav li {
@@ -342,6 +342,7 @@ section.content {
     -ms-transition: left 300ms ease-in-out;
     transition: left 300ms ease-in-out;
 }
+
 
 
 
@@ -430,8 +431,8 @@ section .permalink:hover {
   position:relative;
 }
 
-.quote:before,
-.quote:after {
+section.quote:before,
+section.quote:after {
   content: "";
   display: block;
   position: absolute;
@@ -450,9 +451,10 @@ section .permalink:hover {
   -ms-transform: {{ page.quote_svg_left_transform }};
   -o-transform: {{ page.quote_svg_left_transform }};
   transform: {{ page.quote_svg_left_transform }};
+  visibility: visible;
 }
 
-.quote:after {
+section.quote:after {
   left: {{ page.quote_svg_right_pos }};
   -webkit-transform: {{ page.quote_svg_right_transform }};
   -moz-transform: {{ page.quote_svg_right_transform }};
@@ -929,13 +931,13 @@ aside .github a:after ,
 @media (min-width:52em) {
 
     #subnav.off-left  {
-        margin-left : -100%;
+       // margin-left : -100%;
     }
     
     aside,
     #subnav,
     #subnav.show-nav {
-        margin-left: 0;
+      //  margin-left: 0;
     }
     
     #subnav,
@@ -980,4 +982,17 @@ aside .github a:after ,
     }    
     
     
+}
+
+/* Force hardware acceleration on very small screens (assuming mobile device), optimise background */
+
+@media only screen and (min-device-width: 320px)  and (max-device-width: 480px) {
+  section.content,
+  #subnav.show-nav {
+    -webkit-transition: none;
+  }
+  body {
+    background-image: url(./img/tile.png);
+    //-webkit-transform:scale3d(1,1,1);
+  }
 }
