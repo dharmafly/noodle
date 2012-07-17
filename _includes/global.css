@@ -951,6 +951,7 @@ aside .github a:after ,
         top: 3em;
         right: -10em;
         margin: 0;
+        z-index:-1;
     }
     
     aside li {
