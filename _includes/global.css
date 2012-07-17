@@ -431,8 +431,8 @@ section .permalink:hover {
   position:relative;
 }
 
-.quote:before,
-.quote:after {
+section.quote:before,
+section.quote:after {
   content: "";
   display: block;
   position: absolute;
@@ -451,9 +451,10 @@ section .permalink:hover {
   -ms-transform: {{ page.quote_svg_left_transform }};
   -o-transform: {{ page.quote_svg_left_transform }};
   transform: {{ page.quote_svg_left_transform }};
+  visibility: visible;
 }
 
-.quote:after {
+section.quote:after {
   left: {{ page.quote_svg_right_pos }};
   -webkit-transform: {{ page.quote_svg_right_transform }};
   -moz-transform: {{ page.quote_svg_right_transform }};
