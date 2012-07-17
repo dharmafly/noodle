@@ -85,7 +85,8 @@ task :update do
   rescue
     puts "\nNew posts are identical to the old. Working directory clean, nothing to commit or push."
   else
-    puts "\nDocs updated successfully! To push the changes, type:"
+    puts "\nDocs updated successfully!"
+    puts "\nYou're on the gh-pages branch. To push the changes, type:"
     puts "git push origin #{site_branch}"
   end
 end
