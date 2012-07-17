@@ -50,7 +50,7 @@ if (document.querySelectorAll) {
     function scrollTo(offset) {
     
     
-      var total = Math.abs(window.scrollY - offset),
+      var total = Math.abs(window.pageYOffset - offset),
           start = Math.ceil(500 * total / root.scrollHeight),
           last;
 
@@ -58,21 +58,21 @@ if (document.querySelectorAll) {
       
       (function doScroll() {
       
-        if (last && window.scrollY !== last) {
+        if (last && window.pageYOffset !== last) {
           // Manually moved by the user so stop scrolling.
           return clearTimeout(timer);
         }
 
-        var difference = window.scrollY - offset,
+        var difference = window.pageYOffset - offset,
             direction  = difference < 1 ? 1 : -1,
             modifier   = Math.abs(difference) / total,
             increment  = Math.ceil(start * modifier);
         
-        if (difference !== last && (direction < 0 || window.innerHeight + window.scrollY !== root.scrollHeight)) {
+        if (difference !== last && (direction < 0 || window.innerHeight + window.pageYOffset !== root.scrollHeight)) {
           if (difference < increment && difference > increment * -1) {
             increment = Math.abs(difference);
           }
-          last = window.scrollY + (increment * direction);
+          last = window.pageYOffset + (increment * direction);
           window.scrollTo(0, last);
           timer = setTimeout(doScroll, 1000 / 60);
         }
@@ -81,6 +81,8 @@ if (document.querySelectorAll) {
 
     // Show/Hide the navigation on scroll.
     window.addEventListener('scroll', (function onScroll() {
+      
+      
       if (throttle) {
         return;
       }
@@ -88,8 +90,9 @@ if (document.querySelectorAll) {
       throttle = setTimeout(function () {
         throttle = null;
       }, 1000 / 60);
+      
 
-      var isHidden = window.scrollY < offset;
+      var isHidden = window.pageYOffset < offset;
       
       cloned[isHidden ? 'setAttribute' : 'removeAttribute']('hidden', '');
       subnav.classList[isHidden ? 'remove' : 'add']('float');
@@ -130,7 +133,7 @@ if (document.querySelectorAll) {
     document.body.addEventListener('click', function (event) {
       var hashId = event.target.hash,
           section = hashId && $(hashId),
-          offset  = window.scrollY,
+          offset  = window.pageYOffset,
           targetId = hashId ? hashId.substring(1, hashId.length) : null;
         
         
@@ -193,7 +196,7 @@ if (document.querySelectorAll) {
         var screenWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width,
             scrollYPos = section.parentNode.offsetTop - height - 20;
         
-        if(screenWidth < 480 || navigator.appName === 'Microsoft Internet Explorer'){ 
+        if(screenWidth < 480){
           window.scrollTo(0, scrollYPos); // No animation on small screens (long length), or on IE // TO DO fix IE to work with scrollTo #59
         } else {
           scrollTo(scrollYPos); 
