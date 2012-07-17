@@ -19,26 +19,26 @@ task :generate do
   raise "You're already in the #{site_branch} branch!" if active_branch === site_branch
 
   if branch_exists? site_branch
-    raise "Your repo already has a #{site_branch} branch! To copy across any updated docs run rake update"
+    raise "Your repo already has a #{site_branch} branch! Copy across any updated docs run rake update"
   end
   
   # Checkout to new branch
-  `git checkout --orphan #{site_branch}`
+  sh("git checkout --orphan #{site_branch}")
 
   # Cache all of the docs files
   cached_docs = cache_docs(docs_dir)
 
   # Remove existing files
-  `git rm -rf .`
+  sh("git rm -rf .")
 
   # Add the dharmafly-docs repo
-  `git remote add dharmafly-docs #{dharmafly_docs_repo}`
+  sh("git remote add dharmafly-docs #{dharmafly_docs_repo}")
 
   # Pull the docs repo
-  `git pull dharmafly-docs master`
+  sh("git pull dharmafly-docs master")
 
   # Remove the dharmafly-docs repo
-  `git remote rm dharmafly-docs`
+  sh("git remote rm dharmafly-docs")
 
   # Make the _posts directory if it doesn't exist
   Dir.mkdir(posts_dir) unless File.directory?(posts_dir)
@@ -47,8 +47,8 @@ task :generate do
   create_posts(cached_docs, posts_dir)
 
   # Add & Commit the posts to the repo
-  `git add .`
-  `git commit . -m "Create project documentation with dharmafly docs"`
+  sh("git add .")
+  sh('git commit . -m "Create project documentation with dharmafly docs"')
 
   puts "\nDocs generated successfully! To push the changes, type:"
   puts "git push origin #{site_branch}"
@@ -64,11 +64,11 @@ task :update do
   cached_docs = cache_docs(docs_dir)
 
   # Switch to site branch
-  `git checkout #{site_branch}`
+  sh("git checkout #{site_branch}") rescue raise "\n Commit your changes to this branch before running rake update."
 
   # Delete the posts directory if it exists
   if File.directory?(posts_dir)
-    `git rm -rf #{posts_dir}`
+    sh("git rm -rf #{posts_dir}")
   end
 
   # Recreate the posts directory
@@ -78,24 +78,31 @@ task :update do
   create_posts(cached_docs, posts_dir)
 
   # Add & Commit the posts to the repo
-  `git add .`
-  `git commit . -m "Update project documentation with dharmafly docs rakefile"`
+  sh("git add .")
 
-  puts "\nDocs updated successfully! To push the changes, type:"
-  puts "git push origin #{site_branch}"
+  begin
+    sh('git commit . -m "Update project documentation with dharmafly docs rakefile"')
+  rescue
+    puts "\nNew posts are identical to the old. Working directory clean, nothing to commit or push."
+  else
+    puts "\nDocs updated successfully! To push the changes, type:"
+    puts "git push origin #{site_branch}"
+  end
 end
 
-desc "Start a local development server to test the site. (Requires Jekell)"
+desc "Start a local development server to test the site. (Requires Jekyll)"
 task :server do 
   raise "Jekyll is not installed. To install Jekyll, run:\nsudo gem install jekyll" unless jekyll_is_installed?
   
   # Switch to the site branch if not there already
-  if active_branch != site_branch
-    `git checkout #{site_branch}`
-  end
+  sh("git checkout #{site_branch}") if active_branch != site_branch
 
   # Start the Jekyll server
-  sh "jekyll --server"
+  sh("jekyll --server")
+end
+
+task :test do
+  sh("git checkout gh-pages") rescue puts "hello"
 end
 
 #namespace :post do
@@ -129,11 +136,20 @@ def postify(filename)
     number += c
   end
 
-  # add preceding zeros if number is less then 4 digits
-  number = "1" + number until number.length >= 4
+  # used to determine if a 1 has been prepended yet
+  prepend_number = ""
+
+  # add preceding 1 & zeros if number is less then 4 digits
+  until  prepend_number.length + number.length >= 4 do
+    if prepend_number === ""
+      prepend_number = "1" + prepend_number
+    else
+      prepend_number = "0" + prepend_number
+    end
+  end
 
   # add rest of fake date
-  post_name = number + "-01-01-" 
+  post_name = prepend_number.reverse() + number + "-01-01-" 
 
   # built post title
   post_title = filename[post_title_start..-1]
@@ -235,9 +251,8 @@ end
 # Create posts for each cached doc
 def create_posts (cached_docs, posts_dir)
   cached_docs.each do |old_name, contents|
-
     new_name = postify(old_name)
-
+    puts "write '#{posts_dir}/#{new_name}'"
     file = File.new("#{posts_dir}/#{new_name}", "w")
     file << add_front_matter(contents)
     file.close()
