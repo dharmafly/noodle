@@ -1,3 +1,16 @@
+/***********************************************
+
+        Main page controller
+      
+        Scrolling
+        Subnav
+        Floating navigation
+        
+        See demo.js for Code Examples Controller
+
+***********************************************/
+
+
 if (document.querySelectorAll) {
   (function ($, $$) {
     var navigation = $('#navigation'),
@@ -128,7 +141,7 @@ if (document.querySelectorAll) {
             
         } else if (section) {
             
-          animateScrollToLink(section);
+          animateScrollToLink(event, section);
           
         }
         
@@ -155,7 +168,7 @@ if (document.querySelectorAll) {
       
     }
     
-    function animateScrollToLink (section) {
+    function animateScrollToLink (event, section) {
     
         var parent = event.target.parentNode,
           isSubnavLink = false;
@@ -179,14 +192,15 @@ if (document.querySelectorAll) {
         // Animate to the element.
         var screenWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width,
             scrollYPos = section.parentNode.offsetTop - height - 20;
-            
-        if(screenWidth < 480){ 
-          window.scrollTo(0, scrollYPos); // No animation on small screens (long length)
+        
+        if(screenWidth < 480 || navigator.appName === 'Microsoft Internet Explorer'){ 
+          window.scrollTo(0, scrollYPos); // No animation on small screens (long length), or on IE // TO DO fix IE to work with scrollTo #59
         } else {
-          scrollTo(section.parentNode.offsetTop - height - 20); 
+          scrollTo(scrollYPos); 
         }
         event.preventDefault();
     }
 
   })(function () { return document.querySelector.apply(document, arguments); });
 }
+
