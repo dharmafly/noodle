@@ -139,7 +139,7 @@ def postify(filename)
   # add preceding 1 & zeros if number is less then 4 digits
   until  prepend_number.length + number.length >= 4 do
     if prepend_number === ""
-      prepend_number = "9" + prepend_number
+      prepend_number = "2" + prepend_number
     else
       prepend_number = "0" + prepend_number
     end
