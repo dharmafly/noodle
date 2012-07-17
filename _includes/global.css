@@ -336,6 +336,7 @@ section.content {
     padding: 3em 0;
     position: relative;
     left: 0;
+    min-height: 46em;
     -webkit-transition: left 300ms ease-in-out;
     -moz-transition: left 300ms ease-in-out;
     -o-transition: left 300ms ease-in-out;
