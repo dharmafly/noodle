@@ -18,7 +18,7 @@ Setup
     $ cd nsql
     $ npm install
 
-Then run the binary
+Start the server by running the binary
 
     $ bin/nsql-server
      Server running on port 8888
@@ -82,8 +82,8 @@ Response:
 ```JSON
 [
   {
-   "href" : "http://github.com/chrisnewtn",
-   "text" : "github"
+    "href" : "http://github.com/chrisnewtn",
+    "text" : "github"
   },
   {
     "href" : "http://lanyrd.com/profile/chrisnewtn/",
