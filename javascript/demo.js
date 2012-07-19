@@ -1,5 +1,10 @@
 /*globals ace jQuery*/
 /*jshint indent:4*/
+
+var narrowScreen = GLOBAL.narrowScreen, 
+    isltIE10 = true, // GLOBAL.isltIE10,
+    noEditor = narrowScreen || isltIE10;
+
 function createAceEditor(dom) {
     var elem = jQuery(dom), editor, session, JavaScriptMode;
 
@@ -46,8 +51,8 @@ jQuery('pre').each(function () {
     jQuery(this).wrap('<div class="run" />');
 
     var code = jQuery(this).find('code'),
-        editor = createAceEditor(code[0]),
-        content = editor.getSession().getValue(),
+        editor = noEditor ? code.text() : createAceEditor(code[0]),
+        content = noEditor ? editor : editor.getSession().getValue(),
         id, output, button;
 
     // Check code block for runnable keywords and setup output box
@@ -69,7 +74,7 @@ jQuery('button.eval')
 .click(function () {
     var button = jQuery(this),
         editor = button.data("editor"),
-        code   = editor.getSession().getValue(),
+        code   = noEditor ? editor : editor.getSession().getValue(), // if using ACE get the current code, else use the value of <code>
         output = button.data('output');
 
     output.empty();

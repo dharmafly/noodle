@@ -67,26 +67,32 @@
                     </p>
                 </div>
 			</footer>
-            
+      
+
+            <script type="text/javascript">
+              var GLOBAL = GLOBAL || {};
+              GLOBAL.narrowScreen = ((window.innerWidth > 0) ? window.innerWidth : screen.width) < 480;
+              GLOBAL.isltIE10 = false;
+            </script>
             <!--[if lt IE 10]>
                 <script src="{{ relative_path }}javascript/IEshims.js"></script>
             <![endif]--> 
             <!--[if lt IE 9]>
                 <script src="{{ relative_path }}javascript/html5shiv.js"></script>
             <![endif]-->
-            
-			<script src="{{ relative_path }}javascript/main.js"></script>
+      
 			<script src="{{ relative_path }}javascript/jquery.js"></script>
+			<script src="{{ relative_path }}javascript/main.js"></script>
            
             {% for script in site.SCRIPTS %}
             <script src="{{ script.src }}"></script>
             {% endfor %}
 
-			<script src="{{ relative_path }}javascript/ace/ace.js"></script>
+			<!-- <script src="{{ relative_path }}javascript/ace/ace.js"></script>
 			<script src="{{ relative_path }}javascript/ace/theme/theme-dharmafly.js"></script>
 			<script src="{{ relative_path }}javascript/ace/mode-javascript.js"></script>
 			<script src="{{ relative_path }}javascript/hijs.js"></script>
-			<script src="{{ relative_path }}javascript/demo.js"></script>
+			<script src="{{ relative_path }}javascript/demo.js"></script> -->
       
 
       {% if site.GA_ID %}

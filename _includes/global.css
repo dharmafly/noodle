@@ -94,6 +94,12 @@ code {
 	color: {{ page.code_colour }};
 }
 
+pre code .keyword              { color: #FAB204; }
+pre code .string, pre code .regexp { color: #E6DB74; }
+pre code .class, pre code .special { color: #F8F8F2; }
+pre code .number               { color: #CAE4FF; }
+pre code .comment              { color: #75715E; }
+
 .content section:after, .cf:after {
 	content: ".";
 	display: block;
@@ -128,8 +134,9 @@ pre code {
 	display: block;
 	border-radius: 0;
 	border: 0;
-	font-size: 1.2em;
+	font-size: 1.6em;
 	line-height: 1.2em;
+  color: #F8F8F2;
 }
 
 header {
@@ -820,7 +827,6 @@ aside .github a:after ,
 @media (min-width:340px) {
 	#navigation {
 		text-align: left;
-		/* text-align: center; */
 	}  
     
 }
@@ -928,7 +934,7 @@ aside .github a:after ,
   }
   
 }
-
+  
 @media (min-width:52em) {
 
     #subnav.off-left  {
