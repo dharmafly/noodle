@@ -67,7 +67,15 @@
                     </p>
                 </div>
 			</footer>
+      
 
+            <script type="text/javascript">
+              var GLOBAL = GLOBAL || {};
+              GLOBAL.narrowScreen = ((window.innerWidth > 0) ? window.innerWidth : screen.width) < 480;
+              GLOBAL.isltIE10 = false;
+              GLOBAL.relative_path = '{{ relative_path }}';
+            </script>
+            
             <!--[if lt IE 10]>
                 <script src="{{ relative_path }}javascript/IEshims.js"></script>
             <![endif]-->
@@ -75,33 +83,27 @@
                 <script src="{{ relative_path }}javascript/html5shiv.js"></script>
             <![endif]-->
 
-			<script src="{{ relative_path }}javascript/main.js"></script>
 			<script src="{{ relative_path }}javascript/jquery.js"></script>
+			<script src="{{ relative_path }}javascript/main.js"></script>
 
-            {% for script in site.SCRIPTS %}
-            <script src="{{ script.src }}"></script>
-            {% endfor %}
+      {% for script in site.SCRIPTS %}
+      <script src="{{ script.src }}"></script>
+      {% endfor %}      
 
-			<script src="{{ relative_path }}javascript/ace/ace.js"></script>
-			<script src="{{ relative_path }}javascript/ace/theme/theme-dharmafly.js"></script>
-			<script src="{{ relative_path }}javascript/ace/mode-javascript.js"></script>
-			<script src="{{ relative_path }}javascript/hijs.js"></script>
-			<script src="{{ relative_path }}javascript/demo.js"></script>
+      {% if site.GA_ID %}
+      <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', '{{ site.GA_ID }}']);
+        _gaq.push(['_trackPageview']);
 
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
 
-        {% if site.GA_ID %}
-        <script type="text/javascript">
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', '{{ site.GA_ID }}']);
-            _gaq.push(['_trackPageview']);
-
-            (function() {
-                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
-        </script>
-        {% endif %}
-
+      </script>
+      {% endif %}
+      
 		</body>
 </html>

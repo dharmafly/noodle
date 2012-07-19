@@ -1,3 +1,6 @@
+GLOBAL = GLOBAL || {};
+GLOBAL.isltIE10 = true;
+
 /***********************************************
 
         PLUGINS
