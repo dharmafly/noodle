@@ -1,19 +1,32 @@
 #!/usr/bin/env node
 
-var connect = require('connect'),
+var cli     = require('commander'),
+    connect = require('connect'),
     http    = require('http'),
     scraper = require('../lib/scraper'),
-
-    port    = process.argv[2] || 8888,
 
     app     = connect()
               .use(connect.query())
               .use(connect.json())
-              .use(handle);
+              .use(handle),
 
+    version = JSON.parse(require('fs')
+              .readFileSync('package.json', 'utf8'))
+              .version;
+
+
+// Environment variables
+
+cli.version(version)
+   .option('-p --port <n>', 'Set the server port (8888)', parseInt)
+   .option('-c --cache <n>','Set the cache clear time in milliseconds (3600000)', parseInt)
+   .parse(process.argv);
+
+process.env.PORT       = cli.port  || 8888;
+process.env.CACHE_TIME = cli.cache || 3600000;
 
 // Handle requested query via scraper module
-// Recieves data via request body as JSON or as querystring
+// This handles data via the request body as JSON or as Querystring for JSONP
 
 function handle (req, res) {
   // Check JSON Body for scrape query
@@ -22,10 +35,10 @@ function handle (req, res) {
   // Check querystring for scrape query
   if (!query && req.query.url && req.query.selector && req.query.extract) {
     query = {
-              url: req.query.url,
-              selector: req.query.selector,
-              extract: req.query.extract
-            };
+      url: req.query.url,
+      selector: req.query.selector,
+      extract: req.query.extract
+    };
   }
 
   if (query) {
@@ -64,7 +77,9 @@ function finish (res, params) {
   }
 }
 
+// Start server
 
-http.createServer(app).listen(port, function () {
-  console.log('nsql serving on ' + port);
+http.createServer(app).listen(process.env.PORT, function () {
+  console.log('nsql serving on port ' + process.env.PORT);
+  console.log('The cache will clear every ' + process.env.CACHE_TIME + ' milliseconds.');
 });
