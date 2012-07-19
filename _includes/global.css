@@ -1005,7 +1005,7 @@ aside .github a:after ,
 }
 
 /* Force correct font loading behaviour to avoid FOUT in all browsers */
-
+/*
 .wf-loading h1,
 .wf-loading h2,
 .wf-loading h3,
@@ -1021,4 +1021,4 @@ aside .github a:after ,
   visibility: hidden;
 
 }
-
+*/
