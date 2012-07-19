@@ -4,8 +4,8 @@ GITHUB_CURRENT_VERSION: 1.0
 GITHUB_PROJECT_URL: https://github.com/dharmafly/dharmafly-docs
 
 # The style for your site (currently only default)
-THEME: default
-    
+THEME: ocean
+
 ############ Optional extras
 
 GITHUB_ZIP_URL: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
@@ -24,20 +24,20 @@ QUOTE:
   cite: Chinese proverb
 
 # Your google analytics id
-GA_ID: 
+GA_ID:
 
 ##############
 
-# Page names -- paths should not be updated and 
-# are currently hard-coded to match directory names / site categories. 
+# Page names -- paths should not be updated and
+# are currently hard-coded to match directory names / site categories.
 # (They're here as placeholders for future work to
 # allow new sections to be dynamically created)
 sections:
- - path: 
-   name: Overview 
- - path: reference 
-   name: Reference   
-   
+ - path:
+   name: Overview
+ - path: reference
+   name: Reference
+
 ###############################
 
 # Jekyll options

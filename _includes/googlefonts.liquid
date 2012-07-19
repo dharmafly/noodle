@@ -1,6 +1,13 @@
 <script type="text/javascript">
     WebFontConfig = {
-        google: { families: [ 'Lato:400,700,400italic:latin', {% case site.THEME %}'Advent+Pro::latin',{% else %} 'Forum::latin',{% endcase %}  'Inconsolata::latin' ] }
+        google: {
+            families: [
+                'Lato:400,700,400italic:latin',
+                {% case site.THEME %} {% when 'ocean' %}'Advent+Pro::latin',
+                {% else %} 'Forum::latin',
+                {% endcase %} 'Inconsolata::latin'
+            ]
+        }
     };
     (function() {
         var wf = document.createElement('script');
