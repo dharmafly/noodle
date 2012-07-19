@@ -1,3 +1,4 @@
+
 /***********************************************
 
         Main page controller
@@ -26,8 +27,24 @@ if (document.querySelectorAll) {
         halfContentWidth = content.clientWidth / 2,
         subnavMargin = 30,
         height, timer, throttle, subnavOffset, openSubnavOffset;
-        
-        
+    
+    // Conditionally load scripts based on device width
+    var narrowScreen = GLOBAL.narrowScreen, 
+        isltIE10 = GLOBAL.isltIE10, 
+        scripts = narrowScreen || isltIE10 ?  ["demo", "hijs"] : ["ace/ace", "ace/theme/theme-dharmafly", "ace/mode-javascript", "demo"]; // syntax highlighter for small devices, ACE editor otherwise
+    
+    (function loadScript(src) {
+      
+      var script = document.createElement("script");
+      script.onload = function () {
+        if (scripts.length) {
+          loadScript(scripts.shift());
+        }
+      };
+      script.src = GLOBAL.relative_path + "javascript/" + src + ".js";
+      document.body.appendChild(script);
+    })(scripts.shift());
+    
     // Append the cloned navigation item.
     cloned.classList.add('float');
     cloned.querySelector("ul").insertBefore($('h1.title').cloneNode(true), cloned.querySelector('.show-subnav').nextSibling);
@@ -193,10 +210,9 @@ if (document.querySelectorAll) {
         window.scrollTo(0, offset);
 
         // Animate to the element.
-        var screenWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width,
-            scrollYPos = section.parentNode.offsetTop - height - 20;
+        var scrollYPos = section.parentNode.offsetTop - height - 20;
         
-        if(screenWidth < 480){
+        if(narrowScreen){
           window.scrollTo(0, scrollYPos); // No animation on small screens (long length), or on IE // TO DO fix IE to work with scrollTo #59
         } else {
           scrollTo(scrollYPos); 
