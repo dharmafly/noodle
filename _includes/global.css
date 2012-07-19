@@ -3,12 +3,12 @@ body {
 	padding: 0;
 	margin: 0;
 	color: {{ page.copy_colour }};
-    background: {{ page.body_background_colour }}; 
-    background-image: url(./img/tile.png); 
+    background: {{ page.body_background_colour }};
+    background-image: url(./img/tile.png);
     background-image: url(./img/tile.png) -moz-linear-gradient(left, {{ page.body_background_colour }} 0%, {{ page.background_mid_stop }} 50%, {{ page.body_background_colour }} 100%);
     background-image: url(./img/tile.png) -webkit-gradient(linear, left top, right top, color-stop(0%,{{ page.body_background_colour }}), color-stop(50%,{{ page.background_mid_stop }}), color-stop(100%,{{ page.body_background_colour }}));
-    background-image: url(./img/tile.png) -webkit-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%); 
-    background-image: url(./img/tile.png) -o-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%); 
+    background-image: url(./img/tile.png) -webkit-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
+    background-image: url(./img/tile.png) -o-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
     background-image: url(./img/tile.png) -ms-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
     background-image: url(./img/tile.png) linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
 }
@@ -133,7 +133,7 @@ pre code {
 }
 
 header {
-  background : url(./img/tile.png); 
+  background : url(./img/tile.png);
 }
 
 header,
@@ -226,7 +226,7 @@ section.overview a:active {
 }
 
 #navigation.float h1 {
-    text-transform: none; 
+    text-transform: none;
     margin:  0;
     padding-right: 1em;
     float: left;
@@ -257,7 +257,7 @@ section.overview a:active {
   border-left-width:0;
   float: none;
 }
-	
+
 #navigation li:last-child{
   border-right-width:0;
 }
@@ -272,7 +272,7 @@ section.overview a:active {
     text-align: right;
     width: 40em;
 }
-    
+
 #subnav.float {
     position: fixed;
     top: 6em;
@@ -280,7 +280,7 @@ section.overview a:active {
 }
 
 
-aside, 
+aside,
 #subnav,
 #subnav.off-left  {
     // margin-left : -100%;
@@ -308,7 +308,7 @@ aside,
 
 #subnav a {
     text-decoration: none;
-    padding: 0 1.25em 0.55em 1em; 
+    padding: 0 1.25em 0.55em 1em;
     background: transparent no-repeat 0em 1.2em;
     background-image: url('data:image/svg+xml;base64,{{ page.subnav_underline }}');
     -webkit-transition: background-position 0.3s ease-out, color 0.3s ease-out;
@@ -367,7 +367,7 @@ section.content:after{
     -o-transform: rotate({{ page.svg_asset_rotation }});
     transform: rotate({{ page.svg_asset_rotation }});
     opacity: 0.2;
-    background-size: {{ page.svg_asset_size }} 
+    background-size: {{ page.svg_asset_size }}
 }
 
 section > h1 {
@@ -554,25 +554,25 @@ button {
     color:{{ page.highlight_colour }};
     border: 1px solid {{ page.button_border }};
     border-radius: 3px;
-    background: {{ page.lowlight_colour }}; 
-    background: -moz-linear-gradient(top, {{ page.lowlight_colour }} 0%, {{ page.lowlight_colour }} 18%, {{ page.button_mid_stop }} 78%, {{ page.button_mid_stop }} 100%); 
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,{{ page.lowlight_colour }}), color-stop(18%,{{ page.lowlight_colour }}), color-stop(78%,{{ page.button_mid_stop }}), color-stop(100%,{{ page.button_mid_stop }})); 
-    background: -webkit-linear-gradient(top, {{ page.lowlight_colour }} 0%,{{ page.lowlight_colour }} 18%,{{ page.button_mid_stop }} 78%,{{ page.button_mid_stop }} 100%); 
+    background: {{ page.lowlight_colour }};
+    background: -moz-linear-gradient(top, {{ page.lowlight_colour }} 0%, {{ page.lowlight_colour }} 18%, {{ page.button_mid_stop }} 78%, {{ page.button_mid_stop }} 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,{{ page.lowlight_colour }}), color-stop(18%,{{ page.lowlight_colour }}), color-stop(78%,{{ page.button_mid_stop }}), color-stop(100%,{{ page.button_mid_stop }}));
+    background: -webkit-linear-gradient(top, {{ page.lowlight_colour }} 0%,{{ page.lowlight_colour }} 18%,{{ page.button_mid_stop }} 78%,{{ page.button_mid_stop }} 100%);
     background: -o-linear-gradient(top, {{ page.lowlight_colour }} 0%,{{ page.lowlight_colour }} 18%,{{ page.button_mid_stop }} 78%,{{ page.button_mid_stop }} 100%);
-    background: -ms-linear-gradient(top, {{ page.lowlight_colour }} 0%,{{ page.lowlight_colour }} 18%,{{ page.button_mid_stop }} 78%,{{ page.button_mid_stop }} 100%); 
-    background: linear-gradient(top, {{ page.lowlight_colour }} 0%,{{ page.lowlight_colour }} 18%,{{ page.button_mid_stop }} 78%,{{ page.button_mid_stop }} 100%); 
+    background: -ms-linear-gradient(top, {{ page.lowlight_colour }} 0%,{{ page.lowlight_colour }} 18%,{{ page.button_mid_stop }} 78%,{{ page.button_mid_stop }} 100%);
+    background: linear-gradient(top, {{ page.lowlight_colour }} 0%,{{ page.lowlight_colour }} 18%,{{ page.button_mid_stop }} 78%,{{ page.button_mid_stop }} 100%);
 }
 
 button:hover,
 button:focus,
 button:active {
-    background: {{ page.button_colour }}; 
-    background: -moz-linear-gradient(top, {{ page.button_colour }} 0%, {{ page.button_colour_highlight }} 100%); 
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,{{ page.button_colour }}), color-stop(100%,{{ page.button_colour_highlight }})); 
+    background: {{ page.button_colour }};
+    background: -moz-linear-gradient(top, {{ page.button_colour }} 0%, {{ page.button_colour_highlight }} 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,{{ page.button_colour }}), color-stop(100%,{{ page.button_colour_highlight }}));
     background: -webkit-linear-gradient(top, {{ page.button_colour }} 0%,{{ page.button_colour_highlight }} 100%);
     background: -o-linear-gradient(top, {{ page.button_colour }} 0%,{{ page.button_colour_highlight }} 100%);
-    background: -ms-linear-gradient(top, {{ page.button_colour }} 0%,{{ page.button_colour_highlight }} 100%); 
-    background: linear-gradient(top, {{ page.button_colour }} 0%,{{ page.button_colour_highlight }} 100%); 
+    background: -ms-linear-gradient(top, {{ page.button_colour }} 0%,{{ page.button_colour_highlight }} 100%);
+    background: linear-gradient(top, {{ page.button_colour }} 0%,{{ page.button_colour_highlight }} 100%);
 }
 
 .buttons {
@@ -821,13 +821,13 @@ aside .github a:after ,
 	#navigation {
 		text-align: left;
 		/* text-align: center; */
-	}  
-    
+	}
+
 }
 
 
 @media (min-width:35em) {
-    
+
 
   header img {
     width: 281px;
@@ -845,7 +845,7 @@ aside .github a:after ,
 		margin-left: auto;
 		margin-right: auto;
 	}
-    
+
 
 
   header h1 {
@@ -854,7 +854,7 @@ aside .github a:after ,
     position:relative;
     display: inline-block;
 	}
-  
+
   header h1:after{
     content: "";
     display: block;
@@ -875,17 +875,17 @@ aside .github a:after ,
     -o-transform: {{ page.svg_title_rotation }};
     transform: {{ page.svg_title_rotation }};
   }
-    
+
   footer > div {
       text-align: right;
       padding:2em 2em 2em 0;
   }
-    
+
 	section:after {
 		margin-left: -4em;
 		margin-right: -4em;
 	}
-	
+
 	section pre {
 		margin-left: -5.6em;
 		margin-right: -5.6em;
@@ -893,13 +893,13 @@ aside .github a:after ,
 		padding-right: 2.5em;
     max-width:65em;
 	}
-   
+
   #navigation.float h1 {
     font-size: 2.6em;
     margin-top: -0.1em;
     display: block;
   }
-  
+
   .run .eval {
       z-index: 100;
       position: absolute;
@@ -909,7 +909,7 @@ aside .github a:after ,
       right: auto;
       cursor: pointer;
   }
-  
+
   .icon {
       width: 31px;
       padding-top: 31px;
@@ -919,14 +919,14 @@ aside .github a:after ,
   .show-subnav .icon{
       background-position: 3px 5px;
   }
-  
+
   #navigation li.show-subnav{
       display:none;
   }
   #navigation.show-subnav-button  li.show-subnav{
       display:block;
   }
-  
+
 }
 
 @media (min-width:52em) {
@@ -934,18 +934,18 @@ aside .github a:after ,
     #subnav.off-left  {
        // margin-left : -100%;
     }
-    
+
     aside,
     #subnav,
     #subnav.show-nav {
       //  margin-left: 0;
     }
-    
+
     #subnav,
     #subnav.show-nav {
         opacity : 1;
     }
-    
+
 
     aside {
         position: absolute;
@@ -954,12 +954,12 @@ aside .github a:after ,
         margin: 0;
         z-index:-1;
     }
-    
+
     aside li {
         float: none;
         margin-right: 0;
     }
-    
+
     aside li  a,
     aside li  span{
         border-color: {{ page.content_bg_colour }};
@@ -969,7 +969,7 @@ aside .github a:after ,
     aside li a:hover{
         border-color: {{ page.content_hover_colour }};
     }
-        
+
     aside:after{
         width: 90px;
         height: 240px;
@@ -981,9 +981,9 @@ aside .github a:after ,
         position: absolute;
         bottom: -210px;
         left: -43px;
-    }    
-    
-    
+    }
+
+
 }
 
 /* Force hardware acceleration on very small screens (assuming mobile device), optimise background */
@@ -997,4 +997,22 @@ aside .github a:after ,
     background-image: url(./img/tile.png);
     //-webkit-transform:scale3d(1,1,1);
   }
+}
+
+/* Force correct loading of fonts to avoid FOUT in IE9 and FF */
+
+.wf-loading h1,
+.wf-loading h2,
+.wf-loading h3,
+.wf-loading h4,
+.wf-loading p,
+.wf-loading blockquote,
+.wf-loading ul,
+.wf-loading li,
+.wf-loading a,
+.wf-loading em,
+.wf-loading span {
+
+  visibility: hidden;
+
 }
