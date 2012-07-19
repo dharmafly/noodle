@@ -40,6 +40,10 @@ All project documentation should be put as markdown pages in the `_posts` direct
 How Can I set up a new Dharmafly project website?
 ----------------------------
 
+If your environment has a working [Ruby](http://www.ruby-lang.org/) installation you can [download this Rakefile](https://github.com/downloads/dharmafly/dharmafly-docs/Rakefile) to your project's working branch and run `rake build` to setup Dharmafly Docs in a new gh-pages branch. 
+
+If you don't have access to Ruby or if the Rakefile fails, then follow the steps below to setup Dharmafly Docs.
+
 1. Firstly, navigate to your project's local directory.
 
 2. Create an empty `gh-pages` branch:
