@@ -1,3 +1,4 @@
+
 /***********************************************
 
         Main page controller
@@ -29,7 +30,7 @@ if (document.querySelectorAll) {
     
     // Conditionally load scripts based on device width
     var narrowScreen = GLOBAL.narrowScreen, 
-        isltIE10 = true, // GLOBAL.isltIE10, 
+        isltIE10 = GLOBAL.isltIE10, 
         scripts = narrowScreen || isltIE10 ?  ["demo", "hijs"] : ["ace/ace", "ace/theme/theme-dharmafly", "ace/mode-javascript", "demo"]; // syntax highlighter for small devices, ACE editor otherwise
     
     (function loadScript(src) {
@@ -40,7 +41,8 @@ if (document.querySelectorAll) {
           loadScript(scripts.shift());
         }
       };
-      script.src = "/javascript/" + src + ".js";
+      script.src = GLOBAL.relative_path + "javascript/" + src + ".js";
+      console.log(script.src)
       document.body.appendChild(script);
     })(scripts.shift());
     
