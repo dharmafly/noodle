@@ -3,8 +3,8 @@ require 'json'
 
 
 ### Configuration variables
-docs_dir            = "docs"
-posts_dir           = "_posts"
+$docs_dir           = "docs"
+$posts_dir          = "_posts"
 site_branch         = "gh-pages"
 dharmafly_docs_repo = "git@github.com:dharmafly/dharmafly-docs.git"
 $default_category   = "about"
@@ -13,93 +13,95 @@ $default_category   = "about"
 ### Tasks
 
 
-desc "Copies the contents of docs into a gh-pages branch, converting them into jekell"
-task :generate do
-  raise "Your project does not have a '#{docs_dir}' directory!" unless File.directory?(docs_dir)
-  raise "You're already in the #{site_branch} branch!" if active_branch === site_branch
-
-  if branch_exists? site_branch
-    raise "Your repo already has a #{site_branch} branch! Copy across any updated docs run rake update"
-  end
-  
-  # Checkout to new branch
-  sh("git checkout --orphan #{site_branch}")
+desc "Initializes dharmafly-docs if #{site_branch} does not exist, otherwise copies posts to #{site_branch}"
+task :build do
+  raise "You're already in the #{site_branch} branch!" if Git.active_branch?(site_branch)
+  raise "Your project does not have a '#{$docs_dir}' directory!" unless File.directory?($docs_dir)
 
   # Cache all of the docs files
-  cached_docs = cache_docs(docs_dir)
+  cached_docs = cache_docs($docs_dir)
+  
+  # Checkout to site branch
+  if Git.branch_exists?(site_branch)
+    clean_install = false
+    sh("git checkout #{site_branch}")
+  else
+    clean_install = true
+    sh("git checkout --orphan #{site_branch}")
 
-  # Remove existing files
-  sh("git rm -rf .")
+    # Remove existing files
+    sh("git rm -rf .")
+
+    # Add the dharmafly-docs repo
+    sh("git remote add dharmafly-docs #{dharmafly_docs_repo}") unless Git.remote_exists?("dharmafly-docs")
+
+    # Pull the docs repo
+    sh("git pull dharmafly-docs master")
+
+    # Remove the dharmafly-docs repo
+    sh("git remote rm dharmafly-docs") if Git.remote_exists?("dharmafly-docs")
+  end
+
+  # Delete the posts directory if it exists
+  sh("git rm -rf #{$posts_dir}") if File.directory?($posts_dir)
+
+  # Recreate the posts directory
+  Dir.mkdir($posts_dir)
+
+  # Create a post for each doc
+  create_posts(cached_docs, $posts_dir)
+
+  # Add & Commit the posts to the repo
+  sh("git add .")
+
+  if clean_install
+    sh('git commit . -m "Create project documentation with dharmafly docs"')
+  else
+    sh('git commit . -m "Update project documentation with dharmafly docs"') rescue puts "commit aborted"
+  end
+
+  puts "\nDocs generated successfully! " + "Don't forget to update your _config.yml".bright()
+  puts "\nTo push the changes, type:"
+  puts "git push origin #{site_branch}"
+
+  # Notify user of active branch
+  puts "\nActive Branch: ".bold_green() + Git.active_branch
+end
+
+desc "Start a local development server to test the site. (Requires Jekyll)"
+task :server do 
+  unless jekyll_is_installed?
+    raise "Jekyll is not installed. To install Jekyll, run:\nsudo gem install jekyll"
+  end
+  
+  # Switch to the site branch if not there already
+  sh("git checkout #{site_branch}") unless Git.active_branch?(site_branch)
+
+  # Start the Jekyll server
+  sh("jekyll --server")
+
+  # Notify user of active branch
+  puts "\nActive Branch: ".bold_green() + Git.active_branch
+end
+
+desc "Pulls to latest version of dharmafly-docs to your #{site_branch} branch."
+task :upgrade do
+  raise "Your project does not have a #{site_branch} branch!" unless Git.branch_exists?(site_branch)
+
+  # Switch to the site branch if not there already
+  sh("git checkout #{site_branch}") unless Git.active_branch?(site_branch)
 
   # Add the dharmafly-docs repo
-  sh("git remote add dharmafly-docs #{dharmafly_docs_repo}")
+  sh("git remote add dharmafly-docs #{dharmafly_docs_repo}") unless Git.remote_exists?("dharmafly-docs")
 
   # Pull the docs repo
   sh("git pull dharmafly-docs master")
 
   # Remove the dharmafly-docs repo
-  sh("git remote rm dharmafly-docs")
+  sh("git remote rm dharmafly-docs") if Git.remote_exists?("dharmafly-docs")
 
-  # Make the _posts directory if it doesn't exist
-  Dir.mkdir(posts_dir) unless File.directory?(posts_dir)
-
-  # Create a post for each doc
-  create_posts(cached_docs, posts_dir)
-
-  # Add & Commit the posts to the repo
-  sh("git add .")
-  sh('git commit . -m "Create project documentation with dharmafly docs"')
-
-  puts "\nDocs generated successfully! To push the changes, type:"
-  puts "git push origin #{site_branch}"
-end
-
-desc "Replaces the contents of _posts in the #{site_branch} branch with that of #{docs_dir}"
-task :update do
-  raise "No #{site_branch} branch found. Run 'rake generate' first" unless branch_exists?(site_branch)
-  raise "You're already in the #{site_branch} branch!" if active_branch === site_branch
-  raise "Your project does not have a '#{docs_dir}' directory!" unless File.directory?(docs_dir)
-
-  # Cache all of the docs files
-  cached_docs = cache_docs(docs_dir)
-
-  # Switch to site branch
-  sh("git checkout #{site_branch}") rescue raise "\n Commit your changes to this branch before running rake update."
-
-  # Delete the posts directory if it exists
-  if File.directory?(posts_dir)
-    sh("git rm -rf #{posts_dir}")
-  end
-
-  # Recreate the posts directory
-  Dir.mkdir(posts_dir)
-
-  # Repopulate _posts directory with updated posts
-  create_posts(cached_docs, posts_dir)
-
-  # Add & Commit the posts to the repo
-  sh("git add .")
-
-  begin
-    sh('git commit . -m "Update project documentation with dharmafly docs rakefile"')
-  rescue
-    puts "\nNew posts are identical to the old. Working directory clean, nothing to commit or push."
-  else
-    puts "\nDocs updated successfully!"
-    puts "\nYou're on the #{site_branch} branch. To push the changes, type:"
-    puts "git push origin #{site_branch}"
-  end
-end
-
-desc "Start a local development server to test the site. (Requires Jekyll)"
-task :server do 
-  raise "Jekyll is not installed. To install Jekyll, run:\nsudo gem install jekyll" unless jekyll_is_installed?
-  
-  # Switch to the site branch if not there already
-  sh("git checkout #{site_branch}") if active_branch != site_branch
-
-  # Start the Jekyll server
-  sh("jekyll --server")
+  # Notify user of active branch
+  puts "\nActive Branch: ".bold_green() + Git.active_branch
 end
 
 #namespace :post do
@@ -182,55 +184,41 @@ def jekyll_is_installed?
   end
 end
 
-# Returns the branches of the repo
-def branches
-  rtn = `git branch`
-  return rtn.split(/\r?\n/)
-end
+module Git
 
-def branch_exists?(branch_name)
-  return branches.include?("  #{branch_name}")
-end
-
-# Returns the currently active branch
-def active_branch
-  branches.each do |branch|
-    return branch[2..-1] if branch[0] === "*"
-  end
-end
-
-# Empties the posts directory
-def empty_dir(directory)
-  Dir.foreach(directory) do |item|
-    next if item[0] === "." or File.directory?(item)
-    File.delete("#{directory}/#{item}")
-  end
-end
-
-# Reads the contents of each doc and returns them as a hash
-def cache_docs (docs_dir)
-  rtn = Hash.new()
-
-  Dir.foreach(docs_dir) do |item|
-    next if item[0] === "." or File.directory?(item)
-    rtn[item] = File.read("#{docs_dir}/#{item}")
+  # Returns the remotes in the repo
+  def Git.remote
+    `git remote`.split(/\r?\n/)
   end
 
-  return rtn
-end
-
-# Create posts for each cached doc
-def create_posts (cached_docs, posts_dir)
-  cached_docs.each do |old_name, contents|
-
-    new_name = old_name[3..-1].downcase()
-    new_name = new_name.sub(" ", "-")
-    new_name = "0001-01-1" + old_name[0] + "-" + new_name
-
-    file = File.new("#{posts_dir}/#{new_name}", "w")
-    file << add_front_matter(contents)
-    file.close()
+  # Returns true if parameterized remote exists
+  def Git.remote_exists?(remote)
+    Git.remote.include?(remote)
   end
+
+  # Returns the branches of the repo
+  def Git.branch
+    `git branch`.split(/\r?\n/)
+  end
+
+  # Returns true if the parameterized branch exists
+  def Git.branch_exists?(branch_name)
+    Git.branch.include?("  #{branch_name}")
+  end
+
+  # Returns the currently active branch
+  def Git.active_branch
+    Git.branch.each do |branch|
+      return branch[2..-1] if branch[0] === "*"
+    end
+  end
+
+  # Returns true if the parameterized branch is the one 
+  # that is active at the moment
+  def Git.active_branch?(branch)
+    Git.active_branch === branch
+  end
+
 end
 
 # Create a hash out of each doc in the docs_dir
@@ -263,5 +251,22 @@ end
 class String
   def is_numeric?
     true if Float(self) rescue false
+  end
+
+  def ansi_escape(codes)
+    codes = codes.join(";") if codes.kind_of?(Array)
+    return "\e[#{codes}m#{self}\e[0m"
+  end
+
+  def bold_green
+    self.ansi_escape([1,32])
+  end
+
+  def underline
+    self.ansi_escape(4)
+  end
+
+  def bright
+    self.ansi_escape(1)
   end
 end
