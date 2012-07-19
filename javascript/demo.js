@@ -2,7 +2,7 @@
 /*jshint indent:4*/
 
 var narrowScreen = GLOBAL.narrowScreen, 
-    isltIE10 = true, // GLOBAL.isltIE10,
+    isltIE10 = GLOBAL.isltIE10,
     noEditor = narrowScreen || isltIE10;
 
 function createAceEditor(dom) {
