@@ -54,7 +54,7 @@ Templating using liquid
 Updating the CSS
 -----------------
 
-### Creating new themes
+### Creating new themes / colour schemes
 
 Blocks of code in posts
 --------------------------
