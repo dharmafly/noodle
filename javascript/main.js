@@ -42,7 +42,6 @@ if (document.querySelectorAll) {
         }
       };
       script.src = GLOBAL.relative_path + "javascript/" + src + ".js";
-      console.log(script.src)
       document.body.appendChild(script);
     })(scripts.shift());
     
