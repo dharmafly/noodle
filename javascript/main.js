@@ -26,6 +26,7 @@ if (document.querySelectorAll) {
         subnavContainer = subnav.clientWidth,
         halfContentWidth = content.clientWidth / 2,
         subnavMargin = 29,
+        subnavOffset = null, 
         height, timer, throttle, subnavOffset, openSubnavOffset;
     
     // Conditionally load scripts based on device width
@@ -121,30 +122,21 @@ if (document.querySelectorAll) {
     })(), false);
     
     //  Move the navigation on resize to keep it's position relative to the browser port.
-    window.addEventListener('resize', function(){resetSubnav("resize")});
+    window.addEventListener('resize', function(e){resetSubnav("resize")});
     
     function resetSubnav(state) {
-        
-        console.log(state)
-                
+    
         var halfWindowWidth = window.innerWidth / 2,
             navOffset = subnavWidth + subnavMargin + halfContentWidth,
             navOffScreen = navOffset > halfWindowWidth,
             //subnavOffset = navOffScreen ? (halfWindowWidth - subnavContainer - subnavMargin - halfContentWidth + subnavWidth ) + "px" : (halfWindowWidth - subnavContainer - halfContentWidth - subnavMargin) + "px", 
-            subnavOffset, 
             toggleClass = navOffScreen ? 'add' : 'remove';
         
 
-        if(window.getComputedStyle(subnav,null).getPropertyValue("position") == "absolute"){
-          console.log("absolute offset " + jQuery(subnav).offset().left)  
-          subnavOffset = jQuery(subnav).offset().left + "px";
+        if(state === "resize") { // always calculate the offset on resize
+          subnavOffset =  getSubnavOffset() 
         }else{
-          content.appendChild(subnavCloned);
-          console.log("fixed/absolute offset " + jQuery(subnavCloned).offset().left)  
-          subnavOffset = jQuery(subnavCloned).offset().left + "px";
-          
-          content.removeChild(subnavCloned)
-          
+           subnavOffset = subnavOffset ? subnavOffset : getSubnavOffset(); // if offset is already set, don't change it, otherwise get it.
         }
         
         subnav.classList[toggleClass]('off-left');
@@ -154,7 +146,7 @@ if (document.querySelectorAll) {
         if(navOffScreen === false) {
           closeSubnav();
         }
-        console.log("subnavOffset " + subnavOffset) 
+        // console.log("subnavOffset " + subnavOffset) 
         subnavOffset = subnav.classList.contains("show-nav") ? openSubnavOffset  : subnavOffset; // set on open via button
         
         subnav.style.left = subnav.classList.contains("float")  ? subnavOffset  : null; 
@@ -181,6 +173,23 @@ if (document.querySelectorAll) {
         }
         
     }, false);
+    
+    function getSubnavOffset() {
+      var subnavOffset;
+      
+      if(window.getComputedStyle(subnav,null).getPropertyValue("position") == "absolute"){
+        // console.log("absolute offset " + jQuery(subnav).offset().left)  
+        subnavOffset = jQuery(subnav).offset().left + "px";
+      }else{
+        content.appendChild(subnavCloned);
+        // console.log("fixed/absolute offset " + jQuery(subnavCloned).offset().left)  
+        subnavOffset = jQuery(subnavCloned).offset().left + "px";
+        
+        content.removeChild(subnavCloned)
+        
+      }
+      return subnavOffset;
+    }
     
     function toggleSubnav() {
      
