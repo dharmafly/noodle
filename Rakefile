@@ -153,7 +153,7 @@ def postify(filename)
   # built post title
   post_title = filename[post_title_start..-1]
   post_title = post_title.downcase()
-  post_title = post_title.sub(" ", "-")
+  post_title = post_title.gsub(" ", "-")
 
   # add it all together and return it
   post_name += post_title
