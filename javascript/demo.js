@@ -65,7 +65,8 @@ jQuery('pre').each(function () {
             editor: editor
         });
 
-        jQuery(this.parentNode).append([output[0], button[0]]);
+        jQuery(this.parentNode).append(output[0]);
+        jQuery(this).append(button[0]);
     }
 });
 

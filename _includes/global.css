@@ -111,6 +111,7 @@ pre code .comment              { color: #75715E; }
 
 
 pre {
+  position: relative;
 	font-size: 10px; /* Fixes odd issue in FF */
 	overflow: auto;
 	overflow-y: hidden;
@@ -121,11 +122,11 @@ pre {
 	margin: 0 -2em 2em;
 	padding: 1.5em 3em;
 	border: 10px solid {{ page.content_bg_colour }};
-    border-radius: 17px;
-    -webkit-box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.45) inset;
-    -moz-box-shadow:    4px 4px 5px rgba(0, 0, 0, 0.45) inset;
-    -o-box-shadow:    4px 4px 5px rgba(0, 0, 0, 0.45) inset;
-    box-shadow:         4px 4px 5px rgba(0, 0, 0, 0.45) inset;
+  border-radius: 17px;
+  -webkit-box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.45) inset;
+  -moz-box-shadow:    4px 4px 5px rgba(0, 0, 0, 0.45) inset;
+  -o-box-shadow:    4px 4px 5px rgba(0, 0, 0, 0.45) inset;
+  box-shadow:         4px 4px 5px rgba(0, 0, 0, 0.45) inset;
 }
 
 pre code {
@@ -683,10 +684,8 @@ button:active {
 .run .eval {
 	z-index: 100;
 	position: absolute;
-    top: auto;
-    left: auto;
-    bottom: 104px;
-    right: -6px;
+  bottom: 12px;
+  left: 10px;
 	cursor: pointer;
 }
 
@@ -812,11 +811,12 @@ aside .github a:after ,
 
 .ace_editor {
 	font-family: Inconsolata, monospace !important;
-    font-size: 1.6em !important;
+  font-size: 1.6em !important;
+  left:30px;
 }
 
 .ace_editor .ace_sb {
-    overflow-y: auto !important;
+  overflow-y: auto !important;
 }
 
 .ace_scroller {
@@ -905,15 +905,18 @@ aside .github a:after ,
     display: block;
   }
 
-  .run .eval {
-      z-index: 100;
-      position: absolute;
-      top: 23px;
-      left: -40px;
-      bottom: auto;
-      right: auto;
-      cursor: pointer;
+ .run .eval {
+    left: 14px;
   }
+  
+  .ace_editor {
+    left:20px;
+  }
+  
+  .ie .run code {
+    left:30px;
+  }
+
 
   .icon {
       width: 31px;
@@ -957,7 +960,7 @@ aside .github a:after ,
         top: 3em;
         right: -10em;
         margin: 0;
-        z-index:-1;
+        /*z-index:-1;*/
     }
 
     aside li {
