@@ -3,14 +3,15 @@ body {
 	padding: 0;
 	margin: 0;
 	color: {{ page.copy_colour }};
-    background: {{ page.body_background_colour }};
-    background-image: url(./img/tile.png);
-    background-image: url(./img/tile.png) -moz-linear-gradient(left, {{ page.body_background_colour }} 0%, {{ page.background_mid_stop }} 50%, {{ page.body_background_colour }} 100%);
-    background-image: url(./img/tile.png) -webkit-gradient(linear, left top, right top, color-stop(0%,{{ page.body_background_colour }}), color-stop(50%,{{ page.background_mid_stop }}), color-stop(100%,{{ page.body_background_colour }}));
-    background-image: url(./img/tile.png) -webkit-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
-    background-image: url(./img/tile.png) -o-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
-    background-image: url(./img/tile.png) -ms-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
-    background-image: url(./img/tile.png) linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
+  background: {{ page.body_background_colour }};
+  background-image: url(./img/tile.png);
+  background-image: url(./img/tile.png) -moz-linear-gradient(left, {{ page.body_background_colour }} 0%, {{ page.background_mid_stop }} 50%, {{ page.body_background_colour }} 100%);
+  background-image: url(./img/tile.png) -webkit-gradient(linear, left top, right top, color-stop(0%,{{ page.body_background_colour }}), color-stop(50%,{{ page.background_mid_stop }}), color-stop(100%,{{ page.body_background_colour }}));
+  background-image: url(./img/tile.png) -webkit-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
+  background-image: url(./img/tile.png) -o-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
+  background-image: url(./img/tile.png) -ms-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
+  background-image: url(./img/tile.png) linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
+  background-attachment: fixed;
 }
 
 i, em {
