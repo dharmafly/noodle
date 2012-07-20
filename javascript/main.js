@@ -27,7 +27,7 @@ if (document.querySelectorAll) {
         halfContentWidth = content.clientWidth / 2,
         subnavMargin = 29,
         subnavOffset = null, 
-        height, timer, throttle, subnavOffset, openSubnavOffset;
+        height, timer, throttle, subnavOffset, openSubnavOffset, subnavTopOffset;
     
     // Conditionally load scripts based on device width
     var narrowScreen = GLOBAL.narrowScreen, 
@@ -63,6 +63,10 @@ if (document.querySelectorAll) {
         subnavWidth = currentWidth > subnavWidth ? currentWidth : subnavWidth;
     }
     document.body.removeChild(subnavCloned);
+    
+    // Get subnav top offset
+    
+    subnavTopOffset = (height + subnav.offsetTop) + "px";
 
     // Animate a scroll to the provided offset.
     function scrollTo(offset) {
@@ -114,6 +118,11 @@ if (document.querySelectorAll) {
       
       cloned[isHidden ? 'setAttribute' : 'removeAttribute']('hidden', '');
       subnav.classList[isHidden ? 'remove' : 'add']('float');
+      if(subnav.classList.contains("float")){
+        subnav.style.top = !subnav.style.top ? subnavTopOffset : subnav.style.top; // top position unset? use the calculated value, or leave it.
+      }else{
+        subnav.style.top = null;
+      }
       
       isHeaderVisible = isHidden;
       resetSubnav("scroll");
@@ -146,7 +155,7 @@ if (document.querySelectorAll) {
         if(navOffScreen === false) {
           closeSubnav();
         }
-        // console.log("subnavOffset " + subnavOffset) 
+        
         subnavOffset = subnav.classList.contains("show-nav") ? openSubnavOffset  : subnavOffset; // set on open via button
         
         subnav.style.left = subnav.classList.contains("float")  ? subnavOffset  : null; 
@@ -178,11 +187,13 @@ if (document.querySelectorAll) {
       var subnavOffset;
       
       if(window.getComputedStyle(subnav,null).getPropertyValue("position") == "absolute"){
-        // console.log("absolute offset " + jQuery(subnav).offset().left)  
+      
         subnavOffset = jQuery(subnav).offset().left + "px";
+        
       }else{
+      
         content.appendChild(subnavCloned);
-        // console.log("fixed/absolute offset " + jQuery(subnavCloned).offset().left)  
+        
         subnavOffset = jQuery(subnavCloned).offset().left + "px";
         
         content.removeChild(subnavCloned)
