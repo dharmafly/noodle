@@ -780,18 +780,14 @@ aside li.code-javascript span {
     background-position: -6px -246px;
 }
 aside li.code-html5 span {
-    background-position: 0 -460px;
+    background-position: -2px -457px;
 }
 aside li.code-css span {
-    background-position: 0 -552px;
+    background-position: -2px -546px;
 }
 
 .buttons .badge.github {
     background-position: 0px -359px;
-}
-
-.github a{
-  /* -webkit-filter: grayscale(1); */
 }
 
 aside  a:after ,
