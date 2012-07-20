@@ -319,7 +319,7 @@ aside,
     text-decoration: none;
     padding: 0 1.25em 0.55em 1em;
     background: transparent no-repeat 0em 1.2em;
-    background-image: url('data:image/svg+xml;base64,{{ page.subnav_underline }}');
+    background-image: url({{ page.subnav_underline }});
     -webkit-transition: background-position 0.3s ease-out, color 0.3s ease-out;
     -moz-transition: background-position 0.3s ease-out, color 0.3s ease-out;
     -o-transition: background-position 0.3s ease-out, color 0.3s ease-out;
