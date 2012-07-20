@@ -304,7 +304,7 @@ aside,
     // margin-left : 0;
     opacity : 1;
     -webkit-transition: opacity 300ms ease-in-out;
-    -moz-transition opacity: margin-left 300ms ease-in-out;
+    -moz-transition: opacity 300ms ease-in-out;
     -o-transition: opacity 300ms ease-in-out;
     -ms-transition: opacity 300ms ease-in-out;
     transition: opacity 300ms ease-in-out;
@@ -734,29 +734,38 @@ aside:after {
 aside li  a,
 aside li  span,
 .buttons .badge {
-    width: 3.025em;
-    height: 0em;
-    border: 0.625em solid {{ page.content_hover_colour }};
-    border-radius: 3.025em;
-    overflow: hidden;
-    padding-top: 3.025em;
-    display:block;
-    background: url(./img/icon-sprite.png) no-repeat;
-    -webkit-transition: border-color 0.3s ease-out;
-    position:relative;
+  width: 3.025em;
+  height: 0em;
+  border: 0.625em solid {{ page.content_hover_colour }};
+  border-radius: 3.025em;
+  overflow: hidden;
+  padding-top: 3.025em;
+  display:block;
+  background: url(./img/icon-sprite.png) no-repeat;
+  -webkit-transition: border-color 0.3s ease-out;
+  -moz-transition: border-color 0.3s ease-out;
+  -ms-transition: border-color 0.3s ease-out;
+  -o-transition: border-color 0.3s ease-out;
+  transition: border-color 0.3s ease-out;
+  position:relative;
 }
 
 .buttons .badge {
-    border-width: 0.2em;
-    width: 2.5em;
-    border-radius: 2.5em;
-    padding-top: 2.5em;
+  border-width: 2px;
+  width: 2.5em;
+  border-radius: 2.5em;
+  padding-top: 2.5em;
 }
 
-aside li  a:hover,
-.buttons .badge:hover {
-    border-color: {{ page.content_bg_colour }};
-    -webkit-transition: border-color 0.3s ease-out;
+
+
+aside li  a:hover {
+  border-color: {{ page.content_bg_colour }};
+  -webkit-transition: border-color 0.3s ease-out;
+  -moz-transition: border-color 0.3s ease-out;
+  -ms-transition: border-color 0.3s ease-out;
+  -o-transition: border-color 0.3s ease-out;
+  transition: border-color 0.3s ease-out;
 }
 
 aside li.github a {
@@ -785,26 +794,39 @@ aside li.code-css span {
   /* -webkit-filter: grayscale(1); */
 }
 
-aside .github a:after ,
-.buttons .badge.github:after {
+aside  a:after ,
+aside  span:after ,
+.buttons .badge:after {
   content: "";
   display: block;
   width: 3.0265em;
   height: 3.0265em;
   background-color: {{ page.badge_overlay }};
   opacity: 0.5;
+   transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+   -ms-transition: opacity .25s ease-in-out;
+   -o-transition: opacity .25s ease-in-out;
   position: absolute;
   top: 0;
   left: 0;
   border-radius: 50%;
 }
 
-.buttons .badge.github:after {
+.buttons .badge:after {
   width: 2.5em;
   height: 2.5em;
   top: 0;
   left: 0;
 }
+
+aside  a:hover:after ,
+aside  span:hover:after ,
+.buttons .badge:hover:after {
+  opacity: 0;
+}
+
 
 .ace_cursor.ace_hidden {
 	opacity: 0!important;
