@@ -1,6 +1,13 @@
 <script type="text/javascript">
-    /*WebFontConfig = {
-        google: { families: [ 'Lato:400,700,400italic:latin', {% case site.THEME %}'Advent+Pro::latin',{% else %} 'Forum::latin',{% endcase %}  'Inconsolata::latin' ] }
+    WebFontConfig = {
+        google: {
+            families: [
+                'Lato:400,700,400italic:latin',
+                {% case site.THEME %} {% when 'ocean' %}'Advent+Pro::latin',
+                {% else %} 'Forum::latin',
+                {% endcase %} 'Inconsolata::latin'
+            ]
+        }
     };
     (function() {
         var wf = document.createElement('script');
@@ -10,7 +17,6 @@
         wf.async = 'true';
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(wf, s);
-    })();*/
+    })();
 </script>
 
-<link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic|{% case site.THEME %}{% when 'ocean' %}Advent+Pro{% else %}Forum{% endcase %}|Inconsolata" rel="stylesheet" />
