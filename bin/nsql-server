@@ -22,10 +22,10 @@ function handle (req, res) {
   // Check querystring for scrape query
   if (!query && req.query.url && req.query.selector && req.query.extract) {
     query = {
-              url: req.query.url,
-              selector: req.query.selector,
-              extract: req.query.extract
-            };
+      url: req.query.url,
+      selector: req.query.selector,
+      extract: req.query.extract
+    };
   }
 
   if (query) {
