@@ -3,14 +3,15 @@ body {
 	padding: 0;
 	margin: 0;
 	color: {{ page.copy_colour }};
-    background: {{ page.body_background_colour }};
-    background-image: url(./img/tile.png);
-    background-image: url(./img/tile.png) -moz-linear-gradient(left, {{ page.body_background_colour }} 0%, {{ page.background_mid_stop }} 50%, {{ page.body_background_colour }} 100%);
-    background-image: url(./img/tile.png) -webkit-gradient(linear, left top, right top, color-stop(0%,{{ page.body_background_colour }}), color-stop(50%,{{ page.background_mid_stop }}), color-stop(100%,{{ page.body_background_colour }}));
-    background-image: url(./img/tile.png) -webkit-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
-    background-image: url(./img/tile.png) -o-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
-    background-image: url(./img/tile.png) -ms-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
-    background-image: url(./img/tile.png) linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
+  background: {{ page.body_background_colour }};
+  background-image: url(./img/tile.png);
+  background-image: url(./img/tile.png) -moz-linear-gradient(left, {{ page.body_background_colour }} 0%, {{ page.background_mid_stop }} 50%, {{ page.body_background_colour }} 100%);
+  background-image: url(./img/tile.png) -webkit-gradient(linear, left top, right top, color-stop(0%,{{ page.body_background_colour }}), color-stop(50%,{{ page.background_mid_stop }}), color-stop(100%,{{ page.body_background_colour }}));
+  background-image: url(./img/tile.png) -webkit-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
+  background-image: url(./img/tile.png) -o-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
+  background-image: url(./img/tile.png) -ms-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
+  background-image: url(./img/tile.png) linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
+  background-attachment: fixed;
 }
 
 i, em {
@@ -216,7 +217,7 @@ section.overview a {
 section.overview a:hover,
 section.overview a:focus,
 section.overview a:active {
-    color:{{ page.link_colour }};
+    color:{{ page.link_colour_alt }};
     -webkit-transition : color 0.1s ease-in;
     -moz-transition : color 0.1s ease-in;
     -o-transition : color 0.1s ease-in;
@@ -303,7 +304,7 @@ aside,
     // margin-left : 0;
     opacity : 1;
     -webkit-transition: opacity 300ms ease-in-out;
-    -moz-transition opacity: margin-left 300ms ease-in-out;
+    -moz-transition: opacity 300ms ease-in-out;
     -o-transition: opacity 300ms ease-in-out;
     -ms-transition: opacity 300ms ease-in-out;
     transition: opacity 300ms ease-in-out;
@@ -318,7 +319,7 @@ aside,
     text-decoration: none;
     padding: 0 1.25em 0.55em 1em;
     background: transparent no-repeat 0em 1.2em;
-    background-image: url('data:image/svg+xml;base64,{{ page.subnav_underline }}');
+    background-image: url({{ page.subnav_underline }});
     -webkit-transition: background-position 0.3s ease-out, color 0.3s ease-out;
     -moz-transition: background-position 0.3s ease-out, color 0.3s ease-out;
     -o-transition: background-position 0.3s ease-out, color 0.3s ease-out;
@@ -326,11 +327,11 @@ aside,
 }
 
 #subnav a:hover {
-    background-position: 4em 1.2em;
-    -webkit-transition: background-position 0.3s ease-out, color 0.3s ease-out;
-    -moz-transition: background-position 0.3s ease-out, color 0.3s ease-out;
-    -o-transition: background-position 0.3s ease-out, color 0.3s ease-out;2
-    transition: background-position 0.3s ease-out, color 0.3s ease-out;
+    background-position: 2em 1.2em;
+    -webkit-transition: background-position 0.15s ease-out, color 0.15s ease-out;
+    -moz-transition: background-position 0.15s ease-out, color 0.15s ease-out;
+    -o-transition: background-position 0.15s ease-out, color 0.15s ease-out;2
+    transition: background-position 0.15s ease-out, color 0.15s ease-out;
 }
 
 aside,
@@ -389,15 +390,15 @@ section > h1:hover .permalink {
 
 section .permalink {
 	text-decoration: none;
-	color: {{ page.greyed_out }};
 	float: left;
 	margin-right: 0.2em;
 	visibility: hidden;
+  position: relative;
+  bottom: 0;
   font-family: Code2000, "DejaVu Sans", "DejaVu Sans Bold", "DejaVu Sans Bold Oblique", "DejaVu Sans Condensed", "DejaVu Sans Condensed Bold", "DejaVu Sans Condensed Bold Oblique", "DejaVu Sans Condensed Oblique", "DejaVu Sans Mono", "DejaVu Sans Mono Bold", "DejaVu Sans Oblique", "EversonMono", "EversonMono-Oblique", "Symbola"
 }
 
 section .permalink:hover {
-	color: {{ page.copy_colour }};
 }
 
 .project-name {
@@ -502,6 +503,11 @@ article > h2 + p,
 
 
 /* Embedded Markdown Docs */
+
+.embedded :last-child {
+  margin-bottom: 0;
+}
+
 .embedded h1 {
 	font-size: 2.2em;
 }
@@ -733,29 +739,38 @@ aside:after {
 aside li  a,
 aside li  span,
 .buttons .badge {
-    width: 3.025em;
-    height: 0em;
-    border: 0.625em solid {{ page.content_hover_colour }};
-    border-radius: 3.025em;
-    overflow: hidden;
-    padding-top: 3.025em;
-    display:block;
-    background: url(./img/icon-sprite.png) no-repeat;
-    -webkit-transition: border-color 0.3s ease-out;
-    position:relative;
+  width: 3.025em;
+  height: 0em;
+  border: 0.625em solid {{ page.content_hover_colour }};
+  border-radius: 3.025em;
+  overflow: hidden;
+  padding-top: 3.025em;
+  display:block;
+  background: url(./img/icon-sprite.png) no-repeat;
+  -webkit-transition: border-color 0.3s ease-out;
+  -moz-transition: border-color 0.3s ease-out;
+  -ms-transition: border-color 0.3s ease-out;
+  -o-transition: border-color 0.3s ease-out;
+  transition: border-color 0.3s ease-out;
+  position:relative;
 }
 
 .buttons .badge {
-    border-width: 0.2em;
-    width: 2.5em;
-    border-radius: 2.5em;
-    padding-top: 2.5em;
+  border-width: 2px;
+  width: 2.5em;
+  border-radius: 2.5em;
+  padding-top: 2.5em;
 }
 
-aside li  a:hover,
-.buttons .badge:hover {
-    border-color: {{ page.content_bg_colour }};
-    -webkit-transition: border-color 0.3s ease-out;
+
+
+aside li  a:hover {
+  border-color: {{ page.content_bg_colour }};
+  -webkit-transition: border-color 0.3s ease-out;
+  -moz-transition: border-color 0.3s ease-out;
+  -ms-transition: border-color 0.3s ease-out;
+  -o-transition: border-color 0.3s ease-out;
+  transition: border-color 0.3s ease-out;
 }
 
 aside li.github a {
@@ -770,40 +785,49 @@ aside li.code-javascript span {
     background-position: -6px -246px;
 }
 aside li.code-html5 span {
-    background-position: 0 -460px;
+    background-position: -2px -457px;
 }
 aside li.code-css span {
-    background-position: 0 -552px;
+    background-position: -2px -546px;
 }
 
 .buttons .badge.github {
     background-position: 0px -359px;
 }
 
-.github a{
-  /* -webkit-filter: grayscale(1); */
-}
-
-aside .github a:after ,
-.buttons .badge.github:after {
+aside  a:after ,
+aside  span:after ,
+.buttons .badge:after {
   content: "";
   display: block;
   width: 3.0265em;
   height: 3.0265em;
   background-color: {{ page.badge_overlay }};
   opacity: 0.5;
+   transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+   -ms-transition: opacity .25s ease-in-out;
+   -o-transition: opacity .25s ease-in-out;
   position: absolute;
   top: 0;
   left: 0;
   border-radius: 50%;
 }
 
-.buttons .badge.github:after {
+.buttons .badge:after {
   width: 2.5em;
   height: 2.5em;
   top: 0;
   left: 0;
 }
+
+aside  a:hover:after ,
+aside  span:hover:after ,
+.buttons .badge:hover:after {
+  opacity: 0;
+}
+
 
 .ace_cursor.ace_hidden {
 	opacity: 0!important;

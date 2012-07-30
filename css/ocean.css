@@ -6,15 +6,16 @@ font: 'Advent Pro'
 copy_colour: "#2F475F" 
 lowlight_background: "#2F475F" 
 lowlight_colour: "#9CCDD2"
-lowlight_border: "#33465E" 
+lowlight_border: "#3F6B98" 
 body_background_colour: "#88B8DC"
 background_mid_stop: "#97C2E4"
-link_colour: "#5DC4FF"
+link_colour: "#006FB0"
+link_colour_alt: "#5DC4FF"
 content_bg_colour: "#CDDEF2"
 content_hover_colour: "#ffffff"
 nav_border_colour: "#A4CBD5"
 highlight_colour: "#fff"
-greyed_out: "#ccc"
+greyed_out: "#006FB0"
 code_colour: "#9CCDD2"
 code_background: "#2F475F"
 button_border: "transparent"
@@ -45,7 +46,7 @@ quote_svg_left_pos: "46%"
 quote_svg_right_pos: 19.6em
 
 # this is a base64 encoded svg - decode to make changes
-subnav_underline: "PHN2ZyB3aWR0aD0iNDAzIiBoZWlnaHQ9IjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGxpbmUgc3Ryb2tlPSIjNkM5NEI4IiBzdHJva2Utd2lkdGg9IjIiIHgxPSI0IiB5MT0iNCIgeDI9IjQwMCIgeTI9IjQiIC8+PGNpcmNsZSBmaWxsPSIjNkM5NEI4IiBjeD0iNCIgY3k9IjQiIHI9IjQiIC8+PC9zdmc+"
+subnav_underline: "'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAzIiBoZWlnaHQ9IjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGxpbmUgc3Ryb2tlPSIjNkM5NEI4IiBzdHJva2Utd2lkdGg9IjIiIHgxPSI0IiB5MT0iNCIgeDI9IjQwMCIgeTI9IjQiIC8+PGNpcmNsZSBmaWxsPSIjNkM5NEI4IiBjeD0iNCIgY3k9IjQiIHI9IjQiIC8+PC9zdmc+'"
   
 # this is a base64 encoded svg - decode to make changes
 show_subnav_icon: "'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjMiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+IDxzdHlsZT4gbGluZSwgY2lyY2xlIHsgc3Ryb2tlOiAjNkM5NEI4OyBmaWxsOiAjNkM5NEI4OyB9IDwvc3R5bGU+IDxsaW5lIHkyPSI0IiB4Mj0iMjMiIHkxPSI0IiB4MT0iNCIgLz4gPGxpbmUgeTI9IjEwIiB4Mj0iMjMiIHkxPSIxMCIgeDE9IjQiIC8+IDxsaW5lIHkyPSIxNiIgeDI9IjIzIiB5MT0iMTYiIHgxPSI0IiAvPiA8Y2lyY2xlIHI9IjIuNSIgY3k9IjQiIGN4PSI0IiAvPiA8Y2lyY2xlIHI9IjIuNSIgY3k9IjEwIiBjeD0iNCIgLz4gPGNpcmNsZSByPSIyLjUiIGN5PSIxNiIgY3g9IjQiIC8+IDwvc3ZnPg=='"

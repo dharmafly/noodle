@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="483" height="212">
     <style>
         * {
-            stroke:#2F4430;
+            stroke:#008006; /* HSL 82,240,60 */
             fill:none;
             stroke-width:8;
         }
@@ -10,7 +10,7 @@
         }
         .root {
             stroke:none;
-            fill:#2F4430;
+            fill:#008006;
         }
     </style>
 

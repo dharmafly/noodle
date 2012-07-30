@@ -50,16 +50,16 @@ layout: default
                     {% endif %}
 				</p>
 			</section>
-			<section>
 				{% for post in about reversed %}
-                        {% unless forloop.first %}
-                        <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>{{ post.title }}</h1>
-						<article class="embedded markdown">
-						{{ post.content }}
-						</article>
-                        {% endunless %}
+          {% unless forloop.first %}
+          <section>
+            <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>{{ post.title }}</h1>
+            <article class="embedded markdown">
+            {{ post.content }}
+            </article>
+          </section>
+          {% endunless %}
 				{% endfor %}
-			</section>
             
             {% for section in site.sections %}
                 {% if section.path == 'reference' %}

@@ -25,8 +25,9 @@ if (document.querySelectorAll) {
         isHeaderVisible = true,
         subnavContainer = subnav.clientWidth,
         halfContentWidth = content.clientWidth / 2,
-        subnavMargin = 30,
-        height, timer, throttle, subnavOffset, openSubnavOffset;
+        subnavMargin = 29,
+        subnavOffset = null, 
+        height, timer, throttle, subnavOffset, openSubnavOffset, subnavTopOffset;
     
     // Conditionally load scripts based on device width
     var narrowScreen = GLOBAL.narrowScreen, 
@@ -62,6 +63,10 @@ if (document.querySelectorAll) {
         subnavWidth = currentWidth > subnavWidth ? currentWidth : subnavWidth;
     }
     document.body.removeChild(subnavCloned);
+    
+    // Get subnav top offset
+    
+    subnavTopOffset = (height + subnav.offsetTop) + "px";
 
     // Animate a scroll to the provided offset.
     function scrollTo(offset) {
@@ -113,24 +118,35 @@ if (document.querySelectorAll) {
       
       cloned[isHidden ? 'setAttribute' : 'removeAttribute']('hidden', '');
       subnav.classList[isHidden ? 'remove' : 'add']('float');
+      if(subnav.classList.contains("float")){
+        subnav.style.top = !subnav.style.top ? subnavTopOffset : subnav.style.top; // top position unset? use the calculated value, or leave it.
+      }else{
+        subnav.style.top = null;
+      }
       
       isHeaderVisible = isHidden;
-      resetSubnav();
+      resetSubnav("scroll");
   
       return onScroll;
     })(), false);
     
     //  Move the navigation on resize to keep it's position relative to the browser port.
-    window.addEventListener('resize', resetSubnav);
+    window.addEventListener('resize', function(e){resetSubnav("resize")});
     
-    function resetSubnav() {
-        
-        
+    function resetSubnav(state) {
+    
         var halfWindowWidth = window.innerWidth / 2,
             navOffset = subnavWidth + subnavMargin + halfContentWidth,
             navOffScreen = navOffset > halfWindowWidth,
-            subnavOffset = navOffScreen ? (halfWindowWidth - subnavContainer - subnavMargin - halfContentWidth + subnavWidth ) + "px" : (halfWindowWidth - subnavContainer - halfContentWidth - subnavMargin) + "px", 
+            //subnavOffset = navOffScreen ? (halfWindowWidth - subnavContainer - subnavMargin - halfContentWidth + subnavWidth ) + "px" : (halfWindowWidth - subnavContainer - halfContentWidth - subnavMargin) + "px", 
             toggleClass = navOffScreen ? 'add' : 'remove';
+        
+
+        if(state === "resize") { // always calculate the offset on resize
+          subnavOffset =  getSubnavOffset() 
+        }else{
+           subnavOffset = subnavOffset ? subnavOffset : getSubnavOffset(); // if offset is already set, don't change it, otherwise get it.
+        }
         
         subnav.classList[toggleClass]('off-left');
         cloned.classList[toggleClass]('show-subnav-button');
@@ -166,6 +182,25 @@ if (document.querySelectorAll) {
         }
         
     }, false);
+    
+    function getSubnavOffset() {
+      var subnavOffset;
+      
+      if(window.getComputedStyle(subnav,null).getPropertyValue("position") == "absolute"){
+      
+        subnavOffset = jQuery(subnav).offset().left + "px";
+        
+      }else{
+      
+        content.appendChild(subnavCloned);
+        
+        subnavOffset = jQuery(subnavCloned).offset().left + "px";
+        
+        content.removeChild(subnavCloned)
+        
+      }
+      return subnavOffset;
+    }
     
     function toggleSubnav() {
      
@@ -222,4 +257,3 @@ if (document.querySelectorAll) {
 
   })(function () { return document.querySelector.apply(document, arguments); });
 }
-
