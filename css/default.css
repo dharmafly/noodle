@@ -33,7 +33,7 @@ badge_overlay: "#19841E"
 
 # for main title svg
 svg_asset: nodewing.svg
-svg_title_filter: saturate(4.8)
+svg_title_filter: #saturate(4.8)
 svg_title_rotation: none
 # for svg element on left hand side of content
 svg_asset_size: 100%
