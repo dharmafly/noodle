@@ -217,7 +217,7 @@ section.overview a {
 section.overview a:hover,
 section.overview a:focus,
 section.overview a:active {
-    color:{{ page.link_colour }};
+    color:{{ page.link_colour_alt }};
     -webkit-transition : color 0.1s ease-in;
     -moz-transition : color 0.1s ease-in;
     -o-transition : color 0.1s ease-in;
@@ -327,11 +327,11 @@ aside,
 }
 
 #subnav a:hover {
-    background-position: 4em 1.2em;
-    -webkit-transition: background-position 0.3s ease-out, color 0.3s ease-out;
-    -moz-transition: background-position 0.3s ease-out, color 0.3s ease-out;
-    -o-transition: background-position 0.3s ease-out, color 0.3s ease-out;2
-    transition: background-position 0.3s ease-out, color 0.3s ease-out;
+    background-position: 2em 1.2em;
+    -webkit-transition: background-position 0.15s ease-out, color 0.15s ease-out;
+    -moz-transition: background-position 0.15s ease-out, color 0.15s ease-out;
+    -o-transition: background-position 0.15s ease-out, color 0.15s ease-out;2
+    transition: background-position 0.15s ease-out, color 0.15s ease-out;
 }
 
 aside,
@@ -390,15 +390,15 @@ section > h1:hover .permalink {
 
 section .permalink {
 	text-decoration: none;
-	color: {{ page.greyed_out }};
 	float: left;
 	margin-right: 0.2em;
 	visibility: hidden;
+  position: relative;
+  bottom: 0;
   font-family: Code2000, "DejaVu Sans", "DejaVu Sans Bold", "DejaVu Sans Bold Oblique", "DejaVu Sans Condensed", "DejaVu Sans Condensed Bold", "DejaVu Sans Condensed Bold Oblique", "DejaVu Sans Condensed Oblique", "DejaVu Sans Mono", "DejaVu Sans Mono Bold", "DejaVu Sans Oblique", "EversonMono", "EversonMono-Oblique", "Symbola"
 }
 
 section .permalink:hover {
-	color: {{ page.copy_colour }};
 }
 
 .project-name {
