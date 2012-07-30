@@ -503,6 +503,11 @@ article > h2 + p,
 
 
 /* Embedded Markdown Docs */
+
+.embedded :last-child {
+  margin-bottom: 0;
+}
+
 .embedded h1 {
 	font-size: 2.2em;
 }
