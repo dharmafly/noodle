@@ -8,7 +8,13 @@ layout_type: subpage
 <nav id="subnav">
     <ul>
     {% for post in reference reversed %}
-      <li><a href="#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a></li>
+        <li><a href="#{{ post.url | replace_first:'/','' }}">
+        {% if post.heading %}
+            {{ post.heading }}
+        {% else %}
+            {{ post.title }}
+        {% endif %}
+        </a></li>
     {% endfor %}
     </ul>
 </nav>
@@ -16,7 +22,13 @@ layout_type: subpage
 {% for post in reference reversed %}
     {% if forloop.first %}
     <section>
-        <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>{{ post.title }}</h1>
+        <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>
+        {% if post.heading %}
+            {{ post.heading }}
+        {% else %}
+            {{ post.title }}
+        {% endif %}
+        </h1>
         <article class="embedded markdown">
         {{ post.content }}
         </article>
@@ -30,7 +42,13 @@ layout_type: subpage
 {% for post in reference reversed %}
     {% unless forloop.first %}
     <section>
-        <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>{{ post.title }}</h1>
+        <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>
+        {% if post.heading %}
+            {{ post.heading }}
+        {% else %}
+            {{ post.title }}
+        {% endif %}
+        </h1>
         <article class="embedded markdown">
         {{ post.content }}
         </article>
