@@ -10,7 +10,6 @@ body {
   background-image: url(./img/tile.png) -webkit-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
   background-image: url(./img/tile.png) -o-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
   background-image: url(./img/tile.png) -ms-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
-  background-image: url(./img/tile.png) linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
   background-attachment: fixed;
 }
 
@@ -110,6 +109,9 @@ pre code .comment              { color: #75715E; }
 	height: 0;
 }
 
+.ltIE9 .content section {
+  clear:left;
+}
 
 pre {
   position: relative;
@@ -662,9 +664,13 @@ button:active {
 }
 
 #navigation li.show-subnav {
-    float: left;
-    margin-top: -0.3em;
-    border-right:0;
+  float: left;
+  margin-top: -0.3em;
+  border-right:0;
+}
+
+.ltIE9 #navigation li.show-subnav {
+  display: none;
 }
 
 #navigation.show-subnav-button li.show-subnav + li {
@@ -762,6 +768,11 @@ aside li  span,
   padding-top: 2.5em;
 }
 
+.ltIE9 aside li  a,
+.ltIE9 aside li  span,
+.ltIE9 .buttons .badge {
+  border-width: 0;
+}
 
 
 aside li  a:hover {
