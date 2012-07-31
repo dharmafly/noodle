@@ -12,7 +12,7 @@
 ***********************************************/
 
 
-if (document.querySelectorAll) {
+if (document.querySelectorAll && document.body.classList) {
   (function ($, $$) {
     var navigation = $('#navigation'),
         subnavId = 'subnav',

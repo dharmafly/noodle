@@ -770,10 +770,9 @@ aside li  span,
 
 .ltIE9 aside li  a,
 .ltIE9 aside li  span,
-.ltIE9 .buttons .badge {
+.ltIE9  .buttons .badge {
   border-width: 0;
-}
-
+} 
 
 aside li  a:hover {
   border-color: {{ page.content_bg_colour }};
@@ -784,30 +783,17 @@ aside li  a:hover {
   transition: border-color 0.3s ease-out;
 }
 
-aside li.github a {
-    background-position: -5px 0;
-}
+.ltIE9 aside li.github a {  background-position: -4px 4px; background-color: white;}
+aside li.github a {  background-position: 0 1px; }
+aside li.twitter a{ background-position: -2px -128px; }
+aside li.code-javascript span { background-position: -6px -246px; }
+aside li.code-html5 span { background-position: -2px -457px; }
+aside li.code-css span { background-position: -2px -546px; }
 
-aside li.twitter a{
-    background-position: -2px -128px;
-}
+.buttons .badge.github {  background-position: 0px -359px; }
 
-aside li.code-javascript span {
-    background-position: -6px -246px;
-}
-aside li.code-html5 span {
-    background-position: -2px -457px;
-}
-aside li.code-css span {
-    background-position: -2px -546px;
-}
-
-.buttons .badge.github {
-    background-position: 0px -359px;
-}
-
-aside  a:after ,
-aside  span:after ,
+aside a:after ,
+aside span:after ,
 .buttons .badge:after {
   content: "";
   display: block;
@@ -831,6 +817,14 @@ aside  span:after ,
   height: 2.5em;
   top: 0;
   left: 0;
+}
+
+
+.ltIE9 aside a:after ,
+.ltIE9 aside span:after ,
+.ltIE9 .buttons .badge:after {
+  display: none;
+  background-color: transparent;
 }
 
 aside  a:hover:after ,
