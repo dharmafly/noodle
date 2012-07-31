@@ -255,7 +255,7 @@ if (document.querySelectorAll) {
         window.scrollTo(0, offset);
 
         // Animate to the element.
-        var scrollYPos = section.parentNode.offsetTop - height - 20;
+        var scrollYPos = section.parentNode.offsetTop + height + 100;
         
         if(narrowScreen){
           window.scrollTo(0, scrollYPos); // No animation on small screens (long length), or on IE // TO DO fix IE to work with scrollTo #59
