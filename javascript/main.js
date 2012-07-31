@@ -203,14 +203,24 @@ if (document.querySelectorAll) {
     }
     
     function toggleSubnav() {
-     
+      var contentLeftPos;
       if(subnav.classList.contains("show-nav")){
         closeSubnav();
       }else{
         subnav.classList.add("show-nav");
-        openSubnavOffset = ((0 - subnavContainer) + (subnavWidth + subnavMargin))  + "px"; // stored value reapplied on scroll
+        contentLeftPos = (0 - content.offsetLeft + subnavWidth + (subnavMargin * 2));
+        
+        content.style.left = contentLeftPos + "px";
+        
+        content.appendChild(subnavCloned);
+        
+        openSubnavOffset = (jQuery(subnavCloned).offset().left + contentLeftPos) + "px"; // stored value reapplied on scroll
+        
+        if(isltIE10){
+          openSubnavOffset = ((0 - subnavContainer) + (subnavWidth + subnavMargin))  + "px"; 
+        }
+        content.removeChild(subnavCloned);
         subnav.style.left = subnav.classList.contains("float") ? openSubnavOffset : null; 
-        content.style.left = (0 - content.offsetLeft + subnavWidth + (subnavMargin * 2)) + "px";
       }
      
     }
