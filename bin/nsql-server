@@ -12,55 +12,61 @@ var connect = require('connect'),
               .use(handle);
 
 
-// Handle requested query via scraper module
-// Recieves data via request body as JSON or as querystring
-
 function handle (req, res) {
-  // Check JSON Body for scrape query
-  var query = (Object.keys(req.body).length > 0) ?  req.body : false;
+  var hasJSON        = (Object.keys(req.body).length  > 0),
+      hasQueryString = (Object.keys(req.query).length > 0),
+      queries;
 
-  // Check querystring for scrape query
-  if (!query && req.query.url && req.query.selector && req.query.extract) {
-    query = {
-      url: req.query.url,
-      selector: req.query.selector,
-      extract: req.query.extract
-    };
-  }
+  // Handle for either a JSON request or a JSONP request via the querystring
 
-  if (query) {
-    scraper.scrape(query, function (err, results) {
+  queries = (hasJSON) ? req.body : false;
+  queries = (queries === false && hasQueryString) ? req.query : queries;
+
+  // Scrape the requested data then use finish() to return data
+
+  if (queries) {
+    scraper.scrape(queries, function (err, results) {
       finish(res, {error: err, results: results, callback: req.query.callback});
     });
   } else {
-    finish(res, {error: 'No query', callback: req.query.callback});
+    finish(res, {error: 'No queries', callback: req.query.callback});
   }
 }
 
-// Respond to request
+// Finish responding to request
 
 function finish (res, params) {
-  res.writeHead('200', {'Content-type':'application/json'});
+  var error    = params.error,
+      callback = params.callback,
+      results  = JSON.stringify(params.results);
 
-  if (params.error && params.callback) {
+  if (error && callback) {
+
     // Error as JSONP
 
-    res.end(params.callback + '({"error": "' + params.error + '"})');
+    res.writeHead('401', {'Content-type':'application/script'});
+    res.end(callback + '({"error": "' + error + '"})');
 
-  } else if (params.error) {
+  } else if (error) {
+
     // Error as JSON
 
-    res.end('{"error": "' + params.error + '"}');
+    res.writeHead('401', {'Content-type':'application/json'});
+    res.end('{"error": "' + error + '"}');
 
-  } else if (params.callback) {
+  } else if (callback) {
+
     // Results as JSONP
 
-    res.end(params.callback + '(' + params.results + ')');
+    res.writeHead('200', {'Content-type':'application/script'});
+    res.end(callback + '(' + results + ')');
 
   } else {
+
     // Results as JSON
 
-    res.end(params.results);
+    res.writeHead('200', {'Content-type':'application/json'});
+    res.end(results);
   }
 }
 
