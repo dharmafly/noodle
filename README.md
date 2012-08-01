@@ -125,7 +125,14 @@ In addition to the category, you can also add the optional `heading` variable. T
 
     ---
     category: about
-    heading: Post Heading
+    heading: "Post Heading"
+    ---
+    
+Complex characters and html are also permitted:
+
+    ---
+    category: about
+    heading: "Why I love the <code>!important</code> rule"
     ---
 
 The very first 'about' post in the directory will be used for the project overview (it will be displayed in a highlighted box).
