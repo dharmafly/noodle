@@ -232,6 +232,17 @@ The site will already include a link to your project. If you have a downloadable
 
 This will add a download button to your site.
 
+Updating the Overview page reference text
+-----------------------------------------
+
+The last section on the overview page is a link to the reference section. 
+
+This link isn't editable via the `_config.yml`, but the text introducing it can be changed through the `REFERENCE_LINK_TEXT` variable
+in the in the `_config.yml`. For example:
+
+    REFERENCE_LINK_TEXT: "Complete documentation can be found here:"
+
+
 Adding a quote to your project
 ------------------------------
 
