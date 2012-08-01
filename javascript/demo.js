@@ -1,10 +1,6 @@
 /*globals ace jQuery*/
 /*jshint indent:4*/
 
-var narrowScreen = GLOBAL.narrowScreen, 
-    isltIE10 = GLOBAL.isltIE10,
-    noEditor = narrowScreen || isltIE10;
-
 function createAceEditor(dom) {
     var elem = jQuery(dom), editor, session, JavaScriptMode;
 
@@ -48,16 +44,17 @@ var index = 0;
 
 // For each code block, create an ACE code editor
 jQuery('pre').each(function () {
-    jQuery(this).wrap('<div class="run" />');
+    jQuery(this).addClass("hasEditor").wrap('<div class="run" />');
 
     var code = jQuery(this).find('code'),
-        editor = noEditor ? code.text() : createAceEditor(code[0]),
-        content = noEditor ? editor : editor.getSession().getValue(),
-        id, output, button;
+        editor, id, output, button;
 
     // Check code block for runnable keywords and setup output box
     // and run button.
-    if (content.indexOf('$output') > -1 || content.indexOf('alert') > -1) {
+    if (code.text().indexOf('$output') > -1 || code.text().indexOf('alert') > -1) {
+    
+        editor = createAceEditor(code[0]);
+        
         id = 'output-' + (index += 1);
         output = jQuery('<output>Output...</output>').attr('id', id);
         button = jQuery('<button class="eval">Run</button>').data({
@@ -67,6 +64,12 @@ jQuery('pre').each(function () {
 
         jQuery(this.parentNode).append(output[0]);
         jQuery(this).append(button[0]);
+    }else{
+      jQuery(this).removeClass("hasEditor");
+      // load hijs for syntax highlighting
+      var script = document.createElement("script");
+      script.src = GLOBAL.relative_path + "javascript/hijs.js";
+      document.body.appendChild(script);
     }
 });
 
@@ -75,7 +78,7 @@ jQuery('button.eval')
 .click(function () {
     var button = jQuery(this),
         editor = button.data("editor"),
-        code   = noEditor ? editor : editor.getSession().getValue(), // if using ACE get the current code, else use the value of <code>
+        code   = editor.getSession().getValue(), 
         output = button.data('output');
 
     output.empty();
