@@ -10,7 +10,6 @@ body {
   background-image: url(./img/tile.png) -webkit-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
   background-image: url(./img/tile.png) -o-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
   background-image: url(./img/tile.png) -ms-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
-  background-image: url(./img/tile.png) linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
   background-attachment: fixed;
 }
 
@@ -110,6 +109,9 @@ pre code .comment              { color: #75715E; }
 	height: 0;
 }
 
+.ltIE9 .content section {
+  clear:left;
+}
 
 pre {
   position: relative;
@@ -388,6 +390,11 @@ section > h1:hover .permalink {
 	visibility: visible;
 }
 
+@font-face{ 
+  font-family: 'Rail Model'; 
+  src: url('./ie/railmodelfont-webfont.eot?#iefix') format('embedded-opentype'); 
+}
+
 section .permalink {
 	text-decoration: none;
 	float: left;
@@ -395,11 +402,14 @@ section .permalink {
 	visibility: hidden;
   position: relative;
   bottom: 0;
-  font-family: Code2000, "DejaVu Sans", "DejaVu Sans Bold", "DejaVu Sans Bold Oblique", "DejaVu Sans Condensed", "DejaVu Sans Condensed Bold", "DejaVu Sans Condensed Bold Oblique", "DejaVu Sans Condensed Oblique", "DejaVu Sans Mono", "DejaVu Sans Mono Bold", "DejaVu Sans Oblique", "EversonMono", "EversonMono-Oblique", "Symbola"
+  font-family: "DejaVu Sans", "DejaVu Sans Bold", "DejaVu Sans Bold Oblique", "DejaVu Sans Condensed", "DejaVu Sans Condensed Bold", "DejaVu Sans Condensed Bold Oblique", "DejaVu Sans Condensed Oblique", "DejaVu Sans Mono", "DejaVu Sans Mono Bold", "DejaVu Sans Oblique", "EversonMono", "EversonMono-Oblique", "Symbola", "Free Serif", "Quivira", "Rail Model", Code2000 
 }
 
-section .permalink:hover {
+.ltIE9 section .permalink {
+  font-family: "Rail Model";
 }
+
+
 
 .project-name {
     font-family: {{ page.font }}, serif;
@@ -662,9 +672,13 @@ button:active {
 }
 
 #navigation li.show-subnav {
-    float: left;
-    margin-top: -0.3em;
-    border-right:0;
+  float: left;
+  margin-top: -0.3em;
+  border-right:0;
+}
+
+.ltIE9 #navigation li.show-subnav {
+  display: none;
 }
 
 #navigation.show-subnav-button li.show-subnav + li {
@@ -762,7 +776,11 @@ aside li  span,
   padding-top: 2.5em;
 }
 
-
+.ltIE9 aside li  a,
+.ltIE9 aside li  span,
+.ltIE9  .buttons .badge {
+  border-width: 0;
+} 
 
 aside li  a:hover {
   border-color: {{ page.content_bg_colour }};
@@ -773,30 +791,17 @@ aside li  a:hover {
   transition: border-color 0.3s ease-out;
 }
 
-aside li.github a {
-    background-position: -5px 0;
-}
+.ltIE9 aside li.github a {  background-position: -4px 4px; background-color: white;}
+aside li.github a {  background-position: -5px 0; }
+aside li.twitter a{ background-position: -2px -128px; }
+aside li.code-javascript span { background-position: -6px -246px; }
+aside li.code-html5 span { background-position: -2px -457px; }
+aside li.code-css span { background-position: -2px -546px; }
 
-aside li.twitter a{
-    background-position: -2px -128px;
-}
+.buttons .badge.github {  background-position: 0px -359px; }
 
-aside li.code-javascript span {
-    background-position: -6px -246px;
-}
-aside li.code-html5 span {
-    background-position: -2px -457px;
-}
-aside li.code-css span {
-    background-position: -2px -546px;
-}
-
-.buttons .badge.github {
-    background-position: 0px -359px;
-}
-
-aside  a:after ,
-aside  span:after ,
+aside a:after ,
+aside span:after ,
 .buttons .badge:after {
   content: "";
   display: block;
@@ -820,6 +825,14 @@ aside  span:after ,
   height: 2.5em;
   top: 0;
   left: 0;
+}
+
+
+.ltIE9 aside a:after ,
+.ltIE9 aside span:after ,
+.ltIE9 .buttons .badge:after {
+  display: none;
+  background-color: transparent;
 }
 
 aside  a:hover:after ,
