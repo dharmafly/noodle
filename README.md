@@ -9,6 +9,14 @@ for making calls.
 In your call to the server you just specify the source `url`, the `selector`,
 and what you want to `extract`.
 
+Features
+--------------
+
+- Cross domain DOM querying
+- JSON and JSONP
+- Multiple queries per request
+- Fast memory caching
+
 Getting started
 ---------------
 
@@ -52,14 +60,18 @@ Having `"text"` as the `extract` value will return only the text.
 Return data looks like this:
 
 ```JSON
-[
-  {
-    "href": "http://github.com/chrisnewtn"
-  },
-  {
-    "href": "http://lanyrd.com/profile/chrisnewtn/"
-  }
-]
+{
+    "results": [
+        {
+            "href": "http://twitter.com/chrisnewtn"
+        },
+        {
+            "href": "http://plus.google.com/u/0/111845796843095584341"
+        }"href": "http://www.flickr.com/photos/newt42/"
+        }
+    ],
+    "created": "2012-08-01T16:22:14.705Z"
+}
 ```
 
 ### Multiple extract rules
@@ -80,15 +92,68 @@ Query:
 Response:
 
 ```JSON
+{
+    "results": [
+        {
+            "href": "http://twitter.com/chrisnewtn",
+            "text": "Twitter"
+        },
+        {
+            "href": "http://plus.google.com/u/0/111845796843095584341",
+            "text": "Google+"
+        }
+    ],
+    "created": "2012-08-01T16:23:41.913Z"
+}
+```
+
+### Multiple queries per request
+
+Multiple queries can be made per request to the server.
+
+```JSON
 [
   {
-    "href" : "http://github.com/chrisnewtn",
-    "text" : "github"
+    "url": "http://chrisnewtn.com",
+    "selector": "ul.social li a",
+    "extract": ["text, "href"]
   },
   {
-    "href" : "http://lanyrd.com/profile/chrisnewtn/",
-    "text" : "lanyrd"
+    "url": "http://premasagar.com",
+    "selector": "#social_networks li a.url",
+    "extract": "href"
   }
+]
+```
+
+Response:
+
+```JSON
+[
+    {
+        "results": [
+            {
+                "href": "http://twitter.com/chrisnewtn",
+                "text": "Twitter"
+            },
+            {
+                "href": "http://plus.google.com/u/0/111845796843095584341",
+                "text": "Google+"
+            }
+        ],
+        "created": "2012-08-01T16:23:41.913Z"
+    },
+    {
+        "results": [
+            {
+                "href": "http://dharmafly.com/blog"
+            },
+            {
+                "href": "http://twitter.com/premasagar"
+            }
+        ],
+        "created": "2012-08-01T16:22:13.339Z"
+    }
 ]
 ```
 
@@ -103,24 +168,27 @@ Query:
 {
   "url": "http://chrisnewtn.com",
   "selector": "ul.social li a",
-  "extract": ["text", "nonexistent"]
+  "extract": ["href", "nonexistent"]
 }
 ```
 
 Response:
 
-Note how the extract "nonexistent" property is left out because it was not found
+The extract "nonexistent" property is left out because it was not found
 on the element.
 
 ```JSON
-[
-  {
-    "href" : "github",
-  },
-  {
-    "href" : "lanyrd",
-  }
-]
+{
+    "results": [
+        {
+            "href": "http://twitter.com/chrisnewtn"
+        },
+        {
+            "href": "http://plus.google.com/u/0/111845796843095584341"
+        }
+    ],
+    "created": "2012-08-01T16:28:19.167Z"
+}
 ```
 
 If the selector is invalid or none of the extract rules match up then you will receive
@@ -139,5 +207,8 @@ Query:
 Response:
 
 ```JSON
-[]
+{
+    "results": [],
+    "created": "2012-08-01T16:26:39.734Z"
+}
 ```
