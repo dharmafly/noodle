@@ -32,7 +32,12 @@ if (document.querySelectorAll && document.body.classList) {
     // Conditionally load scripts based on device width
     var narrowScreen = GLOBAL.narrowScreen, 
         isltIE10 = GLOBAL.isltIE10, 
-        scripts = narrowScreen || isltIE10 ?  ["hijs"] : ["ace/ace", "ace/theme/theme-dharmafly", "ace/mode-javascript", "demo"]; // syntax highlighter for small devices, ACE editor otherwise
+        scripts;
+        
+        GLOBAL.noEditor = narrowScreen || isltIE10,
+        
+        
+        scripts = GLOBAL.noEditor ?  ["hijs", "demo"] : ["ace/ace", "ace/theme/theme-dharmafly", "ace/mode-javascript", "demo"]; // syntax highlighter for small devices, ACE editor otherwise
     
     (function loadScript(src) {
       
