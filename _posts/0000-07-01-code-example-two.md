@@ -1,6 +1,6 @@
 ---
 category: reference
-heading: "Including Characters in Titles - !\"&pound;$%^&*()_ +=[]{};'# :@~`test`, ./<>? &lt;test&gt; <code>test</code> #"
+heading: "Code Example Two"
 ---
 
 Method two overview
