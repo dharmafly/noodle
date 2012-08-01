@@ -67,7 +67,6 @@ Return data looks like this:
         },
         {
             "href": "http://plus.google.com/u/0/111845796843095584341"
-        }"href": "http://www.flickr.com/photos/newt42/"
         }
     ],
     "created": "2012-08-01T16:22:14.705Z"
@@ -116,7 +115,7 @@ Multiple queries can be made per request to the server.
   {
     "url": "http://chrisnewtn.com",
     "selector": "ul.social li a",
-    "extract": ["text, "href"]
+    "extract": ["text", "href"]
   },
   {
     "url": "http://premasagar.com",
