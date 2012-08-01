@@ -364,25 +364,29 @@ section.content {
 
 section.content:after{
   content: "";
-    display: block;
-    width: 506px;
-    height: 231px;
-    margin: 0;
-    position: absolute;
-    bottom: 177px;
-    left: -336px;
-    z-index: -1;
-    background: transparent;
-    background-repeat: no-repeat;
-    background-position: left top;
-    background-image: url(./svg/{{ page.svg_asset }}) ;
-    -webkit-transform: rotate({{ page.svg_asset_rotation }});
-    -moz-transform: rotate({{ page.svg_asset_rotation }});
-    -ms-transform: rotate({{ page.svg_asset_rotation }});
-    -o-transform: rotate({{ page.svg_asset_rotation }});
-    transform: rotate({{ page.svg_asset_rotation }});
-    opacity: 0.2;
-    background-size: {{ page.svg_asset_size }}
+  display: block;
+  width: 506px;
+  height: 231px;
+  margin: 0;
+  position: absolute;
+  bottom: 177px;
+  left: -336px;
+  z-index: -1;
+  background: transparent;
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-image: url(./svg/{{ page.svg_asset }}) ;
+  -webkit-transform: rotate({{ page.svg_asset_rotation }});
+  -moz-transform: rotate({{ page.svg_asset_rotation }});
+  -ms-transform: rotate({{ page.svg_asset_rotation }});
+  -o-transform: rotate({{ page.svg_asset_rotation }});
+  transform: rotate({{ page.svg_asset_rotation }});
+  opacity: 0.2;
+  background-size: {{ page.svg_asset_size }}
+}
+
+.ie section.content:after{
+  background-image: none;
 }
 
 section > h1 {
@@ -476,6 +480,11 @@ section.quote:after {
   -o-transform: {{ page.quote_svg_left_transform }};
   transform: {{ page.quote_svg_left_transform }};
   visibility: visible;
+}
+
+.ie section.quote:before,
+.ie section.quote:after {
+  background-image: none;
 }
 
 section.quote:after {
