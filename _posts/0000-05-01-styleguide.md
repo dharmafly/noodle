@@ -1,5 +1,6 @@
 ---
 category: reference
+heading: Styleguide
 ---
 
 &#8202;<span class="project-name">This document</span> shows a complete set of markdown elements and any additional html and class attributes needed to test the CSS. 

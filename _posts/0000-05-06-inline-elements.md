@@ -1,5 +1,6 @@
 ---
 category: reference
+heading: Inline Elements
 ---
 
 Emphasis using asterisks and underscores
