@@ -132,6 +132,10 @@ pre {
   box-shadow:         4px 4px 5px rgba(0, 0, 0, 0.45) inset;
 }
 
+section pre.hasEditor {
+  padding-bottom: 3.5em;
+}
+
 pre code {
 	position: relative;
 	padding: 0;
@@ -938,6 +942,7 @@ aside  span:hover:after ,
   
   section pre.hasEditor {
 		padding-left: 5em;
+    padding-bottom: 1.5em;
 	}
 
 

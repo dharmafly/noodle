@@ -47,29 +47,33 @@ jQuery('pre').each(function () {
     jQuery(this).addClass("hasEditor").wrap('<div class="run" />');
 
     var code = jQuery(this).find('code'),
-        editor, id, output, button;
+        editor = code.text(),
+        id, output, button;
 
     // Check code block for runnable keywords and setup output box
     // and run button.
     if (code.text().indexOf('$output') > -1 || code.text().indexOf('alert') > -1) {
     
-        editor = createAceEditor(code[0]);
-        
-        id = 'output-' + (index += 1);
-        output = jQuery('<output>Output...</output>').attr('id', id);
-        button = jQuery('<button class="eval">Run</button>').data({
-            output: output,
-            editor: editor
-        });
+      editor = GLOBAL.noEditor ? editor : createAceEditor(code[0]);
+      
+      id = 'output-' + (index += 1);
+      output = jQuery('<output>Output...</output>').attr('id', id);
+      button = jQuery('<button class="eval">Run</button>').data({
+          output: output,
+          editor: editor
+      });
 
-        jQuery(this.parentNode).append(output[0]);
-        jQuery(this).append(button[0]);
+      jQuery(this.parentNode).append(output[0]);
+      jQuery(this).append(button[0]);
+      
     }else{
+    
       jQuery(this).removeClass("hasEditor");
       // load hijs for syntax highlighting
       var script = document.createElement("script");
       script.src = GLOBAL.relative_path + "javascript/hijs.js";
       document.body.appendChild(script);
+      
     }
 });
 
@@ -77,8 +81,8 @@ jQuery('pre').each(function () {
 jQuery('button.eval')
 .click(function () {
     var button = jQuery(this),
-        editor = button.data("editor"),
-        code   = editor.getSession().getValue(), 
+        editor = button.data("editor"), 
+        code   = GLOBAL.noEditor ? editor : editor.getSession().getValue(), // if using ACE get the current code, else use the value of <code>
         output = button.data('output');
 
     output.empty();
