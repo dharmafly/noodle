@@ -221,7 +221,7 @@ if (document.querySelectorAll && document.body.classList) {
         
         openSubnavOffset = (jQuery(subnavCloned).offset().left + contentLeftPos) + "px"; // stored value reapplied on scroll
         
-        if(isltIE10){
+        if(isltIE10 || narrowScreen){
           openSubnavOffset = ((0 - subnavContainer) + (subnavWidth + subnavMargin))  + "px"; 
         }
         content.removeChild(subnavCloned);
@@ -235,6 +235,7 @@ if (document.querySelectorAll && document.body.classList) {
       subnav.classList.remove("show-nav");
       subnav.style.left = null;
       content.style.left = null;
+      
       
     }
     
