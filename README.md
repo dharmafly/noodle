@@ -121,6 +121,13 @@ or
 
 WARNING: If posts do not have either one of these prologues, they won't be displayed.
 
+In addition to the category, you can also add the optional `heading` variable. This will override the default post heading when it is rendered on the page (the default being the post's filename). The `heading` variable should be used like so:
+
+    ---
+    category: about
+    heading: Post Heading
+    ---
+
 The very first 'about' post in the directory will be used for the project overview (it will be displayed in a highlighted box).
 
 The remaining posts with `category: about` will appear in the main nav and on the front page.
