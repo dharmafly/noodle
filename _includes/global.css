@@ -300,6 +300,7 @@ section.overview a:active {
     opacity: 0;
 }
 
+
 #subnav.show-nav {
     opacity : 1;
     -webkit-transition: opacity 300ms ease-in-out;
@@ -991,15 +992,14 @@ aside  span:hover:after ,
   
 @media (min-width:52em) {
 
-    #subnav.off-left  {
-       // margin-left : -100%;
-    }
+   
+  #subnav.off-left  {
+    margin-left: -100%;
+  }
 
-    aside,
-    #subnav,
-    #subnav.show-nav {
-      //  margin-left: 0;
-    }
+  #subnav.show-nav {
+    margin-left: 0;
+  }
 
     #subnav,
     #subnav.show-nav {
