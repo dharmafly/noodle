@@ -45,9 +45,11 @@ The server can accept scraping queries in a variety of ways:
 
 ### with JSONP
 
-As JSONP you can send a URI encoded blob of json for the `q=` querystring key.
+You can send a URI encoded blob of json for the `q` querystring key.
 
 `http://dharmafly.nsql-example.com?q=<JSONBLOB>&callback=?`
+
+A simple query looks like this:
 
 ```JSON
 {
