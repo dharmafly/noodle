@@ -49,16 +49,6 @@ You can send a URI encoded blob of json for the `q` querystring key.
 
 `http://dharmafly.nsql-example.com?q=<JSONBLOB>&callback=?`
 
-A simple query looks like this:
-
-```JSON
-{
-  "url": "http://chrisnewtn.com",
-  "selector": "ul.social li a",
-  "extract": "href"
-}
-```
-
 If you are unable to stringify JSON you can still use the querystring to make 
 one query (but not multiple).
 
@@ -70,10 +60,22 @@ jQuery.param(query);
 ### with POST
 
 You can also POST your query as json (`application/json`) to the nsql server. 
-This is preferable if your request is too large or talking to nsql from another 
-server.
+This is preferable if your request is too large or you're talking to nsql from 
+another server.
 
-### Extracting data
+### Writing a query
+
+A simple query looks like this:
+
+```JSON
+{
+  "url": "http://chrisnewtn.com",
+  "selector": "ul.social li a",
+  "extract": "href"
+}
+```
+
+#### Extracting data
 
 The `extract` property could be the HTML element's attribute.
 
@@ -98,7 +100,7 @@ Return data looks like this:
 }
 ```
 
-### Multiple extract rules
+#### Multiple extract rules
 
 It is also possible to request multiple properties to extract in one query via
 array.
@@ -131,7 +133,7 @@ Response:
 }
 ```
 
-### Multiple queries per request
+#### Multiple queries per request
 
 Multiple queries can be made per request to the server.
 
