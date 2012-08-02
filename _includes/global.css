@@ -482,7 +482,8 @@ section.quote:after {
 }
 
 section.quote:after {
-  left: {{ page.quote_svg_right_pos }};
+  left: auto;
+  right: {{ page.quote_svg_right_pos }};
   -webkit-transform: {{ page.quote_svg_right_transform }};
   -moz-transform: {{ page.quote_svg_right_transform }};
   -ms-transform: {{ page.quote_svg_right_transform }};
@@ -706,6 +707,7 @@ button:active {
 
 .run {
 	position: relative;
+  margin-bottom: 3em;
 }
 
 .run .eval {
@@ -986,6 +988,11 @@ aside  span:hover:after ,
   }
   #navigation.show-subnav-button  li.show-subnav{
       display:block;
+  }
+  
+  section.quote:after {
+    left: auto;
+    right: -webkit-calc({{ page.quote_svg_right_pos }} + {{ page.quote_svg_right_mod }});
   }
 
 }
