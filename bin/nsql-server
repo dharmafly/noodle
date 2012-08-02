@@ -17,12 +17,16 @@ function handle (req, res) {
       hasQueryString = (Object.keys(req.query).length > 0),
       queries;
 
-  // Handle for either a JSON request or a JSONP request via the querystring
+  // Handle for different request types
 
+  // Take JSON from request body (http post)
   queries = (hasJSON) ? req.body : false;
+  // Take only single query JSON from request querystring (http get)
   queries = (queries === false && hasQueryString) ? req.query : queries;
+  // Take JSON from request querystring (http get)
+  queries = (req.query.q) ? JSON.parse(req.query.q) : queries;
 
-  // Scrape the requested data then use finish() to return data
+  // Scrape the requested data then use finish() to respond to client
 
   if (queries) {
     scraper.scrape(queries, function (err, results) {
