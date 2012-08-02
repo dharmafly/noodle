@@ -1,13 +1,12 @@
 node-scrape-query-language
 ==========================
 
-nsql is a server which can be used to scrape pages from the client side browser.
+nsql is a server which can be used to scrape pages from a client side browser.
 It uses the jQuery query selector to extract information from web pages and
-returns the data in JSON. The server also supports JSONP (?callback=foo) format
-for making calls.
+returns the data in JSON. The server supports JSONP (?callback=foo) and POST.
 
-In your call to the server you just specify the source `url`, the `selector`,
-and what you want to `extract`.
+In your call to the server you just specify your query(s) and recieve your data 
+back in JSON.
 
 Features
 --------------
@@ -17,7 +16,7 @@ Features
 - Multiple queries per request
 - In memory caching
 
-[Try it out!](http://dharmafly.github.com/nsql/#try-it-out);
+[Try it out!](http://dharmafly.github.com/nsql/#try-it-out)
 
 Getting started
 ---------------
