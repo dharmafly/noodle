@@ -707,6 +707,7 @@ button:active {
 
 .run {
 	position: relative;
+  margin-bottom: 3em;
 }
 
 .run .eval {
