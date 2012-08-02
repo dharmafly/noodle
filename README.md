@@ -17,6 +17,8 @@ Features
 - Multiple queries per request
 - In memory caching
 
+[Try it out!](http://dharmafly.github.com/nsql/#try-it-out);
+
 Getting started
 ---------------
 
@@ -45,7 +47,7 @@ The server can accept scrape DOM Selection queries in a variety of ways:
 
 As JSONP you can send a URI encoded blob of json for the `q=` querystring key.
 
-`http://dharmafly.nsql-example.com?q=<JSONBLOB>`
+`http://dharmafly.nsql-example.com?q=<JSONBLOB>&callback=?`
 
 ```JSON
 {
@@ -65,7 +67,9 @@ jQuery.param(query);
 
 ### POST
 
-You can also POST your query as simple `application/json` to the nsql server.
+You can also POST your query as simple `application/json` to the nsql server. 
+This is preferable if your request is too large or talking to nsql from another 
+server.
 
 ### Extracting data
 
