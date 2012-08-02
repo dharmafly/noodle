@@ -749,7 +749,6 @@ aside li,
 .buttons .badge {
   float: left;
   margin-right: 1em;
-  position:relative;
 }
 
 aside:after {
@@ -761,7 +760,7 @@ aside:after {
 
 aside li  a,
 aside li  span,
-.buttons .badge span {
+.buttons .badge {
   width: 3.025em;
   height: 0em;
   border: 0.625em solid {{ page.content_hover_colour }};
@@ -775,19 +774,10 @@ aside li  span,
   -ms-transition: border-color 0.3s ease-out;
   -o-transition: border-color 0.3s ease-out;
   transition: border-color 0.3s ease-out;
-  -webkit-filter: grayscale(1);
-  filter:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter%20id%3D%22desaturate%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%3C/filter%3E%3C/svg%3E#desaturate);
+  position: relative;
 }
 
-
-.buttons .badge span:hover,
-aside li a:hover,
-aside li span:hover {
-  filter:none; 
-  -webkit-filter: grayscale(0)
-}
-
-.buttons .badge span {
+.buttons .badge {
   border-width: 2px;
   width: 2.5em;
   border-radius: 2.5em;
@@ -800,13 +790,13 @@ aside li span:hover {
   border-width: 0;
 } 
 
-aside li:hover {
+aside li a:hover {
   border-color: {{ page.content_bg_colour }};
   -webkit-transition: border-color 0.3s ease-out;
   -moz-transition: border-color 0.3s ease-out;
   -ms-transition: border-color 0.3s ease-out;
   -o-transition: border-color 0.3s ease-out;
-  transition: border-color 0.3s ease-out;;
+  transition: border-color 0.3s ease-out;
 }
 
 .ltIE9 aside li.github a {  background-position: -4px 4px; background-color: white;}
@@ -816,9 +806,10 @@ aside li.code-javascript span { background-position: -6px -246px; }
 aside li.code-html5 span { background-position: -2px -457px; }
 aside li.code-css span { background-position: -2px -546px; }
 
-.buttons .badge.github span {  background-position: 0px -359px; }
+.buttons .badge.github  {  background-position: 0px -359px; }
 
-aside li:after ,
+aside a:after ,
+aside span:after ,
 .buttons .badge:after {
   content: "";
   display: block;
@@ -832,28 +823,28 @@ aside li:after ,
   -ms-transition: opacity .25s ease-in-out;
   -o-transition: opacity .25s ease-in-out;
   position: absolute;
-  top: 0.625em;
-  left: 0.625em;
+  top: 0;
+  left: 0;
   border-radius: 50%;
-  pointer-events: none
 }
 
 
 .buttons .badge:after {
   width: 2.5em;
   height: 2.5em;
-  top: 2px;
-  left: 2px;
 }
 
 
-.ltIE9 aside li:after {
+.ltIE9 aside a:after ,
+.ltIE9 aside span:after ,
+.ltIE9 .buttons .badge:after {
   display: none;
   background-color: transparent;
 }
 
-.buttons .badge:hover:after,
-aside  li:hover:after  {
+aside  a:hover:after ,
+aside  span:hover:after ,
+.buttons .badge:hover:after {
   opacity: 0;
 }
 
