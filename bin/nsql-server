@@ -48,7 +48,7 @@ function finish (res, params) {
 
     // Error as JSONP
 
-    res.writeHead('401', {'Content-type':'application/script'});
+    res.writeHead('401', {'Content-type':'text/javascript'});
     res.end(callback + '({"error": "' + error + '"})');
 
   } else if (error) {
@@ -62,7 +62,7 @@ function finish (res, params) {
 
     // Results as JSONP
 
-    res.writeHead('200', {'Content-type':'application/script'});
+    res.writeHead('200', {'Content-type':'text/javascript'});
     res.end(callback + '(' + results + ')');
 
   } else {
