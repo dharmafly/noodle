@@ -43,7 +43,7 @@ Usage
 
 The server can accept scraping queries in a variety of ways:
 
-### JSONP
+### with JSONP
 
 As JSONP you can send a URI encoded blob of json for the `q=` querystring key.
 
@@ -65,9 +65,9 @@ jQuery.param(query);
 // eg. url=http%3A%2F%2Fchrisnewtn.com&selector=ul.social+li+a&extract%5B%5D=text&extract%5B%5D=href
 ```
 
-### POST
+### with POST
 
-You can also POST your query as simple `application/json` to the nsql server. 
+You can also POST your query as json (`application/json`) to the nsql server. 
 This is preferable if your request is too large or talking to nsql from another 
 server.
 
