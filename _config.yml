@@ -18,6 +18,8 @@ SCRIPTS:
 - src: https://raw.github.com/dharmafly/jquery.promises/master/image.js
 - src: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
 
+REFERENCE_LINK_TEXT: "Complete documentation can be found here:"
+
 # A quote to add at the footer of your project page
 QUOTE:
   quote: Ink is better than the best memory.
