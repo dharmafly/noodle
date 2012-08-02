@@ -237,3 +237,11 @@ Response:
     "created": "2012-08-01T16:26:39.734Z"
 }
 ```
+
+### Caching
+
+Caching is done on a singular query basis and not per request.
+
+Cache is cleared every hour as specified in `lib/cache.js`.
+
+A more sophisticated cache module is planned.
