@@ -747,15 +747,16 @@ button:active {
 
 aside li,
 .buttons .badge {
-    float: left;
-    margin-right: 1em;
+  float: left;
+  margin-right: 1em;
 }
 
 aside:after {
-    content: "";
-    display: block;
-    clear: both;
+  content: "";
+  display: block;
+  clear: both;
 }
+
 
 aside li  a,
 aside li  span,
@@ -773,7 +774,7 @@ aside li  span,
   -ms-transition: border-color 0.3s ease-out;
   -o-transition: border-color 0.3s ease-out;
   transition: border-color 0.3s ease-out;
-  position:relative;
+  position: relative;
 }
 
 .buttons .badge {
@@ -789,7 +790,7 @@ aside li  span,
   border-width: 0;
 } 
 
-aside li  a:hover {
+aside li a:hover {
   border-color: {{ page.content_bg_colour }};
   -webkit-transition: border-color 0.3s ease-out;
   -moz-transition: border-color 0.3s ease-out;
@@ -805,7 +806,7 @@ aside li.code-javascript span { background-position: -6px -246px; }
 aside li.code-html5 span { background-position: -2px -457px; }
 aside li.code-css span { background-position: -2px -546px; }
 
-.buttons .badge.github {  background-position: 0px -359px; }
+.buttons .badge.github  {  background-position: 0px -359px; }
 
 aside a:after ,
 aside span:after ,
@@ -816,22 +817,21 @@ aside span:after ,
   height: 3.0265em;
   background-color: {{ page.badge_overlay }};
   opacity: 0.5;
-   transition: opacity .25s ease-in-out;
-   -moz-transition: opacity .25s ease-in-out;
-   -webkit-transition: opacity .25s ease-in-out;
-   -ms-transition: opacity .25s ease-in-out;
-   -o-transition: opacity .25s ease-in-out;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+  -ms-transition: opacity .25s ease-in-out;
+  -o-transition: opacity .25s ease-in-out;
   position: absolute;
   top: 0;
   left: 0;
   border-radius: 50%;
 }
 
+
 .buttons .badge:after {
   width: 2.5em;
   height: 2.5em;
-  top: 0;
-  left: 0;
 }
 
 
