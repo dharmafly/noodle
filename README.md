@@ -13,9 +13,9 @@ Features
 --------------
 
 - Cross domain DOM querying
-- JSON and JSONP
+- JSONP and JSON POST
 - Multiple queries per request
-- Fast memory caching
+- In memory caching
 
 Getting started
 ---------------
@@ -39,8 +39,13 @@ You may specify a port number as a command line argument
 Usage
 -----
 
-The server accepts JSON commands or url encoded querystring parameters for JSONP
-requests.
+The server can accept scrape DOM Selection queries in a variety of ways:
+
+### JSONP
+
+As JSONP you can send a URI encoded blob of json for the `q=` querystring key.
+
+`http://dharmafly.nsql-example.com?q=<JSONBLOB>`
 
 ```JSON
 {
@@ -49,6 +54,20 @@ requests.
   "extract": "href"
 }
 ```
+
+If you are unable to stringify JSON you can still use the querystring to make 
+one query (but not multiple).
+
+```JavaScript
+jQuery.param(query);
+// eg. url=http%3A%2F%2Fchrisnewtn.com&selector=ul.social+li+a&extract%5B%5D=text&extract%5B%5D=href
+```
+
+### POST
+
+You can also POST your query as simple `application/json` to the nsql server.
+
+### Extracting data
 
 The `extract` property could be the HTML element's attribute.
 
