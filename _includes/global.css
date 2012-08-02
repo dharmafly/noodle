@@ -482,10 +482,8 @@ section.quote:after {
 }
 
 section.quote:after {
-  left: -moz-calc({{ page.quote_svg_left_pos }} - {{ page.quote_svg_right_pos }}px);
-  left: -ms-calc({{ page.quote_svg_left_pos }} - {{ page.quote_svg_right_pos }}px);
-  left: -webkit-calc({{ page.quote_svg_left_pos }} - {{ page.quote_svg_right_pos }}px);
-  left: calc({{ page.quote_svg_left_pos }} - {{ page.quote_svg_right_pos }}px);
+  left: auto;
+  right: {{ page.quote_svg_right_pos }};
   -webkit-transform: {{ page.quote_svg_right_transform }};
   -moz-transform: {{ page.quote_svg_right_transform }};
   -ms-transform: {{ page.quote_svg_right_transform }};
@@ -989,6 +987,11 @@ aside  span:hover:after ,
   }
   #navigation.show-subnav-button  li.show-subnav{
       display:block;
+  }
+  
+  section.quote:after {
+    left: auto;
+    right: -webkit-calc({{ page.quote_svg_right_pos }} + {{ page.quote_svg_right_mod }});
   }
 
 }
