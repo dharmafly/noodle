@@ -41,7 +41,7 @@ You may specify a port number as a command line argument
 Usage
 -----
 
-The server can accept scrape DOM Selection queries in a variety of ways:
+The server can accept scraping queries in a variety of ways:
 
 ### JSONP
 
