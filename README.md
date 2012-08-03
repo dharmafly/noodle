@@ -9,12 +9,38 @@ Contents
 - [What is Dharmafly Docs for?] (#what-is-dharmafly-docs-for)
 - [What does this project contain] (what-does-this-project-dharmafly-docs-contain)
 
-### How-to
+### [How-to] (#how-to-1)
 
 - [How Can I set up a new Dharmafly project website?] (#how-can-i-set-up-a-new-dharmafly-project-website)
 - [Adding Posts](#adding-posts)
 - [Updating an existing project] (#updating-an-existing-project)
 - [Changing the domain for your project's site](#changing-the-domain-for-your-projects-site)
+- [Required posts] (#required-posts)
+
+### [Site Variables] (#site-variables)
+
+- [Updating the main nav] (#updating-the-main-nav)
+- [Changing the language icon] (#changing-the-language-icon)
+- [Adding your project code to the page] (#adding-your-project-code-to-the-page)
+- [Adding a link to your twitter account] (#adding-a-link-to-your-twitter-account)
+- [Adding a download button] (#adding-a-download-button)
+- [Updating the Overview page reference text] (#updating-the-overview-page-reference-text)
+- [Adding a quote to your project] (#adding-a-quote-to-your-project)
+- [Including Google Analytics tracking] (#including-google-analytics-tracking)
+- [Changing the project colourscheme] (#changing-the-project-colourscheme)
+
+### [Formatting your posts] (#formatting-your-posts)
+
+- [Special sections] (#special-sections)
+- [Code Blocks in Posts] (#code-blocks-in-posts)
+
+### [The `dharmafly-docs` project] (#the-dharmafly-docs-project)
+
+- [How can I get bugfixes and enhancements for my `dharmafly-docs` project instance] (#how-can-i-get-bugfixes-and-enhancements-for-my-dharmafly-docs-project-instance)
+- [How can I update the styling or format of all Dharmafly project websites?] (#how-can-i-update-the-styling-or-format-of-all-dharmafly-project-websites)
+- [How Can I add a new page (not a new post) to a Dharmafly project] (#how-can-i-add-a-new-page-not-a-new-post-to-a-dharmafly-project)
+- [Is there a process for automatically generating new project websites from project documentation?] (#is-there-a-process-for-automatically-generating-new-project-websites-from-project-documentation)
+- [How do I add a new icon for the coding language my project's about?] (#how-do-i-add-a-new-icon-for-the-coding-language-my-projects-about-)
 
 
 What is Dharmafly Docs for?
@@ -47,7 +73,7 @@ How-to
 How Can I set up a new Dharmafly project website?
 ----------------------------
 
-It's recommended (and far easier) that you use the project's build script, `Rakefile` to build and update your project website.
+It's recommended that you use the project's build script, `Rakefile` to build and update your project website(and far easier).
 
 ### Using the build script
 
@@ -80,31 +106,15 @@ If you're [using the Rakefile] (#using-the-build-script), run `rake server` and 
 
 If not, [install jekyll] (https://github.com/mojombo/jekyll/wiki/Install) and [run the server locally] (https://github.com/mojombo/jekyll/wiki/usage).
 
-Updating an existing project
------------------------------
-
-If a project has a website hosted on github pages it will have a gh-pages branch.
-
-The project website will either be hosted at dharmafly.github.com/project-name/ or at a custom domain.
-
-If you are using the [Rakefile] (#using-the-build-script), follow the same steps for [setting up a new project] (#2-run-the-build-script).
-
-If not, you can set up your new [project documentation manually] (https://github.com/dharmafly/dharmafly-docs/wiki/Manually-adding-posts)
-
-Changing the domain for your project's site
----------------------------------------------
-
-All Github Pages sites are hosted at < your username >.github.com/< your project name > by default.
-
-If you'd like a custom domain name for your project's site,
-1. Create a file called `CNAME` containing only the custom domain name.
-2. Add it to your project's `gh-pages` branch root folder.
-
-More details on updating DNS settings, etc on [Github Pages documentation] (https://help.github.com/articles/setting-up-a-custom-domain-with-pages)
-
-
 Adding Posts
 --------------
+
+Ensure that your documentation is stored in markdown files within your working branch.
+
+1. In a `docs` directory.
+2. With filenames in the form: `1. Example title.md`, `2. Another doc.md` etc.
+
+This will enable you to [build your project website with the build script] (#2-run-the-build-script)
 
 ### Required post formatting
 
@@ -147,6 +157,28 @@ The remaining posts with `category: about` will appear in the main nav and on th
 `category: reference` posts will appear in the *Reference* sub-page.
 
 (INFO: These are examples of [YAML Front Matter] (https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) )
+
+Updating an existing project
+-----------------------------
+
+If a project has a website hosted on github pages it will have a gh-pages branch.
+
+The project website will either be hosted at dharmafly.github.com/project-name/ or at a custom domain.
+
+If you are using the [Rakefile] (#using-the-build-script), follow the same steps for [setting up a new project] (#2-run-the-build-script).
+
+If not, you can set up your new [project documentation manually] (https://github.com/dharmafly/dharmafly-docs/wiki/Manually-adding-posts)
+
+Changing the domain for your project's site
+---------------------------------------------
+
+All Github Pages sites are hosted at < your username >.github.com/< your project name > by default.
+
+If you'd like a custom domain name for your project's site,
+1. Create a file called `CNAME` containing only the custom domain name.
+2. Add it to your project's `gh-pages` branch root folder.
+
+More details on updating DNS settings, etc on [Github Pages documentation] (https://help.github.com/articles/setting-up-a-custom-domain-with-pages)
 
 Required posts
 ----------------
@@ -273,10 +305,10 @@ Add your Google Analytics web property ID (in the form 'UA-XXXXX-X') within `_co
     GA_ID: UA-XXXXX-X
 
 
-Changing the project colourscheme and style
+Changing the project colourscheme
 -------------------------------------------
 
-Currently, only the default theme is available. Once alternate themes are implemented, you can chnage theme by updating the `THEME` variable.
+In the `_config.yml`, update the `THEME` variable. There are two available colourscheme options, `forest`, or `ocean`.
 
 Formatting your posts
 ====================
