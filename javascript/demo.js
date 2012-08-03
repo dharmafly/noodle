@@ -1,7 +1,7 @@
 /*globals ace jQuery*/
 /*jshint indent:4*/
 
-function createAceEditor(dom) {
+function createAceEditor(dom, readOnly) {
     var elem = jQuery(dom), editor, session, JavaScriptMode;
 
     // Not sure why this has to be set on the DOM element.
@@ -19,7 +19,9 @@ function createAceEditor(dom) {
     session.setTabSize(2);
     session.setUseSoftTabs(true);
     session.setMode(new JavaScriptMode());
-
+    
+    
+    
     // Adjusts the size of the editable area when new lines are entered. This
     // function is invoked once then returned to be used as the callback.
     session.on('change', (function onChange(event) {
@@ -33,8 +35,13 @@ function createAceEditor(dom) {
 
         return onChange;
     })());
-
-    editor.selection.moveCursorFileEnd();
+    
+    if(readOnly){
+      editor.setReadOnly(true);
+    } else {
+      editor.selection.moveCursorFileEnd();
+    }
+    
     elem.data("editor", editor);
 
     return editor;
@@ -48,6 +55,7 @@ jQuery('pre').each(function () {
 
     var code = jQuery(this).find('code'),
         editor = code.text(),
+        readOnly = false,
         id, output, button;
 
     // Check code block for runnable keywords and setup output box
@@ -67,15 +75,25 @@ jQuery('pre').each(function () {
       jQuery(this).append(button[0]);
       
     }else{
-    
+      readOnly = true;
+      
+      if(!GLOBAL.noEditor){
+        createAceEditor(code[0], readOnly);
+      }
+      
       jQuery(this).removeClass("hasEditor");
-      // load hijs for syntax highlighting
-      var script = document.createElement("script");
-      script.src = GLOBAL.relative_path + "javascript/hijs.js";
-      document.body.appendChild(script);
       
     }
 });
+
+if(index === 0){ // no ace editors on the page
+  if(!GLOBAL.noEditor){ 
+  // load hijs for syntax highlighting
+  var script = document.createElement("script");
+  script.src = GLOBAL.relative_path + "javascript/hijs.js";
+  document.body.appendChild(script);
+  }
+}
 
 // Attach handlers to "Run" buttons
 jQuery('button.eval')
