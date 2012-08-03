@@ -11,9 +11,11 @@ Contents
 
 ### How-to
 
-- [Updating an existing project] (#updating-an-existing-project)
 - [How Can I set up a new Dharmafly project website?] (#how-can-i-set-up-a-new-dharmafly-project-website)
-- 
+- [Adding Posts](#adding-posts)
+- [Updating an existing project] (#updating-an-existing-project)
+- [Changing the domain for your project's site](#changing-the-domain-for-your-projects-site)
+
 
 What is Dharmafly Docs for?
 -----------------------------
