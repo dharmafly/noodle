@@ -17,7 +17,7 @@ LANG: javascript
 SCRIPTS:
 - src: 
 
-REFERENCE_LINK_TEXT: "Complete documentation can be found here:"
+REFERENCE_LINK_TEXT: "For usage details visit:"
 
 # A quote to add at the footer of your project page
 QUOTE:
@@ -37,7 +37,7 @@ sections:
  - path:
    name: Overview
  - path: reference
-   name: Reference
+   name: Usage
 
 ###############################
 
