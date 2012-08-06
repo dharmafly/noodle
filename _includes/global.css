@@ -803,14 +803,6 @@ aside li span:hover {
   border-width: 0;
 } 
 
-aside li:hover {
-  border-color: {{ page.content_bg_colour }};
-  -webkit-transition: border-color 0.3s ease-out;
-  -moz-transition: border-color 0.3s ease-out;
-  -ms-transition: border-color 0.3s ease-out;
-  -o-transition: border-color 0.3s ease-out;
-  transition: border-color 0.3s ease-out;;
-}
 
 .ltIE9 aside li.github a {  background-position: -4px 4px; background-color: white;}
 aside li.github a {  background-position: -5px 0; }
