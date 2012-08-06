@@ -33,6 +33,8 @@ The alternatives, allowing caching of the SVG file are adding to the page using 
 
 Given the graphical elements within our designs were not interactive and were purely decorative, we chose to add them using CSS `background-image`. This way the SVG file would be cached, and could be manipulated visually (as a whole) using CSS rules. The SVG element would be semantically separate from the page in a way that the direct, `object` and `img` techniques would not.
 
+Mainly, the chief advantage in our case was that multiple instances of the same asset can be loaded once, reused, coloured and transformed and scaled to create very many decorative elements.
+
 Adding less complex decorative elements
 ----------------------------------
 
@@ -100,29 +102,47 @@ This means that creating differing coloured graphical elements is possible with 
 
 Given our need to have escaped data URIs this would give us something like 
 
-    background: url('data:image/svg+xml;utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Ccircle%20fill%3D%22{{ page.badge_overlay }}%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20cx%3D%2222%22%20cy%3D%2222%22%20r%3D%2221%22/%3E%3C/svg%3E') no-repeat left top;
+    background-image: url('data:image/svg+xml,%3Csvg%20width%3D%22403%22%20height%3D%228%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cline%20stroke%3D%22%23{{ page.subnav_underline }}%22%20stroke-width%3D%222%22%20x1%3D%224%22%20y1%3D%224%22%20x2%3D%22400%22%20y2%3D%224%22%20/%3E%3Ccircle%20fill%3D%22%23{{ page.subnav_underline }}%22%20cx%3D%224%22%20cy%3D%224%22%20r%3D%224%22%20/%3E%3C/svg%3E');
+    
+where the colours are populated as `page.subnav_underline`.
 
-SVG grayscale filter
+SVG grayscale filter and overlay
+-------------------------------
 
-SVG overlay
+The last SVG technique used is a pair that replicate what might formerly have been done in Photoshop and exported as an image. The instructions are shown in this screenshot ***insert image*** and are replicated in SVG.
 
-Benefits
+Firstly the an SVG filter is created to set the background image greyscale,
+    filter:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter%20id%3D%22desaturate%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%3C/filter%3E%3C/svg%3E#desaturate);
+
+unescaped:
+
+    <svg xmlns="http://www.w3.org/2000/svg"><filter id="desaturate"><feColorMatrix type="saturate" values="0"/></filter></svg>
+ 
+This technique can be be completed natively in webkit
+
+    -webkit-filter: grayscale(1);
+
+then the semi-transparent colour overlay is applied as an SVG circle, with `rgba` background and a solid stroke.
+
+Full [demo here] (http://jsfiddle.net/daneastwell/wVmc4/5/).
+
+The original asset required from the graphics editing program is this single sprite file ***insert image*** and can be viewed on these example project web sites: [jQuery.promises] (http://jquerypromises.com/) and [Pablo] (http://dharmafly.github.com/pablo).
+
+Benefits of using SVG for graphic Elements in web pages
 ---------
 
-colour changes
-scaling
-editable
-generally smaller file size, especially when scaled up large
-data uris benefits
-no http requests
-Simpler/fewer graphics required from photoshop - illustrate the process, then recreate in the browser (show unmanipulated icon sprite)
+ - colour changes - it's far simpler to change a colour than creating multiple images 
+ - scaling - an SVG file scaled up is the same file size
+ - editable - icons and simple elements can be edited within a text editor, rather than a graphics package
+ - generally smaller file size, especially when scaled up large - an SVG file will generally have a much smaller file size than an uncompressed PNG, especially if it is a simple design scaled very large.
+ - using data URIs for serving SVG no http requests
 
 Limitations
 -------------
 
-adding svg elements from file to page and updating  - http request, updating is complex
+ - if you are adding SVG elements from a file to the page an http request has to be made. If the images are complex the file size may be larger and be more processor intensive to render than the equivalent as an image.
 
 Alternatives to SVG 
 --------------------
 
-icon font - useful for many scaleable colourable icons, very hard to create custom font
+Font icons are useful for many scaleable colourable icons, such as those created in [Symbolset] (http://symbolset.com/) and those used in [github] (https://github.com/blog/1106-say-hello-to-octicons). The drawback would be that it is very hard to create custom font.
