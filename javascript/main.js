@@ -1,4 +1,3 @@
-
 /***********************************************
 
         Main page controller
@@ -27,7 +26,8 @@ if (document.querySelectorAll && document.body.classList) {
         halfContentWidth = content.clientWidth / 2,
         subnavMargin = 29,
         subnavOffset = null, 
-        height, timer, throttle, subnavOffset, openSubnavOffset, subnavTopOffset;
+        height, timer, subnavOffset, openSubnavOffset, subnavTopOffset;
+    
     
     // Conditionally load scripts based on device width
     var narrowScreen = GLOBAL.narrowScreen, 
@@ -72,7 +72,9 @@ if (document.querySelectorAll && document.body.classList) {
     // Get subnav top offset
     
     subnavTopOffset = (height + subnav.offsetTop) + "px";
-
+    
+    onScroll(); // set the state of the page initial.
+    
     // Animate a scroll to the provided offset.
     function scrollTo(offset) {
     
@@ -105,20 +107,24 @@ if (document.querySelectorAll && document.body.classList) {
         }
       })();
     }
+    
+    function throttle(fn, delay) {
+      var timer = null;
+      return function () {
+        var context = this, args = arguments;
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+          fn.apply(context, args);
+        }, delay);
+      };
+    }
 
     // Show/Hide the navigation on scroll.
-    window.addEventListener('scroll', (function onScroll() {
+    window.addEventListener('scroll', throttle(onScroll, 1), false);
+    
+    
+    function onScroll() {
       
-      
-      if (throttle) {
-        return;
-      }
-
-      throttle = setTimeout(function () {
-        throttle = null;
-      }, 1000 / 60);
-      
-
       var isHidden = window.pageYOffset < offset;
       
       cloned[isHidden ? 'setAttribute' : 'removeAttribute']('hidden', '');
@@ -133,7 +139,7 @@ if (document.querySelectorAll && document.body.classList) {
       resetSubnav("scroll");
   
       return onScroll;
-    })(), false);
+    }
     
     //  Move the navigation on resize to keep it's position relative to the browser port.
     window.addEventListener('resize', function(e){resetSubnav("resize")});
