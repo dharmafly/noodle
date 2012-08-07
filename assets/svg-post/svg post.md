@@ -109,7 +109,7 @@ where the colours are populated as `page.subnav_underline`.
 SVG grayscale filter and overlay
 -------------------------------
 
-The last SVG technique used is a pair that replicate what might formerly have been done in Photoshop and exported as an image. The instructions are shown in this screenshot ***insert image*** and are replicated in SVG.
+The last SVG technique used is a pair that replicate what might formerly have been done in Photoshop and exported as an image. The instructions are shown in this screenshot ![Steps to reproduce image style from Photoshop](/images/ColourOpacity.png) and are replicated in SVG.
 
 Firstly the an SVG filter is created to set the background image greyscale,
     filter:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter%20id%3D%22desaturate%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%3C/filter%3E%3C/svg%3E#desaturate);
