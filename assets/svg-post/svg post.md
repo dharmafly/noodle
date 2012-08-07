@@ -1,6 +1,6 @@
 In its many projects, Dharmafly creates many useful and reusable code modules. These often get released as open source projects with accompanying documentation and websites.
 
-In order to give these a common feel and to update many of the smaller projects, I was tasked with creating a reusable template set for easily creating new project websites based on site documentation. You can see a couple of example Dharmafly projects sites for [jQuery.promises] (http://jquerypromises.com/) and [Pablo] (http://dharmafly.github.com/pablo). ![Jquery promises] (images/jqpromises-header-small.png)
+In order to give these a common feel and to update many of the smaller projects, I was tasked with creating a reusable template set for easily creating new project websites based on site documentation. You can see a couple of example Dharmafly projects sites for [jQuery.promises](http://jquerypromises.com/) and [Pablo](http://dharmafly.github.com/pablo). ![Jquery promises] (images/jqpromises-header-small.png)
 
 Given the designs for the site included flat-colour, line-based graphic elements that varied according to a colour theme, it made sense to attempt to apply these with SVG.
 
@@ -27,7 +27,7 @@ Adding elements to the page
 
 Having considered SVG as a choice for colour-themed line-based graphics, we now had to decide how to apply these to the page.
 
-[SVG can be added directly] (http://msdn.microsoft.com/en-us/library/gg589526(v=vs.85).aspx#inlineHTML5) to a page using HTML5, however with the same element used multiple times and at multiple sizes and rotation, ![Variations on the SVG element] (images/nodewing-variations.png) a method would need to be used that would allow these changes using a single, cacheable asset.
+[SVG can be added directly](http://msdn.microsoft.com/en-us/library/gg589526\(v=vs.85\).aspx#inlineHTML5) to a page using HTML5, however with the same element used multiple times and at multiple sizes and rotation, ![Variations on the SVG element] (images/nodewing-variations.png) a method would need to be used that would allow these changes using a single, cacheable asset.
 
 The alternative implementations would be adding to the page using `object` and `img` elements, which allow caching of the SVG file. `object` allows you to specify fallbacks if SVG is not supported. An `img` element would have the same caching advantage, but [prevents links within the SVG working] (http://www.sitepoint.com/add-svg-to-web-page/) (an `img` element would be lighter). In both cases, the SVG DOM nodes are not part of the `document`, but the `object` and `img` elements would be.
 
@@ -40,7 +40,7 @@ Adding less complex decorative elements
 
 The main page image is complex enough to merit its own external file, with the caching benefits this implies. Less complex elements would not merit an external file (for example the underlines, comprising a line and a disc) and there would be an advantage in specifying them so an HTTP request would not be required.
 
-The immediate thought is a [data URI] (https://developer.mozilla.org/en-US/docs/data_URIs), most commonly used with simple PNG images. Would it be possible to place an SVG element within a CSS `background-image` `url` value?
+The immediate thought is a [data URI](https://developer.mozilla.org/en-US/docs/data_URIs), most commonly used with simple PNG images. Would it be possible to place an SVG element within a CSS `background-image` `url` value?
 
 Chrome supports unencoded data URIs as `url`s for `background-image` CSS properties as follows
 
@@ -57,7 +57,7 @@ Escaped URIs can be unescaped easily in the browser console, but unlike base64 d
 Manipulating `background-image` SVG elements
 --------------------------
  
-The SVG background images (either as files or data URIs) were not only set as background images to elements (as with the main header), but set on the page in [generated content pseudo-elements] (http://nicolasgallagher.com/multiple-backgrounds-and-borders-with-css2/). [Example of generated content elements here] (http://jsfiddle.net/daneastwell/4zk5U/3/).
+The SVG background images (either as files or data URIs) were not only set as background images to elements (as with the main header), but set on the page in [generated content pseudo-elements](http://nicolasgallagher.com/multiple-backgrounds-and-borders-with-css2/). [Example of generated content elements here](http://jsfiddle.net/daneastwell/4zk5U/3/).
 
 This was to avoid any clash with existing background images and to give the decorative elements their own containers.
   
@@ -81,7 +81,7 @@ Changes the background image from a standard darker colour to a more saturated c
 
 ### Flipping
 
-  transform: scaleX(-1); 
+    transform: scaleX(-1); 
   
 ![The graphic reflected] (images/reflect.png)
   
@@ -95,7 +95,7 @@ Colour changes with Jekyll/Liquid themes
 
 The key benefit of using SVG background images within our site CSS was to allow colour changes with a site theme. 
 
-The sites are using [Jekyll] (https://github.com/mojombo/jekyll/)/[Liquid] (http://liquidmarkup.org/) to create project websites. The site uses Jekyll to declare colour variables in a theme file that are then added to any site's CSS as Liquid tags. 
+The sites are using [Jekyll](https://github.com/mojombo/jekyll/)/[Liquid](http://liquidmarkup.org/) to create project websites. The site uses Jekyll to declare colour variables in a theme file that are then added to any site's CSS as Liquid tags. 
 
 For example in the theme file you have `link_colour: "#2f4430"`, which is evaluated in the main CSS file via the template tag:   
   
@@ -118,6 +118,7 @@ SVG grayscale filter and overlay
 The last SVG technique used is a pair that replicate what might formerly have been done in Photoshop and exported as an image. The instructions are shown in this screenshot ![Steps to reproduce image style from Photoshop](/images/ColourOpacity.png) and are replicated in SVG.
 
 Firstly an SVG filter is created to set the background image greyscale,
+
     filter:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter%20id%3D%22desaturate%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%3C/filter%3E%3C/svg%3E#desaturate);
 
 unescaped:
@@ -130,9 +131,9 @@ This technique can be be completed natively in webkit
 
 then the semi-transparent colour overlay is applied as an SVG circle, with `rgba` background and a solid stroke.
 
-Full [demo here] (http://jsfiddle.net/daneastwell/wVmc4/5/).
+Full [demo here](http://jsfiddle.net/daneastwell/wVmc4/5/).
 
-The original asset required from the graphics editing program is this single sprite file ![The icon sprite image] (images/icon-sprite.png) and can be viewed on these example project web sites: [jQuery.promises] (http://jquerypromises.com/) and [Pablo] (http://dharmafly.github.com/pablo).
+The original asset required from the graphics editing program is this single sprite file ![The icon sprite image] (images/icon-sprite.png) and can be viewed on these example project web sites: [jQuery.promises](http://jquerypromises.com/) and [Pablo](http://dharmafly.github.com/pablo).
 
 Benefits of using SVG for graphic Elements in web pages
 ---------
@@ -151,4 +152,4 @@ Limitations
 Alternatives to SVG 
 --------------------
 
-Font icons are useful for many scaleable colourable icons, such as those created in [Symbolset] (http://symbolset.com/) and those used in [github] (https://github.com/blog/1106-say-hello-to-octicons). The drawback is that unless you are using standard images, it is not trivial to create custom fonts.
+Font icons are useful for many scaleable colourable icons, such as those created in [Symbolset](http://symbolset.com/) and [icons used in github](https://github.com/blog/1106-say-hello-to-octicons). The drawback is that unless you are using standard images, it is not trivial to create custom fonts.
