@@ -1,6 +1,6 @@
 In its many projects, Dharmafly creates many useful and reusable code modules. These often get released as open source projects with accompanying documentation and websites.
 
-In order to give these a common feel and to update many of the smaller projects, I was tasked with creating a reusable template set for easily creating new project websites based on site documentation. You can see a couple of example Dharmafly projects sites for [jQuery.promises] (http://jquerypromises.com/) and [Pablo] (http://dharmafly.github.com/pablo).
+In order to give these a common feel and to update many of the smaller projects, I was tasked with creating a reusable template set for easily creating new project websites based on site documentation. You can see a couple of example Dharmafly projects sites for [jQuery.promises] (http://jquerypromises.com/) and [Pablo] (http://dharmafly.github.com/pablo). ![Jquery promises] (images/jqpromises-header-small.png)
 
 Given the designs for the site included flat-colour, line-based graphic elements that varied according to a colour theme, it made sense to attempt to apply these with SVG.
 
@@ -16,24 +16,24 @@ To add these graphics to the page, we used a variety of techniques that make use
 Beyond Photoshop
 ----------------
 
-Many techniques formally available only to image editing programmes (blur, greyscale) are now available within the browser, using SVG. This means that instead of cutting flat, uneditable graphics and using these in a web page, developers can now read the designer's *intention* from the photoshop file and apply this in the browser.
+Many techniques formally available only to image editing programmes (blur, greyscale) are now available within the browser, using SVG. This means that instead of cutting flat, uneditable graphics and using these in a web page, developers can now read the designer's *intention* from the Photoshop file and apply this in the browser.
 
-So, instead of using a desaturated image with a semi-transparent overlay, we now have the original asset, desaturated in the browser and given a semitransparent overlay. 
+So, instead of using a desaturated image with a semi-transparent overlay, we now have the original asset, desaturated in the browser and given a semi-transparent overlay. 
 
-The advantage is that many aspects of the original image, such as colour, transparency level, can be changed in many versions of the sites without creating new assets. 
+The advantage is that many aspects of the original image, such as colour, transparency level, can be changed in many versions of the site without creating new assets. 
 
 Adding elements to the page
 ----------------------------
 
-Having considered SVG as a choice for colour-themed line-based graphics, the next decision would be how to apply these to the page.
+Having considered SVG as a choice for colour-themed line-based graphics, we now had to decide how to apply these to the page.
 
-[SVG can be added directly] (http://msdn.microsoft.com/en-us/library/gg589526(v=vs.85).aspx#inlineHTML5) to a page using HTML5, however with the same element used multiple times and at multiple sizes and rotation, %%%insert graphic%%% a method would need to be used that would allow these changes using a single, cacheable asset.
+[SVG can be added directly] (http://msdn.microsoft.com/en-us/library/gg589526(v=vs.85).aspx#inlineHTML5) to a page using HTML5, however with the same element used multiple times and at multiple sizes and rotation, ![Variations on the SVG element] (images/nodewing-variations.png) a method would need to be used that would allow these changes using a single, cacheable asset.
 
-The alternatives, allowing caching of the SVG file are adding to the page using `object` and `img` elements. `object` allows you to specify fallbacks if SVG is not supported. An `img` element would have the same caching advantage, but [prevents links within the SVG working] (http://www.sitepoint.com/add-svg-to-web-page/) (an `img` element would be lighter). In both cases, the SVG DOM nodes are not part of the `document`, but a non-semantic 'wrapper' element would be.
+The alternative implementations would be adding to the page using `object` and `img` elements, which allow caching of the SVG file. `object` allows you to specify fallbacks if SVG is not supported. An `img` element would have the same caching advantage, but [prevents links within the SVG working] (http://www.sitepoint.com/add-svg-to-web-page/) (an `img` element would be lighter). In both cases, the SVG DOM nodes are not part of the `document`, but the `object` and `img` elements would be.
 
 Given the graphical elements within our designs were not interactive and were purely decorative, we chose to add them using CSS `background-image`. This way the SVG file would be cached, and could be manipulated visually (as a whole) using CSS rules. The SVG element would be semantically separate from the page in a way that the direct, `object` and `img` techniques would not.
 
-Mainly, the chief advantage in our case was that multiple instances of the same asset can be loaded once, reused, coloured and transformed and scaled to create very many decorative elements.
+The chief advantage in our case was that multiple instances of the same asset can be loaded once, reused, coloured and transformed and scaled to create very many decorative elements.
 
 Adding less complex decorative elements
 ----------------------------------
@@ -52,7 +52,7 @@ As shown in this article, [SVG data URIs can be escaped] (http://stackoverflow.c
 
     'data:image/svg+xml;%3Csvg%20width%3D%2233%22%20height%3D%2234%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cline%20y2%3D%2231.5%22%20x2%3D%2230.5%22%20y1%3D%222.5%22%20x1%3D%222.5%22%20stroke-width%3D%225%22%20stroke%3D%22%23000000%22%20fill%3D%22none%22/%3E%3C/svg%3E'
 
-Escaped URIs can be unescaped easily in the browser console, but unlike base64 don't need unescaping in order to be edited.
+Escaped URIs can be unescaped easily in the browser console, but unlike base64 don't require unescaping in order to be edited.
 
 Manipulating `background-image` SVG elements
 --------------------------
@@ -61,23 +61,29 @@ The SVG background images (either as files or data URIs) were not only set as ba
 
 This was to avoid any clash with existing background images and to give the decorative elements their own containers.
   
-Once added to the page the background images could be transformed and scaled using CSS3 (proprietory declarations not shown):
+Once added to the page the background images could be transformed and scaled using CSS3 (proprietary declarations not shown):
 
 ### Rotate
 
-    transform: rotate(270deg); ***insert image***
+    transform: rotate(270deg);
+    
+![The graphic rotated] (images/rotate.png)
 
-The image is rotated from its standard orientation
+The image is rotated from its standard orientation (with opacity at 50% applied).
 
 ### Saturate
 
-    -webkit-filter: saturate(4.8) ***insert image***
+    -webkit-filter: saturate(4.8) 
+    
+![The graphic with saturated colour] (images/saturate.png)
 
 Changes the background image from a standard darker colour to a more saturated colour (this is more useful on an imported SVG where the colours could not be changed in the CSS file). This technique is currently webkit only, though can be achieved with an SVG filter - see below for this technique.
 
 ### Flipping
 
-  transform: scaleX(-1); ***insert image***
+  transform: scaleX(-1); 
+  
+![The graphic reflected] (images/reflect.png)
   
 There are two generated content elements here (`:before` and `:after`). The second is flipped on the x-axis creating a reflection. Both use the same original file as the header.
   
@@ -111,7 +117,7 @@ SVG grayscale filter and overlay
 
 The last SVG technique used is a pair that replicate what might formerly have been done in Photoshop and exported as an image. The instructions are shown in this screenshot ![Steps to reproduce image style from Photoshop](/images/ColourOpacity.png) and are replicated in SVG.
 
-Firstly the an SVG filter is created to set the background image greyscale,
+Firstly an SVG filter is created to set the background image greyscale,
     filter:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter%20id%3D%22desaturate%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%3C/filter%3E%3C/svg%3E#desaturate);
 
 unescaped:
@@ -126,7 +132,7 @@ then the semi-transparent colour overlay is applied as an SVG circle, with `rgba
 
 Full [demo here] (http://jsfiddle.net/daneastwell/wVmc4/5/).
 
-The original asset required from the graphics editing program is this single sprite file ***insert image*** and can be viewed on these example project web sites: [jQuery.promises] (http://jquerypromises.com/) and [Pablo] (http://dharmafly.github.com/pablo).
+The original asset required from the graphics editing program is this single sprite file ![The icon sprite image] (images/icon-sprite.png) and can be viewed on these example project web sites: [jQuery.promises] (http://jquerypromises.com/) and [Pablo] (http://dharmafly.github.com/pablo).
 
 Benefits of using SVG for graphic Elements in web pages
 ---------
@@ -135,14 +141,14 @@ Benefits of using SVG for graphic Elements in web pages
  - scaling - an SVG file scaled up is the same file size
  - editable - icons and simple elements can be edited within a text editor, rather than a graphics package
  - generally smaller file size, especially when scaled up large - an SVG file will generally have a much smaller file size than an uncompressed PNG, especially if it is a simple design scaled very large.
- - using data URIs for serving SVG no http requests
+ - using data URIs for serving SVG no HTTP requests
 
 Limitations
 -------------
 
- - if you are adding SVG elements from a file to the page an http request has to be made. If the images are complex the file size may be larger and be more processor intensive to render than the equivalent as an image.
+ - if you are adding SVG elements from a file to the page an HTTP request has to be made. If the images are complex the file size may be larger and be more processor intensive to render than the equivalent as an image.
 
 Alternatives to SVG 
 --------------------
 
-Font icons are useful for many scaleable colourable icons, such as those created in [Symbolset] (http://symbolset.com/) and those used in [github] (https://github.com/blog/1106-say-hello-to-octicons). The drawback would be that it is very hard to create custom font.
+Font icons are useful for many scaleable colourable icons, such as those created in [Symbolset] (http://symbolset.com/) and those used in [github] (https://github.com/blog/1106-say-hello-to-octicons). The drawback is that unless you are using standard images, it is not trivial to create custom fonts.
