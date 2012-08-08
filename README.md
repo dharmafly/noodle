@@ -64,11 +64,11 @@ Within `index.html`, when constructing the site, Jekyll will iterate over the ca
 
 Each Jekyll parseable page has a [YAML front matter](https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) section.
     
-Each post within `_posts` requires a `category` property to be specified (currently only `reference` and `about` are used). 
+Each post within `_posts` requires a `category` property to be specified (currently only `reference` and `overview` are used). 
 
 We use this category value as a way of choosing which posts will be displayed on which page - this is done using the loop:
 
-    {% for post in about reversed %} (where post is an alias for site.categories.about)
+    {% for post in overview reversed %} (where post is an alias for site.categories.overview)
 
 Adding new pages
 -------------------
@@ -103,21 +103,55 @@ The SVG asset could be a new SVG file, or one of the existing SVG elements could
 
 The theme file comprises a YAML front matter section and a line including the `global.css` file.
 
+#### Non-colour updates to themes
+
+- `badge_overlay` and `badge_border` are url encoded (this can be achieved by using javascript `escape()`) in order to be placed within [SVG elements](#svg-how-and-where-it-s-used). `badge-overlay` is `rgba`.
+- `svg_asset` specifies the main SVG element used on the page. It will refer to your main SVG file within `/css/svg`.
+- `svg_title_filter` and `svg_title_rotation` allow you to apply a filter and rotation to the `svg_asset` within the main title area.
+- The size and rotation of the main SVG element as applied to the bottom left of the content area can be updated using `svg_asset_size` and `svg_asset_rotation`.
+- There are two scaled versions of the main SVG element above the `QUOTE` (as specified in `_config.yml`), if present. 
+
+    quote_svg_left_transform: none
+    quote_svg_right_transform: scaleX(-1)
+    quote_svg_left_pos: "50%"
+    quote_svg_right_pos: "49%"
+    
+These attributes allow you to position these two elements on the page. The quote_svg_right_transform and quote_svg_left_transform allow you to flip or rotate these SVG elements.
+
 Blocks of code in posts
 --------------------------
 
+Blocks of code can be added to posts using code block syntax within markdown posts. These are transformed to `<pre><code>` blocks by Jekyll. 
+
+The code block syntax highlighting and editing depends on the browser and the screenwidth. The initial checks are made by `/javascript/main.js` and for lower IE browsers and smaller screen widths, `hijs.js` is loaded for syntax highlighting. In other cases ACE editor is loaded for syntax highlighting and code editing if required.
+
+In both cases `/javascript/demo.js` is loaded to handle code execution, if required.
+
 ### Code highlighting themes
 
-### Allowing users to edit code inline
+There are two themes used by Dharmafly Docs.  
+
+The first is used by `hijs.js` for small screens and lower IE versions. The colouring is controlled within the main CSS file, `/_includes/global.css`.
+
+The second colour theme is used by ACE editor, and is set within `demo.js` using ace's `setTheme` method. The themes are stored in `/javascript/ace/theme/`.
+
+### Allowing users to edit and run code inline
+
+If narrow screen or IE, hijs is loaded for syntax highlighting, ace editor is not created and the code execution is performed on the code as added to the post.
+
+In other cases, if there's an `alert` or `$output` string in the code, an ace editor is created, that can be edited and the code executed. If there isn't a read only ace editor is created. Syntax highlighting is performed by ace.
 
 Responsive design
 -------------------------------------
 
 ### Breakpoints
 
-### Scrolling
+The CSS is structured smallest width first. 
 
-### Resizing
+- 340px small breakpoint to fix the content left.
+- 35em adds the larger header
+- 52em adds the icons on right hand side (moves the `aside` element), adds the subnav
+
 
 ### The subnav
 
@@ -127,9 +161,15 @@ If the user clicks on the show subnav icon, then the subnav is set `off-left sho
 
 The animation is done by css transforms set on certain properties of those classes.
 
-Scrolling nav
----------------
+### Scrolling
+
+The navigation (at all widths) is set below the page heading (project title). On scroll, if the scroll position is greater than the navigation height, then the navigation is set to 'float' over the content (i.e. `position: fixed`).
+
+Additionally, the subnav needs to be set to float over the content, so the `resetSubnav` function is called from within `onScroll`. `resetSubnav` will set or get an offset value for the subnav, then set the view state for the subnav.
+
+The `onScroll` function is executed on a throttled interval based on the firing of scroll events.
 
 SVG - how and where it's used
 -----------------------------
 
+Details in [this post](https://github.com/dharmafly/dharmafly-docs/blob/gh-pages/assets/svg-post/svg%20post.md).

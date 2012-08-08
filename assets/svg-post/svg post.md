@@ -48,7 +48,7 @@ Chrome supports unencoded data URIs as `url`s for `background-image` CSS propert
     
 Unencoded data URIs are not supported by Firefox, so initially we encoded using base64. This is not human-readable, of course, which was one of the reasons for choosing SVG to allow easy updating. 
 
-As shown in this article, [SVG data URIs can be escaped] (http://stackoverflow.com/questions/11703541/using-a-data-encoded-svg-as-a-css-filter) providing a (partially) readable version of the SVG. 
+As shown in this article, [SVG data URIs can be escaped](http://stackoverflow.com/questions/11703541/using-a-data-encoded-svg-as-a-css-filter) providing a (partially) readable version of the SVG. 
 
     'data:image/svg+xml;%3Csvg%20width%3D%2233%22%20height%3D%2234%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cline%20y2%3D%2231.5%22%20x2%3D%2230.5%22%20y1%3D%222.5%22%20x1%3D%222.5%22%20stroke-width%3D%225%22%20stroke%3D%22%23000000%22%20fill%3D%22none%22/%3E%3C/svg%3E'
 
@@ -115,7 +115,7 @@ where the colours are populated as `page.subnav_underline`.
 SVG grayscale filter and overlay
 -------------------------------
 
-The last SVG technique used is a pair that replicate what might formerly have been done in Photoshop and exported as an image. The instructions are shown in this screenshot ![Steps to reproduce image style from Photoshop](/images/ColourOpacity.png) and are replicated in SVG.
+The last SVG technique used is a pair that replicate what might formerly have been done in Photoshop and exported as an image. The instructions are shown in this screenshot ![Steps to reproduce image style from Photoshop](images/ColourOpacity.png) and are replicated in SVG.
 
 Firstly an SVG filter is created to set the background image greyscale,
 

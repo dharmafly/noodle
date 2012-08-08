@@ -29,6 +29,8 @@ if (document.querySelectorAll && document.body.classList) {
         height, timer, subnavOffset, openSubnavOffset, subnavTopOffset;
     
     
+    // ********** Initialise
+    
     // Conditionally load scripts based on device width
     var narrowScreen = GLOBAL.narrowScreen, 
         isltIE10 = GLOBAL.isltIE10, 
@@ -75,6 +77,8 @@ if (document.querySelectorAll && document.body.classList) {
     
     onScroll(); // set the state of the page initial.
     
+    // ********** Helper functions
+    
     // Animate a scroll to the provided offset.
     function scrollTo(offset) {
     
@@ -118,7 +122,9 @@ if (document.querySelectorAll && document.body.classList) {
         }, delay);
       };
     }
-
+    
+    // ********* Event functions 
+    
     // Show/Hide the navigation on scroll.
     window.addEventListener('scroll', throttle(onScroll, 1), false);
     
@@ -193,6 +199,8 @@ if (document.querySelectorAll && document.body.classList) {
         }
         
     }, false);
+    
+    // ********* Helper functions 
     
     function getSubnavOffset() {
       var subnavOffset;
