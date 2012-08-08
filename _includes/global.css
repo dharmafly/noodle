@@ -768,10 +768,10 @@ aside:after {
 aside li  a,
 aside li  span,
 .buttons .badge span {
-  width: 3.025em;
+  width: 3em;
   height: 0em;
-  border: 0.625em solid {{ page.content_hover_colour }};
-  border-radius: 3.025em;
+  border: 0.62em solid {{ page.content_hover_colour }};
+  border-radius: 3em;
   -webkit-transition: border-color 0.3s ease-out;
   -moz-transition: border-color 0.3s ease-out;
   -ms-transition: border-color 0.3s ease-out;
@@ -808,7 +808,7 @@ aside li span:hover {
 
 
 .ltIE9 aside li.github a {  background-position: -4px 4px; background-color: white;}
-aside li.github a {  background-position: -5px 0; }
+aside li.github a {  background-position: -4px 0; }
 aside li.twitter a{ background-position: -2px -128px; }
 aside li.code-javascript span { background-position: -6px -246px; }
 aside li.code-html5 span { background-position: -2px -457px; }
@@ -1061,7 +1061,7 @@ aside  li:hover:after  {
     
     aside li:after {
       /*background: url('data:image/svg+xml;utf-8,<svg width="78" height="78" xmlns="http://www.w3.org/2000/svg"><circle fill="{{ page.badge_overlay }}" stroke="{{ page.content_bg_colour }}" stroke-width="10" cx="34" cy="34" r="29"/></svg>') no-repeat left top;*/
-  background: url('data:image/svg+xml,%3Csvg%20width%3D%2278%22%20height%3D%2278%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Ccircle%20fill%3D%22{{ page.badge_overlay }}%22%20stroke%3D%22{{ page.badge_border }}%22%20stroke-width%3D%2210%22%20cx%3D%2234%22%20cy%3D%2234%22%20r%3D%2229%22/%3E%3C/svg%3E') no-repeat left top;
+      background: url('data:image/svg+xml,%3Csvg%20width%3D%2278%22%20height%3D%2278%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Ccircle%20fill%3D%22{{ page.badge_overlay }}%22%20stroke%3D%22{{ page.badge_border }}%22%20stroke-width%3D%2210%22%20cx%3D%2234%22%20cy%3D%2234%22%20r%3D%2229%22/%3E%3C/svg%3E') no-repeat left top;
     }
 
 }
