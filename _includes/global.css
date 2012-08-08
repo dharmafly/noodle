@@ -319,7 +319,7 @@ section.overview a:active {
     text-decoration: none;
     padding: 0 1.25em 0.55em 1em;
     background: transparent no-repeat 0em 1.2em;
-    background-image: url({{ page.subnav_underline }});
+    background-image: url('data:image/svg+xml,%3Csvg%20width%3D%22403%22%20height%3D%228%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cline%20stroke%3D%22%23{{ page.subnav_underline }}%22%20stroke-width%3D%222%22%20x1%3D%224%22%20y1%3D%224%22%20x2%3D%22400%22%20y2%3D%224%22%20/%3E%3Ccircle%20fill%3D%22%23{{ page.subnav_underline }}%22%20cx%3D%224%22%20cy%3D%224%22%20r%3D%224%22%20/%3E%3C/svg%3E');
     -webkit-transition: background-position 0.3s ease-out, color 0.3s ease-out;
     -moz-transition: background-position 0.3s ease-out, color 0.3s ease-out;
     -o-transition: background-position 0.3s ease-out, color 0.3s ease-out;
@@ -658,20 +658,11 @@ button:active {
     height: 0;
     width: 24px;
     padding-top: 24px;
-    border-radius: 5px;
     display: block;
     overflow: hidden;
-    background: {{ page.icon_colour }};
-    background-image: url({{ page.show_subnav_icon }});
-    background-image: url({{ page.show_subnav_icon }}) -moz-linear-gradient(top, {{ page.icon_colour }} 0%, {{ page.icon_stop }} 100%);
-    background-image: url({{ page.show_subnav_icon }}) -webkit-gradient(linear, left top, left bottom, color-stop(0%,{{ page.icon_colour }}), color-stop(100%,{{ page.icon_stop }}));
-    background-image: url({{ page.show_subnav_icon }}) -webkit-linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
-    background-image: url({{ page.show_subnav_icon }}) -o-linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
-    background-image: url({{ page.show_subnav_icon }}) -ms-linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
-    background-image: url({{ page.show_subnav_icon }}) linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
+    background-image: url('data:image/svg+xml,%3Csvg%20width%3D%2223%22%20height%3D%2223%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%20%3Cstyle%3E%20line%2C%20circle%20%7B%20stroke%3A%20%23{{ page.show_subnav_icon }}%3B%20stroke-width%3A%202px%3B%20fill%3A%20%23{{ page.show_subnav_icon }}%3B%20%7D%20circle%20%7B%20stroke-width%3A%200%3B%20%7D%20%3C/style%3E%20%3Cline%20y2%3D%224%22%20x2%3D%2223%22%20y1%3D%224%22%20x1%3D%224%22%20/%3E%20%3Cline%20y2%3D%2211%22%20x2%3D%2223%22%20y1%3D%2211%22%20x1%3D%224%22%20/%3E%20%3Cline%20y2%3D%2218%22%20x2%3D%2223%22%20y1%3D%2218%22%20x1%3D%224%22%20/%3E%20%3Ccircle%20r%3D%222%22%20cy%3D%224%22%20cx%3D%224%22%20/%3E%20%3Ccircle%20r%3D%222%22%20cy%3D%2211%22%20cx%3D%224%22%20/%3E%20%3Ccircle%20r%3D%222%22%20cy%3D%2218%22%20cx%3D%224%22%20/%3E%20%3C/svg%3E');
     background-repeat: no-repeat;
     background-size: 80%;
-    border: 1px solid {{ page.icon_border }};
 }
 
 .show-subnav .icon{
@@ -683,6 +674,18 @@ button:active {
   float: left;
   margin-top: -0.3em;
   border-right:0;
+  background: {{ page.icon_colour }};
+  border: 1px solid {{ page.icon_border }};
+  border-radius: 5px;
+  background-image:  -moz-linear-gradient(top, {{ page.icon_colour }} 0%, {{ page.icon_stop }} 100%);
+  background-image:  -webkit-gradient(linear, left top, left bottom, color-stop(0%,{{ page.icon_colour }}), color-stop(100%,{{ page.icon_stop }}));
+  background-image:  -webkit-linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
+  background-image:  -o-linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
+  background-image:  -ms-linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
+  background-image:  linear-gradient(top, {{ page.icon_colour }} 0%,{{ page.icon_stop }} 100%);
+  padding-left: 0;
+  padding-right: 0;
+  margin-right: 1em;
 }
 
 .ltIE9 #navigation li.show-subnav {
@@ -751,35 +754,46 @@ aside li,
 .buttons .badge {
   float: left;
   margin-right: 1em;
+  position:relative;
 }
 
 aside:after {
   content: "";
   display: block;
   clear: both;
+  z-index:-1;
 }
 
 
 aside li  a,
 aside li  span,
-.buttons .badge {
-  width: 3.025em;
+.buttons .badge span {
+  width: 3em;
   height: 0em;
-  border: 0.625em solid {{ page.content_hover_colour }};
-  border-radius: 3.025em;
-  overflow: hidden;
-  padding-top: 3.025em;
-  display:block;
-  background: url(./img/icon-sprite.png) no-repeat;
+  border: 0.62em solid {{ page.content_hover_colour }};
+  border-radius: 3em;
   -webkit-transition: border-color 0.3s ease-out;
   -moz-transition: border-color 0.3s ease-out;
   -ms-transition: border-color 0.3s ease-out;
   -o-transition: border-color 0.3s ease-out;
   transition: border-color 0.3s ease-out;
-  position: relative;
+  overflow: hidden;
+  padding-top: 3.025em;
+  display:block;
+  background: url(./img/icon-sprite.png) no-repeat;
+  -webkit-filter: grayscale(1);
+  filter:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter%20id%3D%22desaturate%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%3C/filter%3E%3C/svg%3E#desaturate);
 }
 
-.buttons .badge {
+
+.buttons .badge span:hover,
+aside li a:hover,
+aside li span:hover {
+  filter:none; 
+  -webkit-filter: grayscale(0)
+}
+
+.buttons .badge span {
   border-width: 2px;
   width: 2.5em;
   border-radius: 2.5em;
@@ -792,33 +806,24 @@ aside li  span,
   border-width: 0;
 } 
 
-aside li a:hover {
-  border-color: {{ page.content_bg_colour }};
-  -webkit-transition: border-color 0.3s ease-out;
-  -moz-transition: border-color 0.3s ease-out;
-  -ms-transition: border-color 0.3s ease-out;
-  -o-transition: border-color 0.3s ease-out;
-  transition: border-color 0.3s ease-out;
-}
 
 .ltIE9 aside li.github a {  background-position: -4px 4px; background-color: white;}
-aside li.github a {  background-position: -5px 0; }
+aside li.github a {  background-position: -4px 0; }
 aside li.twitter a{ background-position: -2px -128px; }
 aside li.code-javascript span { background-position: -6px -246px; }
 aside li.code-html5 span { background-position: -2px -457px; }
 aside li.code-css span { background-position: -2px -546px; }
 
-.buttons .badge.github  {  background-position: 0px -359px; }
+.buttons .badge.github span {  background-position: 0px -359px; }
 
-aside a:after ,
-aside span:after ,
+aside li:after ,
 .buttons .badge:after {
   content: "";
   display: block;
-  width: 3.0265em;
-  height: 3.0265em;
-  background-color: {{ page.badge_overlay }};
-  opacity: 0.5;
+  width: 4.25em;
+  height: 4.25em;
+  background: url('data:image/svg+xml,%3Csvg%20width%3D%2278%22%20height%3D%2278%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Ccircle%20fill%3D%22{{ page.badge_overlay }}%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%2210%22%20cx%3D%2234%22%20cy%3D%2234%22%20r%3D%2229%22/%3E%3C/svg%3E') no-repeat left top;
+  opacity: 1;
   transition: opacity .25s ease-in-out;
   -moz-transition: opacity .25s ease-in-out;
   -webkit-transition: opacity .25s ease-in-out;
@@ -827,26 +832,26 @@ aside span:after ,
   position: absolute;
   top: 0;
   left: 0;
-  border-radius: 50%;
+  pointer-events: none;
 }
 
 
 .buttons .badge:after {
-  width: 2.5em;
-  height: 2.5em;
+  width: 2.75em;
+  height: 2.75em;
+  background: url('data:image/svg+xml;utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Ccircle%20fill%3D%22{{ page.badge_overlay }}%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20cx%3D%2222%22%20cy%3D%2222%22%20r%3D%2221%22/%3E%3C/svg%3E') no-repeat left top;
+  /*background: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg"><circle fill="{{ page.badge_overlay }}" stroke="{{ page.content_hover_colour}}" stroke-width="2" cx="22" cy="22" r="21"/></svg>') no-repeat left top;
+   background-size: 116% 116%; // attempt to scale other version */
 }
 
 
-.ltIE9 aside a:after ,
-.ltIE9 aside span:after ,
-.ltIE9 .buttons .badge:after {
+.ltIE9 aside li:after {
   display: none;
   background-color: transparent;
 }
 
-aside  a:hover:after ,
-aside  span:hover:after ,
-.buttons .badge:hover:after {
+.buttons .badge:hover:after,
+aside  li:hover:after  {
   opacity: 0;
 }
 
@@ -1048,12 +1053,16 @@ aside  span:hover:after ,
         background: transparent;
         background-repeat: no-repeat;
         background-position: left top;
-        background-image: url({{ page.icon_stem }}) ;
+        background-image: url('data:image/svg+xml,%3Csvg%20width%3D%2290%22%20height%3D%22240%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%20%3Cstyle%3Epath%20%7B%20stroke%3A%09%23{{ page.icon_stem }}%3B%20fill%3A%20none%3B%20stroke-width%3A%209%3B%20%7D%3C/style%3E%20%3Cpath%20%20d%3D%22m77.66501%2C1.668c0%2C0%206%2C56.64099%20-15.09601%2C98c-18.13898%2C35.608%20-34.23698%2C67.72299%20-34.23698%2C67.72299s-22%2C40.66803%20-22%2C70%22/%3E%3C/svg%3E') ;
         position: absolute;
         bottom: -210px;
-        left: -43px;
+        left: -45px;
     }
-
+    
+    aside li:after {
+      /*background: url('data:image/svg+xml;utf-8,<svg width="78" height="78" xmlns="http://www.w3.org/2000/svg"><circle fill="{{ page.badge_overlay }}" stroke="{{ page.content_bg_colour }}" stroke-width="10" cx="34" cy="34" r="29"/></svg>') no-repeat left top;*/
+      background: url('data:image/svg+xml,%3Csvg%20width%3D%2278%22%20height%3D%2278%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Ccircle%20fill%3D%22{{ page.badge_overlay }}%22%20stroke%3D%22{{ page.badge_border }}%22%20stroke-width%3D%2210%22%20cx%3D%2234%22%20cy%3D%2234%22%20r%3D%2229%22/%3E%3C/svg%3E') no-repeat left top;
+    }
 
 }
 
@@ -1072,7 +1081,7 @@ aside  span:hover:after ,
 
 
 /* Force correct font loading behaviour to avoid FOUT in all browsers */
-/*
+
 .wf-loading h1,
 .wf-loading h2,
 .wf-loading h3,
@@ -1088,4 +1097,4 @@ aside  span:hover:after ,
   visibility: hidden;
 
 }
-*/
+

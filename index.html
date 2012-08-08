@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-{% assign about = site.categories.about %}
+{% assign overview = site.categories.overview %}
 
 {% assign relative_path  = "./" %}
 {% assign page_path  = "" %}
@@ -13,13 +13,13 @@ layout: default
 
             <nav id="subnav">
                 <ul>
-                {% for post in about reversed %}
+                {% for post in overview reversed %}
                     {% if forloop.first %}                    
                 <li><a href="{{ page_path }}#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a></li>
                     {% endif %}
                 {% endfor %}
                 <li><a href="{{ page_path }}#download">Download</a></li>
-                {% for post in about reversed %}
+                {% for post in overview reversed %}
                     {% unless forloop.first %}
                 <li><a href="{{ page_path }}#{{ post.url | replace_first:'/','' }}">
                     {% if post.heading %}
@@ -33,7 +33,7 @@ layout: default
                 </ul>
             </nav>
             
-            {% for post in about reversed %}
+            {% for post in overview reversed %}
                 {% if forloop.first %}
                     <section class="overview">
                         <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>{{ post.title }}</h1>
@@ -50,13 +50,13 @@ layout: default
 				<h1><a id="download" class="permalink" href="#download">&#9875;</a> Download</h1>
 				<p>The current version of {{ site.PROJECT_NAME }} is {{ site.GITHUB_CURRENT_VERSION }} you can download it below.</p>
 				<p class="buttons">
-                    <a class="badge github" href="{{ site.GITHUB_PROJECT_URL }}" title="{{ site.PROJECT_NAME }} on Github">{{ site.PROJECT_NAME }} on Github</a>
+                    <a class="badge github" href="{{ site.GITHUB_PROJECT_URL }}" title="{{ site.PROJECT_NAME }} on Github"><span>{{ site.PROJECT_NAME }} on Github</span></a>
                     {% if site.GITHUB_ZIP_URL %}
 					<a class="button" href="{{ site.GITHUB_ZIP_URL }}">{{ site.PROJECT_NAME }} <span class="version">v{{ site.GITHUB_CURRENT_VERSION }}</span></a>
                     {% endif %}
 				</p>
 			</section>
-				{% for post in about reversed %}
+				{% for post in overview reversed %}
           {% unless forloop.first %}
           <section>
             <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>
