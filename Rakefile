@@ -8,7 +8,7 @@ $docs_dir           = "docs"
 $posts_dir          = "_posts"
 site_branch         = "gh-pages"
 dharmafly_docs_repo = "git@github.com:dharmafly/dharmafly-docs.git"
-$default_category   = "about"
+$default_category   = "overview"
 
 
 ### Tasks
