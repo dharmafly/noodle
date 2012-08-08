@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'json'
+require 'yaml'
 
 
 ### Configuration variables
@@ -7,7 +8,7 @@ $docs_dir           = "docs"
 $posts_dir          = "_posts"
 site_branch         = "gh-pages"
 dharmafly_docs_repo = "git@github.com:dharmafly/dharmafly-docs.git"
-$default_category   = "about"
+$default_category   = "overview"
 
 
 ### Tasks
@@ -104,16 +105,6 @@ task :upgrade do
   puts "\nActive Branch: ".bold_green() + Git.active_branch
 end
 
-#namespace :post do
-
-#  desc "Create a new post"
-#  task :new, :title do |t, args|
-#    raise "You're not in the #{site_branch} branch!" if active_branch != site_branch
-#    puts args.title
-#  end
-
-#end
-
 
 
 
@@ -163,17 +154,30 @@ def postify(filename)
 end
 
 # Add front matter if it doesn't already exist
-def add_front_matter(file_contents)
+def add_front_matter(filename, file_contents)
+  heading = filename[filename.index(/(\ |\-)/)+1..filename.index(/(\.md)$/)-1]
+
   if has_front_matter?(file_contents)
-    return file_contents
+    front_matter = read_front_matter(file_contents)
+    front_matter["category"] = $default_category unless front_matter["category"]
+    front_matter["heading"] = heading unless front_matter["heading"]
   else
-    return "---\ncategory: #{$default_category}\n---\n" + file_contents
+    front_matter = {
+      "category" => $default_category,
+      "heading" => heading
+    }
   end
+
+  return YAML.dump(front_matter) + "---\n" + file_contents.gsub(/\-\-\-([^\-\-\-]*)\-\-\-/, '')
 end
 
 # Returns true if the file contains front matter
 def has_front_matter?(file_contents)
   return file_contents[0..3] === "---\n"
+end
+
+def read_front_matter(file_contents)
+  YAML.load(file_contents.scan(/\-\-\-([^\-\-\-]*)\-\-\-/).first.first)
 end
 
 # Returns true if Jekyll is installed on this system
@@ -242,7 +246,7 @@ def create_posts (cached_docs, posts_dir)
     new_name = postify(old_name)
     puts "write '#{posts_dir}/#{new_name}'"
     file = File.new("#{posts_dir}/#{new_name}", "w")
-    file << add_front_matter(contents)
+    file << add_front_matter(old_name, contents)
     file.close()
   end
 end
