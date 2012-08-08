@@ -1,6 +1,8 @@
 ---
 category: reference
+heading: Writing a Query
 ---
+
 
 A simple query looks like this:
 

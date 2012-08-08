@@ -1,6 +1,8 @@
 ---
 category: reference
+heading: Extracting data
 ---
+
 
 The `extract` property could be the HTML element's attribute.
 
