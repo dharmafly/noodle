@@ -177,7 +177,7 @@ def has_front_matter?(file_contents)
 end
 
 def read_front_matter(file_contents)
-  YAML.load(file_contents.scan(/\-\-\-([^\-\-\-]*)\-\-\-/).last.first)
+  YAML.load(file_contents.scan(/\-\-\-([^\-\-\-]*)\-\-\-/).first.first)
 end
 
 # Returns true if Jekyll is installed on this system
