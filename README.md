@@ -17,7 +17,7 @@ Contents
 - [Changing the domain for your project's site](#changing-the-domain-for-your-projects-site)
 - [Required posts] (#required-posts)
 
-### [Site Variables] (#site-variables)
+### [Site Variables] (#site-variables-1)
 
 - [Updating the main nav] (#updating-the-main-nav)
 - [Changing the language icon] (#changing-the-language-icon)
@@ -127,7 +127,7 @@ In order to differentiate between posts in the main nav and those in the referen
 or
 
     ---
-    category: about
+    category: overview
     ---
 
 WARNING: If posts do not have either one of these prologues, they won't be displayed.
@@ -139,20 +139,20 @@ This will display the text within `heading` as the heading for your post. (If th
 The `heading` variable should be used like so:
 
     ---
-    category: about
+    category: overview
     heading: "Post Heading"
     ---
     
 Complex characters and html are also permitted:
 
     ---
-    category: about
+    category: overview
     heading: "Why I love the <code>!important</code> rule"
     ---
 
-The very first 'about' post in the directory will be used for the project overview (it will be displayed in a highlighted box).
+The very first `overview` post in the directory will be used for the project overview (it will be displayed in a highlighted box).
 
-The remaining posts with `category: about` will appear in the main nav and on the front page.
+The remaining posts with `category: overview` will appear in the main nav and on the front page.
 
 `category: reference` posts will appear in the *Reference* sub-page.
 
