@@ -1056,7 +1056,7 @@ aside  li:hover:after  {
         background-image: url('data:image/svg+xml,%3Csvg%20width%3D%2290%22%20height%3D%22240%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%20%3Cstyle%3Epath%20%7B%20stroke%3A%09%23{{ page.icon_stem }}%3B%20fill%3A%20none%3B%20stroke-width%3A%209%3B%20%7D%3C/style%3E%20%3Cpath%20%20d%3D%22m77.66501%2C1.668c0%2C0%206%2C56.64099%20-15.09601%2C98c-18.13898%2C35.608%20-34.23698%2C67.72299%20-34.23698%2C67.72299s-22%2C40.66803%20-22%2C70%22/%3E%3C/svg%3E') ;
         position: absolute;
         bottom: -210px;
-        left: -43px;
+        left: -45px;
     }
     
     aside li:after {

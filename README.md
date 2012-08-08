@@ -94,6 +94,14 @@ Jekyll includes the main CSS file, `/_includes/global.css` and populates the var
 
 ### Creating new themes / colour schemes
 
+To add a new theme, two assets are required
+
+1. A new theme CSS file - it makes sense to adapt an existing theme file.
+2. A new main SVG asset (optional)
+
+The SVG asset could be a new SVG file, or one of the existing SVG elements could be reused. These are stored within the `/css/svg` directory.
+
+The theme file comprises a YAML front matter section and a line including the `global.css` file.
 
 Blocks of code in posts
 --------------------------

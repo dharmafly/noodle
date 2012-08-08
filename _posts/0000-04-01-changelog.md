@@ -1,5 +1,5 @@
 ---
-category: about
+category: overview
 heading: Changelog
 ---
 * V1 

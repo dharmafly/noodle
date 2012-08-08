@@ -1,5 +1,5 @@
 ---
-category: about
+category: overview
 heading: Getting Started
 ---
 Starting with {{ site.PROJECT_NAME }}
