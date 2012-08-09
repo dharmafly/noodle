@@ -120,7 +120,7 @@ To add a new theme:
 
 1. Create a new theme CSS file - copy an existing theme file and update the values in the front matter. The theme file comprises a YAML front matter section and a line including the `global.css` file.
 2. Add a new main SVG asset (optional). The SVG asset could be a new SVG file, or one of the existing SVG elements could be reused. These are stored within the `/css/svg` directory. Specify the new SVG file in your new theme file front matter by updateing the `svg_asset` property
-3. Add a favicon %%%UPDATE%%%
+3. Add a favicon to the /img/ directory. The favicons are named to match the theme, so `ocean-favicon.ico` is used in the `ocean` theme.
 
 #### Non-colour updates to themes
 
@@ -138,6 +138,25 @@ quote_svg_right_pos: "49%"
 ```    
 
 These attributes allow you to position these two elements on the page. The quote_svg_right_transform and quote_svg_left_transform allow you to flip or rotate these SVG elements.
+
+### Updating SVG elements
+
+As noted above, a new SVG element for a theme can be added as a file, then specified in the theme file.
+
+If the SVG elements on the page for all themes require updating (the aside badges 'stem', the subnav underlines, the 'show subnav' icon), then the changes need to be made in `/_includes/global.css`.
+
+These SVG elements are declared as data URIs with an `image/svg+xml` mimetype. In order to render successfully in Firefox, they need to be escaped (Chrome renders the SVG when plain text in the data URI). 
+
+To view a readable SVG, copy the the encode URI from the comma to the final quote, so in :
+
+    background: url('data:image/svg+xml,%3Csvg%20width%3D%2278%22%20height%3D%2278%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Ccircle%20fill%3D%22{{ page.badge_overlay }}%22%20stroke%3D%22{{ page.badge_border }}%22%20stroke-width%3D%2210%22%20cx%3D%2234%22%20cy%3D%2234%22%20r%3D%2229%22/%3E%3C/svg%3E') no-repeat left top;
+    
+the string you require is `%3Csvg%20width%3D%2278%22%20height%3D%2278%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Ccircle%20fill%3D%22{{ page.badge_overlay }}%22%20stroke%3D%22{{ page.badge_border }}%22%20stroke-width%3D%2210%22%20cx%3D%2234%22%20cy%3D%2234%22%20r%3D%2229%22/%3E%3C/svg%3E` this string. 
+
+Within your browser console, run `unescape(<encoded string>)`. you should get an SVG element of the form `<svg width="78" height="78" xmlns="http://www.w3.org/2000/svg"><circle fill="{{ page.badge_overlay }}" stroke="{{ page.content_bg_colour }}" stroke-width="10" cx="34" cy="34" r="29"/></svg>`. In this SVG element, the `{{ page.badge_overlay }}` and `{{ page.content_bg_colour }}` define the colour for the SVG element based on the theme.
+
+You can then edit the SVG element in [an SVG editor](http://svg-edit.googlecode.com/svn/trunk/editor/svg-editor.html). Once happy with the output SVG paste back into the console and `escape()` the string. This can be pasted back into the data URI in `global.css`.
+
 
 Blocks of code in posts
 --------------------------

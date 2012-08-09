@@ -152,4 +152,4 @@ Limitations
 Alternatives to SVG 
 --------------------
 
-Font icons are useful for many scaleable colourable icons, such as those created in [Symbolset](http://symbolset.com/) and [icons used in github](https://github.com/blog/1106-say-hello-to-octicons). The drawback is that unless you are using standard images, it is not trivial to create custom fonts.
+Font icons are useful for many scaleable colourable icons, such as those created in [Symbolset](http://symbolset.com/) and [icons used in github](https://github.com/blog/1106-say-hello-to-octicons). If you are planning on having images that are not within an existing symbol font, you would need to create your own font, is not trivial to create custom fonts.
