@@ -127,11 +127,13 @@ The SVG asset could be a new SVG file, or one of the existing SVG elements could
 - The size and rotation of the main SVG element as applied to the bottom left of the content area can be updated using `svg_asset_size` and `svg_asset_rotation`.
 - There are two scaled versions of the main SVG element above the `QUOTE` (as specified in `_config.yml`), if present. 
 
-    quote_svg_left_transform: none
-    quote_svg_right_transform: scaleX(-1)
-    quote_svg_left_pos: "50%"
-    quote_svg_right_pos: "49%"
-    
+```
+quote_svg_left_transform: none
+quote_svg_right_transform: scaleX(-1)
+quote_svg_left_pos: "50%"
+quote_svg_right_pos: "49%"
+```    
+
 These attributes allow you to position these two elements on the page. The quote_svg_right_transform and quote_svg_left_transform allow you to flip or rotate these SVG elements.
 
 Blocks of code in posts
