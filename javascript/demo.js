@@ -65,7 +65,7 @@ jQuery('pre').each(function () {
       editor = GLOBAL.noEditor ? editor : createAceEditor(code[0]);
       
       id = 'output-' + (index += 1);
-      output = jQuery('<output>Output...</output>').attr('id', id);
+      output = jQuery('<output>click \'run\' button</output>').attr('id', id);
       button = jQuery('<button class="eval">Run</button>').data({
           output: output,
           editor: editor
