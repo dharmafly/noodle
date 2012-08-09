@@ -111,14 +111,13 @@ The site theme is specified per site within the `_config.yml`. The CSS file is a
 
 ### Creating new themes / colour schemes
 
-To add a new theme, two assets are required
+To add a new theme:
 
-1. A new theme CSS file - it makes sense to adapt an existing theme file.
-2. A new main SVG asset (optional)
+1. Create a new theme CSS file - copy an existing theme file and update the values in the front matter. The theme file comprises a YAML front matter section and a line including the `global.css` file.
+2. Add a new main SVG asset (optional)
 
-The SVG asset could be a new SVG file, or one of the existing SVG elements could be reused. These are stored within the `/css/svg` directory.
+The SVG asset could be a new SVG file, or one of the existing SVG elements could be reused. These are stored within the `/css/svg` directory. Specify the new SVG file in your new theme file front matter by updateing the `svg_asset` property
 
-The theme file comprises a YAML front matter section and a line including the `global.css` file.
 
 #### Non-colour updates to themes
 
