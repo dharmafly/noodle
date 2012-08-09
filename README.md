@@ -75,11 +75,11 @@ The key [predefined Jekyll global variables](https://github.com/mojombo/jekyll/w
 
 ### Posts and categories
 
-Within `index.html`, when constructing the site, Jekyll will iterate over the categories that are declared within the posts themselves to construct the page.
+Any file within the site can be parsed by Jekyll. Each Jekyll parseable page has a [YAML front matter](https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) section.
 
-Each Jekyll parseable page has a [YAML front matter](https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) section.
+Within the `index.html` pages, Jekyll will iterate over the categories that are declared within each post files to construct the page.
     
-Each post within `_posts` requires a `category` property to be specified (currently only `reference` and `overview` are used). 
+Each post within the `_posts` directory requires a `category` property to be specified within the front matter (currently only `reference` and `overview` are used). 
 
 We use this category value as a way of choosing which posts will be displayed on which page - this is done using the loop:
 
