@@ -119,7 +119,7 @@ To add a new theme:
 
 #### Non-colour updates to themes
 
-- `badge_overlay` and `badge_border` are url encoded (this can be achieved by using javascript `escape()`) in order to be placed within [SVG elements](#svg-how-and-where-it-s-used). `badge-overlay` is `rgba`.
+- `badge_overlay` and `badge_border` control the language, github and twitter badges. These are url encoded (this can be achieved by using javascript `escape()`) in order to be placed within [SVG elements](#svg-how-and-where-it-s-used). `badge-overlay` is `rgba`.
 - `svg_asset` specifies the main SVG element used on the page. It will refer to your main SVG file within `/css/svg`.
 - `svg_title_filter` and `svg_title_rotation` allow you to apply a filter and rotation to the `svg_asset` within the main title area.
 - The size and rotation of the main SVG element as applied to the bottom left of the content area can be updated using `svg_asset_size` and `svg_asset_rotation`.
@@ -132,7 +132,7 @@ quote_svg_left_pos: "50%"
 quote_svg_right_pos: "49%"
 ```    
 
-These attributes allow you to position these two elements on the page. The quote_svg_right_transform and quote_svg_left_transform allow you to flip or rotate these SVG elements.
+These attributes allow you to position these two elements on the page. The `quote_svg_right_transform` and `quote_svg_left_transform` allow you to flip or rotate these SVG elements.
 
 Blocks of code in posts
 --------------------------
