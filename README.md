@@ -34,6 +34,10 @@ How do I update the Dharmafly Docs project itself?
 
 This is the development branch, you should carry out all work in this branch. 
 
+First clone this repository (`git clone git@github.com:dharmafly/dharmafly-docs.git`) and switch to this branch (`git checkout gh-pages`.)
+
+You should make your changes within `gh-pages`.
+
 Once pushed to this branch (`git push origin gh-pages`), Github will automatically regenerate the [Dharmafly Docs project website] (http://dharmafly.github.com/dharmafly-docs/).
 
 To update the [`master` branch] (https://github.com/dharmafly/dharmafly-docs), switch to the master branch (`git checkout master`), then pull the changes made in this branch (`git pull origin gh-pages`). This may result in a merge conflict with the `README.md` (as the content on the `master` branch is different to this README). The temporary fix for this is to copy the current `master` README from https://github.com/dharmafly/dharmafly-docs/blob/master/README.md and then `add`, `commit` and `push`.
