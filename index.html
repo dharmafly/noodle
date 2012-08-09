@@ -3,14 +3,6 @@ layout: default
 ---
 {% assign overview = site.categories.overview %}
 
-{% assign relative_path  = "./" %}
-{% assign page_path  = "" %}
-
-{% if page.layout_type == 'subpage' %} 
-    {% assign relative_path  = "../" %}
-    {% assign page_path  = "../" %}
-{% endif %}
-
             <nav id="subnav">
                 <ul>
                 {% for post in overview reversed %}
