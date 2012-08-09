@@ -101,7 +101,9 @@ To ensure this page is now linked to from the home and other pages, you will nee
 Updating the CSS
 -----------------
 
-The main site CSS is not stored in the `css` directory, but in `_includes`. The `css` directory contains the themes used on the site, and a liquid `{% include global.css %}`.
+The main site CSS is not stored in the `css` directory, but in `_includes`. The `css` directory contains the themes used on the site. 
+
+Each theme file contains [YAML front matter](https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) describing the colours and assets used for that theme and a liquid `{% include global.css %}`.
 
 The site theme is specified within the `_config.yml`. The CSS file is added to the page within `/_includes/default.html`. 
 
