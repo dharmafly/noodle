@@ -60,7 +60,7 @@ jQuery('pre').each(function () {
 
     // Check code block for runnable keywords and setup output box
     // and run button.
-    if (code.text().indexOf('$output') > -1 || code.text().indexOf('alert') > -1) {
+    if (code.text().indexOf('demoElement') > -1 || code.text().indexOf('alert') > -1) {
     
       editor = GLOBAL.noEditor ? editor : createAceEditor(code[0]);
       
