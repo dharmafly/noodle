@@ -101,15 +101,13 @@ To ensure this page is now linked to from the home and other pages, you will nee
 Updating the CSS
 -----------------
 
-The main site CSS is stored in `/_includes/global.css`. 
+The site CSS is in `/_includes/global.css`. 
 
-The site colour theme files are stored within the `/css/`. 
+The site colour theme files are stored within the `/css/` directory. 
 
 Each theme file contains [YAML front matter](https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) describing the colours and assets used for that theme and a liquid `{% include global.css %}`. Jekyll will populate the variables within `/_includes/global.css` using the values set within the theme file.
 
 The site theme is specified per site within the `_config.yml`. The CSS file is added to the page HTML within `/_includes/default.html`. 
-
-
 
 ### Creating new themes / colour schemes
 
