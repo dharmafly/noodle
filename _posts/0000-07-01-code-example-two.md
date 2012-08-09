@@ -38,7 +38,7 @@ Example two
         // Success callback
         function(){
             // Toggle body background-colour from yellow to green
-            $output.css({
+            jQuery(demoElement).css({
                 backgroundColor: flag ?
                     "#fff9a6" : "#aaffaa"
             });

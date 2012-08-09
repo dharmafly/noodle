@@ -11,7 +11,7 @@ Example one
     jQuery.promises.image("http://farm3.staticflickr.com/2188/2219660409_21ba876f98_m.jpg")
     .then(
         function(img){
-            jQuery(img).appendTo($output);
+            jQuery(img).appendTo(demoElement);
         },
         function(){
             alert("Image failed to load");
@@ -31,7 +31,7 @@ used in conjunction with other kinds of promises.
     )
     .then(
         function(img1, img2, json){
-            $output
+            jQuery(demoElement)
                 .append(img1)
                 .append(img2)
                 .append("<code>" + json[0].foo + "</code>");
