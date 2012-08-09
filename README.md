@@ -15,6 +15,11 @@ This branch is also the working code for the [Dharmafly Docs project website] (h
 
 The [`master` branch] (https://github.com/dharmafly/dharmafly-docs) contains an empty template, reflecting the latest code and should be used by project developers to generate new project websites.
 
+Before starting
+------------------
+
+Before updating the Dharmafly Docs website, it is assumed you're familiar with creating Dharmafly Docs instances and have read the main [Dharmafly Docs README](https://github.com/dharmafly/dharmafly-docs/)
+
 Updating an existing project
 -----------------------------
 
@@ -119,7 +124,7 @@ To add a new theme:
 
 #### Non-colour updates to themes
 
-- `badge_overlay` and `badge_border` control the language, github and twitter badges. These are url encoded (this can be achieved by using javascript `escape()`) in order to be placed within [SVG elements](#svg-how-and-where-it-s-used). `badge-overlay` is `rgba`.
+- `badge_overlay` and `badge_border` are url encoded (this can be achieved by using javascript `escape()`) in order to be placed within [SVG elements](#svg-how-and-where-it-s-used). `badge-overlay` is `rgba`.
 - `svg_asset` specifies the main SVG element used on the page. It will refer to your main SVG file within `/css/svg`.
 - `svg_title_filter` and `svg_title_rotation` allow you to apply a filter and rotation to the `svg_asset` within the main title area.
 - The size and rotation of the main SVG element as applied to the bottom left of the content area can be updated using `svg_asset_size` and `svg_asset_rotation`.
@@ -132,14 +137,14 @@ quote_svg_left_pos: "50%"
 quote_svg_right_pos: "49%"
 ```    
 
-These attributes allow you to position these two elements on the page. The `quote_svg_right_transform` and `quote_svg_left_transform` allow you to flip or rotate these SVG elements.
+These attributes allow you to position these two elements on the page. The quote_svg_right_transform and quote_svg_left_transform allow you to flip or rotate these SVG elements.
 
 Blocks of code in posts
 --------------------------
 
 Blocks of code can be added to posts using code block syntax within markdown posts. These are transformed to `<pre><code>` blocks by Jekyll. 
 
-The code block syntax highlighting and editing depends on the browser and the screenwidth. The initial checks are made by `/javascript/main.js` and for lower IE browsers and smaller screen widths, `hijs.js` is loaded for syntax highlighting. In other cases ACE editor is loaded for syntax highlighting and code editing if required.
+The code block syntax highlighting and editing used on a site depends on the user's browser and the screenwidth. The initial checks are made by `/javascript/main.js` and for lower IE browsers and smaller screen widths, the lightweight `hijs.js` is loaded for syntax highlighting. In other cases ACE editor is loaded for syntax highlighting and code editing (if required).
 
 In both cases `/javascript/demo.js` is loaded to handle code execution, if required.
 
@@ -162,7 +167,9 @@ Responsive design
 
 ### Breakpoints
 
-The CSS is structured smallest width first. 
+The CSS is structured smallest width by default. 
+
+The widths are controlled by [CSS media queries](https://developer.mozilla.org/en-US/docs/CSS/Media_queries)
 
 - 340px small breakpoint to fix the content left.
 - 35em adds the larger header
@@ -171,7 +178,9 @@ The CSS is structured smallest width first.
 
 ### The subnav
 
-The subnav is shown by default. If the user resizes the screen to a size where the width of the widest link in the subnav is pushed off-screen, then two things happen: the subnav is set `.off-left` and the `.show-subnav` icon is shown in the navigation. Additionally, the subnav is hidden.
+The subnav is the left-hand list of inline links. The event handlers for page resizing are in `/javascript/main.js`.
+
+The subnav is shown by default. If the user resizes the screen to a size where the width of the widest link in the subnav is pushed off-screen, then the function `resetSubnav` adds two classes: the subnav is set `.off-left` and the `.show-subnav` icon is shown in the navigation. Additionally, the subnav is hidden. 
 
 If the user clicks on the show subnav icon, then the subnav is set `off-left show-nav`. So it's technically off screen but visible, as the `.content` area's left position is set to a position based on the width of the subnav.
 
@@ -179,13 +188,15 @@ The animation is done by css transforms set on certain properties of those class
 
 ### Scrolling
 
-The navigation (at all widths) is set below the page heading (project title). On scroll, if the scroll position is greater than the navigation height, then the navigation is set to 'float' over the content (i.e. `position: fixed`).
+The navigation (at all widths) is set below the page heading (project title). On scroll, if the scroll position is greater than the navigation height, then the navigation is set to 'float' over the content (i.e. `position: fixed`). Visually, the navigation is then fixed to the top of the browser viewport.
 
-Additionally, the subnav needs to be set to float over the content, so the `resetSubnav` function is called from within `onScroll`. `resetSubnav` will set or get an offset value for the subnav, then set the view state for the subnav.
+The event handlers for scroll events are in `/javascript/main.js`.
+
+Additionally, the subnav needs to be set to float over the content (so it always appears in the top left of the browser viewport, as the page scrolls), so the `resetSubnav` function is called from within `onScroll`. `resetSubnav` will set or get an offset value for the subnav, then set the view state for the subnav.
 
 The `onScroll` function is executed on a throttled interval based on the firing of scroll events.
 
 SVG - how and where it's used
------------------------------
+------------------------------
 
 Details in [this post](https://github.com/dharmafly/dharmafly-docs/blob/gh-pages/assets/svg-post/svg%20post.md).
