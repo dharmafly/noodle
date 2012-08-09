@@ -105,8 +105,8 @@ jQuery('button.eval')
 
     output.empty();
     setTimeout(function () {
-        var $output = 'jQuery("#' + output[0].id + '")',
-            $alert  = 'function (msg) {' + $output + '.append("alert: " + msg + "</br/>");}';
+        var demoElement = 'jQuery("#' + output[0].id + '")[0]',
+            $alert  = 'function (msg) {jQuery("#' + output[0].id + '").append("alert: " + msg + "</br/>");}';
 
         // Add an remove a class when the code is run.
         output.addClass('loaded');
@@ -115,6 +115,6 @@ jQuery('button.eval')
         }, 1500);
 
         // Execute the code in a custom scope that includes alert() and $output.
-        jQuery.globalEval('(function ($output, alert) {' + code + '})(' + $output + ', ' + $alert + ')');
+        jQuery.globalEval('(function (demoElement, alert) {' + code + '})(' + demoElement + ', ' + $alert + ')');
     }, 300);
 });
