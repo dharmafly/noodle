@@ -64,6 +64,8 @@ The templating language for github pages is [Liquid](http://liquidmarkup.org/).
 
 Within any HTML, CSS, JavaScript page on the site any liquid tags are parsed by [Jekyll](https://github.com/mojombo/jekyll/) (the templating engine).
 
+### Pre-defined global variables
+
 The key [predefined Jekyll global variables](https://github.com/mojombo/jekyll/wiki/Template-Data) are `site`, which contains global properties for the site (e.g. those [specified within `_cofig.yml`](https://github.com/dharmafly/dharmafly-docs/#site-variables)), `post`, which contains details for each post, `categories`/`category` which group posts and `layout`.
 
 ### Posts and categories
