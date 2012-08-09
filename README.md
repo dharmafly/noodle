@@ -66,7 +66,12 @@ Within any HTML, CSS, JavaScript page on the site any liquid tags are parsed by 
 
 ### Pre-defined global variables
 
-The key [predefined Jekyll global variables](https://github.com/mojombo/jekyll/wiki/Template-Data) are `site`, which contains global properties for the site (e.g. those [specified within `_cofig.yml`](https://github.com/dharmafly/dharmafly-docs/#site-variables)), `post`, which contains details for each post, `categories`/`category` which group posts and `layout`.
+The key [predefined Jekyll global variables](https://github.com/mojombo/jekyll/wiki/Template-Data) are 
+- `site`, which contains global properties for the site (e.g. those [specified within `_cofig.yml`](https://github.com/dharmafly/dharmafly-docs/#site-variables)), 
+- `post`, which contains details for each post, 
+- `categories`/`category` which group posts 
+- `layout`, mentioned [above](#the-site-structure) and 
+- `page`, used to refer to the current page (as opposed to post) within the layout page, `_layouts/default.html`.
 
 ### Posts and categories
 
