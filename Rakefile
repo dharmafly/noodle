@@ -153,21 +153,19 @@ def postify(filename)
 end
 
 # Add front matter if it doesn't already exist
-def add_front_matter(filename, file_contents)
-  heading = filename[filename.index(/(\ |\-)/)+1..filename.index(/(\.md)$/)-1]
-
-  if has_front_matter?(file_contents)
-    front_matter = read_front_matter(file_contents)
-    front_matter["category"] = $default_category unless front_matter["category"]
-    front_matter["heading"] = heading unless front_matter["heading"]
+def add_front_matter(filename, file)
+  if has_front_matter?(file[:contents])
+    front_matter = read_front_matter(file[:contents])
+    front_matter["category"] = file[:category] unless front_matter["category"]
+    front_matter["heading"] = file[:heading] unless front_matter["heading"]
   else
     front_matter = {
-      "category" => $default_category,
-      "heading" => heading
+      "category" => file[:category],
+      "heading" => file[:heading]
     }
   end
 
-  return YAML.dump(front_matter) + "---\n" + file_contents.gsub(/\-\-\-([^\-\-\-]*)\-\-\-/, '')
+  return YAML.dump(front_matter) + "---\n" + file[:contents].gsub(/\-\-\-([^\-\-\-]*)\-\-\-/, '')
 end
 
 # Returns true if the file contains front matter
@@ -232,8 +230,27 @@ def cache_docs (docs_dir)
   rtn = Hash.new()
 
   Dir.foreach(docs_dir) do |item|
-    next if item[0] === "." or File.directory?(item)
-    rtn[item] = File.read("#{docs_dir}/#{item}")
+    next if item[0] === "."
+    
+    this_item = "#{docs_dir}/#{item}"
+
+    if File.directory?(this_item)
+      Dir.foreach(this_item) do |inner_item|
+        next if inner_item[0] === "." or File.directory?("#{this_item}/#{inner_item}")
+        
+        rtn[inner_item] = { 
+          category: item,
+          heading:  inner_item[inner_item.index(/(\ |\-)/)+1..inner_item.index(/(\.md)$/)-1],
+          contents: File.read("#{this_item}/#{inner_item}")
+        }
+      end
+    else
+      rtn[item] = { 
+        category: $default_category,
+        heading:  item[item.index(/(\ |\-)/)+1..item.index(/(\.md)$/)-1],
+        contents: File.read("#{docs_dir}/#{item}")
+      }
+    end
   end
 
   return rtn
@@ -241,11 +258,11 @@ end
 
 # Create posts for each cached doc
 def create_posts (cached_docs, posts_dir)
-  cached_docs.each do |old_name, contents|
+  cached_docs.each do |old_name, doc|
     new_name = postify(old_name)
     puts "write '#{posts_dir}/#{new_name}'"
     file = File.new("#{posts_dir}/#{new_name}", "w")
-    file << add_front_matter(old_name, contents)
+    file << add_front_matter(old_name, doc)
     file.close()
   end
 end
