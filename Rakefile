@@ -230,13 +230,13 @@ def cache_docs (docs_dir)
   rtn = Hash.new()
 
   Dir.foreach(docs_dir) do |item|
-    next if item[0] === "."
+    next if item[0,1] === "."
     
     this_item = "#{docs_dir}/#{item}"
 
     if File.directory?(this_item)
       Dir.foreach(this_item) do |inner_item|
-        next if inner_item[0] === "." or File.directory?("#{this_item}/#{inner_item}")
+        next if inner_item[0,1] === "." or File.directory?("#{this_item}/#{inner_item}")
         
         rtn[inner_item] = { 
           :category => item,
