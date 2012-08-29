@@ -239,16 +239,16 @@ def cache_docs (docs_dir)
         next if inner_item[0] === "." or File.directory?("#{this_item}/#{inner_item}")
         
         rtn[inner_item] = { 
-          category: item,
-          heading:  inner_item[inner_item.index(/(\ |\-)/)+1..inner_item.index(/(\.md)$/)-1],
-          contents: File.read("#{this_item}/#{inner_item}")
+          :category => item,
+          :heading  =>  inner_item[inner_item.index(/(\ |\-)/)+1..inner_item.index(/(\.md)$/)-1],
+          :contents => File.read("#{this_item}/#{inner_item}")
         }
       end
     else
       rtn[item] = { 
-        category: $default_category,
-        heading:  item[item.index(/(\ |\-)/)+1..item.index(/(\.md)$/)-1],
-        contents: File.read("#{docs_dir}/#{item}")
+        :category => $default_category,
+        :heading  =>  item[item.index(/(\ |\-)/)+1..item.index(/(\.md)$/)-1],
+        :contents => File.read("#{docs_dir}/#{item}")
       }
     end
   end
