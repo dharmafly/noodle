@@ -213,7 +213,7 @@ module Git
   # Returns the currently active branch
   def Git.active_branch
     Git.branch.each do |branch|
-      return branch[2..-1] if branch[0] === "*"
+      return branch[2..-1] if branch[0..0] === "*"
     end
   end
 
