@@ -158,14 +158,17 @@ def add_front_matter(filename, file)
     front_matter = read_front_matter(file[:contents])
     front_matter["category"] = file[:category] unless front_matter["category"]
     front_matter["heading"] = file[:heading] unless front_matter["heading"]
+
+    contents = file[:contents][file[:contents].index(/\n^\-\-\-\n/)+5..-1]
   else
     front_matter = {
       "category" => file[:category],
       "heading" => file[:heading]
     }
+    contents = file[:contents]
   end
 
-  return YAML.dump(front_matter) + "---\n" + file[:contents].gsub(/\-\-\-([^\-\-\-]*)\-\-\-/, '')
+  return YAML.dump(front_matter) + "---\n" + contents
 end
 
 # Returns true if the file contains front matter
