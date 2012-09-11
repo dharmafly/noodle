@@ -39,7 +39,8 @@ if (document.querySelectorAll && document.body.classList) {
         GLOBAL.noEditor = narrowScreen || isltIE10,
         
         
-        scripts = GLOBAL.noEditor ?  ["hijs", "demo"] : ["ace/ace", "ace/theme/theme-dharmafly", "ace/mode-javascript", "demo"]; // syntax highlighter for small devices, ACE editor otherwise
+        scripts = GLOBAL.noEditor ?  ["hijs", "demo"] : ["ace/ace-min", "ace/theme/theme-dharmafly", "ace/mode-javascript", "demo"]; // syntax highlighter for small devices, ACE editor otherwise
+       // scripts = GLOBAL.noEditor ?  ["hijs", "demo"] : ["ace/ace", "ace/theme/theme-dharmafly", "ace/mode-javascript", "demo"]; // syntax highlighter for small devices, ACE editor otherwise
     
     (function loadScript(src) {
       
