@@ -11,6 +11,21 @@
 ***********************************************/
 
 
+var QueryParameters = (function() {
+    var result = {};
+
+    if (window.location.search) {
+    
+        var params = window.location.search.slice(1).split("&");
+        for (var i = 0; i < params.length; i++) {
+            var tmp = params[i].split("=");
+            result[tmp[0]] = unescape(tmp[1]);
+        }
+    }
+
+    return result;
+}());
+
 if (document.querySelectorAll && document.body.classList) {
   (function ($, $$) {
     var navigation = $('#navigation'),
@@ -36,8 +51,10 @@ if (document.querySelectorAll && document.body.classList) {
         isltIE10 = GLOBAL.isltIE10, 
         scripts;
         
-        GLOBAL.noEditor = narrowScreen || isltIE10,
-        
+        // Ace is never loaded, unless ?editable=true (and this is a non-IE wide screen device)
+        GLOBAL.noEditor = narrowScreen || isltIE10 ? 
+                              true :
+                              QueryParameters.editable === "true" ? false : true;
         
        scripts = GLOBAL.noEditor ?  ["hijs", "demo"] : ["ace/ace", "ace/theme/theme-dharmafly", "ace/mode-javascript", "demo"]; // syntax highlighter for small devices, ACE editor otherwise
     
