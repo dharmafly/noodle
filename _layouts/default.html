@@ -91,7 +91,10 @@
               <script src="{{ relative_path }}javascript/IEshims.js"></script>
             <![endif]-->
 
-			<script src="{{ relative_path }}javascript/jquery.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+      <script>window.jQuery || document.write('<script src="{{ relative_path }}javascript/jquery-1.7.1.min.js"><\/script>')</script>
+      
+			<!-- <script src="{{ relative_path }}javascript/jquery.js"></script> -->
 			<script src="{{ relative_path }}javascript/main.js"></script>
 
       {% for script in site.SCRIPTS %}

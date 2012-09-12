@@ -11,6 +11,21 @@
 ***********************************************/
 
 
+var QueryParameters = (function() {
+    var result = {};
+
+    if (window.location.search) {
+    
+        var params = window.location.search.slice(1).split("&");
+        for (var i = 0; i < params.length; i++) {
+            var tmp = params[i].split("=");
+            result[tmp[0]] = unescape(tmp[1]);
+        }
+    }
+
+    return result;
+}());
+
 if (document.querySelectorAll && document.body.classList) {
   (function ($, $$) {
     var navigation = $('#navigation'),
@@ -29,15 +44,19 @@ if (document.querySelectorAll && document.body.classList) {
         height, timer, subnavOffset, openSubnavOffset, subnavTopOffset;
     
     
+    // ********** Initialise
+    
     // Conditionally load scripts based on device width
     var narrowScreen = GLOBAL.narrowScreen, 
         isltIE10 = GLOBAL.isltIE10, 
         scripts;
         
-        GLOBAL.noEditor = narrowScreen || isltIE10,
+        // Ace is never loaded, unless ?editable=true (and this is a non-IE wide screen device)
+        GLOBAL.noEditor = narrowScreen || isltIE10 ? 
+                              true :
+                              QueryParameters.editable === "true" ? false : true;
         
-        
-        scripts = GLOBAL.noEditor ?  ["hijs", "demo"] : ["ace/ace", "ace/theme/theme-dharmafly", "ace/mode-javascript", "demo"]; // syntax highlighter for small devices, ACE editor otherwise
+       scripts = GLOBAL.noEditor ?  ["hijs", "demo"] : ["ace/ace", "ace/theme/theme-dharmafly", "ace/mode-javascript", "demo"]; // syntax highlighter for small devices, ACE editor otherwise
     
     (function loadScript(src) {
       
@@ -74,6 +93,8 @@ if (document.querySelectorAll && document.body.classList) {
     subnavTopOffset = (height + subnav.offsetTop) + "px";
     
     onScroll(); // set the state of the page initial.
+    
+    // ********** Helper functions
     
     // Animate a scroll to the provided offset.
     function scrollTo(offset) {
@@ -118,7 +139,9 @@ if (document.querySelectorAll && document.body.classList) {
         }, delay);
       };
     }
-
+    
+    // ********* Event functions 
+    
     // Show/Hide the navigation on scroll.
     window.addEventListener('scroll', throttle(onScroll, 1), false);
     
@@ -193,6 +216,8 @@ if (document.querySelectorAll && document.body.classList) {
         }
         
     }, false);
+    
+    // ********* Helper functions 
     
     function getSubnavOffset() {
       var subnavOffset;

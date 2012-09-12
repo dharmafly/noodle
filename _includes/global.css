@@ -94,6 +94,8 @@ code {
 	color: {{ page.code_colour }};
 }
 
+/* Code highlighting theme for hijs */
+
 pre code .keyword              { color: #FAB204; }
 pre code .string, pre code .regexp { color: #E6DB74; }
 pre code .class, pre code .special { color: #F8F8F2; }
