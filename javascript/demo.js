@@ -65,11 +65,7 @@ jQuery('pre').each(function () {
       editor = GLOBAL.noEditor ? editor : createAceEditor(code[0]);
       
       id = 'output-' + (index += 1);
-<<<<<<< HEAD
-      output = jQuery('<output>click \'Run\' button</output>').attr('id', id);
-=======
-      output = jQuery('<output>click \'run\' button</output>').attr('id', id);
->>>>>>> 410512d3ec08dcc26dc383fcc254d01bbb92002d
+      output = jQuery('<output>Click \'Run\' button</output>').attr('id', id);
       button = jQuery('<button class="eval">Run</button>').data({
           output: output,
           editor: editor
@@ -77,16 +73,15 @@ jQuery('pre').each(function () {
 
       jQuery(this.parentNode).append(output[0]);
       jQuery(this).append(button[0]);
-      
-    }else{
+    }
+    else {
       readOnly = true;
       
-      if(!GLOBAL.noEditor){
+      if (!GLOBAL.noEditor){
         createAceEditor(code[0], readOnly);
       }
       
       jQuery(this).removeClass("hasEditor");
-      
     }
 });
 
@@ -119,10 +114,6 @@ jQuery('button.eval')
         }, 1500);
 
         // Execute the code in a custom scope that includes alert() and $output.
-<<<<<<< HEAD
         jQuery.globalEval('(function (demoElement, alert) {\n' + code + '\n})(' + demoElement + ', ' + $alert + ')');
-=======
-        jQuery.globalEval('(function (demoElement, alert) {' + code + '})(' + demoElement + ', ' + $alert + ')');
->>>>>>> 410512d3ec08dcc26dc383fcc254d01bbb92002d
     }, 300);
 });
