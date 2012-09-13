@@ -46,14 +46,16 @@ function createAceEditor(dom, readOnly) {
 
     return editor;
 }
-
-var index = 0;
+var examples = {};
+    examples.index = 0;
+    examples.hasEditor = !GLOBAL.noEditor;
 
 // For each code block, create an ACE code editor
 jQuery('pre').each(function () {
-    jQuery(this).addClass("hasEditor").wrap('<div class="run" />');
+    var $pre = jQuery(this);
+    $pre.addClass("runnable").wrap('<div class="run" />');
 
-    var code = jQuery(this).find('code'),
+    var code = $pre.find('code'),
         editor = code.text(),
         readOnly = false,
         id, output, button;
@@ -61,11 +63,14 @@ jQuery('pre').each(function () {
     // Check code block for runnable keywords and setup output box
     // and run button.
     if (code.text().indexOf('demoElement') > -1 || code.text().indexOf('alert') > -1) {
-    
-      editor = GLOBAL.noEditor ? editor : createAceEditor(code[0]);
       
-      id = 'output-' + (index += 1);
-      output = jQuery('<output>Click \'Run\' button</output>').attr('id', id);
+      if(examples.hasEditor){
+        editor = createAceEditor(code[0]);
+        $pre.addClass("hasEditor");
+      }
+      
+      id = 'output-' + (examples.index += 1);
+      output = jQuery('<output>click \'run\' button</output>').attr('id', id);
       button = jQuery('<button class="eval">Run</button>').data({
           output: output,
           editor: editor
@@ -73,20 +78,23 @@ jQuery('pre').each(function () {
 
       jQuery(this.parentNode).append(output[0]);
       jQuery(this).append(button[0]);
-    }
-    else {
+      
+      
+    } else {
+    
       readOnly = true;
       
-      if (!GLOBAL.noEditor){
+      if(examples.hasEditor){
         createAceEditor(code[0], readOnly);
       }
       
-      jQuery(this).removeClass("hasEditor");
+      jQuery(this).removeClass("runnable");
+      
     }
 });
 
-if(index === 0){ // no ace editors on the page
-  if(!GLOBAL.noEditor){ 
+if(examples.index === 0){ // no ace editors on the page
+  if(examples.hasEditor){ 
   // load hijs for syntax highlighting
   var script = document.createElement("script");
   script.src = GLOBAL.relative_path + "javascript/hijs.js";
