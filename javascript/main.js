@@ -210,8 +210,9 @@ if (document.querySelectorAll && document.body.classList) {
           toggleSubnav();
             
         } else if (section) {
-            
-          animateScrollToLink(event, section);
+        
+          closeIfSubnavLink(event.target);
+          animateScrollToLink (event, section);
           
         }
         
@@ -269,38 +270,41 @@ if (document.querySelectorAll && document.body.classList) {
       
       
     }
-    
-    function animateScrollToLink (event, section) {
-    
-        var parent = event.target.parentNode,
-          isSubnavLink = false;
-            
-        while(parent){
-          if (parent.id === subnavId){
-              isSubnavLink = true;
-              break;
-          }
-          parent =  parent.parentNode;
+      
+    function closeIfSubnavLink(link){
+      var parent = link.parentNode,
+        isSubnavLink = false;
+          
+      while(parent){
+        if (parent.id === subnavId){
+            isSubnavLink = true;
+            break;
         }
-        
-        if(isSubnavLink) {
-          closeSubnav()
-        }
-            
-        // Set the location hash and reset the browser scroll position.
-        window.location.hash = event.target.hash;
-        window.scrollTo(0, offset);
-
-        // Animate to the element.
-        var scrollYPos = section.parentNode.offsetTop + height + 100;
-        
-        if(narrowScreen){
-          window.scrollTo(0, scrollYPos); // No animation on small screens (long length), or on IE // TO DO fix IE to work with scrollTo #59
-        } else {
-          scrollTo(scrollYPos); 
-        }
-        event.preventDefault();
+        parent =  parent.parentNode;
+      }
+      
+      if(isSubnavLink) {
+        closeSubnav()
+      }
     }
+      
+    function animateScrollToLink (event, section) {
+      // Set the location hash and reset the browser scroll position.
+      window.location.hash = event.target.hash;
+      window.scrollTo(0, offset);
+
+      // Animate to the element.
+      var scrollYPos = section.parentNode.offsetTop + height + 100;
+      
+      //if(narrowScreen){
+      if(1){
+        window.scrollTo(0, scrollYPos); // No animation on small screens (long length), or on IE // TO DO fix IE to work with scrollTo #59
+      } else {
+        scrollTo(scrollYPos); 
+      }
+      event.preventDefault();
+    }
+    
 
   })(function () { return document.querySelector.apply(document, arguments); });
 }
