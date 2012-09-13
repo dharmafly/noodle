@@ -876,6 +876,14 @@ aside  li:hover:after  {
     overflow-x: auto !important;
 }
 
+  /* set scrolling on short height browsers */
+@media only screen and (min-height:20px)  and (max-height:520px) {
+  #subnav.show-nav {
+    overflow:auto; 
+    height:340px;
+  }
+}  
+
 
 @media (min-width:340px) {
 	#navigation {
