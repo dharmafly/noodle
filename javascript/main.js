@@ -13,7 +13,7 @@ b. Main nav fixed, subnav fixed
 Width dependent states
 --------------
 
-1. Subnav visible, button hidden
+1. PageNav visible, button hidden
 2. Button visible, subnav hidden 
 3. Content shifted, subnav visible, button hidden
   
@@ -33,7 +33,7 @@ b. Scroll position > height of the header
 
 i. Resize
 ii. Scroll (vertical)
-iii. Subnav open
+iii. PageNav open
 iv. subnav close
 
 // PATTERN
@@ -64,7 +64,7 @@ if (document.querySelectorAll && document.body.classList) {
   
   /* jQuery Tiny Pub/Sub - v0.7 - 10/27/2011
    * http://benalman.com/
-   * Copyright (c) 2011 "Cowboy" Ben Alman; Licensed MIT, GPL */
+   * Copyright (c) 2011 'Cowboy' Ben Alman; Licensed MIT, GPL */
    
   var o = $({});
 
@@ -95,7 +95,8 @@ if (document.querySelectorAll && document.body.classList) {
   
   // GLOBALS
   
-  var navigation = $qS('#navigation');
+  var navigation = $qS('#navigation'),
+      subnav = $qS('#subnav');
   
   // The set of conditions that page components are listnening for
   var conditions = {
@@ -104,9 +105,12 @@ if (document.querySelectorAll && document.body.classList) {
     }
   };  
   
+  // CONTROLLER
+  
   function init(){
       
-    var header = new Header();
+    var header = new Header(),
+        inPageNav = new PageNav();
     
     window.addEventListener('scroll', throttle(checkState, 1), false);
     window.addEventListener('resize', throttle(checkState, 1), false);
@@ -114,13 +118,21 @@ if (document.querySelectorAll && document.body.classList) {
     
   }  
   
-  // Check whether event conditions have been met
-  // and publish the result
   function checkState(){
    
     for(var condition in conditions){
-      if(conditions[condition]()) {
-        $.publish(condition);
+      // Check whether event conditions have been met
+      // and publish the name of the condition
+      var met = conditions[condition]();
+      if(typeof met === 'boolean'){
+        if(met) { 
+          $.publish(condition + ':pass'); 
+        }
+        else { 
+          $.publish(condition + ':fail'); 
+        }
+      }else{
+        console.log("condition returned non-boolean value", met);
       }
     }
     
@@ -133,8 +145,24 @@ if (document.querySelectorAll && document.body.classList) {
   }
 
   Header.prototype.subscribeEvents = function() {       
-    $.subscribe("scrollGtHeader", function(){
-      console.log("scrollGtHeader");
+    $.subscribe('scrollGtHeader:pass', function(){
+      console.log('Header scrollGtHeader:pass');
+    });
+    $.subscribe('scrollGtHeader:fail', function(){
+      console.log('Header scrollGtHeader:fail');
+    });
+  };
+  
+  function PageNav() {
+    this.subscribeEvents();
+  }
+
+  PageNav.prototype.subscribeEvents = function() {       
+    $.subscribe('scrollGtHeader:pass', function(){
+      console.log('PageNav scrollGtHeader:pass');
+    });
+    $.subscribe('scrollGtHeader:fail', function(){
+      console.log('PageNav scrollGtHeader:fail');
     });
   };
   
