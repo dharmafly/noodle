@@ -55,87 +55,94 @@ each component
 
 ***********************************************/
 
+var jQuery1_7_1 = jQuery;
 
 if (document.querySelectorAll && document.body.classList) {
-  (function ($, $$) {
-    
-    // HELPERS
-    
-    /* jQuery Tiny Pub/Sub - v0.7 - 10/27/2011
-     * http://benalman.com/
-     * Copyright (c) 2011 "Cowboy" Ben Alman; Licensed MIT, GPL */
-     
-    var o = jQuery({});
-
-    jQuery.subscribe = function() {
-      o.on.apply(o, arguments);
-    };
-
-    jQuery.unsubscribe = function() {
-      o.off.apply(o, arguments);
-    };
-
-    jQuery.publish = function() {
-      o.trigger.apply(o, arguments);
-    };
+(function ($, $qS) { // jQuery and document.querySelector
   
-    function throttle(fn, delay) {
-      var timer = null;
-      return function () {
-        var context = this, args = arguments;
-        clearTimeout(timer);
-        timer = setTimeout(function () {
-          fn.apply(context, args);
-        }, delay);
-      };
-    }
-    
-    // ---------------------
-    
-    // REGISTER CONDITIONS
-    
-    var conditions = {
-      scrollGtHeader : function scrollGtHeader(){
-        return window.pageYOffset < $('#navigation').offsetTop;
-      }
-    };  
-    
-    // INITIALISE
-    
-    function init(){
-      
-    
-        jQuery.subscribe("scrollGtHeader", function(){
-          console.log("scrollGtHeader")
-        });
-    
-      // DOM EVENT LISTENERS
-      
-      window.addEventListener('scroll', throttle(checkState, 1), false);
-      window.addEventListener('resize', throttle(checkState, 1), false);
-      document.body.addEventListener('click', function (event) {}, false);
-      
-    }  
-    
-    // EVENT CONDITIONS
-    
-    function checkState(){
-     
-        
-      for(var condition in conditions){
-        if(conditions[condition]()) {
-          jQuery.publish(condition);
-        }
-      }
-      
-    }
-    
-    // COMPONENTS
-    
-    //  jQuery.publish( "event.name", function(){
-    //  });
-    
-    init();
+  // HELPERS
+  
+  /* jQuery Tiny Pub/Sub - v0.7 - 10/27/2011
+   * http://benalman.com/
+   * Copyright (c) 2011 "Cowboy" Ben Alman; Licensed MIT, GPL */
+   
+  var o = $({});
 
-  })(function () { return document.querySelector.apply(document, arguments); });
+  $.subscribe = function() {
+    o.on.apply(o, arguments);
+  };
+
+  $.unsubscribe = function() {
+    o.off.apply(o, arguments);
+  };
+
+  $.publish = function() {
+    o.trigger.apply(o, arguments);
+  };
+
+  function throttle(fn, delay) {
+    var timer = null;
+    return function () {
+      var context = this, args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        fn.apply(context, args);
+      }, delay);
+    };
+  }
+  
+  // ---------------------
+  
+  var conditions = {};  
+  
+  function init(){
+      
+    var header = new Header('selector');
+    
+    // DOM EVENT LISTENERS
+    
+    window.addEventListener('scroll', throttle(checkState, 1), false);
+    window.addEventListener('resize', throttle(checkState, 1), false);
+    document.body.addEventListener('click', function (event) {}, false);
+    
+  }  
+  
+  // EVENT CONDITIONS
+  
+  function checkState(){
+   
+    for(var condition in conditions){
+      if(conditions[condition]()) {
+        $.publish(condition);
+      }
+    }
+    
+  }
+  
+  // COMPONENTS
+  
+  function Header(el) {
+    this.$el = $(el);
+    this.subscribeEvents();
+    this.registerConditions();
+  }
+
+  Header.prototype.subscribeEvents = function() {       
+    $.subscribe("scrollGtHeader", function(){
+      console.log("scrollGtHeader");
+    });
+  };
+  
+  Header.prototype.registerConditions = function() {
+    conditions.scrollGtHeader = function scrollGtHeader(){
+      return window.pageYOffset > $qS('#navigation').offsetTop;
+    }
+  };
+
+  
+  // --------------------
+  
+  init();
+
+})(jQuery1_7_1, function () { return document.querySelector.apply(document, arguments); });
 }
