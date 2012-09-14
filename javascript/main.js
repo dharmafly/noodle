@@ -118,24 +118,16 @@ if (document.querySelectorAll && document.body.classList) {
   }
   
   // Scroll position > height of the header
-  function scrollGtHeader(){ 
+  function isScrollGtHeader(){ 
     return window.pageYOffset > headerHeight;
   }
   
   // space on left of page < width of subnav 
-  function subnavSqueezed(){
+  function isSubnavSqueezed(){
     return subnavWidth + subnavMargin + halfContentWidth 
            > (window.innerWidth/2);
   }
-  
-  // The set of conditions that page components will listen for
-  var scrollConditions = {
-    scrollGtHeader : scrollGtHeader
-  }; 
-  var resizeConditions = {
-    scrollGtHeader : scrollGtHeader,
-    subnavSqueezed : subnavSqueezed
-  };  
+   
   
   // CONTROLLER
   
@@ -145,21 +137,14 @@ if (document.querySelectorAll && document.body.classList) {
         inPageNav = new PageNav();
     
     window.addEventListener('scroll', throttle(function(){
-      checkState(scrollConditions)
+      $.publish("scrollGtHeader", isScrollGtHeader());
     } , 1), false);
     window.addEventListener('resize', throttle(function(){
-      checkState(resizeConditions)
+      $.publish("subnavSqueezed", isSubnavSqueezed());
     } , 1), false);
     document.body.addEventListener('click', function (event) {}, false);
     
   }  
-  
-  function checkState(conditions){
-    for(var condition in conditions){
-      var state = conditions[condition]();
-      $.publish(condition, state); 
-    }
-  }
   
   // COMPONENTS
   
@@ -179,7 +164,7 @@ if (document.querySelectorAll && document.body.classList) {
     $.subscribe('scrollGtHeader', function(e, state){
       if(state !== model.scrollGtHeader){
          model.scrollGtHeader = state;
-         console.log('Header scrollGtHeader change to', state);
+         console.log('Header scrollGtHeader changed to', state);
       }
     });
   };
@@ -197,13 +182,13 @@ if (document.querySelectorAll && document.body.classList) {
     $.subscribe('scrollGtHeader', function(e, state){
       if(state !== model.scrollGtHeader){
          model.scrollGtHeader = state;
-         console.log('PageNav scrollGtHeader change to', state);
+         console.log('PageNav scrollGtHeader changed to', state);
       }
     });   
     $.subscribe('subnavSqueezed', function(e, state){
       if(state !== model.subnavSqueezed){
          model.subnavSqueezed = state;
-         console.log('PageNav subnavSqueezed change to', state);
+         console.log('PageNav subnavSqueezed changed to', state);
       }
     });
   };
