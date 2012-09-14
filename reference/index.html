@@ -5,7 +5,7 @@ layout_type: subpage
 {% assign reference = site.categories.reference %}
 
 
-<nav id="subnav" tabindex="0">
+<nav id="subnav">
     <ul>
     {% for post in reference reversed %}
         <li><a href="#{{ post.url | replace_first:'/','' }}">

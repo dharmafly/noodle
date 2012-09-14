@@ -93,13 +93,20 @@ if (document.querySelectorAll && document.body.classList) {
   
   // ---------------------
   
-  var conditions = {};  
+  // GLOBALS
+  
+  var navigation = $qS('#navigation');
+  
+  // The set of conditions that page components are listnening for
+  var conditions = {
+    scrollGtHeader : function scrollGtHeader(){
+      return window.pageYOffset > navigation.offsetTop;
+    }
+  };  
   
   function init(){
       
-    var header = new Header('selector');
-    
-    // DOM EVENT LISTENERS
+    var header = new Header();
     
     window.addEventListener('scroll', throttle(checkState, 1), false);
     window.addEventListener('resize', throttle(checkState, 1), false);
@@ -107,8 +114,8 @@ if (document.querySelectorAll && document.body.classList) {
     
   }  
   
-  // EVENT CONDITIONS
-  
+  // Check whether event conditions have been met
+  // and publish the result
   function checkState(){
    
     for(var condition in conditions){
@@ -121,10 +128,8 @@ if (document.querySelectorAll && document.body.classList) {
   
   // COMPONENTS
   
-  function Header(el) {
-    this.$el = $(el);
+  function Header() {
     this.subscribeEvents();
-    this.registerConditions();
   }
 
   Header.prototype.subscribeEvents = function() {       
@@ -133,12 +138,6 @@ if (document.querySelectorAll && document.body.classList) {
     });
   };
   
-  Header.prototype.registerConditions = function() {
-    conditions.scrollGtHeader = function scrollGtHeader(){
-      return window.pageYOffset > $qS('#navigation').offsetTop;
-    }
-  };
-
   
   // --------------------
   
