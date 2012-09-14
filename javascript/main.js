@@ -94,15 +94,47 @@ if (document.querySelectorAll && document.body.classList) {
   // ---------------------
   
   // GLOBALS
-  
+      
   var navigation = $qS('#navigation'),
+      headerHeight = navigation.offsetTop
       subnav = $qS('#subnav');
+      content = $qS('section.content'),
+      subnavWidth = getSubnavWidth(), 
+      subnavMargin = 29,
+      halfContentWidth = content.clientWidth/2;
   
-  // The set of conditions that page components are listnening for
-  var conditions = {
-    scrollGtHeader : function scrollGtHeader(){
-      return window.pageYOffset > navigation.offsetTop;
+  // Find the width of the biggest link in the subnav
+  // to see how wide it is visually
+  function getSubnavWidth(){
+    var subnavLinks = subnav.querySelectorAll("a"),
+        subnavWidth = 0, 
+        currentWidth;
+        
+    for (var i = 0; i < subnavLinks.length; ++i) {
+      currentWidth = subnavLinks[i].getBoundingClientRect().width;
+      subnavWidth = currentWidth > subnavWidth ? currentWidth : subnavWidth;
     }
+    return subnavWidth;
+  }
+  
+  // Scroll position > height of the header
+  function scrollGtHeader(){ 
+    return window.pageYOffset > headerHeight;
+  }
+  
+  // space on left of page < width of subnav 
+  function subnavSqueezed(){
+    return subnavWidth + subnavMargin + halfContentWidth 
+           > (window.innerWidth/2);
+  }
+  
+  // The set of conditions that page components will listen for
+  var scrollConditions = {
+    scrollGtHeader : scrollGtHeader
+  }; 
+  var resizeConditions = {
+    scrollGtHeader : scrollGtHeader,
+    subnavSqueezed : subnavSqueezed
   };  
   
   // CONTROLLER
@@ -112,57 +144,67 @@ if (document.querySelectorAll && document.body.classList) {
     var header = new Header(),
         inPageNav = new PageNav();
     
-    window.addEventListener('scroll', throttle(checkState, 1), false);
-    window.addEventListener('resize', throttle(checkState, 1), false);
+    window.addEventListener('scroll', throttle(function(){
+      checkState(scrollConditions)
+    } , 1), false);
+    window.addEventListener('resize', throttle(function(){
+      checkState(resizeConditions)
+    } , 1), false);
     document.body.addEventListener('click', function (event) {}, false);
     
   }  
   
-  function checkState(){
-   
+  function checkState(conditions){
     for(var condition in conditions){
-      // Check whether event conditions have been met
-      // and publish the name of the condition
-      var met = conditions[condition]();
-      if(typeof met === 'boolean'){
-        if(met) { 
-          $.publish(condition + ':pass'); 
-        }
-        else { 
-          $.publish(condition + ':fail'); 
-        }
-      }else{
-        console.log("condition returned non-boolean value", met);
-      }
+      var state = conditions[condition]();
+      $.publish(condition, state); 
     }
-    
   }
   
   // COMPONENTS
   
+  // TO DO: Each component needs to store the previous 
+  // published state for a condition.
+  // The moment the condition changes, then set the new state
+  
   function Header() {
+    this.model = {
+      scrollGtHeader : false
+    };
     this.subscribeEvents();
   }
 
-  Header.prototype.subscribeEvents = function() {       
-    $.subscribe('scrollGtHeader:pass', function(){
-      console.log('Header scrollGtHeader:pass');
-    });
-    $.subscribe('scrollGtHeader:fail', function(){
-      console.log('Header scrollGtHeader:fail');
+  Header.prototype.subscribeEvents = function() {   
+    var model = this.model;
+    $.subscribe('scrollGtHeader', function(e, state){
+      if(state !== model.scrollGtHeader){
+         model.scrollGtHeader = state;
+         console.log('Header scrollGtHeader change to', state);
+      }
     });
   };
   
   function PageNav() {
+    this.model = {
+      scrollGtHeader : false,
+      subnavSqueezed : false
+    };
     this.subscribeEvents();
   }
 
-  PageNav.prototype.subscribeEvents = function() {       
-    $.subscribe('scrollGtHeader:pass', function(){
-      console.log('PageNav scrollGtHeader:pass');
-    });
-    $.subscribe('scrollGtHeader:fail', function(){
-      console.log('PageNav scrollGtHeader:fail');
+  PageNav.prototype.subscribeEvents = function() {  
+    var model = this.model;
+    $.subscribe('scrollGtHeader', function(e, state){
+      if(state !== model.scrollGtHeader){
+         model.scrollGtHeader = state;
+         console.log('PageNav scrollGtHeader change to', state);
+      }
+    });   
+    $.subscribe('subnavSqueezed', function(e, state){
+      if(state !== model.subnavSqueezed){
+         model.subnavSqueezed = state;
+         console.log('PageNav subnavSqueezed change to', state);
+      }
     });
   };
   
