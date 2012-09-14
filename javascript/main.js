@@ -1,134 +1,84 @@
 /***********************************************
 
-        Main page controller
-      
-        Scrolling
-        Subnav
-        Floating navigation
-        
-        See demo.js for Code Examples Controller
+        Nav state controller
+
+// STATES 
+
+Vertical Scrolling states
+---------------
+
+a. Main nav moves with scroll, subnav moves with scroll
+b. Main nav fixed, subnav fixed
+
+Width dependent states
+--------------
+
+1. Subnav visible, button hidden
+2. Button visible, subnav hidden 
+3. Content shifted, subnav visible, button hidden
+  
+
+// CHANGE CONDITIONS
+
+- these will listen to events
+- these will fire new events ('boundary condition hit')
+
+a. Scroll position < height of the header
+b. Scroll position > height of the header
+1. space on left of page > width of subnav
+2. space on left of page < width of subnav
+3. No change condition, always occurs (i.e. it's initiated via a click event)
+
+// EVENTS TO LISTEN FOR
+
+i. Resize
+ii. Scroll (vertical)
+iii. Subnav open
+iv. subnav close
+
+// PATTERN
+
+On init
+  each component 
+    register conditions
+
+On event
+  check for condition
+    fire condition event
+
+each component
+  listen for condition event
+  on condition event
+    remove current state
+    set new state 
+
 
 ***********************************************/
 
 
-var QueryParameters = (function() {
-    var result = {};
-
-    if (window.location.search) {
-    
-        var params = window.location.search.slice(1).split("&");
-        for (var i = 0; i < params.length; i++) {
-            var tmp = params[i].split("=");
-            result[tmp[0]] = unescape(tmp[1]);
-        }
-    }
-
-    return result;
-}());
-
 if (document.querySelectorAll && document.body.classList) {
   (function ($, $$) {
-    var navigation = $('#navigation'),
-        subnavId = 'subnav',
-        content = $('section.content'),
-        subnav = $('#' + subnavId),
-        cloned = navigation.cloneNode(true),
-        subnavCloned = subnav.cloneNode(true),
-        offset = navigation.offsetTop,
-        root   = document.documentElement,
-        isHeaderVisible = true,
-        subnavContainer = subnav.clientWidth,
-        halfContentWidth = content.clientWidth / 2,
-        subnavMargin = 29,
-        subnavOffset = null, 
-        height, timer, subnavOffset, openSubnavOffset, subnavTopOffset;
     
+    // HELPERS
     
-    // ********** Initialise
-    
-    // Conditionally load scripts based on device width
-    var narrowScreen = GLOBAL.narrowScreen, 
-        isltIE10 = GLOBAL.isltIE10, 
-        scripts;
-        
-        // Ace is never loaded, unless ?editable=true (and this is a non-IE wide screen device)
-        GLOBAL.noEditor = narrowScreen || isltIE10 ? 
-                              true :
-                              QueryParameters.editable === "true" ? false : true;
-        
-       scripts = GLOBAL.noEditor ?  ["hijs", "demo"] : ["ace/ace", "ace/theme/theme-dharmafly", "ace/mode-javascript", "demo"]; // syntax highlighter for small devices, ACE editor otherwise
-    
-    (function loadScript(src) {
-      
-      var script = document.createElement("script");
-      script.onload = function () {
-        if (scripts.length) {
-          loadScript(scripts.shift());
-        }
-      };
-      script.src = GLOBAL.relative_path + "javascript/" + src + ".js";
-      document.body.appendChild(script);
-    })(scripts.shift());
-    
-    // Append the cloned navigation item.
-    cloned.classList.add('float');
-    cloned.querySelector("ul").insertBefore($('h1.title').cloneNode(true), cloned.querySelector('.show-subnav').nextSibling);
-    document.body.appendChild(cloned);
-    height = cloned.getBoundingClientRect().height;
-    
-    
-    // Get visible width of subnav
-    document.body.appendChild(subnavCloned);
-    var subnavLinks = subnavCloned.querySelectorAll("a"),
-        subnavWidth = 0, currentWidth;
-        
-    for (var i = 0; i < subnavLinks.length; ++i) {
-       currentWidth = subnavLinks[i].getBoundingClientRect().width;
-        subnavWidth = currentWidth > subnavWidth ? currentWidth : subnavWidth;
-    }
-    document.body.removeChild(subnavCloned);
-    
-    // Get subnav top offset
-    
-    subnavTopOffset = (height + subnav.offsetTop) + "px";
-    
-    onScroll(); // set the state of the page initial.
-    
-    // ********** Helper functions
-    
-    // Animate a scroll to the provided offset.
-    function scrollTo(offset) {
-    
-    
-      var total = Math.abs(window.pageYOffset - offset),
-          start = Math.ceil(500 * total / root.scrollHeight),
-          last;
+    /* jQuery Tiny Pub/Sub - v0.7 - 10/27/2011
+     * http://benalman.com/
+     * Copyright (c) 2011 "Cowboy" Ben Alman; Licensed MIT, GPL */
+     
+    var o = jQuery({});
 
-      clearTimeout(timer);
-      
-      (function doScroll() {
-      
-        if (last && window.pageYOffset !== last) {
-          // Manually moved by the user so stop scrolling.
-          return clearTimeout(timer);
-        }
+    jQuery.subscribe = function() {
+      o.on.apply(o, arguments);
+    };
 
-        var difference = window.pageYOffset - offset,
-            direction  = difference < 1 ? 1 : -1,
-            modifier   = Math.abs(difference) / total,
-            increment  = Math.ceil(start * modifier);
-        
-        if (difference !== last && (direction < 0 || window.innerHeight + window.pageYOffset !== root.scrollHeight)) {
-          if (difference < increment && difference > increment * -1) {
-            increment = Math.abs(difference);
-          }
-          last = window.pageYOffset + (increment * direction);
-          window.scrollTo(0, last);
-          timer = setTimeout(doScroll, 1000 / 60);
-        }
-      })();
-    }
-    
+    jQuery.unsubscribe = function() {
+      o.off.apply(o, arguments);
+    };
+
+    jQuery.publish = function() {
+      o.trigger.apply(o, arguments);
+    };
+  
     function throttle(fn, delay) {
       var timer = null;
       return function () {
@@ -140,171 +90,52 @@ if (document.querySelectorAll && document.body.classList) {
       };
     }
     
-    // ********* Event functions 
+    // ---------------------
     
-    // Show/Hide the navigation on scroll.
-    window.addEventListener('scroll', throttle(onScroll, 1), false);
+    // REGISTER CONDITIONS
     
-    
-    function onScroll() {
-      
-      var isHidden = window.pageYOffset < offset;
-      
-      cloned[isHidden ? 'setAttribute' : 'removeAttribute']('hidden', '');
-      subnav.classList[isHidden ? 'remove' : 'add']('float');
-      if(subnav.classList.contains("float")){
-        subnav.style.top = !subnav.style.top ? subnavTopOffset : subnav.style.top; // top position unset? use the calculated value, or leave it.
-      }else{
-        subnav.style.top = null;
+    var conditions = {
+      scrollGtHeader : function scrollGtHeader(){
+        return window.pageYOffset < $('#navigation').offsetTop;
       }
+    };  
+    
+    // INITIALISE
+    
+    function init(){
       
-      isHeaderVisible = isHidden;
-      resetSubnav("scroll");
-  
-      return onScroll;
-    }
     
-    //  Move the navigation on resize to keep it's position relative to the browser port.
-    window.addEventListener('resize', function(e){resetSubnav("resize")});
+        jQuery.subscribe("scrollGtHeader", function(){
+          console.log("scrollGtHeader")
+        });
     
-    function resetSubnav(state) {
-    
-        var halfWindowWidth = window.innerWidth / 2,
-            navOffset = subnavWidth + subnavMargin + halfContentWidth,
-            navOffScreen = navOffset > halfWindowWidth,
-            //subnavOffset = navOffScreen ? (halfWindowWidth - subnavContainer - subnavMargin - halfContentWidth + subnavWidth ) + "px" : (halfWindowWidth - subnavContainer - halfContentWidth - subnavMargin) + "px", 
-            toggleClass = navOffScreen ? 'add' : 'remove';
-        
-
-        if(state === "resize") { // always calculate the offset on resize
-          subnavOffset =  getSubnavOffset() 
-        }else{
-           subnavOffset = subnavOffset ? subnavOffset : getSubnavOffset(); // if offset is already set, don't change it, otherwise get it.
-        }
-        
-        subnav.classList[toggleClass]('off-left');
-        cloned.classList[toggleClass]('show-subnav-button');
-        navigation.classList[toggleClass]('show-subnav-button');
-        
-        if(navOffScreen === false) {
-          closeSubnav();
-        }
-        
-        subnavOffset = subnav.classList.contains("show-nav") ? openSubnavOffset  : subnavOffset; // set on open via button
-        
-        subnav.style.left = subnav.classList.contains("float")  ? subnavOffset  : null; 
-        
-    }
-    
-    // Handle scroll between inter-document links.
-    document.body.addEventListener('click', function (event) {
-      var hashId = event.target.hash,
-          section = hashId && $(hashId),
-          offset  = window.pageYOffset,
-          targetId = hashId ? hashId.substring(1, hashId.length) : null;
-        
-        
-        if(targetId === subnavId) {
-       
-          event.preventDefault();
-          toggleSubnav();
-            
-        } else if (section) {
-        
-          closeIfSubnavLink(event.target);
-          animateScrollToLink (event, section);
-          
-        }
-        
-    }, false);
-    
-    // ********* Helper functions 
-    
-    function getSubnavOffset() {
-      var subnavOffset;
+      // DOM EVENT LISTENERS
       
-      if(window.getComputedStyle(subnav,null).getPropertyValue("position") == "absolute"){
+      window.addEventListener('scroll', throttle(checkState, 1), false);
+      window.addEventListener('resize', throttle(checkState, 1), false);
+      document.body.addEventListener('click', function (event) {}, false);
       
-        subnavOffset = jQuery(subnav).offset().left + "px";
-        
-      }else{
-      
-        content.appendChild(subnavCloned);
-        
-        subnavOffset = jQuery(subnavCloned).offset().left + "px";
-        
-        content.removeChild(subnavCloned)
-        
-      }
-      return subnavOffset;
-    }
+    }  
     
-    function toggleSubnav() {
-      var contentLeftPos;
-      if(subnav.classList.contains("show-nav")){
-        closeSubnav();
-      }else{
-        subnav.classList.add("show-nav");
-        contentLeftPos = (0 - content.offsetLeft + subnavWidth + (subnavMargin * 2));
-        
-        content.style.left = contentLeftPos + "px";
-        
-        content.appendChild(subnavCloned);
-        
-        openSubnavOffset = (jQuery(subnavCloned).offset().left + contentLeftPos) + "px"; // stored value reapplied on scroll
-        
-        if(isltIE10 || narrowScreen){
-          openSubnavOffset = ((0 - subnavContainer) + (subnavWidth + subnavMargin))  + "px"; 
-        }
-        content.removeChild(subnavCloned);
-        subnav.style.left = subnav.classList.contains("float") ? openSubnavOffset : null; 
-      }
+    // EVENT CONDITIONS
+    
+    function checkState(){
      
-    }
-    
-    function closeSubnav(){
-    
-      subnav.classList.remove("show-nav");
-      subnav.style.left = null;
-      content.style.left = null;
-      
-      
-    }
-      
-    function closeIfSubnavLink(link){
-      var parent = link.parentNode,
-        isSubnavLink = false;
-          
-      while(parent){
-        if (parent.id === subnavId){
-            isSubnavLink = true;
-            break;
+        
+      for(var condition in conditions){
+        if(conditions[condition]()) {
+          jQuery.publish(condition);
         }
-        parent =  parent.parentNode;
       }
       
-      if(isSubnavLink) {
-        closeSubnav()
-      }
-    }
-      
-    function animateScrollToLink (event, section) {
-      // Set the location hash and reset the browser scroll position.
-      window.location.hash = event.target.hash;
-      window.scrollTo(0, offset);
-
-      // Animate to the element.
-      var scrollYPos = section.parentNode.offsetTop + height + 100;
-      
-      //if(narrowScreen){
-      if(1){
-        window.scrollTo(0, scrollYPos); // No animation on small screens (long length), or on IE // TO DO fix IE to work with scrollTo #59
-      } else {
-        scrollTo(scrollYPos); 
-      }
-      event.preventDefault();
     }
     
+    // COMPONENTS
+    
+    //  jQuery.publish( "event.name", function(){
+    //  });
+    
+    init();
 
   })(function () { return document.querySelector.apply(document, arguments); });
 }

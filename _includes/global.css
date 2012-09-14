@@ -290,7 +290,7 @@ section.overview a:active {
     width: 40em;
 }
 
-#subnav.float {
+#subnav.fixed {
     position: fixed;
     top: 6em;
     /* calculate left offset dynamically */
@@ -302,7 +302,7 @@ section.overview a:active {
     opacity: 0;
 }
 
-
+/* Debug #subnav:focus, */
 #subnav.show-nav {
     opacity : 1;
     -webkit-transition: opacity 300ms ease-in-out;
@@ -311,6 +311,16 @@ section.overview a:active {
     -ms-transition: opacity 300ms ease-in-out;
     transition: opacity 300ms ease-in-out;
 }
+
+/* Debug - no js show the nav at small device widths
+#subnav:focus {
+  left: -34px;
+  top: 0;
+  background: {{ page.content_bg_colour }};
+  border: 1px solid {{ page.body_background_colour }};
+  z-index: 30;
+}
+*/
 
 #subnav li {
     margin: 0;
