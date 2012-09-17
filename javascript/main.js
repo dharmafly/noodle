@@ -13,15 +13,14 @@ b. Main nav fixed, subnav fixed
 Width dependent states
 --------------
 
-1. PageNav visible, button hidden
+1. subnav visible, button hidden
 2. Button visible, subnav hidden 
-3. Content shifted, subnav visible, button hidden
+3. subnav opened, content shifted, button visible
   
-
 // CHANGE CONDITIONS
 
-- these will listen to events
-- these will fire new events ('boundary condition hit')
+- subscribers will listen to events
+- events will publish new events ('boundary condition hit')
 
 a. Scroll position < height of the header
 b. Scroll position > height of the header
@@ -33,14 +32,14 @@ b. Scroll position > height of the header
 
 i. Resize
 ii. Scroll (vertical)
-iii. PageNav open
+iii. subnav open
 iv. subnav close
 
 // PATTERN
 
 On init
   each component 
-    register conditions
+    subscribe to events
 
 On event
   check for condition
@@ -48,7 +47,7 @@ On event
 
 each component
   listen for condition event
-  on condition event
+  on condition event check for a state change
     remove current state
     set new state 
 
@@ -130,20 +129,6 @@ if (document.querySelectorAll && document.body.classList) {
   
   // HELPERS
   
-  function getSubnavLeftPos(scrollGtHeader) {
-    var offset;
-    if(scrollGtHeader){
-      // get the offset of the subnav cloned on page load
-      content.appendChild(subnavCloned);
-      offset = jQuery(subnavCloned).offset().left;
-      content.removeChild(subnavCloned);
-    }else{
-      // get the current subnav's offset
-      offset = jQuery(subnav).offset().left;
-    }
-    return offset + 'px';
-  }
-  
   // Scroll position > height of the header
   function isScrollGtHeader(){ 
     return window.pageYOffset > headerHeight;
@@ -183,7 +168,7 @@ if (document.querySelectorAll && document.body.classList) {
         targetId = event.target.hash.substring(1, event.target.hash.length);
         if(targetId === subnavId) {
             event.preventDefault();
-            inPageNav.isOpen ? inPageNav.close() : inPageNav.open();
+            inPageNav.toggle();
         }
       }
     });
@@ -218,9 +203,10 @@ if (document.querySelectorAll && document.body.classList) {
     this.el = el; 
     this.isScrollGtHeader = false,
     this.isSubnavSqueezed = false;
-    this.leftPos = getSubnavLeftPos();
-    this.subscribeEvents();
     this.isOpen = true;
+    this.leftPos = this.getLeftPos();
+    
+    this.subscribeEvents();
   }
   
   // PageNav (subnav)
@@ -243,7 +229,7 @@ if (document.querySelectorAll && document.body.classList) {
     $.subscribe('windowResized', function(){ 
     
       // update model for scrolling state changes ('scrollGtHeader' event)
-      nav.leftPos = getSubnavLeftPos(nav.isScrollGtHeader);
+      nav.leftPos = nav.getLeftPos(nav.isScrollGtHeader);
       
       // set the left pos if position fixed
       // otherwise it will sit in the same place when the browser resizes
@@ -259,17 +245,49 @@ if (document.querySelectorAll && document.body.classList) {
         nav.isSubnavSqueezed = state;        
         setClass(navigation, 'show-subnav-button', state);
         setClass(nav.el, 'off-left', state);
+        
+        // if the there's not enough room for the subnav and the 
+        // subnav is closed, show the button, set the subnav off-screen
+        
+        // if there's not enough room for the the subnav and the 
+        // subnav is open,  show the button and set the subnav on-screen
+        // set the content left the width of the subnav 
+        // relative to its current position
+        
+        // if there's enough room for the subnav and the subnav is 
+        // closed, 
+        
       }
     });
     
   };
+  
+  PageNav.prototype.getLeftPos = function getLeftPos(scrollGtHeader) {
+    var offset;
+    if(scrollGtHeader){
+      // get the offset of the subnav cloned on page load
+      content.appendChild(subnavCloned);
+      offset = jQuery(subnavCloned).offset().left;
+      content.removeChild(subnavCloned);
+    }else{
+      // get the current subnav's offset
+      offset = jQuery(subnav).offset().left;
+    }
+    return offset + 'px';
+  }
+  
+  
+  PageNav.prototype.toggle = function() {
+    this.isOpen ? this.close() : this.open();
+  }
   
   PageNav.prototype.open = function() {
   
     console.log("open")
     this.isOpen = true;
     console.log("this.isOpen?", this.isOpen);
-    
+    subnav.classList.add("show-nav");
+    content.style.left = 300 + "px";
   }
   
   PageNav.prototype.close = function() {
@@ -277,7 +295,9 @@ if (document.querySelectorAll && document.body.classList) {
     console.log("close")
     this.isOpen = false;
     console.log("this.isOpen?", this.isOpen)
-    //setClass(nav.el, 'off-left', state);
+    
+    subnav.classList.remove("show-nav");
+    content.style.left = null;
   }
   
   
