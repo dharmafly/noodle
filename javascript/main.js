@@ -60,7 +60,7 @@ var jQuery1_7_1 = jQuery;
 if (document.querySelectorAll && document.body.classList) {
 (function ($, $qS) { // jQuery and document.querySelector
   
-  // LIBRARY
+  // LIBRARIES
   
   /* jQuery Tiny Pub/Sub - v0.7 - 10/27/2011
    * http://benalman.com/
@@ -120,6 +120,7 @@ if (document.querySelectorAll && document.body.classList) {
       
   var navigation = $qS('#navigation'),
       headerHeight = navigation.offsetTop,
+      subnavId = 'subnav',
       subnav = $qS('#subnav'),
       subnavCloned = subnav.cloneNode(true),
       content = $qS('section.content'),
@@ -167,25 +168,34 @@ if (document.querySelectorAll && document.body.classList) {
     } , 1), false);
     
     window.addEventListener('resize', throttle(function(){
-    
       $.publish('subnavSqueezed', isSubnavSqueezed());
       $.publish('windowResized');
-      
     } , 1), false);
     
     window.addEventListener('load', function(){
       $.publish('subnavSqueezed', isSubnavSqueezed());
     });
     
-    document.body.addEventListener('click', function (event) {}, false);
+    document.body.addEventListener('click', function (event) {
+      var targetId,
+          hash = event.target.hash;
+      if(hash){
+        targetId = event.target.hash.substring(1, event.target.hash.length);
+        if(targetId === subnavId) {
+            event.preventDefault();
+            inPageNav.isOpen ? inPageNav.close() : inPageNav.open();
+        }
+      }
+    });
     
   }  
   
   // COMPONENTS
   
+  // Header (navigation)
   
   function Header(el) {
-    this.navigation = el;
+    this.el = el;
     this.isScrollGtHeader = false;
     this.subscribeEvents();
   }
@@ -197,7 +207,7 @@ if (document.querySelectorAll && document.body.classList) {
     $.subscribe('scrollGtHeader', function(e, state){
       if(state !== nav.isScrollGtHeader){
         nav.isScrollGtHeader = state;     
-        setClass(nav.navigation, 'float', state);
+        setClass(nav.el, 'float', state);
       }
     });
     
@@ -205,12 +215,15 @@ if (document.querySelectorAll && document.body.classList) {
   
   // Left hand nav area
   function PageNav(el) {
-    this.subnav = el; 
+    this.el = el; 
     this.isScrollGtHeader = false,
     this.isSubnavSqueezed = false;
     this.leftPos = getSubnavLeftPos();
     this.subscribeEvents();
+    this.isOpen = true;
   }
+  
+  // PageNav (subnav)
 
   PageNav.prototype.subscribeEvents = function() {  
     var nav = this;
@@ -219,10 +232,10 @@ if (document.querySelectorAll && document.body.classList) {
     // set left nav to former left position and vice versa
     $.subscribe('scrollGtHeader', function(e, state){
     
-      if(state !== nav.isScrollGtHeader){ // boundary change
+      if(state !== nav.isScrollGtHeader){ // there's a boundary change
         nav.isScrollGtHeader = state; // set model
-        setClass(nav.subnav, 'fixed', state);
-        subnav.style.left = nav.isScrollGtHeader === true ? nav.leftPos : null;
+        setClass(nav.el, 'fixed', state);
+        nav.el.style.left = nav.isScrollGtHeader === true ? nav.leftPos : null;
       }
       
     });   
@@ -235,18 +248,37 @@ if (document.querySelectorAll && document.body.classList) {
       // set the left pos if position fixed
       // otherwise it will sit in the same place when the browser resizes
       if(nav.isScrollGtHeader){
-        subnav.style.left = nav.leftPos;
+        nav.el.style.left = nav.leftPos;
       } 
     });
     
+    // show and hide the subnav and its button depending on the
+    // avaiable space to the left of the content area
     $.subscribe('subnavSqueezed', function(e, state){
       if(state !== nav.isSubnavSqueezed){
-        nav.isSubnavSqueezed = state;
-        console.log('PageNav isSubnavSqueezed changed to', state);
+        nav.isSubnavSqueezed = state;        
+        setClass(navigation, 'show-subnav-button', state);
+        setClass(nav.el, 'off-left', state);
       }
     });
     
   };
+  
+  PageNav.prototype.open = function() {
+  
+    console.log("open")
+    this.isOpen = true;
+    console.log("this.isOpen?", this.isOpen);
+    
+  }
+  
+  PageNav.prototype.close = function() {
+  
+    console.log("close")
+    this.isOpen = false;
+    console.log("this.isOpen?", this.isOpen)
+    //setClass(nav.el, 'off-left', state);
+  }
   
   
   // --------------------
