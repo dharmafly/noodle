@@ -60,7 +60,7 @@ var jQuery1_7_1 = jQuery;
 if (document.querySelectorAll && document.body.classList) {
 (function ($, $qS) { // jQuery and document.querySelector
   
-  // HELPERS
+  // LIBRARY
   
   /* jQuery Tiny Pub/Sub - v0.7 - 10/27/2011
    * http://benalman.com/
@@ -91,30 +91,56 @@ if (document.querySelectorAll && document.body.classList) {
     };
   }
   
+  // --------------------
+  
+  // UTILITIES
+  
+  function setClass(el, className, state){
+    var  toggleClass = state ? 'add' : 'remove';
+    el.classList[toggleClass](className);
+  }
+  
+  // Find the width of the biggest link in the subnav
+  // to see how wide it is visually
+  function getLinkListWidth(el){
+    var links = el.querySelectorAll('a'),
+        visualWidth = 0, 
+        currentWidth;
+        
+    for (var i = 0; i < links.length; ++i) {
+      currentWidth = links[i].getBoundingClientRect().width;
+      visualWidth = currentWidth > visualWidth ? currentWidth : visualWidth;
+    }
+    return visualWidth;
+  }
+  
   // ---------------------
   
   // GLOBALS
       
   var navigation = $qS('#navigation'),
-      headerHeight = navigation.offsetTop
-      subnav = $qS('#subnav');
+      headerHeight = navigation.offsetTop,
+      subnav = $qS('#subnav'),
+      subnavCloned = subnav.cloneNode(true),
       content = $qS('section.content'),
-      subnavWidth = getSubnavWidth(), 
+      subnavWidth = getLinkListWidth(subnav), 
       subnavMargin = 29,
       halfContentWidth = content.clientWidth/2;
   
-  // Find the width of the biggest link in the subnav
-  // to see how wide it is visually
-  function getSubnavWidth(){
-    var subnavLinks = subnav.querySelectorAll("a"),
-        subnavWidth = 0, 
-        currentWidth;
-        
-    for (var i = 0; i < subnavLinks.length; ++i) {
-      currentWidth = subnavLinks[i].getBoundingClientRect().width;
-      subnavWidth = currentWidth > subnavWidth ? currentWidth : subnavWidth;
+  // HELPERS
+  
+  function getSubnavLeftPos(scrollGtHeader) {
+    var offset;
+    if(scrollGtHeader){
+      // get the offset of the subnav cloned on page load
+      content.appendChild(subnavCloned);
+      offset = jQuery(subnavCloned).offset().left;
+      content.removeChild(subnavCloned);
+    }else{
+      // get the current subnav's offset
+      offset = jQuery(subnav).offset().left;
     }
-    return subnavWidth;
+    return offset + 'px';
   }
   
   // Scroll position > height of the header
@@ -133,64 +159,86 @@ if (document.querySelectorAll && document.body.classList) {
   
   function init(){
       
-    var header = new Header(),
-        inPageNav = new PageNav();
+    var header = new Header(navigation),
+        inPageNav = new PageNav(subnav);
     
     window.addEventListener('scroll', throttle(function(){
-      $.publish("scrollGtHeader", isScrollGtHeader());
+      $.publish('scrollGtHeader', isScrollGtHeader());
     } , 1), false);
+    
     window.addEventListener('resize', throttle(function(){
-      $.publish("subnavSqueezed", isSubnavSqueezed());
+    
+      $.publish('subnavSqueezed', isSubnavSqueezed());
+      
+      // set the subnav's leftPos for scrolling state changes
+      inPageNav.leftPos = getSubnavLeftPos(inPageNav.isScrollGtHeader);
+      
+      // set the left pos if position fixed
+      if(inPageNav.isScrollGtHeader){
+        subnav.style.left = inPageNav.leftPos;
+      } 
+      
     } , 1), false);
+    
+    window.addEventListener('load', function(){
+      $.publish('subnavSqueezed', isSubnavSqueezed());
+    });
+    
     document.body.addEventListener('click', function (event) {}, false);
     
   }  
   
   // COMPONENTS
   
-  // TO DO: Each component needs to store the previous 
-  // published state for a condition.
-  // The moment the condition changes, then set the new state
   
-  function Header() {
-    this.model = {
-      scrollGtHeader : false
-    };
+  function Header(el) {
+    this.navigation = el;
+    this.isScrollGtHeader = false;
     this.subscribeEvents();
   }
 
-  Header.prototype.subscribeEvents = function() {   
-    var model = this.model;
+  Header.prototype.subscribeEvents = function() { 
+    var nav = this;
+    
+    // page scrolls beyond header height, set navigation to fixed position
     $.subscribe('scrollGtHeader', function(e, state){
-      if(state !== model.scrollGtHeader){
-         model.scrollGtHeader = state;
-         console.log('Header scrollGtHeader changed to', state);
+      if(state !== nav.isScrollGtHeader){
+        nav.isScrollGtHeader = state;     
+        setClass(nav.navigation, 'float', state);
       }
     });
+    
   };
   
-  function PageNav() {
-    this.model = {
-      scrollGtHeader : false,
-      subnavSqueezed : false
-    };
+  // Left hand nav area
+  function PageNav(el) {
+    this.subnav = el; 
+    this.isScrollGtHeader = false,
+    this.isSubnavSqueezed = false;
+    this.leftPos = getSubnavLeftPos();
     this.subscribeEvents();
   }
 
   PageNav.prototype.subscribeEvents = function() {  
-    var model = this.model;
+    var nav = this;
+    
+    // page scrolls beyond header height, set subnav to fixed, 
+    // set left nav to former left position and vice versa
     $.subscribe('scrollGtHeader', function(e, state){
-      if(state !== model.scrollGtHeader){
-         model.scrollGtHeader = state;
-         console.log('PageNav scrollGtHeader changed to', state);
+      if(state !== nav.isScrollGtHeader){ 
+        nav.isScrollGtHeader = state; 
+        setClass(nav.subnav, 'fixed', state);
+        subnav.style.left = nav.isScrollGtHeader === true ? nav.leftPos : null;
       }
     });   
+    
     $.subscribe('subnavSqueezed', function(e, state){
-      if(state !== model.subnavSqueezed){
-         model.subnavSqueezed = state;
-         console.log('PageNav subnavSqueezed changed to', state);
+      if(state !== nav.isSubnavSqueezed){
+        nav.isSubnavSqueezed = state;
+        console.log('PageNav isSubnavSqueezed changed to', state);
       }
     });
+    
   };
   
   
