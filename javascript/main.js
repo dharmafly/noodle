@@ -169,14 +169,7 @@ if (document.querySelectorAll && document.body.classList) {
     window.addEventListener('resize', throttle(function(){
     
       $.publish('subnavSqueezed', isSubnavSqueezed());
-      
-      // set the subnav's leftPos for scrolling state changes
-      inPageNav.leftPos = getSubnavLeftPos(inPageNav.isScrollGtHeader);
-      
-      // set the left pos if position fixed
-      if(inPageNav.isScrollGtHeader){
-        subnav.style.left = inPageNav.leftPos;
-      } 
+      $.publish('windowResized');
       
     } , 1), false);
     
@@ -225,12 +218,26 @@ if (document.querySelectorAll && document.body.classList) {
     // page scrolls beyond header height, set subnav to fixed, 
     // set left nav to former left position and vice versa
     $.subscribe('scrollGtHeader', function(e, state){
-      if(state !== nav.isScrollGtHeader){ 
-        nav.isScrollGtHeader = state; 
+    
+      if(state !== nav.isScrollGtHeader){ // boundary change
+        nav.isScrollGtHeader = state; // set model
         setClass(nav.subnav, 'fixed', state);
         subnav.style.left = nav.isScrollGtHeader === true ? nav.leftPos : null;
       }
+      
     });   
+    
+    $.subscribe('windowResized', function(){ 
+    
+      // update model for scrolling state changes ('scrollGtHeader' event)
+      nav.leftPos = getSubnavLeftPos(nav.isScrollGtHeader);
+      
+      // set the left pos if position fixed
+      // otherwise it will sit in the same place when the browser resizes
+      if(nav.isScrollGtHeader){
+        subnav.style.left = nav.leftPos;
+      } 
+    });
     
     $.subscribe('subnavSqueezed', function(e, state){
       if(state !== nav.isSubnavSqueezed){
