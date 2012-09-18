@@ -206,7 +206,7 @@ if (document.querySelectorAll && document.body.classList) {
     this.isOpen;
     this.timeout;
     this.fixedLeftPos = this.getLeftPos();
-    this.openLeftPos;
+    this.openPos; // the left offset when the subnav is open
     
     this.subscribeEvents();
   }
@@ -221,18 +221,16 @@ if (document.querySelectorAll && document.body.classList) {
     $.subscribe('scrollGtHeader', function(e, state){
     
       if(state !== subnav.isScrollGtHeader){ // there's a boundary change
+      
         subnav.isScrollGtHeader = state; // set model
+        
         setClass(subnav.el, 'fixed', state);
-        if(subnav.isScrollGtHeader){
-          if(subnav.isOpen){
-            subnav.el.style.left = subnav.openPos;
-          }else{
-            subnav.el.style.left =  subnav.fixedLeftPos 
-          }
-        }
-        else {
-          subnav.el.style.left = null;
-        }
+        
+        subnav.el.style.left = subnav.isScrollGtHeader?
+                                subnav.isOpen ?
+                                    subnav.openPos : 
+                                    subnav.fixedLeftPos
+                                : null;
       }
       
     });   
@@ -242,17 +240,15 @@ if (document.querySelectorAll && document.body.classList) {
       // update model for vertical scrolling state changes
       subnav.fixedLeftPos = subnav.getLeftPos(subnav.isScrollGtHeader);
       if(subnav.isOpen){
-        subnav.openPos = subnav.getLeftPos(subnav.isScrollGtHeader);
+        subnav.openPos = subnav.fixedLeftPos;
       }
       
       // set the left pos if position fixed
       // otherwise it will sit in the same place when the browser resizes
       if(subnav.isScrollGtHeader){
-        if(subnav.isOpen){
-          subnav.el.style.left = subnav.openPos;
-        }else{
-          subnav.el.style.left = subnav.fixedLeftPos;
-        }
+        subnav.el.style.left = subnav.isOpen ? 
+                                subnav.openPos : 
+                                subnav.fixedLeftPos;
       } 
       
     });
@@ -298,29 +294,28 @@ if (document.querySelectorAll && document.body.classList) {
   Subnav.prototype.open = function() {
     this.isOpen = true;
     this.el.classList.add("show-nav");
-    var subnav = this;
-    
-    // TO DO calculate 300 to be the real subnav width
-    content.style.left = 300 + "px"; 
+    var subnav = this,  
+        // TO DO calculate 300 to be the real subnav width
+        offset = (0 - content.offsetLeft + subnavWidth + (subnavMargin * 2));
+        
+    content.style.left = offset + "px"; 
     
     if(this.isScrollGtHeader){
       
+      // set the left position 
       if(this.openPos === this.fixedLeftPos){
         this.el.style.left = this.fixedLeftPos;
       }else{
-        this.el.style.left = (parseInt(this.fixedLeftPos) + 300) + "px";
-        
-        
-        this.timeout = window.setTimeout(function(){
-          subnav.openPos = (parseInt(subnav.fixedLeftPos) + 300) + "px";
-        }, 309) // timeout due to 300ms CSS animation on opening
+        this.el.style.left = this.openPos = 
+          (parseInt(this.fixedLeftPos) + offset) + "px";
       }
       
     }else{
-    
+      // wait for css animation to complete
+      // before finding left position of subnav
       this.timeout = window.setTimeout(function(){
         subnav.openPos = subnav.getLeftPos();
-      }, 309) 
+      }, 309); 
       
     }
   }
