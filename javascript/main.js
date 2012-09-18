@@ -200,11 +200,13 @@ if (document.querySelectorAll && document.body.classList) {
   // Left hand nav area
   function Subnav(el) {
     this.el = el; 
-    this.cloned = this.el.cloneNode(true),
-    this.isScrollGtHeader = false,
+    this.cloned = this.el.cloneNode(true);
+    this.isScrollGtHeader = false;
     this.isSubnavSqueezed = false;
     this.isOpen;
-    this.leftPos = this.getLeftPos();
+    this.timeout;
+    this.fixedLeftPos = this.getLeftPos();
+    this.openLeftPos;
     
     this.subscribeEvents();
   }
@@ -212,16 +214,25 @@ if (document.querySelectorAll && document.body.classList) {
   // Subnav (subnav)
 
   Subnav.prototype.subscribeEvents = function() {  
-    var nav = this;
+    var subnav = this;
     
     // page scrolls beyond header height, set subnav to fixed, 
-    // set left nav to former left position and vice versa
+    // set left subnav to former left position and vice versa
     $.subscribe('scrollGtHeader', function(e, state){
     
-      if(state !== nav.isScrollGtHeader){ // there's a boundary change
-        nav.isScrollGtHeader = state; // set model
-        setClass(nav.el, 'fixed', state);
-        nav.el.style.left = nav.isScrollGtHeader === true ? nav.leftPos : null;
+      if(state !== subnav.isScrollGtHeader){ // there's a boundary change
+        subnav.isScrollGtHeader = state; // set model
+        setClass(subnav.el, 'fixed', state);
+        if(subnav.isScrollGtHeader){
+          if(subnav.isOpen){
+            subnav.el.style.left = subnav.openPos;
+          }else{
+            subnav.el.style.left =  subnav.fixedLeftPos 
+          }
+        }
+        else {
+          subnav.el.style.left = null;
+        }
       }
       
     });   
@@ -229,41 +240,32 @@ if (document.querySelectorAll && document.body.classList) {
     $.subscribe('windowResized', function(){ 
     
       // update model for vertical scrolling state changes
-      nav.leftPos = nav.getLeftPos(nav.isScrollGtHeader);
+      subnav.fixedLeftPos = subnav.getLeftPos(subnav.isScrollGtHeader);
       
       // set the left pos if position fixed
       // otherwise it will sit in the same place when the browser resizes
-      if(nav.isScrollGtHeader){
-        nav.el.style.left = nav.leftPos;
+      if(subnav.isScrollGtHeader){
+        if(subnav.isOpen){
+          subnav.el.style.left = subnav.openPos;
+        }else{
+          subnav.el.style.left = subnav.fixedLeftPos;
+        }
       } 
-      
-      
-      // if the there's not enough room for the subnav and the 
-      // subnav is closed, show the button, set the subnav off-screen
-      
-      // if there's not enough room for the the subnav and the 
-      // subnav is open,  show the button and set the subnav on-screen
-      // set the content left the width of the subnav 
-      // relative to its current position
       
     });
     
     // show and hide the subnav and its button depending on the
     // avaiable space to the left of the content area
     $.subscribe('subnavSqueezed', function(e, state){
-      if(state !== nav.isSubnavSqueezed){
-        nav.isSubnavSqueezed = state;   
+      if(state !== subnav.isSubnavSqueezed){
+        subnav.isSubnavSqueezed = state;   
         
         setClass(navigation, 'show-subnav-button', state);
-        setClass(nav.el, 'off-left', state);
-        
-        
-        // if there's enough room for the subnav and the subnav is 
-        // closed, do nothing // ?
+        setClass(subnav.el, 'off-left', state);
         
         // if there's enough room for the subnav and the subnav is open
-        if(nav.isOpen && nav.isSubnavSqueezed === false){
-          nav.close();
+        if(subnav.isOpen && subnav.isSubnavSqueezed === false){
+          subnav.close();
         }
         
       }
@@ -293,15 +295,26 @@ if (document.querySelectorAll && document.body.classList) {
   Subnav.prototype.open = function() {
     this.isOpen = true;
     this.el.classList.add("show-nav");
+    var subnav = this
     // TO DO calculate 300 to be the real subnav width
     content.style.left = 300 + "px"; 
-    this.el.style.left = (parseInt(this.leftPos) + 300) + "px";
+    if(this.isScrollGtHeader){
+      subnav.el.style.left = (parseInt(subnav.fixedLeftPos) + 300) + "px"; 
+      subnav.timeout = window.setTimeout(function(){
+        subnav.openPos = (parseInt(subnav.fixedLeftPos) + 300) + "px";
+      }, 309) // timeout due to 300ms CSS animation on opening
+    }else{
+      subnav.timeout = window.setTimeout(function(){
+        subnav.openPos = subnav.getLeftPos();
+      }, 309) 
+    }
   }
   
   Subnav.prototype.close = function() {
     this.isOpen = false;
     this.el.classList.remove("show-nav");
     content.style.left = null;
+    clearTimeout(this.timeout);
   }
   
   
