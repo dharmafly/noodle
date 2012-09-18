@@ -241,6 +241,9 @@ if (document.querySelectorAll && document.body.classList) {
     
       // update model for vertical scrolling state changes
       subnav.fixedLeftPos = subnav.getLeftPos(subnav.isScrollGtHeader);
+      if(subnav.isOpen){
+        subnav.openPos = subnav.getLeftPos(subnav.isScrollGtHeader);
+      }
       
       // set the left pos if position fixed
       // otherwise it will sit in the same place when the browser resizes
@@ -295,18 +298,30 @@ if (document.querySelectorAll && document.body.classList) {
   Subnav.prototype.open = function() {
     this.isOpen = true;
     this.el.classList.add("show-nav");
-    var subnav = this
+    var subnav = this;
+    
     // TO DO calculate 300 to be the real subnav width
     content.style.left = 300 + "px"; 
+    
     if(this.isScrollGtHeader){
-      subnav.el.style.left = (parseInt(subnav.fixedLeftPos) + 300) + "px"; 
-      subnav.timeout = window.setTimeout(function(){
-        subnav.openPos = (parseInt(subnav.fixedLeftPos) + 300) + "px";
-      }, 309) // timeout due to 300ms CSS animation on opening
+      
+      if(this.openPos === this.fixedLeftPos){
+        this.el.style.left = this.fixedLeftPos;
+      }else{
+        this.el.style.left = (parseInt(this.fixedLeftPos) + 300) + "px";
+        
+        
+        this.timeout = window.setTimeout(function(){
+          subnav.openPos = (parseInt(subnav.fixedLeftPos) + 300) + "px";
+        }, 309) // timeout due to 300ms CSS animation on opening
+      }
+      
     }else{
-      subnav.timeout = window.setTimeout(function(){
+    
+      this.timeout = window.setTimeout(function(){
         subnav.openPos = subnav.getLeftPos();
       }, 309) 
+      
     }
   }
   
