@@ -183,7 +183,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     this.isOpen;
     this.timeout;
     this.fixedLeftPos = this.getLeftPos();
-    this.openPos; // the left offset when the subnav is open
+    //this.openPos; // the left offset when the subnav is open
     
     this.subscribeEvents();
   }
@@ -273,7 +273,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     this.el.classList.add("show-nav");
     var subnav = this,  
         // TO DO calculate 300 to be the real subnav width
-        offset = (0 - content.offsetLeft + subnavWidth + (subnavMargin * 2));
+        offset = 300;//(0 - content.offsetLeft + subnavWidth + (subnavMargin * 2));
         
     content.style.left = offset + "px"; 
     
