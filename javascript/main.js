@@ -10,72 +10,16 @@
 
 ***********************************************/
 
-
-/***********************************************
-
-        Nav state controller
-
-// STATES 
-
-Vertical Scrolling states
----------------
-
-a. Main nav moves with scroll, subnav moves with scroll
-b. Main nav fixed, subnav fixed
-
-Width dependent states
---------------
-
-1. subnav visible, button hidden
-2. Button visible, subnav hidden 
-3. subnav opened, content shifted, button visible
-  
-// CHANGE CONDITIONS
-
-- subscribers will listen to events
-- events will publish new events ('boundary condition hit')
-
-a. Scroll position < height of the header
-b. Scroll position > height of the header
-1. space on left of page > width of subnav
-2. space on left of page < width of subnav
-3. No change condition, always occurs (i.e. it's initiated via a click event)
-
-// EVENTS TO LISTEN FOR
-
-i. Resize
-ii. Scroll (vertical)
-iii. subnav open
-iv. subnav close
-
-// PATTERN
-
-On init
-  each component 
-    subscribe to events
-
-On event
-  check for condition
-    fire condition event
-
-each component
-  listen for condition event
-  on condition event check for a state change
-    remove current state
-    set new state 
-
-
-***********************************************/
-
 var jQuery1_7_1 = jQuery;
 
 dDocs = (function ($, $qS) { // jQuery and document.querySelector
+
+  // --------------------
   
   // LIBRARIES
   
-  /* jQuery Tiny Pub/Sub - v0.7 - 10/27/2011
-   * http://benalman.com/
-   * Copyright (c) 2011 'Cowboy' Ben Alman; Licensed MIT, GPL */
+  // jQuery Tiny Pub/Sub - v0.7 - 10/27/2011 http://benalman.com/
+  // Copyright 2011 'Cowboy' Ben Alman; Licensed MIT, GPL 
    
   var o = $({});
 
@@ -91,6 +35,8 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     o.trigger.apply(o, arguments);
   };
 
+  // UTILITIES
+  
   function throttle(fn, delay) {
     var timer = null;
     return function () {
@@ -101,11 +47,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
       }, delay);
     };
   }
-  
-  // --------------------
-  
-  // UTILITIES
-  
+    
   function setClass(el, className, state){
     var  toggleClass = state ? 'add' : 'remove';
     el.classList[toggleClass](className);
@@ -125,6 +67,10 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     return visualWidth;
   }
   
+  function getTargetId(hashId){
+    return hashId ? hashId.substring(1, hashId.length) : null;
+  }
+  
   // ---------------------
   
   // GLOBALS
@@ -137,7 +83,22 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
       subnavWidth = getLinkListWidth(subnavEl), 
       subnavMargin = 29,
       halfContentWidth = content.clientWidth/2;
+      
+  // --------------------
+
+  // SCROLLING
   
+  function  moveToAnchor(event){
+    // Set the location hash and reset the browser scroll position.
+    window.location.hash = event.target.hash;
+    console.log('event', event)
+  }
+  
+  // --------------------
+
+  // NAV STATE CONTROLLER
+  // See https://github.com/dharmafly/dharmafly-docs/wiki/Navigation-State
+ 
   // HELPERS
   
   // Scroll position > height of the header
@@ -304,10 +265,23 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     clearTimeout(this.timeout);
   }
   
+  Subnav.prototype.isAncestor = function(child){
+    var parent = child.parentNode,
+        isAncestor = false;
+    while(parent){
+      if (parent.id === this.el.id){
+          isAncestor = true;
+          break;
+      }
+      parent =  parent.parentNode;
+    }
+    return isAncestor;
+  }
+  
   
   // --------------------
   
-  // CONTROLLER
+  // PAGE CONTROLLER
   
   function init(){
       
@@ -327,22 +301,33 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
       $.publish('subnavSqueezed', isSubnavSqueezed());
     });
     
+    // Handle scroll between inter-document links.
     document.body.addEventListener('click', function (event) {
-      var targetId,
-          hash = event.target.hash;
-      if(hash){
-        targetId = event.target.hash.substring(1, event.target.hash.length);
-        if(targetId === subnavId) {
-            event.preventDefault();
-            subnav.toggle();
+      var hashId = event.target.hash,
+          anchor = hashId && $qS(hashId);
+       
+      // open close subnav was clicked 
+      if(getTargetId(hashId) === subnavId) {
+        event.preventDefault();
+        subnav.toggle();
+      } 
+      // link within page was clicked
+      else if (anchor) {
+      
+        if(subnav.isAncestor(event.target)){
+          subnav.close();
         }
+       
+        moveToAnchor(event);
+        
       }
     });
     
   } 
   
-  return {
-    init: init
+  // Initialise after feature detection
+  if (document.querySelectorAll && document.body.classList) {
+    init();
   }
   
 })(jQuery1_7_1, function () { return document.querySelector.apply(document, arguments); });
@@ -350,6 +335,3 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
 
 
 
-if (document.querySelectorAll && document.body.classList) {
-  dDocs.init();
-}
