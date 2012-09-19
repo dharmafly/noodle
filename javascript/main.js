@@ -112,7 +112,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
         }
         
         window.scrollTo(0, last);
-        timer = setTimeout(doScroll, 1000 / 60);
+        timer = setTimeout(doScroll, 500 / 60);
       }
     })();
   }
@@ -123,27 +123,32 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
       
   var narrowScreen = GLOBAL.narrowScreen, 
       isltIE10 = GLOBAL.isltIE10, 
-      navigation = $qS('#navigation'),
-      headerHeight = navigation.offsetTop,
+      navEl = $qS('#navigation'),
+      header = $qS('header'),
+      headerHeight = navEl.offsetTop,
       subnavId = 'subnav',
       subnavEl = $qS('#subnav'),
       content = $qS('section.content'),
-      subnavWidth = getLinkListWidth(subnavEl), 
-      subnavMargin = 29,
-      halfContentWidth = content.clientWidth/2;
+      halfContentWidth = content.clientWidth/2,
+      navigation,
+      subnav;
       
   // --------------------
 
   // SCROLLING
   
   function  moveToAnchor(anchor){
-    
-    // TO DO: set a more accurate offset than header height
-    var scrollYPos = anchor.parentNode.offsetTop + headerHeight;
+        
+        // set the position to scroll to - include hidden padding 
+        // in anchor to set the position below fixed navigation
+    var scrollYPos = anchor.parentNode.offsetTop 
+                     + content.offsetTop 
+                     + anchor.offsetTop, 
+        distance =  Math.abs(scrollYPos - window.pageYOffset);
     
     // TO DO: set 1000 to be a number of screen heights
     // the distance between link and anchor > 1000
-    if((Math.abs(scrollYPos - window.pageYOffset) > 1000) || narrowScreen){
+    if((distance > 1000) || narrowScreen){
       // jump to anchor
       window.scrollTo(0, scrollYPos); 
       setLocationHash();
@@ -171,21 +176,22 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
   
   // space on left of page < width of subnav 
   function isSubnavSqueezed(){
-    return subnavWidth + subnavMargin + halfContentWidth 
+    return subnav.width + subnav.margin + halfContentWidth 
            > (window.innerWidth/2);
   } 
   
   // COMPONENTS
   
-  // Header (navigation)
+  // Navigation (navigation)
   
-  function Header(el) {
+  function Navigation(el) {
     this.el = el;
     this.isScrollGtHeader = false;
+    this.height = el.getBoundingClientRect().height;
     this.subscribeEvents();
   }
 
-  Header.prototype.subscribeEvents = function() { 
+  Navigation.prototype.subscribeEvents = function() { 
     var nav = this;
     
     // page scrolls beyond header height, set navigation to fixed position
@@ -193,6 +199,18 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
       if(state !== nav.isScrollGtHeader){
         nav.isScrollGtHeader = state;     
         setClass(nav.el, 'float', state);
+        // add placeholder for height of nav to not alter document height
+        header.style.marginBottom = nav.isScrollGtHeader ? 
+          nav.height + "px" : null;
+        /*
+        // TO DO add/remove this
+        nav.querySelector("ul").insertBefore(
+      $qS('h1.title').cloneNode(true), 
+      nav.querySelector('.show-subnav').nextSibling
+    );
+        
+        */
+        
       }
     });
     
@@ -205,7 +223,10 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     this.isScrollGtHeader = false;
     this.isSubnavSqueezed = false;
     this.isOpen;
-    this.timeout;
+    this.timeout; 
+    this.width = getLinkListWidth(el); 
+    // TO DO
+    this.margin = 29;
     this.fixedLeftPos = this.getLeftPos();
     //this.openPos; // the left offset when the subnav is open
     
@@ -260,7 +281,8 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
       if(state !== subnav.isSubnavSqueezed){
         subnav.isSubnavSqueezed = state;   
         
-        setClass(navigation, 'show-subnav-button', state);
+        // TO DO set this on the Navigation instance
+        setClass(navEl, 'show-subnav-button', state);
         setClass(subnav.el, 'off-left', state);
         
         // if there's enough room for the subnav and the subnav is open
@@ -348,8 +370,8 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
   
   function init(){
       
-    var header = new Header(navigation),
-        subnav = new Subnav(subnavEl);
+    navigation = new Navigation(navEl);
+    subnav = new Subnav(subnavEl);
     
     window.addEventListener('scroll', throttle(function(){
       $.publish('scrollGtHeader', isScrollGtHeader());

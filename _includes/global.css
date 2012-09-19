@@ -257,7 +257,7 @@ section.overview a:active {
     color: {{ page.highlight_colour }};
 }
 
-#navigation[hidden] {
+#navigation.hidden {
 	display: none;
 }
 
@@ -415,7 +415,8 @@ section .permalink {
 	margin-right: 0.2em;
 	visibility: hidden;
   position: relative;
-  bottom: 0;
+  top: -70px; /* The height of the nav so it doesn't get hidden under */
+  padding-top: 70px;
   font-family: "DejaVu Sans", "DejaVu Sans Bold", "DejaVu Sans Bold Oblique", "DejaVu Sans Condensed", "DejaVu Sans Condensed Bold", "DejaVu Sans Condensed Bold Oblique", "DejaVu Sans Condensed Oblique", "DejaVu Sans Mono", "DejaVu Sans Mono Bold", "DejaVu Sans Oblique", "EversonMono", "EversonMono-Oblique", "Symbola", "Free Serif", "Quivira", "Rail Model", Code2000 
 }
 
