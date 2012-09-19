@@ -71,11 +71,59 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     return hashId ? hashId.substring(1, hashId.length) : null;
   }
   
+  // Animate a scroll to the provided offset.
+  function animateScrollTo(offset, callback) {
+  
+    var total = Math.abs(window.pageYOffset - offset),
+        start = Math.ceil(1000 * total / 
+                  document.documentElement.scrollHeight),
+        last, 
+        timer;
+
+    clearTimeout(timer);
+    
+    (function doScroll() {
+      
+      if (last && window.pageYOffset !== last) {
+        // Manually moved by the user so stop scrolling.
+        return clearTimeout(timer);
+      }
+
+      var difference = window.pageYOffset - offset,
+          direction  = difference < 1 ? 1 : -1,
+          modifier   = Math.abs(difference) / total,
+          increment  = Math.ceil(start * modifier);
+      
+      if (difference !== last && 
+        (direction < 0 || 
+          window.innerHeight + window.pageYOffset 
+          !== document.documentElement.scrollHeight)) {
+        if (difference < increment && difference > increment * -1) {
+          increment = Math.abs(difference);
+        }
+        last = window.pageYOffset + (increment * direction);
+        
+        
+        if(Math.abs(difference) < 2){
+          if(callback){
+            callback();
+          }
+          return clearTimeout(timer);
+        }
+        
+        window.scrollTo(0, last);
+        timer = setTimeout(doScroll, 1000 / 60);
+      }
+    })();
+  }
+  
   // ---------------------
   
   // GLOBALS
       
-  var navigation = $qS('#navigation'),
+  var narrowScreen = GLOBAL.narrowScreen, 
+      isltIE10 = GLOBAL.isltIE10, 
+      navigation = $qS('#navigation'),
       headerHeight = navigation.offsetTop,
       subnavId = 'subnav',
       subnavEl = $qS('#subnav'),
@@ -88,10 +136,25 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
 
   // SCROLLING
   
-  function  moveToAnchor(event){
-    // Set the location hash and reset the browser scroll position.
-    window.location.hash = event.target.hash;
-    console.log('event', event)
+  function  moveToAnchor(anchor){
+    
+    // TO DO: set a more accurate offset than header height
+    var scrollYPos = anchor.parentNode.offsetTop + headerHeight;
+    
+    // TO DO: set 1000 to be a number of screen heights
+    // the distance between link and anchor > 1000
+    if((Math.abs(scrollYPos - window.pageYOffset) > 1000) || narrowScreen){
+      // jump to anchor
+      window.scrollTo(0, scrollYPos); 
+      setLocationHash();
+    }else{ 
+      animateScrollTo(scrollYPos, setLocationHash);
+    }
+    
+    function setLocationHash(){
+      window.location.hash = anchor.id;
+    }
+    
   }
   
   // --------------------
@@ -306,9 +369,10 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
       var hashId = event.target.hash,
           anchor = hashId && $qS(hashId);
        
+      event.preventDefault();
+      
       // open close subnav was clicked 
       if(getTargetId(hashId) === subnavId) {
-        event.preventDefault();
         subnav.toggle();
       } 
       // link within page was clicked
@@ -318,7 +382,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
           subnav.close();
         }
        
-        moveToAnchor(event);
+        moveToAnchor(anchor);
         
       }
     });
