@@ -203,7 +203,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
         header.style.marginBottom = nav.isScrollGtHeader ? 
           nav.height + "px" : null;
         /*
-        // TO DO add/remove this
+        // TO DO add/remove this on scroll boundary
         nav.querySelector("ul").insertBefore(
       $qS('h1.title').cloneNode(true), 
       nav.querySelector('.show-subnav').nextSibling
@@ -391,15 +391,17 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
       var hashId = event.target.hash,
           anchor = hashId && $qS(hashId);
        
-      event.preventDefault();
       
       // open close subnav was clicked 
       if(getTargetId(hashId) === subnavId) {
+        event.preventDefault(); 
         subnav.toggle();
       } 
       // link within page was clicked
       else if (anchor) {
       
+        event.preventDefault();
+        
         if(subnav.isAncestor(event.target)){
           subnav.close();
         }
