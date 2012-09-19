@@ -1,5 +1,18 @@
 /***********************************************
 
+        Main page controller
+      
+        Scrolling
+        Subnav
+        Floating navigation
+        
+        See demo.js for Code Examples Controller
+
+***********************************************/
+
+
+/***********************************************
+
         Nav state controller
 
 // STATES 
@@ -56,8 +69,7 @@ each component
 
 var jQuery1_7_1 = jQuery;
 
-if (document.querySelectorAll && document.body.classList) {
-(function ($, $qS) { // jQuery and document.querySelector
+dDocs = (function ($, $qS) { // jQuery and document.querySelector
   
   // LIBRARIES
   
@@ -137,42 +149,7 @@ if (document.querySelectorAll && document.body.classList) {
   function isSubnavSqueezed(){
     return subnavWidth + subnavMargin + halfContentWidth 
            > (window.innerWidth/2);
-  }
-   
-  
-  // CONTROLLER
-  
-  function init(){
-      
-    var header = new Header(navigation),
-        subnav = new Subnav(subnavEl);
-    
-    window.addEventListener('scroll', throttle(function(){
-      $.publish('scrollGtHeader', isScrollGtHeader());
-    } , 1), false);
-    
-    window.addEventListener('resize', throttle(function(){
-      $.publish('subnavSqueezed', isSubnavSqueezed());
-      $.publish('windowResized');
-    } , 1), false);
-    
-    window.addEventListener('load', function(){
-      $.publish('subnavSqueezed', isSubnavSqueezed());
-    });
-    
-    document.body.addEventListener('click', function (event) {
-      var targetId,
-          hash = event.target.hash;
-      if(hash){
-        targetId = event.target.hash.substring(1, event.target.hash.length);
-        if(targetId === subnavId) {
-            event.preventDefault();
-            subnav.toggle();
-        }
-      }
-    });
-    
-  }  
+  } 
   
   // COMPONENTS
   
@@ -330,7 +307,49 @@ if (document.querySelectorAll && document.body.classList) {
   
   // --------------------
   
-  init();
-
+  // CONTROLLER
+  
+  function init(){
+      
+    var header = new Header(navigation),
+        subnav = new Subnav(subnavEl);
+    
+    window.addEventListener('scroll', throttle(function(){
+      $.publish('scrollGtHeader', isScrollGtHeader());
+    } , 1), false);
+    
+    window.addEventListener('resize', throttle(function(){
+      $.publish('subnavSqueezed', isSubnavSqueezed());
+      $.publish('windowResized');
+    } , 1), false);
+    
+    window.addEventListener('load', function(){
+      $.publish('subnavSqueezed', isSubnavSqueezed());
+    });
+    
+    document.body.addEventListener('click', function (event) {
+      var targetId,
+          hash = event.target.hash;
+      if(hash){
+        targetId = event.target.hash.substring(1, event.target.hash.length);
+        if(targetId === subnavId) {
+            event.preventDefault();
+            subnav.toggle();
+        }
+      }
+    });
+    
+  } 
+  
+  return {
+    init: init
+  }
+  
 })(jQuery1_7_1, function () { return document.querySelector.apply(document, arguments); });
+
+
+
+
+if (document.querySelectorAll && document.body.classList) {
+  dDocs.init();
 }
