@@ -129,7 +129,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
       subnavId = 'subnav',
       subnavEl = $qS('#subnav'),
       content = $qS('section.content'),
-      halfContentWidth = content.clientWidth/2,
+      contentWidth = content.clientWidth,
       navigation,
       subnav;
       
@@ -176,7 +176,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
   
   // space on left of page < width of subnav 
   function isSubnavSqueezed(){
-    return subnav.width + subnav.margin + halfContentWidth 
+    return subnav.width + subnav.margin + (contentWidth/2) 
            > (window.innerWidth/2);
   } 
   
@@ -226,9 +226,8 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     this.timeout; 
     this.width = getLinkListWidth(el); 
     // TO DO
-    this.margin = 29;
+    this.margin = 20;
     this.fixedLeftPos = this.getLeftPos();
-    //this.openPos; // the left offset when the subnav is open
     
     this.subscribeEvents();
   }
@@ -248,7 +247,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
         
         setClass(subnav.el, 'fixed', state);
         
-        subnav.el.style.left = subnav.isScrollGtHeader?
+        subnav.el.style.left = subnav.isScrollGtHeader ?
                                 subnav.isOpen ?
                                     subnav.openPos : 
                                     subnav.fixedLeftPos
@@ -257,20 +256,16 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
       
     });   
     
-    $.subscribe('windowResized', function(){ 
-    
+    $.subscribe('windowResized', function() {
+      
       // update model for vertical scrolling state changes
-      subnav.fixedLeftPos = subnav.getLeftPos(subnav.isScrollGtHeader);
-      if(subnav.isOpen){
-        subnav.openPos = subnav.fixedLeftPos;
-      }
+      subnav.fixedLeftPos = subnav.getLeftPos();
+      subnav.openPos = subnav.fixedLeftPos;
       
       // set the left pos if position fixed
       // otherwise it will sit in the same place when the browser resizes
       if(subnav.isScrollGtHeader){
-        subnav.el.style.left = subnav.isOpen ? 
-                                subnav.openPos : 
-                                subnav.fixedLeftPos;
+        subnav.el.style.left = subnav.fixedLeftPos;
       } 
       
     });
@@ -295,60 +290,44 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     
   };
   
-  Subnav.prototype.getLeftPos = function getLeftPos(scrollGtHeader) {
-    var offset;
-    if(scrollGtHeader){
-      // get the offset of the subnav cloned on page load
-      content.appendChild(this.cloned);
-      offset = jQuery(this.cloned).offset().left;
-      content.removeChild(this.cloned);
-    }else{
-      // get the current subnav's offset
-      offset = jQuery(this.el).offset().left;
-    }
-    return offset + 'px';
-  }
-  
+  Subnav.prototype.getLeftPos  = function getLeftPos() {
+    return content.offsetLeft - this.width - (2 * this.margin) + 'px';
+  };
   
   Subnav.prototype.toggle = function() {
     this.isOpen ? this.close() : this.open();
-  }
+  };
   
   Subnav.prototype.open = function() {
     this.isOpen = true;
     this.el.classList.add("show-nav");
     var subnav = this,  
-        // TO DO calculate 300 to be the real subnav width
-        offset = 300;//(0 - content.offsetLeft + subnavWidth + (subnavMargin * 2));
+        gutter = (window.innerWidth - contentWidth)/2;
         
-    content.style.left = offset + "px"; 
+    content.style.left = (this.width - gutter) + (this.margin * 2) + "px"; 
     
-    if(this.isScrollGtHeader){
-      
-      // set the left position 
-      if(this.openPos === this.fixedLeftPos){
-        this.el.style.left = this.fixedLeftPos;
-      }else{
-        this.el.style.left = this.openPos = 
-          (parseInt(this.fixedLeftPos) + offset) + "px";
+    this.el.style.opacity = 0;
+        
+    // set open left position in model after the
+    // animation to open is complete
+    this.timeout = window.setTimeout(function(){
+      subnav.openPos = subnav.getLeftPos();
+      if(subnav.isScrollGtHeader){
+        // set the left pos if position fixed
+        subnav.el.style.left = subnav.openPos;
       }
-      
-    }else{
-      // wait for css animation to complete
-      // before finding left position of subnav
-      this.timeout = window.setTimeout(function(){
-        subnav.openPos = subnav.getLeftPos();
-      }, 309); 
-      
-    }
-  }
+      subnav.el.style.opacity = 1;
+    }, 309); 
+    
+  };
   
   Subnav.prototype.close = function() {
     this.isOpen = false;
     this.el.classList.remove("show-nav");
     content.style.left = null;
+    this.el.style.opacity = null;
     clearTimeout(this.timeout);
-  }
+  };
   
   Subnav.prototype.isAncestor = function(child){
     var parent = child.parentNode,
@@ -361,7 +340,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
       parent =  parent.parentNode;
     }
     return isAncestor;
-  }
+  };
   
   
   // --------------------
@@ -411,7 +390,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
       }
     });
     
-  } 
+  };
   
   // Initialise after feature detection
   if (document.querySelectorAll && document.body.classList) {

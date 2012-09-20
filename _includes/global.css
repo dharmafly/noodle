@@ -293,6 +293,7 @@ section.overview a:active {
 #subnav.fixed {
     position: fixed;
     top: 6em;
+    width:auto;
     /* calculate left offset dynamically */
 }
 
