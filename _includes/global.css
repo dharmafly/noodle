@@ -257,7 +257,7 @@ section.overview a:active {
     color: {{ page.highlight_colour }};
 }
 
-#navigation[hidden] {
+#navigation.hidden {
 	display: none;
 }
 
@@ -290,9 +290,10 @@ section.overview a:active {
     width: 40em;
 }
 
-#subnav.float {
+#subnav.fixed {
     position: fixed;
     top: 6em;
+    width:auto;
     /* calculate left offset dynamically */
 }
 
@@ -302,7 +303,7 @@ section.overview a:active {
     opacity: 0;
 }
 
-
+/* Debug #subnav:focus, */
 #subnav.show-nav {
     opacity : 1;
     -webkit-transition: opacity 300ms ease-in-out;
@@ -311,6 +312,16 @@ section.overview a:active {
     -ms-transition: opacity 300ms ease-in-out;
     transition: opacity 300ms ease-in-out;
 }
+
+/* Debug - no js show the nav at small device widths
+#subnav:focus {
+  left: -34px;
+  top: 0;
+  background: {{ page.content_bg_colour }};
+  border: 1px solid {{ page.body_background_colour }};
+  z-index: 30;
+}
+*/
 
 #subnav li {
     margin: 0;
@@ -405,7 +416,8 @@ section .permalink {
 	margin-right: 0.2em;
 	visibility: hidden;
   position: relative;
-  bottom: 0;
+  top: -70px; /* The height of the nav so it doesn't get hidden under */
+  padding-top: 70px;
   font-family: "DejaVu Sans", "DejaVu Sans Bold", "DejaVu Sans Bold Oblique", "DejaVu Sans Condensed", "DejaVu Sans Condensed Bold", "DejaVu Sans Condensed Bold Oblique", "DejaVu Sans Condensed Oblique", "DejaVu Sans Mono", "DejaVu Sans Mono Bold", "DejaVu Sans Oblique", "EversonMono", "EversonMono-Oblique", "Symbola", "Free Serif", "Quivira", "Rail Model", Code2000 
 }
 
@@ -880,7 +892,11 @@ aside  li:hover:after  {
 @media only screen and (min-height:20px)  and (max-height:520px) {
   #subnav.show-nav {
     overflow:auto; 
+    -webkit-overflow-scrolling: touch;
     height:340px;
+  }  
+  #subnav.show-nav.fixed {
+    height:440px;
   }
 }  
 

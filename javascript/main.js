@@ -10,53 +10,390 @@
 
 ***********************************************/
 
+var jQuery1_7_1 = jQuery;
 
-var QueryParameters = (function() {
-    var result = {};
+dDocs = (function ($, $qS) { // jQuery and document.querySelector
 
-    if (window.location.search) {
+  // --------------------
+  
+  // LIBRARIES
+  
+  // jQuery Tiny Pub/Sub - v0.7 - 10/27/2011 http://benalman.com/
+  // Copyright 2011 'Cowboy' Ben Alman; Licensed MIT, GPL 
+   
+  var o = $({});
+
+  $.subscribe = function() {
+    o.on.apply(o, arguments);
+  };
+
+  $.unsubscribe = function() {
+    o.off.apply(o, arguments);
+  };
+
+  $.publish = function() {
+    o.trigger.apply(o, arguments);
+  };
+
+  // UTILITIES
+  
+  var queryParameters = (function() {
+      var result = {};
+
+      if (window.location.search) {
+      
+          var params = window.location.search.slice(1).split("&");
+          for (var i = 0; i < params.length; i++) {
+              var tmp = params[i].split("=");
+              result[tmp[0]] = unescape(tmp[1]);
+          }
+      }
+
+      return result;
+  }());
+  
+  function throttle(fn, delay) {
+    var timer = null;
+    return function () {
+      var context = this, args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        fn.apply(context, args);
+      }, delay);
+    };
+  }
     
-        var params = window.location.search.slice(1).split("&");
-        for (var i = 0; i < params.length; i++) {
-            var tmp = params[i].split("=");
-            result[tmp[0]] = unescape(tmp[1]);
-        }
+  function setClass(el, className, state){
+    var  toggleClass = state ? 'add' : 'remove';
+    el.classList[toggleClass](className);
+  }
+  
+  // Find the width of the biggest link in the subnav
+  // to see how wide it is visually
+  function getLinkListWidth(el){
+    var links = el.querySelectorAll('a'),
+        visualWidth = 0, 
+        currentWidth;
+        
+    for (var i = 0; i < links.length; ++i) {
+      currentWidth = links[i].getBoundingClientRect().width;
+      visualWidth = currentWidth > visualWidth ? currentWidth : visualWidth;
     }
+    return visualWidth;
+  }
+  
+  function getTargetId(hashId){
+    return hashId ? hashId.substring(1, hashId.length) : null;
+  }
+  
+  // Animate a scroll to the provided offset.
+  function animateScrollTo(offset, callback) {
+  
+    var total = Math.abs(window.pageYOffset - offset),
+        start = Math.ceil(1000 * total / 
+                  document.documentElement.scrollHeight),
+        last, 
+        timer;
 
-    return result;
-}());
+    clearTimeout(timer);
+    
+    (function doScroll() {
+      
+      if (last && window.pageYOffset !== last) {
+        // Manually moved by the user so stop scrolling.
+        return clearTimeout(timer);
+      }
 
-if (document.querySelectorAll && document.body.classList) {
-  (function ($, $$) {
-    var navigation = $('#navigation'),
-        subnavId = 'subnav',
-        content = $('section.content'),
-        subnav = $('#' + subnavId),
-        cloned = navigation.cloneNode(true),
-        subnavCloned = subnav.cloneNode(true),
-        offset = navigation.offsetTop,
-        root   = document.documentElement,
-        isHeaderVisible = true,
-        subnavContainer = subnav.clientWidth,
-        halfContentWidth = content.clientWidth / 2,
-        subnavMargin = 29,
-        subnavOffset = null, 
-        height, timer, subnavOffset, openSubnavOffset, subnavTopOffset;
-    
-    
-    // ********** Initialise
-    
-    // Conditionally load scripts based on device width
-    var narrowScreen = GLOBAL.narrowScreen, 
-        isltIE10 = GLOBAL.isltIE10, 
-        scripts;
+      var difference = window.pageYOffset - offset,
+          direction  = difference < 1 ? 1 : -1,
+          modifier   = Math.abs(difference) / total,
+          increment  = Math.ceil(start * modifier);
+      
+      if (difference !== last && 
+        (direction < 0 || 
+          window.innerHeight + window.pageYOffset 
+          !== document.documentElement.scrollHeight)) {
+        if (difference < increment && difference > increment * -1) {
+          increment = Math.abs(difference);
+        }
+        last = window.pageYOffset + (increment * direction);
         
-        // Ace is never loaded, unless ?editable=true (and this is a non-IE wide screen device)
-        GLOBAL.noEditor = narrowScreen || isltIE10 ? 
-                              true :
-                              QueryParameters.editable === "true" ? false : true;
         
-       scripts = GLOBAL.noEditor ?  ["hijs", "demo"] : ["ace/ace", "ace/theme/theme-dharmafly", "ace/mode-javascript", "demo"]; // syntax highlighter for small devices, ACE editor otherwise
+        if(Math.abs(difference) < 2){
+          if(callback){
+            callback();
+          }
+          return clearTimeout(timer);
+        }
+        
+        window.scrollTo(0, last);
+        timer = setTimeout(doScroll, 500 / 60);
+      }
+    })();
+  }
+  
+  // ---------------------
+  
+  // GLOBALS
+      
+  var narrowScreen = GLOBAL.narrowScreen, 
+      isltIE10 = GLOBAL.isltIE10, 
+      navEl = $qS('#navigation'),
+      header = $qS('header'),
+      headerHeight = navEl.offsetTop,
+      subnavId = 'subnav',
+      subnavEl = $qS('#subnav'),
+      content = $qS('section.content'),
+      contentWidth = content.clientWidth,
+      navigation,
+      subnav;
+      
+  // --------------------
+
+  // SCROLLING
+  
+  function  moveToAnchor(anchor){
+        
+        // set the position to scroll to - include hidden padding 
+        // in anchor to set the position below fixed navigation
+    var scrollYPos = anchor.parentNode.offsetTop 
+                     + content.offsetTop 
+                     + anchor.offsetTop, 
+        distance =  Math.abs(scrollYPos - window.pageYOffset);
+    
+    // TO DO: set 1000 to be a number of screen heights
+    // the distance between link and anchor > 1000
+    if((distance > 1000) || narrowScreen){
+      // jump to anchor
+      window.scrollTo(0, scrollYPos); 
+      setLocationHash();
+    }else{ 
+      animateScrollTo(scrollYPos, setLocationHash);
+    }
+    
+    function setLocationHash(){
+      window.location.hash = anchor.id;
+    }
+    
+  }
+  
+  // --------------------
+
+  // NAV STATE CONTROLLER
+  // See https://github.com/dharmafly/dharmafly-docs/wiki/Navigation-State
+ 
+  // HELPERS
+  
+  // Scroll position > height of the header
+  function isScrollGtHeader(){ 
+    return window.pageYOffset > headerHeight;
+  }
+  
+  // space on left of page < width of subnav 
+  function isSubnavSqueezed(){
+    return subnav.width + (subnav.margin * 2) + (contentWidth/2) 
+           > (window.innerWidth/2);
+  } 
+  
+  // COMPONENTS
+  
+  // Navigation (navigation)
+  
+  function Navigation(el) {
+    this.el = el;
+    this.isScrollGtHeader = false;
+    this.height = el.getBoundingClientRect().height;
+    this.subscribeEvents();
+  }
+
+  Navigation.prototype.subscribeEvents = function() { 
+    var nav = this;
+    
+    // page scrolls beyond header height, set navigation to fixed position
+    $.subscribe('scrollGtHeader', function(e, state){
+      if(state !== nav.isScrollGtHeader){
+        nav.isScrollGtHeader = state;     
+        setClass(nav.el, 'float', state);
+        // add placeholder for height of nav to not alter document height
+        header.style.marginBottom = nav.isScrollGtHeader ? 
+          nav.height + "px" : null;
+        
+        nav.toggleTitle(state);
+        
+      }
+    });
+    
+  };
+  
+  Navigation.prototype.setSubnavButtonState = function(state) { 
+    setClass(this.el, 'show-subnav-button', state);
+  };
+  
+  Navigation.prototype.toggleTitle = function(add) { 
+    var navItems = this.el.querySelector("ul");
+    if(add){
+      navItems.insertBefore(
+        $qS('h1.title').cloneNode(true), 
+        this.el.querySelector('.show-subnav').nextSibling
+      );
+    }else{
+      navItems.removeChild(this.el.querySelector('h1'));
+    }
+  };
+  
+  // Left hand nav area
+  function Subnav(el) {
+    this.el = el; 
+    this.isScrollGtHeader = false;
+    this.isSubnavSqueezed = false;
+    this.isOpen;
+    this.timeout; 
+    this.width = getLinkListWidth(el); 
+    // TO DO
+    this.margin = 20;
+    this.fixedLeftPos = this.getLeftPos();
+    
+    this.subscribeEvents();
+  }
+  
+  // Subnav (subnav)
+
+  Subnav.prototype.subscribeEvents = function() {  
+    var subnav = this;
+    
+    // page scrolls beyond header height, set subnav to fixed, 
+    // set left subnav to former left position and vice versa
+    $.subscribe('scrollGtHeader', function(e, state){
+    
+      if(state !== subnav.isScrollGtHeader){ // there's a boundary change
+      
+        subnav.isScrollGtHeader = state; // set model
+        
+        setClass(subnav.el, 'fixed', state);
+        
+        subnav.el.style.left = subnav.isScrollGtHeader ?
+                                subnav.isOpen ?
+                                    subnav.openPos : 
+                                    subnav.fixedLeftPos
+                                : null;
+      }
+      
+    });   
+    
+    $.subscribe('windowResized', function() {
+      
+      // update model for vertical scrolling state changes
+      subnav.fixedLeftPos = subnav.getLeftPos();
+      subnav.openPos = subnav.fixedLeftPos;
+      
+      // set the left pos if position fixed
+      // otherwise it will sit in the same place when the browser resizes
+      if(subnav.isScrollGtHeader){
+        subnav.el.style.left = subnav.fixedLeftPos;
+      } 
+      
+    });
+    
+    // show and hide the subnav and its button depending on the
+    // avaiable space to the left of the content area
+    $.subscribe('subnavSqueezed', function(e, state){
+      if(state !== subnav.isSubnavSqueezed){
+        subnav.isSubnavSqueezed = state;   
+        
+        navigation.setSubnavButtonState(state);
+        setClass(subnav.el, 'off-left', state);
+        
+        // if there's enough room for the subnav and the subnav is open
+        if(subnav.isOpen && subnav.isSubnavSqueezed === false){
+          subnav.close();
+        }
+        
+      }
+    });
+    
+  };
+  
+  Subnav.prototype.getLeftPos  = function getLeftPos() {
+    return content.offsetLeft - this.width - (2 * this.margin) + 'px';
+  };
+  
+  Subnav.prototype.toggle = function() {
+    this.isOpen ? this.close() : this.open();
+  };
+  
+  Subnav.prototype.open = function() {
+    this.isOpen = true;
+    this.el.classList.add("show-nav");
+    var subnav = this,  
+        gutter = (window.innerWidth - contentWidth)/2;
+        
+    content.style.left = (this.width - gutter) + (this.margin * 2) + "px"; 
+    
+    this.el.style.opacity = 0;
+        
+    // set open left position in model after the
+    // animation to open is complete
+    this.timeout = window.setTimeout(function(){
+      subnav.openPos = subnav.getLeftPos();
+      if(subnav.isScrollGtHeader){
+        // set the left pos if position fixed
+        subnav.el.style.left = subnav.openPos;
+      }
+      subnav.el.style.opacity = 1;
+    }, 309); 
+    
+  };
+  
+  Subnav.prototype.close = function() {
+    this.isOpen = false;
+    this.el.classList.remove("show-nav");
+    content.style.left = null;
+    this.el.style.opacity = null;
+    clearTimeout(this.timeout);
+  };
+  
+  Subnav.prototype.isAncestor = function(child){
+    var parent = child.parentNode,
+        isAncestor = false;
+    while(parent){
+      if (parent.id === this.el.id){
+          isAncestor = true;
+          break;
+      }
+      parent =  parent.parentNode;
+    }
+    return isAncestor;
+  };
+  
+  
+  // --------------------
+  
+  // PAGE CONTROLLER
+  
+  function init(){
+    
+    // Load scripts for code demos
+    
+    // Ace is never loaded, unless ?editable=true 
+    // (and this is a non-IE wide screen device)
+    GLOBAL.noEditor = narrowScreen || isltIE10 ? 
+                        true :
+                        queryParameters.editable === "true" ? 
+                          false : 
+                          true;
+                        
+    // syntax highlighter if no editors specified, ACE editor otherwise
+    var scripts = GLOBAL.noEditor ?  
+        [
+          "hijs", 
+          "demo"
+        ] : 
+        [
+          "ace/ace", 
+          "ace/theme/theme-dharmafly", 
+          "ace/mode-javascript", 
+          "demo"
+        ];
     
     (function loadScript(src) {
       
@@ -70,241 +407,59 @@ if (document.querySelectorAll && document.body.classList) {
       document.body.appendChild(script);
     })(scripts.shift());
     
-    // Append the cloned navigation item.
-    cloned.classList.add('float');
-    cloned.querySelector("ul").insertBefore($('h1.title').cloneNode(true), cloned.querySelector('.show-subnav').nextSibling);
-    document.body.appendChild(cloned);
-    height = cloned.getBoundingClientRect().height;
     
+    // -----------
     
-    // Get visible width of subnav
-    document.body.appendChild(subnavCloned);
-    var subnavLinks = subnavCloned.querySelectorAll("a"),
-        subnavWidth = 0, currentWidth;
-        
-    for (var i = 0; i < subnavLinks.length; ++i) {
-       currentWidth = subnavLinks[i].getBoundingClientRect().width;
-        subnavWidth = currentWidth > subnavWidth ? currentWidth : subnavWidth;
-    }
-    document.body.removeChild(subnavCloned);
+    navigation = new Navigation(navEl);
+    subnav = new Subnav(subnavEl);
     
-    // Get subnav top offset
+    window.addEventListener('scroll', throttle(function(){
+      $.publish('scrollGtHeader', isScrollGtHeader());
+    } , 1), false);
     
-    subnavTopOffset = (height + subnav.offsetTop) + "px";
+    window.addEventListener('resize', throttle(function(){
+      $.publish('subnavSqueezed', isSubnavSqueezed());
+      $.publish('windowResized');
+    } , 1), false);
     
-    onScroll(); // set the state of the page initial.
-    
-    // ********** Helper functions
-    
-    // Animate a scroll to the provided offset.
-    function scrollTo(offset) {
-    
-    
-      var total = Math.abs(window.pageYOffset - offset),
-          start = Math.ceil(500 * total / root.scrollHeight),
-          last;
-
-      clearTimeout(timer);
-      
-      (function doScroll() {
-      
-        if (last && window.pageYOffset !== last) {
-          // Manually moved by the user so stop scrolling.
-          return clearTimeout(timer);
-        }
-
-        var difference = window.pageYOffset - offset,
-            direction  = difference < 1 ? 1 : -1,
-            modifier   = Math.abs(difference) / total,
-            increment  = Math.ceil(start * modifier);
-        
-        if (difference !== last && (direction < 0 || window.innerHeight + window.pageYOffset !== root.scrollHeight)) {
-          if (difference < increment && difference > increment * -1) {
-            increment = Math.abs(difference);
-          }
-          last = window.pageYOffset + (increment * direction);
-          window.scrollTo(0, last);
-          timer = setTimeout(doScroll, 1000 / 60);
-        }
-      })();
-    }
-    
-    function throttle(fn, delay) {
-      var timer = null;
-      return function () {
-        var context = this, args = arguments;
-        clearTimeout(timer);
-        timer = setTimeout(function () {
-          fn.apply(context, args);
-        }, delay);
-      };
-    }
-    
-    // ********* Event functions 
-    
-    // Show/Hide the navigation on scroll.
-    window.addEventListener('scroll', throttle(onScroll, 1), false);
-    
-    
-    function onScroll() {
-      
-      var isHidden = window.pageYOffset < offset;
-      
-      cloned[isHidden ? 'setAttribute' : 'removeAttribute']('hidden', '');
-      subnav.classList[isHidden ? 'remove' : 'add']('float');
-      if(subnav.classList.contains("float")){
-        subnav.style.top = !subnav.style.top ? subnavTopOffset : subnav.style.top; // top position unset? use the calculated value, or leave it.
-      }else{
-        subnav.style.top = null;
-      }
-      
-      isHeaderVisible = isHidden;
-      resetSubnav("scroll");
-  
-      return onScroll;
-    }
-    
-    //  Move the navigation on resize to keep it's position relative to the browser port.
-    window.addEventListener('resize', function(e){resetSubnav("resize")});
-    
-    function resetSubnav(state) {
-    
-        var halfWindowWidth = window.innerWidth / 2,
-            navOffset = subnavWidth + subnavMargin + halfContentWidth,
-            navOffScreen = navOffset > halfWindowWidth,
-            //subnavOffset = navOffScreen ? (halfWindowWidth - subnavContainer - subnavMargin - halfContentWidth + subnavWidth ) + "px" : (halfWindowWidth - subnavContainer - halfContentWidth - subnavMargin) + "px", 
-            toggleClass = navOffScreen ? 'add' : 'remove';
-        
-
-        if(state === "resize") { // always calculate the offset on resize
-          subnavOffset =  getSubnavOffset() 
-        }else{
-           subnavOffset = subnavOffset ? subnavOffset : getSubnavOffset(); // if offset is already set, don't change it, otherwise get it.
-        }
-        
-        subnav.classList[toggleClass]('off-left');
-        cloned.classList[toggleClass]('show-subnav-button');
-        navigation.classList[toggleClass]('show-subnav-button');
-        
-        if(navOffScreen === false) {
-          closeSubnav();
-        }
-        
-        subnavOffset = subnav.classList.contains("show-nav") ? openSubnavOffset  : subnavOffset; // set on open via button
-        
-        subnav.style.left = subnav.classList.contains("float")  ? subnavOffset  : null; 
-        
-    }
+    window.addEventListener('load', function(){
+      $.publish('subnavSqueezed', isSubnavSqueezed());
+    });
     
     // Handle scroll between inter-document links.
     document.body.addEventListener('click', function (event) {
       var hashId = event.target.hash,
-          section = hashId && $(hashId),
-          offset  = window.pageYOffset,
-          targetId = hashId ? hashId.substring(1, hashId.length) : null;
-        
-        
-        if(targetId === subnavId) {
+          anchor = hashId && $qS(hashId);
        
-          event.preventDefault();
-          toggleSubnav();
-            
-        } else if (section) {
+      
+      // open close subnav was clicked 
+      if(getTargetId(hashId) === subnavId) {
+        event.preventDefault(); 
+        subnav.toggle();
+      } 
+      // link within page was clicked
+      else if (anchor) {
+      
+        event.preventDefault();
         
-          closeIfSubnavLink(event.target);
-          animateScrollToLink (event, section);
-          
+        if(subnav.isAncestor(event.target)){
+          subnav.close();
         }
-        
-    }, false);
-    
-    // ********* Helper functions 
-    
-    function getSubnavOffset() {
-      var subnavOffset;
-      
-      if(window.getComputedStyle(subnav,null).getPropertyValue("position") == "absolute"){
-      
-        subnavOffset = jQuery(subnav).offset().left + "px";
-        
-      }else{
-      
-        content.appendChild(subnavCloned);
-        
-        subnavOffset = jQuery(subnavCloned).offset().left + "px";
-        
-        content.removeChild(subnavCloned)
+       
+        moveToAnchor(anchor);
         
       }
-      return subnavOffset;
-    }
+    });
     
-    function toggleSubnav() {
-      var contentLeftPos;
-      if(subnav.classList.contains("show-nav")){
-        closeSubnav();
-      }else{
-        subnav.classList.add("show-nav");
-        contentLeftPos = (0 - content.offsetLeft + subnavWidth + (subnavMargin * 2));
-        
-        content.style.left = contentLeftPos + "px";
-        
-        content.appendChild(subnavCloned);
-        
-        openSubnavOffset = (jQuery(subnavCloned).offset().left + contentLeftPos) + "px"; // stored value reapplied on scroll
-        
-        if(isltIE10 || narrowScreen){
-          openSubnavOffset = ((0 - subnavContainer) + (subnavWidth + subnavMargin))  + "px"; 
-        }
-        content.removeChild(subnavCloned);
-        subnav.style.left = subnav.classList.contains("float") ? openSubnavOffset : null; 
-      }
-     
-    }
-    
-    function closeSubnav(){
-    
-      subnav.classList.remove("show-nav");
-      subnav.style.left = null;
-      content.style.left = null;
-      
-      
-    }
-      
-    function closeIfSubnavLink(link){
-      var parent = link.parentNode,
-        isSubnavLink = false;
-          
-      while(parent){
-        if (parent.id === subnavId){
-            isSubnavLink = true;
-            break;
-        }
-        parent =  parent.parentNode;
-      }
-      
-      if(isSubnavLink) {
-        closeSubnav()
-      }
-    }
-      
-    function animateScrollToLink (event, section) {
-      // Set the location hash and reset the browser scroll position.
-      window.location.hash = event.target.hash;
-      window.scrollTo(0, offset);
+  };
+  
+  // Initialise after feature detection
+  if (document.querySelectorAll && document.body.classList) {
+    init();
+  }
+  
+})(jQuery1_7_1, function () { return document.querySelector.apply(document, arguments); });
 
-      // Animate to the element.
-      var scrollYPos = section.parentNode.offsetTop + height + 100;
-      
-      //if(narrowScreen){
-      if(1){
-        window.scrollTo(0, scrollYPos); // No animation on small screens (long length), or on IE // TO DO fix IE to work with scrollTo #59
-      } else {
-        scrollTo(scrollYPos); 
-      }
-      event.preventDefault();
-    }
-    
 
-  })(function () { return document.querySelector.apply(document, arguments); });
-}
+
+
