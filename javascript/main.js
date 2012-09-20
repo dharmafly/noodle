@@ -68,6 +68,18 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     el.classList[toggleClass](className);
   }
   
+  function getOffsetY(target){
+    var top = 0;
+
+    while (target && target !== document.body){
+      if (target.offsetTop){
+        top += target.offsetTop;
+      }
+      target = target.offsetParent;
+    }
+    return top;
+  }
+  
   // Find the width of the biggest link in the subnav
   // to see how wide it is visually
   function getLinkListWidth(el){
@@ -156,9 +168,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
         
         // set the position to scroll to - include hidden padding 
         // in anchor to set the position below fixed navigation
-    var scrollYPos = anchor.parentNode.offsetTop 
-                     + content.offsetTop 
-                     + anchor.offsetTop, 
+    var scrollYPos = getOffsetY(anchor),
         distance =  Math.abs(scrollYPos - window.pageYOffset);
     
     // TO DO: set 1000 to be a number of screen heights
