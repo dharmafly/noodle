@@ -892,7 +892,11 @@ aside  li:hover:after  {
 @media only screen and (min-height:20px)  and (max-height:520px) {
   #subnav.show-nav {
     overflow:auto; 
+    -webkit-overflow-scrolling: touch;
     height:340px;
+  }  
+  #subnav.show-nav.fixed {
+    height:440px;
   }
 }  
 
