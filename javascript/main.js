@@ -176,7 +176,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
   
   // space on left of page < width of subnav 
   function isSubnavSqueezed(){
-    return subnav.width + subnav.margin + (contentWidth/2) 
+    return subnav.width + (subnav.margin * 2) + (contentWidth/2) 
            > (window.innerWidth/2);
   } 
   
@@ -202,24 +202,33 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
         // add placeholder for height of nav to not alter document height
         header.style.marginBottom = nav.isScrollGtHeader ? 
           nav.height + "px" : null;
-        /*
-        // TO DO add/remove this on scroll boundary
-        nav.querySelector("ul").insertBefore(
-      $qS('h1.title').cloneNode(true), 
-      nav.querySelector('.show-subnav').nextSibling
-    );
         
-        */
+        nav.toggleTitle(state);
         
       }
     });
     
   };
   
+  Navigation.prototype.setSubnavButtonState = function(state) { 
+    setClass(this.el, 'show-subnav-button', state);
+  };
+  
+  Navigation.prototype.toggleTitle = function(add) { 
+    var navItems = this.el.querySelector("ul");
+    if(add){
+      navItems.insertBefore(
+        $qS('h1.title').cloneNode(true), 
+        this.el.querySelector('.show-subnav').nextSibling
+      );
+    }else{
+      navItems.removeChild(this.el.querySelector('h1'));
+    }
+  };
+  
   // Left hand nav area
   function Subnav(el) {
     this.el = el; 
-    this.cloned = this.el.cloneNode(true);
     this.isScrollGtHeader = false;
     this.isSubnavSqueezed = false;
     this.isOpen;
@@ -276,8 +285,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
       if(state !== subnav.isSubnavSqueezed){
         subnav.isSubnavSqueezed = state;   
         
-        // TO DO set this on the Navigation instance
-        setClass(navEl, 'show-subnav-button', state);
+        navigation.setSubnavButtonState(state);
         setClass(subnav.el, 'off-left', state);
         
         // if there's enough room for the subnav and the subnav is open
