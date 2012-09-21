@@ -2,12 +2,12 @@
 layout: default
 layout_type: subpage
 ---
-{% assign reference = site.categories.reference %}
+{% assign category = site.categories.reference %}
 
 
 <nav id="subnav">
     <ul>
-    {% for post in reference reversed %}
+    {% for post in category reversed %}
         <li><a href="#{{ post.url | replace_first:'/','' }}">
         {% if post.heading %}
             {{ post.heading }}
@@ -19,7 +19,7 @@ layout_type: subpage
     </ul>
 </nav>
 
-{% for post in reference reversed %}
+{% for post in category reversed %}
     {% if forloop.first %}
     <section>
         <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>
@@ -39,7 +39,7 @@ layout_type: subpage
 
 {% include aside.liquid %}
 
-{% for post in reference reversed %}
+{% for post in category reversed %}
     {% unless forloop.first %}
     <section>
         <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>
