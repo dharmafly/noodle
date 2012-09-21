@@ -1,29 +1,37 @@
-
 {% assign sections = site.sections %}
-
 {% assign relative_path  = "./" %}
 {% assign page_path  = "" %}
-
 {% if page.layout_type == 'subpage' %}
     {% assign relative_path  = "../" %}
     {% assign page_path  = "../" %}
 {% endif %}
-
-
 <!doctype html>
+<!--
+
+
+  _____  __                               ___ __        
+ |     \|  |~-.~-~.-.-~-~.-~-~-~-~.-~-.-.'  _|  |.-~.~-.
+ |  |   |     |  _  |   _|        |  _  |   _|  ||  |  |
+ |_____/|__|__|___._|__| |__|__|__|___._|__| |__||___  |
+                                                 |_____|
+
+  Greetings, source geek.
+
+ 
+-->
 <!--[if IE 9]> <html class="ie" lang="en"> <![endif]-->
 <!--[if lt IE 9 ]> <html class="ie ltIE9" lang="en"> <![endif]-->
 <!--[if !IE ]><!--> <html lang="en"> <!--<![endif]-->
 		<head>
-			<meta charset="utf-8" />
-			<meta name="viewport" content="width=device-width,initial-scale=0.75" />
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width,initial-scale=0.75">
 			<title>{{ site.PROJECT_NAME }}</title>
         {% include googlefonts.liquid %}
         <!--[if lt IE 9]>
             <script src="{{ relative_path }}javascript/html5shiv.js"></script>
         <![endif]-->
-        <link href="{{ relative_path }}css/{{ site.THEME }}.css" rel="stylesheet" />
-        <link rel="shortcut icon" href="{{ relative_path }}img/{{ site.THEME }}-favicon.ico" />
+        <link href="{{ relative_path }}css/{{ site.THEME }}.css" rel="stylesheet">
+        <link rel="shortcut icon" href="{{ relative_path }}img/{{ site.THEME }}-favicon.ico">
 		</head>
 		<body>
 			<header>
