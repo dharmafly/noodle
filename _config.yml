@@ -11,7 +11,7 @@ THEME: forest
 GITHUB_ZIP_URL: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
 TWITTER_PROJECT_URL: https://twitter.com/dharmafly
 # options: javascript, css, html5
-LANG: css
+LANG: html5
 
 # Add your project's scripts here to be available to any examples
 SCRIPTS:
