@@ -76,6 +76,7 @@ layout: default
     {% endunless %}
 {% endfor %}
 
+{% comment %}
 {% for section in site.sections %}
     {% if section.path == 'reference' %}
         <section>
@@ -88,3 +89,4 @@ layout: default
         </section>
     {% endif %}
 {% endfor %}
+{% endcomment %}
