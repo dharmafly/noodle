@@ -1,120 +1,124 @@
-
 {% assign sections = site.sections %}
-
 {% assign relative_path  = "./" %}
 {% assign page_path  = "" %}
-
 {% if page.layout_type == 'subpage' %}
     {% assign relative_path  = "../" %}
     {% assign page_path  = "../" %}
 {% endif %}
-
-
 <!doctype html>
+<!--
+
+
+  _____  __                               ___ __        
+ |     \|  |~-.~-~.-.-~-~.-~-~-~-~.-~-.-.'  _|  |.-~.~-.
+ |  |   |     |  _  |   _|        |  _  |   _|  ||  |  |
+ |_____/|__|__|___._|__| |__|__|__|___._|__| |__||___  |
+                                                 |_____|
+
+  Greetings, source geek.
+
+ 
+-->
 <!--[if IE 9]> <html class="ie" lang="en"> <![endif]-->
 <!--[if lt IE 9 ]> <html class="ie ltIE9" lang="en"> <![endif]-->
 <!--[if !IE ]><!--> <html lang="en"> <!--<![endif]-->
-		<head>
-			<meta charset="utf-8" />
-			<meta name="viewport" content="width=device-width,initial-scale=0.75" />
-			<title>{{ site.PROJECT_NAME }}</title>
-        {% include googlefonts.liquid %}
-        <!--[if lt IE 9]>
-            <script src="{{ relative_path }}javascript/html5shiv.js"></script>
-        <![endif]-->
-        <link href="{{ relative_path }}css/{{ site.THEME }}.css" rel="stylesheet" />
-        <link rel="shortcut icon" href="{{ relative_path }}img/{{ site.THEME }}-favicon.ico" />
-		</head>
-		<body>
-			<header>
-				<h1 class="title">
-                    {% if page.layout_type == 'subpage' %} <a href="../"> {% endif %}
-                    {{ site.PROJECT_NAME }}
-                    {% if page.layout_type == 'subpage' %} </a> {% endif %}
-                </h1>
-			</header>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=0.75">
+    <title>{{ site.PROJECT_NAME }}</title>
+      {% include googlefonts.liquid %}
+      <!--[if lt IE 9]>
+          <script src="{{ relative_path }}javascript/html5shiv.js"></script>
+      <![endif]-->
+      <link href="{{ relative_path }}css/{{ site.THEME }}.css" rel="stylesheet">
+      <link rel="shortcut icon" href="{{ relative_path }}img/{{ site.THEME }}-favicon.ico">
+  </head>
+  
+  <body>
+    <header>
+      <h1 class="title">
+        {% if page.layout_type == 'subpage' %} <a href="../"> {% endif %}
+        {{ site.PROJECT_NAME }}
+        {% if page.layout_type == 'subpage' %} </a> {% endif %}
+      </h1>
+    </header>
 
-           <nav id="navigation">
-                <ul>
-                    <li class="show-subnav"><a href="#subnav" class="icon">Go to navigation for this page</a></li>
-                    {% for section in sections %}
-                    <li>
-                        <a href="{{ relative_path }}{{ section.path }}">
-                        {{ section.name }}
-                        </a>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </nav>
-
-
-            <section class="content">
-
-            {{ content }}
-
-                {% if site.QUOTE.quote %}
-                <section class="quote">
-                    <blockquote>
-                        {{ site.QUOTE.quote }}
-                    </blockquote>
-                    <cite>{{ site.QUOTE.cite }}</cite>
-                </section>
-                {% endif %}
-
-            </section>
+    <nav id="navigation">
+      <ul>
+        <li class="show-subnav"><a href="#subnav" class="icon">Go to navigation for this page</a></li>
+        {% for section in sections %}
+        <li>
+            <a href="{{ relative_path }}{{ section.path }}">
+            {{ section.name }}
+            </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
 
 
+    <section class="content">
+    {{ content }}
 
-            <footer>
-                <div>
-                    <p>
-                    <em>by</em> <a href="http://dharmafly.com">Dharmafly</a>
-                    </p>
-                </div>
-			</footer>
-      
+    {% if site.QUOTE.quote %}
+      <section class="quote">
+        <blockquote>
+            {{ site.QUOTE.quote }}
+        </blockquote>
+        <cite>{{ site.QUOTE.cite }}</cite>
+      </section>
+    {% endif %}
+    </section>
 
-            <script type="text/javascript">
-              var GLOBAL = GLOBAL || {};
-              GLOBAL.narrowScreen = ((window.innerWidth > 0) ? window.innerWidth : screen.width) < 480;
-              GLOBAL.isltIE10 = false;
-              GLOBAL.relative_path = '{{ relative_path }}';
-            </script>
-            
-            <!--[if lt IE 10]> 
-              <script type="text/javascript">
-                GLOBAL.isltIE10 = true;
-              </script>
-            <![endif]-->
-              
-            <!--[if IE 9]>
-              <script src="{{ relative_path }}javascript/IEshims.js"></script>
-            <![endif]-->
+    <footer>
+      <div>
+        <p>
+          <em>by</em> <a href="http://dharmafly.com">Dharmafly</a>
+        </p>
+      </div>
+    </footer>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-      <script>window.jQuery || document.write('<script src="{{ relative_path }}javascript/jquery-1.7.1.min.js"><\/script>')</script>
-      
-			<!-- <script src="{{ relative_path }}javascript/jquery.js"></script> -->
-			<script src="{{ relative_path }}javascript/main.js"></script>
-
-      {% for script in site.SCRIPTS %}
-      <script src="{{ script.src }}"></script>
-      {% endfor %}      
-
-      {% if site.GA_ID %}
-      <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', '{{ site.GA_ID }}']);
-        _gaq.push(['_trackPageview']);
-
-        (function() {
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-
+    <!-- scripts -->
+    <script>
+      var GLOBAL = GLOBAL || {};
+      GLOBAL.narrowScreen = ((window.innerWidth > 0) ? window.innerWidth : screen.width) < 480;
+      GLOBAL.isltIE10 = false;
+      GLOBAL.relative_path = '{{ relative_path }}';
+    </script>
+    
+    <!--[if lt IE 10]> 
+      <script>
+        GLOBAL.isltIE10 = true;
       </script>
-      {% endif %}
+    <![endif]-->
       
-		</body>
+    <!--[if IE 9]>
+      <script src="{{ relative_path }}javascript/IEshims.js"></script>
+    <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{{ relative_path }}javascript/jquery-1.7.1.min.js"><\/script>')</script>
+    
+    <!-- <script src="{{ relative_path }}javascript/jquery.js"></script> -->
+    <script src="{{ relative_path }}javascript/main.js"></script>
+
+    {% for script in site.SCRIPTS %}
+    <script src="{{ script.src }}"></script>
+    {% endfor %}      
+
+    {% if site.GA_ID %}
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '{{ site.GA_ID }}']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      }());
+
+    </script>
+    {% endif %}    
+  </body>
 </html>
