@@ -1,10 +1,3 @@
-{% assign sections = site.sections %}
-{% assign relative_path  = "./" %}
-{% assign page_path  = "" %}
-{% if page.layout_type == 'subpage' %}
-    {% assign relative_path  = "../" %}
-    {% assign page_path  = "../" %}
-{% endif %}
 <!doctype html>
 <!--
 
@@ -19,9 +12,19 @@
 
  
 -->
-<!--[if IE 9]> <html class="ie" lang="en"> <![endif]-->
+
+{% assign sections = site.sections %}
+{% assign relative_path  = "./" %}
+{% assign page_path  = "" %}
+{% if page.layout_type == 'subpage' %}
+    {% assign relative_path  = "../" %}
+    {% assign page_path  = "../" %}
+{% endif %}
+
+<!--[if IE 9]><html class="ie" lang="en"><![endif]-->
 <!--[if lt IE 9 ]> <html class="ie ltIE9" lang="en"> <![endif]-->
-<!--[if !IE ]><!--> <html lang="en"> <!--<![endif]-->
+<!--[if !IE ]><!-->
+<html lang="en"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=0.75">
