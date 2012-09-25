@@ -48,11 +48,12 @@ layout: default
 
         <section>
         	<h1><a id="download" class="permalink" href="#download">&#9875;</a> Download</h1>
-        	<p>The current version of {{ site.PROJECT_NAME }} is {{ site.GITHUB_CURRENT_VERSION }} you can download it below.</p>
+            <p><a href="{{ site.GITHUB_PROJECT_URL }}" target="blank">Star the project</a> on GitHub, or <a target="blank" href="{{ site.GITHUB_ZIP_URL }}">download it</a>:</p>.
+
         	<p class="buttons">
-                <a class="badge github" href="{{ site.GITHUB_PROJECT_URL }}" title="{{ site.PROJECT_NAME }} on Github"><span>{{ site.PROJECT_NAME }} on Github</span></a>
+                <a class="badge github" href="{{ site.GITHUB_PROJECT_URL }}" title="{{ site.PROJECT_NAME }} on GitHub" target="blank"><span>{{ site.PROJECT_NAME }} on GitHub</span></a>
                 {% if site.GITHUB_ZIP_URL %}
-        		<a class="button" href="{{ site.GITHUB_ZIP_URL }}">{{ site.PROJECT_NAME }} <span class="version">v{{ site.GITHUB_CURRENT_VERSION }}</span></a>
+        		<a class="button" href="{{ site.GITHUB_ZIP_URL }}" target="blank">{{ site.PROJECT_NAME }} <span class="version">v{{ site.GITHUB_CURRENT_VERSION }}</span></a>
                 {% endif %}
         	</p>
         </section>
