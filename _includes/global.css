@@ -1,15 +1,22 @@
+
+{% if page.header_font %}
+    {% assign header_font  = page.header_font %}
+{% else %}
+    {% assign header_font  = "Lato" %}
+{% endif %}
+
 body {
 	font: 62.5%/1 Lato, serif;
 	padding: 0;
 	margin: 0;
 	color: {{ page.copy_colour }};
   background: {{ page.body_background_colour }};
-  background-image: url(./img/tile.png);
-  background-image: url(./img/tile.png) -moz-linear-gradient(left, {{ page.body_background_colour }} 0%, {{ page.background_mid_stop }} 50%, {{ page.body_background_colour }} 100%);
-  background-image: url(./img/tile.png) -webkit-gradient(linear, left top, right top, color-stop(0%,{{ page.body_background_colour }}), color-stop(50%,{{ page.background_mid_stop }}), color-stop(100%,{{ page.body_background_colour }}));
-  background-image: url(./img/tile.png) -webkit-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
-  background-image: url(./img/tile.png) -o-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
-  background-image: url(./img/tile.png) -ms-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
+  background-image: {{ page.background_tile }};
+  background-image: {{ page.background_tile }} -moz-linear-gradient(left, {{ page.body_background_colour }} 0%, {{ page.background_mid_stop }} 50%, {{ page.body_background_colour }} 100%);
+  background-image: {{ page.background_tile }} -webkit-gradient(linear, left top, right top, color-stop(0%,{{ page.body_background_colour }}), color-stop(50%,{{ page.background_mid_stop }}), color-stop(100%,{{ page.body_background_colour }}));
+  background-image: {{ page.background_tile }} -webkit-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
+  background-image: {{ page.background_tile }} -o-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
+  background-image: {{ page.background_tile }} -ms-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
   background-attachment: fixed;
 }
 
@@ -37,7 +44,7 @@ h1, h2, h3, h4, h5, h6, p, pre, ul, ol {
 }
 
 h1, h2 {
-	font-family: {{ page.font }}, "Helvetica Neue";
+	font-family: {{ header_font }}, "Helvetica Neue", sans-serif;
 	font-weight: 400;
 	margin-bottom: 0.75em;
 }
@@ -88,7 +95,7 @@ hr {
 }
 
 code {
-	font-family: Inconsolata, monospace;
+	font-family: 'Ubuntu Mono', monospace;
 	font-size: 1em;
 	padding: 2px 3px;
 	color: {{ page.inline_code_colour }};
@@ -166,6 +173,9 @@ header h1 {
 	margin: 0;
   padding:  {{ page.header_font_size| times:0.05 }}em;
   text-align: left;
+}
+h1.title {
+	font-family: {{ page.font }}, "Helvetica Neue", sans-serif;
 }
 
 header a,
@@ -343,11 +353,12 @@ section.overview a:active {
 }
 
 #subnav a:hover {
-    background-position: 2em 1.2em;
-    -webkit-transition: background-position 0.15s ease-out, color 0.15s ease-out;
-    -moz-transition: background-position 0.15s ease-out, color 0.15s ease-out;
-    -o-transition: background-position 0.15s ease-out, color 0.15s ease-out;2
-    transition: background-position 0.15s ease-out, color 0.15s ease-out;
+  color: {{ page.subnav_link_colour }};
+  background-position: 2em 1.2em;
+  -webkit-transition: background-position 0.15s ease-out, color 0.15s ease-out;
+  -moz-transition: background-position 0.15s ease-out, color 0.15s ease-out;
+  -o-transition: background-position 0.15s ease-out, color 0.15s ease-out;2
+  transition: background-position 0.15s ease-out, color 0.15s ease-out;
 }
 
 aside,
@@ -491,6 +502,11 @@ section.quote:after {
   -o-transform: {{ page.quote_svg_left_transform }};
   transform: {{ page.quote_svg_left_transform }};
   visibility: visible;
+  {% if  page.quote_svg_grayscale %}
+  filter: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter%20id%3D%22desaturate%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%3C/filter%3E%3C/svg%3E#desaturate);
+  filter: gray;
+  -webkit-filter: grayscale(1) contrast(0%);
+  {% endif %}
 }
 
 .ie section.quote:before,
@@ -641,9 +657,9 @@ button:active {
 	background-image: linear-gradient(top,{{ page.large_button_colour }}, {{ page.large_button_stop }});
 	border-radius: 5px;
 	border: 2px solid {{ page.highlight_colour }};
-    font-family: 'Lato', sans-serif;
-    font-weight: bold;
-    font-size:112.5%;
+  font-family: Lato, sans-serif;
+  font-weight: bold;
+  font-size:112.5%;
 }
 
 .button:hover {
@@ -878,7 +894,7 @@ aside  li:hover:after  {
 }
 
 .ace_editor {
-	font-family: Inconsolata, monospace !important;
+	font-family: 'Ubuntu Mono', monospace !important;
   font-size: 1.6em !important;
   left:30px;
 }
@@ -1052,6 +1068,10 @@ aside  li:hover:after  {
   section.quote:after {
     left: auto;
     right: -webkit-calc({{ page.quote_svg_right_pos }} + {{ page.quote_svg_right_mod }});
+    right: -moz-calc({{ page.quote_svg_right_pos }} + {{ page.quote_svg_right_mod }});
+    right: -o-calc({{ page.quote_svg_right_pos }} + {{ page.quote_svg_right_mod }});
+    right: -ms-calc({{ page.quote_svg_right_pos }} + {{ page.quote_svg_right_mod }});
+    right: calc({{ page.quote_svg_right_pos }} + {{ page.quote_svg_right_mod }});
   }
 
 }
@@ -1128,8 +1148,7 @@ aside  li:hover:after  {
     -webkit-transition: none;
   }
   body {
-    background-image: url(./img/tile.png);
-    //-webkit-transform:scale3d(1,1,1);
+    background-image: {{ page.background_tile }};
   }
 }
 
