@@ -32,6 +32,12 @@ icon_border: "#152E16"
 badge_overlay: "rgba%2825%2C%20132%2C%2030%2C%200.5%29" #url encoded for firefox
 badge_border: "%23dbe5d7"  #url encoded for firefox
 
+# logo area
+
+header_font_size: 5.4 #em
+logo_width: 280 #px
+logo_height: 126 #px
+
 # svg
 
 # for main title svg

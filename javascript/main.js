@@ -144,6 +144,14 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     })();
   }
   
+  function setLogoPosition(){
+    var header = $qS('h1.title'),
+        svg_width = parseInt(getComputedStyle(header, ':after').width);
+    if(($qS('h1.title a').clientWidth + svg_width) > header.clientWidth){
+      header.classList.add('long-title');
+    }
+  }
+  
   // ---------------------
   
   // GLOBALS
@@ -460,6 +468,10 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
         
       }
     });
+    
+    // -------
+   
+    setLogoPosition();
     
   };
   

@@ -163,7 +163,8 @@ footer {
 header h1 {
 	font-size: 4.2em;
 	margin: 0;
-    padding: 0.23em;
+  padding:  {{ page.header_font_size| times:0.05 }}em;
+  text-align: left;
 }
 
 header a,
@@ -928,34 +929,56 @@ aside  li:hover:after  {
 		margin-right: auto;
 	}
 
-
+  
 
   header h1 {
-		font-size: 5.4em;
-    padding:  2em 5.55em 0.27em 0.55em;
+    width : 61em;
+    padding: 0;
+    font-size: 1em;
+    height:18em;
+    display:inline-block;
     position:relative;
-    display: inline-block;
 	}
 
-  header h1:after{
-    content: "";
-    display: block;
+
+  header h1 a {
+    max-width: 610px;
+		font-size: {{ page.header_font_size }}em;
+    padding:{{ page.header_font_size | times:0.03 }}em 0 {{ page.header_font_size | times:0.03 }}em 0;
     position: absolute;
-    top: 40px;
-    right: 10px;
-    width:280px;
-    height: 126px;
+    bottom: 0;
+    left: 0;
+  }
+  
+  header h1:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    width: {{ page.logo_width }}px;
+    height: {{ page.logo_height }}px;
+    padding:{{ 160 | minus:page.logo_height }}px 4px 10px 0;
     background-image: url(./svg/{{ page.svg_asset }});
     background-repeat: no-repeat;
-    background-position: right top;
+    background-position: bottom right;
     background-size: 100%;
+    background-origin: padding-box;
     background-color: transparent;
+    
     -webkit-filter: {{ page.svg_title_filter }};
     -webkit-transform: {{ page.svg_title_rotation }};
     -moz-transform: {{ page.svg_title_rotation }};
     -ms-transform: {{ page.svg_title_rotation }};
     -o-transform: {{ page.svg_title_rotation }};
     transform: {{ page.svg_title_rotation }};
+  }
+  
+  header h1.long-title {
+    height: 20em;
+  }
+  
+  header h1.long-title:after {
+    padding-top:10px;
   }
 
   footer > div {
@@ -1033,7 +1056,7 @@ aside  li:hover:after  {
   
 @media (min-width:52em) {
 
-   
+  
   #subnav.off-left  {
     margin-left: -100%;
   }
@@ -1108,7 +1131,7 @@ aside  li:hover:after  {
   }
 }
 
-/* Force correct font loading behaviour to avoid FOUT in all browsers */
+/* Force correct font loading behaviour to avoid FOUT in IE9 */
 
 .wf-loading h1,
 .wf-loading h2,
