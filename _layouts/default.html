@@ -40,9 +40,9 @@
   <body>
     <header>
       <h1 class="title">
-        {% if page.layout_type == 'subpage' %} <a href="../"> {% endif %}
+        <a href="{{ page_path }}">
         {{ site.PROJECT_NAME }}
-        {% if page.layout_type == 'subpage' %} </a> {% endif %}
+        </a>
       </h1>
     </header>
 
