@@ -196,7 +196,6 @@ footer p {
   text-transform: uppercase;
 	margin: 0;
 	padding: 1em;
-	border-bottom: 1px {{ page.lowlight_border }} solid;
 	border-top: 1px {{ page.lowlight_border }} solid;
 	text-align: left;
 	overflow: hidden;
