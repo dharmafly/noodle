@@ -91,7 +91,8 @@ code {
 	font-family: Inconsolata, monospace;
 	font-size: 1em;
 	padding: 2px 3px;
-	color: {{ page.code_colour }};
+	color: {{ page.inline_code_colour }};
+  background-color: {{ page.inline_code_background }};
 }
 
 /* Code highlighting theme for hijs */
@@ -150,7 +151,7 @@ pre code {
 }
 
 header {
-  background : url(./img/tile.png);
+  background : url({{page.background_tile}});
 }
 
 header,
@@ -200,7 +201,8 @@ section.overview {
   border-radius: 7px;
 }
 
-pre, code {
+pre,
+pre code {
   color: {{ page.code_colour }};
 	background-color: {{ page.code_background }};
 }
@@ -378,7 +380,7 @@ section.content:after{
   margin: 0;
   position: absolute;
   bottom: 177px;
-  left: -336px;
+  left: {{ page.svg_asset_left_pos }};
   z-index: -1;
   background: transparent;
   background-repeat: no-repeat;

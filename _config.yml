@@ -4,7 +4,7 @@ GITHUB_CURRENT_VERSION: 1.0
 GITHUB_PROJECT_URL: https://github.com/dharmafly/dharmafly-docs
 
 # The style for your site (options: forest, ocean, horus)
-THEME: forest
+THEME: horus
 
 ############ Optional extras
 
