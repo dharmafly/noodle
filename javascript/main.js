@@ -94,6 +94,16 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     return visualWidth;
   }
   
+  // Finds the width in ems of any string
+  function getEmWidth(chars){
+    var p = document.createElement("span");
+    p.innerHTML = chars;
+    document.body.appendChild(p);
+    var width = p.getBoundingClientRect().width;
+    document.body.removeChild(p);
+    return width;
+  }
+  
   function getTargetId(hashId){
     return hashId ? hashId.substring(1, hashId.length) : null;
   }
