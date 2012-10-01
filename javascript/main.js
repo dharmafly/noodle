@@ -187,11 +187,11 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
         // set the position to scroll to - include hidden padding 
         // in anchor to set the position below fixed navigation
     var scrollYPos = getOffsetY(anchor),
+        maxScrollDist = window.innerHeight * 2,
         distance =  Math.abs(scrollYPos - window.pageYOffset);
     
-    // TO DO: set 1000 to be a number of screen heights
-    // the distance between link and anchor > 1000
-    if((distance > 1000) || narrowScreen){
+    // the distance between link and anchor > x screen heights
+    if((distance > maxScrollDist) || narrowScreen){
       // jump to anchor
       window.scrollTo(0, scrollYPos); 
       setLocationHash();

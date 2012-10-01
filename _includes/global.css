@@ -158,7 +158,7 @@ pre code {
 }
 
 header {
-  background : url({{page.background_tile}});
+  background : {{page.background_tile}};
 }
 
 header,
