@@ -37,21 +37,6 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
 
   // UTILITIES
   
-  var queryParameters = (function() {
-      var result = {};
-
-      if (window.location.search) {
-      
-          var params = window.location.search.slice(1).split("&");
-          for (var i = 0; i < params.length; i++) {
-              var tmp = params[i].split("=");
-              result[tmp[0]] = unescape(tmp[1]);
-          }
-      }
-
-      return result;
-  }());
-  
   function throttle(fn, delay) {
     var timer = null;
     return function () {
@@ -166,9 +151,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
   
   // GLOBALS
       
-  var narrowScreen = GLOBAL.narrowScreen, 
-      isltIE10 = GLOBAL.isltIE10, 
-      navEl = $qS('#navigation'),
+  var navEl = $qS('#navigation'),
       header = $qS('header'),
       headerHeight = navEl.offsetTop,
       subnavId = 'subnav',
@@ -399,45 +382,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
   // PAGE CONTROLLER
   
   function init(){
-    
-    // Load scripts for code demos
-    
-    // Ace is never loaded, unless ?editable=true 
-    // (and this is a non-IE wide screen device)
-    GLOBAL.noEditor = narrowScreen || isltIE10 ? 
-                        true :
-                        queryParameters.editable === "true" ? 
-                          false : 
-                          true;
-                        
-    // syntax highlighter if no editors specified, ACE editor otherwise
-    var scripts = GLOBAL.noEditor ?  
-        [
-          "hijs", 
-          "demo"
-        ] : 
-        [
-          "ace/ace", 
-          "ace/theme/theme-dharmafly", 
-          "ace/mode-javascript", 
-          "demo"
-        ];
-    
-    (function loadScript(src) {
-      
-      var script = document.createElement("script");
-      script.onload = function () {
-        if (scripts.length) {
-          loadScript(scripts.shift());
-        }
-      };
-      script.src = GLOBAL.relative_path + "javascript/" + src + ".js";
-      document.body.appendChild(script);
-    })(scripts.shift());
-    
-    
-    // -----------
-    
+  
     navigation = new Navigation(navEl);
     subnav = new Subnav(subnavEl);
     

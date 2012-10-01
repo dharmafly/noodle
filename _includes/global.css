@@ -1036,9 +1036,6 @@ aside  li:hover:after  {
 		padding-left: 63px;
     padding-bottom: 1.5em;
 	}
-  section pre.hasEditor {
-		padding-left: 5em;
-	}
   
   section .embedded > ul pre {
     margin-left: -7.2em;
