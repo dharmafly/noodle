@@ -412,6 +412,7 @@ section.content:after{
 section > h1 {
 	position: relative;
 	left: -1.1em;
+  text-indent: 1.1em;
 }
 
 section > h1:hover .permalink {
@@ -428,9 +429,10 @@ section .permalink {
 	float: left;
 	margin-right: 0.2em;
 	visibility: hidden;
-  position: relative;
+  position: absolute;
   top: -70px; /* The height of the nav so it doesn't get hidden under */
   padding-top: 70px;
+  left: -1.1em;
   font-family: "DejaVu Sans", "DejaVu Sans Bold", "DejaVu Sans Bold Oblique", "DejaVu Sans Condensed", "DejaVu Sans Condensed Bold", "DejaVu Sans Condensed Bold Oblique", "DejaVu Sans Condensed Oblique", "DejaVu Sans Mono", "DejaVu Sans Mono Bold", "DejaVu Sans Oblique", "EversonMono", "EversonMono-Oblique", "Symbola", "Free Serif", "Quivira", "Rail Model", Code2000 
 }
 
@@ -527,20 +529,25 @@ section.quote:after {
 
 .embedded > ul,
 .embedded > ul {
-    margin-left: -1em;
-    padding-bottom: 1em;
+  margin-left: -1em;
+  padding-bottom: 1em;
 }
 
 .embedded > ol,
 .embedded > ol {
-    margin-left: 1.5em;
+  margin-left: 1.5em;
 }
 
 article > p,
 section > p {
-    padding-left: 1em;
+  padding-left: 1em;
 }
 
+section.overview p {
+  padding-left: 0;
+}
+
+/*
 article > p:first-of-type,
 section > p:first-of-type,
 article > h2 + p,
@@ -549,7 +556,7 @@ article > h2 + p,
 .embedded > h5 + p {
     text-indent: -1em;
 }
-
+*/
 
 
 /* Embedded Markdown Docs */
@@ -641,7 +648,6 @@ button:active {
 
 .buttons {
 	margin-top: 1.5em;
-    margin-left: -1em;
 }
 
 .button {
