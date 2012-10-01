@@ -1037,6 +1037,10 @@ aside  li:hover:after  {
     padding-bottom: 1.5em;
 	}
   
+  section pre.runnable code[contenteditable='true'] {
+    outline: none;
+  }
+  
   section .embedded > ul pre {
     margin-left: -7.2em;
   }
