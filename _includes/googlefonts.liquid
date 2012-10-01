@@ -1,11 +1,14 @@
+ <!-- link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic:latin|{% case site.THEME %}{% when 'ocean' %}Advent+Pro::latin{% when 'horus' %}Megrim::latin{% else %}Forum{% endcase %}|Inconsolata::latin" rel="stylesheet" / -->
 <script type="text/javascript">
     WebFontConfig = {
         google: {
             families: [
                 'Lato:400,700,400italic:latin',
-                {% case site.THEME %} {% when 'ocean' %}'Advent+Pro::latin',
+                {% case site.THEME %} 
+                {% when 'ocean' %}'Advent+Pro::latin',
+                {% when 'horus' %}'Megrim::latin',
                 {% else %} 'Forum::latin',
-                {% endcase %} 'Inconsolata::latin'
+                {% endcase %} 'Ubuntu+Mono::latin'
             ]
         }
     };

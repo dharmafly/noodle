@@ -1,15 +1,22 @@
+
+{% if page.header_font %}
+    {% assign header_font  = page.header_font %}
+{% else %}
+    {% assign header_font  = "Lato" %}
+{% endif %}
+
 body {
 	font: 62.5%/1 Lato, serif;
 	padding: 0;
 	margin: 0;
 	color: {{ page.copy_colour }};
   background: {{ page.body_background_colour }};
-  background-image: url(./img/tile.png);
-  background-image: url(./img/tile.png) -moz-linear-gradient(left, {{ page.body_background_colour }} 0%, {{ page.background_mid_stop }} 50%, {{ page.body_background_colour }} 100%);
-  background-image: url(./img/tile.png) -webkit-gradient(linear, left top, right top, color-stop(0%,{{ page.body_background_colour }}), color-stop(50%,{{ page.background_mid_stop }}), color-stop(100%,{{ page.body_background_colour }}));
-  background-image: url(./img/tile.png) -webkit-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
-  background-image: url(./img/tile.png) -o-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
-  background-image: url(./img/tile.png) -ms-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
+  background-image: {{ page.background_tile }};
+  background-image: {{ page.background_tile }} -moz-linear-gradient(left, {{ page.body_background_colour }} 0%, {{ page.background_mid_stop }} 50%, {{ page.body_background_colour }} 100%);
+  background-image: {{ page.background_tile }} -webkit-gradient(linear, left top, right top, color-stop(0%,{{ page.body_background_colour }}), color-stop(50%,{{ page.background_mid_stop }}), color-stop(100%,{{ page.body_background_colour }}));
+  background-image: {{ page.background_tile }} -webkit-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
+  background-image: {{ page.background_tile }} -o-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
+  background-image: {{ page.background_tile }} -ms-linear-gradient(left, {{ page.body_background_colour }} 0%,{{ page.background_mid_stop }} 50%,{{ page.body_background_colour }} 100%);
   background-attachment: fixed;
 }
 
@@ -37,7 +44,7 @@ h1, h2, h3, h4, h5, h6, p, pre, ul, ol {
 }
 
 h1, h2 {
-	font-family: {{ page.font }}, "Helvetica Neue";
+	font-family: {{ header_font }}, "Helvetica Neue", sans-serif;
 	font-weight: 400;
 	margin-bottom: 0.75em;
 }
@@ -88,10 +95,11 @@ hr {
 }
 
 code {
-	font-family: Inconsolata, monospace;
+	font-family: 'Ubuntu Mono', monospace;
 	font-size: 1em;
 	padding: 2px 3px;
-	color: {{ page.code_colour }};
+	color: {{ page.inline_code_colour }};
+  background-color: {{ page.inline_code_background }};
 }
 
 /* Code highlighting theme for hijs */
@@ -150,7 +158,7 @@ pre code {
 }
 
 header {
-  background : url(./img/tile.png);
+  background : url({{page.background_tile}});
 }
 
 header,
@@ -163,7 +171,11 @@ footer {
 header h1 {
 	font-size: 4.2em;
 	margin: 0;
-    padding: 0.23em;
+  padding:  {{ page.header_font_size| times:0.05 }}em;
+  text-align: left;
+}
+h1.title {
+	font-family: {{ page.font }}, "Helvetica Neue", sans-serif;
 }
 
 header a,
@@ -184,7 +196,6 @@ footer p {
   text-transform: uppercase;
 	margin: 0;
 	padding: 1em;
-	border-bottom: 1px {{ page.lowlight_border }} solid;
 	border-top: 1px {{ page.lowlight_border }} solid;
 	text-align: left;
 	overflow: hidden;
@@ -199,7 +210,8 @@ section.overview {
   border-radius: 7px;
 }
 
-pre, code {
+pre,
+pre code {
   color: {{ page.code_colour }};
 	background-color: {{ page.code_background }};
 }
@@ -257,7 +269,7 @@ section.overview a:active {
     color: {{ page.highlight_colour }};
 }
 
-#navigation[hidden] {
+#navigation.hidden {
 	display: none;
 }
 
@@ -290,9 +302,10 @@ section.overview a:active {
     width: 40em;
 }
 
-#subnav.float {
+#subnav.fixed {
     position: fixed;
     top: 6em;
+    width:auto;
     /* calculate left offset dynamically */
 }
 
@@ -302,7 +315,7 @@ section.overview a:active {
     opacity: 0;
 }
 
-
+/* Debug #subnav:focus, */
 #subnav.show-nav {
     opacity : 1;
     -webkit-transition: opacity 300ms ease-in-out;
@@ -311,6 +324,16 @@ section.overview a:active {
     -ms-transition: opacity 300ms ease-in-out;
     transition: opacity 300ms ease-in-out;
 }
+
+/* Debug - no js show the nav at small device widths
+#subnav:focus {
+  left: -34px;
+  top: 0;
+  background: {{ page.content_bg_colour }};
+  border: 1px solid {{ page.body_background_colour }};
+  z-index: 30;
+}
+*/
 
 #subnav li {
     margin: 0;
@@ -329,11 +352,12 @@ section.overview a:active {
 }
 
 #subnav a:hover {
-    background-position: 2em 1.2em;
-    -webkit-transition: background-position 0.15s ease-out, color 0.15s ease-out;
-    -moz-transition: background-position 0.15s ease-out, color 0.15s ease-out;
-    -o-transition: background-position 0.15s ease-out, color 0.15s ease-out;2
-    transition: background-position 0.15s ease-out, color 0.15s ease-out;
+  color: {{ page.subnav_link_colour }};
+  background-position: 2em 1.2em;
+  -webkit-transition: background-position 0.15s ease-out, color 0.15s ease-out;
+  -moz-transition: background-position 0.15s ease-out, color 0.15s ease-out;
+  -o-transition: background-position 0.15s ease-out, color 0.15s ease-out;2
+  transition: background-position 0.15s ease-out, color 0.15s ease-out;
 }
 
 aside,
@@ -366,7 +390,7 @@ section.content:after{
   margin: 0;
   position: absolute;
   bottom: 177px;
-  left: -336px;
+  left: {{ page.svg_asset_left_pos }};
   z-index: -1;
   background: transparent;
   background-repeat: no-repeat;
@@ -405,7 +429,8 @@ section .permalink {
 	margin-right: 0.2em;
 	visibility: hidden;
   position: relative;
-  bottom: 0;
+  top: -70px; /* The height of the nav so it doesn't get hidden under */
+  padding-top: 70px;
   font-family: "DejaVu Sans", "DejaVu Sans Bold", "DejaVu Sans Bold Oblique", "DejaVu Sans Condensed", "DejaVu Sans Condensed Bold", "DejaVu Sans Condensed Bold Oblique", "DejaVu Sans Condensed Oblique", "DejaVu Sans Mono", "DejaVu Sans Mono Bold", "DejaVu Sans Oblique", "EversonMono", "EversonMono-Oblique", "Symbola", "Free Serif", "Quivira", "Rail Model", Code2000 
 }
 
@@ -476,6 +501,11 @@ section.quote:after {
   -o-transform: {{ page.quote_svg_left_transform }};
   transform: {{ page.quote_svg_left_transform }};
   visibility: visible;
+  {% if  page.quote_svg_grayscale %}
+  filter: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter%20id%3D%22desaturate%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%3C/filter%3E%3C/svg%3E#desaturate);
+  filter: gray;
+  -webkit-filter: grayscale(1) contrast(0%);
+  {% endif %}
 }
 
 .ie section.quote:before,
@@ -626,9 +656,9 @@ button:active {
 	background-image: linear-gradient(top,{{ page.large_button_colour }}, {{ page.large_button_stop }});
 	border-radius: 5px;
 	border: 2px solid {{ page.highlight_colour }};
-    font-family: 'Lato', sans-serif;
-    font-weight: bold;
-    font-size:112.5%;
+  font-family: Lato, sans-serif;
+  font-weight: bold;
+  font-size:112.5%;
 }
 
 .button:hover {
@@ -863,7 +893,7 @@ aside  li:hover:after  {
 }
 
 .ace_editor {
-	font-family: Inconsolata, monospace !important;
+	font-family: 'Ubuntu Mono', monospace !important;
   font-size: 1.6em !important;
   left:30px;
 }
@@ -880,7 +910,11 @@ aside  li:hover:after  {
 @media only screen and (min-height:20px)  and (max-height:520px) {
   #subnav.show-nav {
     overflow:auto; 
+    -webkit-overflow-scrolling: touch;
     height:340px;
+  }  
+  #subnav.show-nav.fixed {
+    height:440px;
   }
 }  
 
@@ -912,34 +946,56 @@ aside  li:hover:after  {
 		margin-right: auto;
 	}
 
-
+  
 
   header h1 {
-		font-size: 5.4em;
-    padding:  2em 5.55em 0.27em 0.55em;
+    width : 61em;
+    padding: 0;
+    font-size: 1em;
+    height:18em;
+    display:inline-block;
     position:relative;
-    display: inline-block;
 	}
 
-  header h1:after{
-    content: "";
-    display: block;
+
+  header h1 a {
+    max-width: 610px;
+		font-size: {{ page.header_font_size }}em;
+    padding:{{ page.header_font_size | times:0.03 }}em 0 {{ page.header_font_size | times:0.03 }}em 0;
     position: absolute;
-    top: 40px;
-    right: 10px;
-    width:280px;
-    height: 126px;
+    bottom: 0;
+    left: 0;
+  }
+  
+  header h1:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    width: {{ page.logo_width }}px;
+    height: {{ page.logo_height }}px;
+    padding:{{ 160 | minus:page.logo_height }}px 4px 10px 0;
     background-image: url(./svg/{{ page.svg_asset }});
     background-repeat: no-repeat;
-    background-position: right top;
+    background-position: bottom right;
     background-size: 100%;
+    background-origin: padding-box;
     background-color: transparent;
+    
     -webkit-filter: {{ page.svg_title_filter }};
     -webkit-transform: {{ page.svg_title_rotation }};
     -moz-transform: {{ page.svg_title_rotation }};
     -ms-transform: {{ page.svg_title_rotation }};
     -o-transform: {{ page.svg_title_rotation }};
     transform: {{ page.svg_title_rotation }};
+  }
+  
+  header h1.long-title {
+    height: 20em;
+  }
+  
+  header h1.long-title:after {
+    padding-top:10px;
   }
 
   footer > div {
@@ -1011,13 +1067,17 @@ aside  li:hover:after  {
   section.quote:after {
     left: auto;
     right: -webkit-calc({{ page.quote_svg_right_pos }} + {{ page.quote_svg_right_mod }});
+    right: -moz-calc({{ page.quote_svg_right_pos }} + {{ page.quote_svg_right_mod }});
+    right: -o-calc({{ page.quote_svg_right_pos }} + {{ page.quote_svg_right_mod }});
+    right: -ms-calc({{ page.quote_svg_right_pos }} + {{ page.quote_svg_right_mod }});
+    right: calc({{ page.quote_svg_right_pos }} + {{ page.quote_svg_right_mod }});
   }
 
 }
   
 @media (min-width:52em) {
 
-   
+  
   #subnav.off-left  {
     margin-left: -100%;
   }
@@ -1087,11 +1147,9 @@ aside  li:hover:after  {
     -webkit-transition: none;
   }
   body {
-    background-image: url(./img/tile.png);
-    //-webkit-transform:scale3d(1,1,1);
+    background-image: {{ page.background_tile }};
   }
 }
-
 
 /* Force correct font loading behaviour to avoid FOUT in all browsers */
 
