@@ -37,9 +37,9 @@ layout: default
             <h1>
                 <a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>{{ post.title }}
             </h1>
-            <article class="embedded markdown">
-             {{ post.content }}
-            </article>
+			<article class="embedded markdown">
+			 {{ post.content }}
+			</article>
         </section>
     {% endif %}
 {% endfor %}
@@ -47,7 +47,7 @@ layout: default
 {% include aside.liquid %}
 
         <section>
-            <h1><a id="download" class="permalink" href="#download">&#9875;</a> Download</h1>
+        	<h1><a id="download" class="permalink" href="#download">&#9875;</a> Download</h1>
             <p><a href="{{ site.GITHUB_PROJECT_URL }}" target="blank">Star the project</a> on GitHub, or <a target="blank" href="{{ site.GITHUB_ZIP_URL }}">download it</a>:</p>
 
         	<p class="buttons">
@@ -55,7 +55,7 @@ layout: default
                 {% if site.GITHUB_ZIP_URL %}
         		<a class="button" href="{{ site.GITHUB_ZIP_URL }}" target="blank">{{ site.PROJECT_NAME }} <span class="version">v{{ site.GITHUB_CURRENT_VERSION }}</span></a>
                 {% endif %}
-            </p>
+        	</p>
         </section>
 
 {% for post in category reversed %}
