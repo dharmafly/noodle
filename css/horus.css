@@ -5,6 +5,8 @@ background_tile: none
 
 #colours
 
+overview_inverse: true
+
 copy_colour: "#000000" 
 lowlight_background: "#F6A01A" 
 lowlight_colour: "#000000"
@@ -24,9 +26,9 @@ code_background: "#653f16"
 inline_code_colour: "#000000"
 inline_code_background: "rgba(0,0,0,0.075)"
 button_border: "transparent"
-button_mid_stop: "#885a12" #
-button_colour: "#DD911B" #
-button_colour_highlight: "#ff9b00" #
+button_mid_stop: "#885a12" 
+button_colour: "#DD911B" 
+button_colour_highlight: "#ff9b00" 
 large_button_colour: "#B8810D"
 large_button_stop: "#D59F0D"
 large_button_highlight: "#E6C026"

@@ -218,11 +218,14 @@ pre code {
 
 #navigation, section.overview {
 	background-color: {{ page.lowlight_background }};
+  {% if page.overview_inverse %}
+  color:{{ page.highlight_colour }};
+  {% else %}
   color:{{ page.lowlight_colour }};
+  {% endif %}
 }
 
-#navigation a,
-section.overview a {
+#navigation a{
   color:{{ page.lowlight_colour }};
   -webkit-transition : color 0.1s ease-in;
   -moz-transition : color 0.1s ease-in;
@@ -230,7 +233,14 @@ section.overview a {
   transition : color 0.1s ease-in;
 }
 
-
+section.overview a {
+  {% if page.overview_inverse %}
+  color:{{ page.highlight_colour }};
+  {% else %}
+  color:{{ page.lowlight_colour }};
+  {% endif %}
+}
+  
 #navigation a:hover,
 #navigation a:focus,
 #navigation a:active,
