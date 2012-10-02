@@ -98,8 +98,7 @@ code {
 	font-family: 'Ubuntu Mono', monospace;
 	font-size: 1em;
 	padding: 2px 3px;
-	color: {{ page.inline_code_colour }};
-  background-color: {{ page.inline_code_background }};
+  background-color: rgba(0,0,0,0.075);
 }
 
 /* Code highlighting theme for hijs */
