@@ -98,8 +98,7 @@ code {
 	font-family: 'Ubuntu Mono', monospace;
 	font-size: 1em;
 	padding: 2px 3px;
-	color: {{ page.inline_code_colour }};
-  background-color: {{ page.inline_code_background }};
+  background-color: rgba(0,0,0,0.075);
 }
 
 /* Code highlighting theme for hijs */
@@ -218,11 +217,14 @@ pre code {
 
 #navigation, section.overview {
 	background-color: {{ page.lowlight_background }};
+  {% if page.overview_inverse %}
+  color:{{ page.highlight_colour }};
+  {% else %}
   color:{{ page.lowlight_colour }};
+  {% endif %}
 }
 
-#navigation a,
-section.overview a {
+#navigation a{
   color:{{ page.lowlight_colour }};
   -webkit-transition : color 0.1s ease-in;
   -moz-transition : color 0.1s ease-in;
@@ -230,7 +232,14 @@ section.overview a {
   transition : color 0.1s ease-in;
 }
 
-
+section.overview a {
+  {% if page.overview_inverse %}
+  color:{{ page.highlight_colour }};
+  {% else %}
+  color:{{ page.lowlight_colour }};
+  {% endif %}
+}
+  
 #navigation a:hover,
 #navigation a:focus,
 #navigation a:active,
@@ -412,6 +421,7 @@ section.content:after{
 section > h1 {
 	position: relative;
 	left: -1.1em;
+  text-indent: 1.1em;
 }
 
 section > h1:hover .permalink {
@@ -428,9 +438,10 @@ section .permalink {
 	float: left;
 	margin-right: 0.2em;
 	visibility: hidden;
-  position: relative;
+  position: absolute;
   top: -70px; /* The height of the nav so it doesn't get hidden under */
   padding-top: 70px;
+  left: -1.1em;
   font-family: "DejaVu Sans", "DejaVu Sans Bold", "DejaVu Sans Bold Oblique", "DejaVu Sans Condensed", "DejaVu Sans Condensed Bold", "DejaVu Sans Condensed Bold Oblique", "DejaVu Sans Condensed Oblique", "DejaVu Sans Mono", "DejaVu Sans Mono Bold", "DejaVu Sans Oblique", "EversonMono", "EversonMono-Oblique", "Symbola", "Free Serif", "Quivira", "Rail Model", Code2000 
 }
 
@@ -527,20 +538,25 @@ section.quote:after {
 
 .embedded > ul,
 .embedded > ul {
-    margin-left: -1em;
-    padding-bottom: 1em;
+  margin-left: -1em;
+  padding-bottom: 1em;
 }
 
 .embedded > ol,
 .embedded > ol {
-    margin-left: 1.5em;
+  margin-left: 1.5em;
 }
 
 article > p,
 section > p {
-    padding-left: 1em;
+  padding-left: 1em;
 }
 
+section.overview p {
+  padding-left: 0;
+}
+
+/*
 article > p:first-of-type,
 section > p:first-of-type,
 article > h2 + p,
@@ -549,7 +565,7 @@ article > h2 + p,
 .embedded > h5 + p {
     text-indent: -1em;
 }
-
+*/
 
 
 /* Embedded Markdown Docs */
@@ -641,7 +657,6 @@ button:active {
 
 .buttons {
 	margin-top: 1.5em;
-    margin-left: -1em;
 }
 
 .button {
@@ -1020,9 +1035,10 @@ aside  li:hover:after  {
 		padding-left: 63px;
     padding-bottom: 1.5em;
 	}
-  section pre.hasEditor {
-		padding-left: 5em;
-	}
+  
+  section pre.runnable code[contenteditable='true'] {
+    outline: none;
+  }
   
   section .embedded > ul pre {
     margin-left: -7.2em;
