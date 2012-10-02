@@ -151,7 +151,8 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
   
   // GLOBALS
       
-  var navEl = $qS('#navigation'),
+  var narrowScreen = GLOBAL.narrowScreen, 
+      navEl = $qS('#navigation'),
       header = $qS('header'),
       headerHeight = navEl.offsetTop,
       subnavId = 'subnav',
