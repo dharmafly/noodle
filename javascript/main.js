@@ -261,6 +261,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     this.isOpen;
     this.timeout; 
     this.width = getLinkListWidth(el); 
+    this.height = this.el.getBoundingClientRect().height;
     // TO DO
     this.margin = 20;
     this.fixedLeftPos = this.getLeftPos();
@@ -288,6 +289,11 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
                                     subnav.openPos : 
                                     subnav.fixedLeftPos
                                 : null;
+                                
+        // Set a fixed height on the subnav at the point
+        // the subnav is taller than the available space on-screen
+        subnav.setSubnavHeight();
+        
       }
       
     });   
@@ -302,6 +308,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
       // otherwise it will sit in the same place when the browser resizes
       if(subnav.isScrollGtHeader){
         subnav.el.style.left = subnav.fixedLeftPos;
+        subnav.setSubnavHeight();
       } 
       
     });
@@ -323,6 +330,18 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
       }
     });
     
+  };
+  
+  // Set a fixed height on the subnav at the point
+  // the subnav is taller than the available space on-screen
+  Subnav.prototype.setSubnavHeight  = function setSubnavHeight() {
+    var availHeight = window.innerHeight - this.el.offsetTop - 10;
+    
+    if(this.isScrollGtHeader && (this.height > availHeight)){
+      this.el.style.height = availHeight + 'px';
+    }else{
+      this.el.style.height = null;
+    }
   };
   
   Subnav.prototype.getLeftPos  = function getLeftPos() {
