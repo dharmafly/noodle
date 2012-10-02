@@ -186,6 +186,10 @@ footer a {
     text-decoration: none;
 }
 
+footer {
+  padding: 2em;
+}
+
 footer p {
 	margin: 0;
 }
@@ -1015,7 +1019,7 @@ aside  li:hover:after  {
 
   footer > div {
       text-align: right;
-      padding:2em 2em 2em 0;
+      padding:0 2em 0 0;
   }
 
 	section:after {
