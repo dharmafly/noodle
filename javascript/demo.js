@@ -57,6 +57,13 @@ jQuery('button.eval')
         
 
         // Execute the code in a custom scope that includes alert() and $output.
+        try{
         jQuery.globalEval('(function (demoElement, alert) {' + code + '})(' + demoElement + ', ' + $alert + ')');
+        }catch(e){
+          console.log(e);
+          var error = e.message;
+          jQuery('#output-' + index).html('error: ' + error)
+        }
+        
     }, 300);
 });
