@@ -347,12 +347,13 @@ section.overview a:active {
   background: {{ page.body_background_colour }};
   z-index: 30;
   position: fixed;
-  top: 8em;
+  top: 7.5em;
   width:auto;
   -moz-box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
   box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
   -webkit-overflow-scrolling: touch; 
+  text-align:left;
 }
 
 #subnav li {
@@ -1197,4 +1198,6 @@ aside  li:hover:after  {
 .narrowScreen section .permalink {
   top: -120px; /* The height of the nav so it doesn't get hidden under */
   padding-top: 120px;
+  z-index: 1;
+  pointer-events:none;
 }
