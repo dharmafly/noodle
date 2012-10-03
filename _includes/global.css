@@ -158,11 +158,6 @@ pre code {
 
 header {
   background : {{page.background_tile}};
-  position: fixed;
-  z-index:101;
-  width:100%;
-  top: 0;
-  left: 0;
 }
 
 header,
@@ -173,7 +168,7 @@ footer {
 }
 
 header h1 {
-	font-size: 2em;
+	font-size: 4.2em;
 	margin: 0;
   padding:  {{ page.header_font_size| times:0.05 }}em;
   text-align: left;
@@ -262,15 +257,14 @@ section.overview a:active {
     transition : color 0.1s ease-in;
 }
 
-#navigation,
 #navigation.float {
 	z-index: 101;
 	position: fixed;
-	top: 3.4em;
+	top: 0;
 	left: 0;
 	right: 0;
 	margin: 0;
-	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
 }
 
 #navigation.float h1 {
@@ -280,6 +274,7 @@ section.overview a:active {
     float: left;
     font-size: 1.8em;
     color: {{ page.highlight_colour }};
+    border-right:1px solid {{ page.nav_border_colour }};
     display: none; /* only shown above 35em */
 }
 
@@ -299,7 +294,6 @@ section.overview a:active {
   display: inline;
   padding-left: 1em;
   padding-right: 1em;
-  border-left:1px solid {{ page.nav_border_colour }};
   float: none;
 }
 
@@ -312,13 +306,13 @@ section.overview a:active {
 }
 
 #subnav {
-  position: absolute;
-  left: -42em;
-  text-align: right;
-  width: 40em;
-  overflow-y:auto; 
-  overflow-x:hidden; 
-  -webkit-overflow-scrolling: touch;
+    position: absolute;
+    left: -42em;
+    text-align: right;
+    width: 40em;
+    overflow-y:auto; 
+    overflow-x:hidden; 
+    -webkit-overflow-scrolling: touch;
 }
 
 #subnav.fixed {
@@ -337,11 +331,17 @@ section.overview a:active {
 /* Debug #subnav:focus, */
 #subnav.show-nav {
     opacity : 1;
+    -webkit-transition: opacity 300ms ease-in-out;
+    -moz-transition: opacity 300ms ease-in-out;
+    -o-transition: opacity 300ms ease-in-out;
+    -ms-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
 }  
 
 
 
-/* Debug - no js show the nav at small device widths */
+/* show the nav at small device widths
+*/
 #subnav.show-nav-small {
   left: 0 !important;
   background: {{ page.body_background_colour }};
@@ -349,12 +349,11 @@ section.overview a:active {
   position: fixed;
   top: 8em;
   width:auto;
-	-moz-box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
-	box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
-  -webkit-overflow-scrolling: touch;
+  -moz-box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+  -webkit-overflow-scrolling: touch; 
 }
-
 
 #subnav li {
     margin: 0;
@@ -399,11 +398,16 @@ section.content {
     -ms-transition: left 300ms ease-in-out;
     transition: left 300ms ease-in-out;
 }
+
+
 section.content.content-small {
   margin-top: 7.4em;
+    -moz-transition: none;
+    -webkit-transition: none;
+    -ms-transition: none;
+    -o-transition: left 0 ease-in;
+    transition: none;
 }
-
-
 
 
 section.content:after{
@@ -454,8 +458,8 @@ section .permalink {
 	margin-right: 0.2em;
 	visibility: hidden;
   position: absolute;
-  top: -120px; /* The height of the nav so it doesn't get hidden under */
-  padding-top: 120px;
+  top: -70px; /* The height of the nav so it doesn't get hidden under */
+  padding-top: 70px;
   left: -1.1em;
   font-family: "DejaVu Sans", "DejaVu Sans Bold", "DejaVu Sans Bold Oblique", "DejaVu Sans Condensed", "DejaVu Sans Condensed Bold", "DejaVu Sans Condensed Bold Oblique", "DejaVu Sans Condensed Oblique", "DejaVu Sans Mono", "DejaVu Sans Mono Bold", "DejaVu Sans Oblique", "EversonMono", "EversonMono-Oblique", "Symbola", "Free Serif", "Quivira", "Rail Model", Code2000 
 }
@@ -754,12 +758,6 @@ button:active {
   display: none;
 }
 
-#navigation li.show-subnav + li {
-  border-left-width:0; 
-}
-#navigation.show-subnav-button li.show-subnav + li {
-  border-left-width:1px; 
-}
 
 /* Change Log Section */
 .change-log li h2 {
@@ -779,7 +777,7 @@ button:active {
 }
 
 .run .eval {
-	z-index: 29;
+	z-index: 28;
 	position: absolute;
   bottom: 12px;
   left: 10px;
@@ -922,6 +920,7 @@ aside  li:hover:after  {
 
 
 
+
 @media (min-width:340px) {
 	#navigation {
 		text-align: left;
@@ -935,15 +934,7 @@ aside  li:hover:after  {
   header img {
     width: 281px;
   }
-  
-  #navigation {
-    position: static;
-  }
-  
-  #navigation.float {
-    top: 0em;
-  }
-  
+
 	#navigation li {
 		font-size: 1.8em;
 	}
@@ -957,15 +948,7 @@ aside  li:hover:after  {
 		margin-right: auto;
 	}
 
-  header {
-    position: static;
-  }
   
-  
-  section .permalink {
-    top: -70px; /* The height of the nav so it doesn't get hidden under */
-    padding-top: 70px;
-  }
 
   header h1 {
     width : 61em;
@@ -1106,15 +1089,10 @@ aside  li:hover:after  {
     margin-left: 0;
   }
 
-  #subnav,
-  #subnav.show-nav {
-    opacity : 1;
-    -webkit-transition: opacity 300ms ease-in-out;
-    -moz-transition: opacity 300ms ease-in-out;
-    -o-transition: opacity 300ms ease-in-out;
-    -ms-transition: opacity 300ms ease-in-out;
-    transition: opacity 300ms ease-in-out;
-  }
+    #subnav,
+    #subnav.show-nav {
+        opacity : 1;
+    }
   
   section pre {
     position: relative;
@@ -1194,3 +1172,29 @@ aside  li:hover:after  {
 
 }
 
+.narrowScreen header{
+  position: fixed;
+  z-index:101;
+  width:100%;
+  top: 0;
+  left: 0;
+}
+.narrowScreen header h1 {
+  font-size: 20px;
+}
+
+.narrowScreen #navigation,
+.narrowScreen #navigation.float {
+   z-index: 101;
+   position: fixed;
+   top: 3.4em;
+   left: 0;
+   right: 0;
+   margin: 0;
+   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+.narrowScreen section .permalink {
+  top: -120px; /* The height of the nav so it doesn't get hidden under */
+  padding-top: 120px;
+}

@@ -154,7 +154,6 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
   var narrowScreen = GLOBAL.narrowScreen, 
       navEl = $qS('#navigation'),
       header = $qS('header'),
-      headerHeight = navEl.offsetTop,
       subnavId = 'subnav',
       subnavEl = $qS('#subnav'),
       content = $qS('section.content'),
@@ -198,7 +197,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
   
   // Scroll position > height of the header
   function isScrollGtHeader(){ 
-    return window.pageYOffset > headerHeight;
+    return window.pageYOffset > navEl.offsetTop;
   }
   
   // space on left of page < width of subnav 
@@ -336,7 +335,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
   // the subnav is taller than the available space on-screen
   Subnav.prototype.setSubnavHeight  = function setSubnavHeight(setHeight) {
     var availHeight = window.innerHeight - this.el.offsetTop - 10,
-        navHeight = narrowScreen ? headerHeight + navEl.clientHeight : 0;
+        navHeight = narrowScreen ? navEl.offsetTop + navEl.clientHeight : 0;
     
     if((this.isScrollGtHeader || setHeight) && (this.height > availHeight)){
       this.el.style.height = (availHeight - 20) + 'px';
@@ -417,6 +416,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     // don't do transition of navigation on narrow screens
     if(narrowScreen){
       content.classList.add('content-small');
+      document.body.classList.add('narrowScreen');
       subnav.setSubnavHeight(true);
     }
     else{
