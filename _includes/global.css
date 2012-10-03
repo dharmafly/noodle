@@ -158,6 +158,11 @@ pre code {
 
 header {
   background : {{page.background_tile}};
+  position: fixed;
+  z-index:101;
+  width:100%;
+  top: 0;
+  left: 0;
 }
 
 header,
@@ -168,7 +173,7 @@ footer {
 }
 
 header h1 {
-	font-size: 4.2em;
+	font-size: 2em;
 	margin: 0;
   padding:  {{ page.header_font_size| times:0.05 }}em;
   text-align: left;
@@ -257,14 +262,15 @@ section.overview a:active {
     transition : color 0.1s ease-in;
 }
 
+#navigation,
 #navigation.float {
 	z-index: 101;
 	position: fixed;
-	top: 0;
+	top: 3.4em;
 	left: 0;
 	right: 0;
 	margin: 0;
-	box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
 }
 
 #navigation.float h1 {
@@ -274,7 +280,6 @@ section.overview a:active {
     float: left;
     font-size: 1.8em;
     color: {{ page.highlight_colour }};
-    border-right:1px solid {{ page.nav_border_colour }};
     display: none; /* only shown above 35em */
 }
 
@@ -295,8 +300,6 @@ section.overview a:active {
   padding-left: 1em;
   padding-right: 1em;
   border-left:1px solid {{ page.nav_border_colour }};
-  border-right:1px solid {{ page.nav_border_colour }};
-  border-left-width:0;
   float: none;
 }
 
@@ -309,13 +312,13 @@ section.overview a:active {
 }
 
 #subnav {
-    position: absolute;
-    left: -42em;
-    text-align: right;
-    width: 40em;
-    overflow-y:auto; 
-    overflow-x:hidden; 
-    -webkit-overflow-scrolling: touch;
+  position: absolute;
+  left: -42em;
+  text-align: right;
+  width: 40em;
+  overflow-y:auto; 
+  overflow-x:hidden; 
+  -webkit-overflow-scrolling: touch;
 }
 
 #subnav.fixed {
@@ -334,24 +337,24 @@ section.overview a:active {
 /* Debug #subnav:focus, */
 #subnav.show-nav {
     opacity : 1;
-    -webkit-transition: opacity 300ms ease-in-out;
-    -moz-transition: opacity 300ms ease-in-out;
-    -o-transition: opacity 300ms ease-in-out;
-    -ms-transition: opacity 300ms ease-in-out;
-    transition: opacity 300ms ease-in-out;
 }  
 
 
 
-/* Debug - no js show the nav at small device widths
-#subnav:focus {
-  left: -34px;
-  top: 0;
-  background: {{ page.content_bg_colour }};
-  border: 1px solid {{ page.body_background_colour }};
+/* Debug - no js show the nav at small device widths */
+#subnav.show-nav-small {
+  left: 0 !important;
+  background: {{ page.body_background_colour }};
   z-index: 30;
+  position: fixed;
+  top: 8em;
+  width:auto;
+	-moz-box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+	box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+  -webkit-overflow-scrolling: touch;
 }
-*/
+
 
 #subnav li {
     margin: 0;
@@ -395,6 +398,9 @@ section.content {
     -o-transition: left 300ms ease-in-out;
     -ms-transition: left 300ms ease-in-out;
     transition: left 300ms ease-in-out;
+}
+section.content.content-small {
+  margin-top: 7.4em;
 }
 
 
@@ -448,8 +454,8 @@ section .permalink {
 	margin-right: 0.2em;
 	visibility: hidden;
   position: absolute;
-  top: -70px; /* The height of the nav so it doesn't get hidden under */
-  padding-top: 70px;
+  top: -120px; /* The height of the nav so it doesn't get hidden under */
+  padding-top: 120px;
   left: -1.1em;
   font-family: "DejaVu Sans", "DejaVu Sans Bold", "DejaVu Sans Bold Oblique", "DejaVu Sans Condensed", "DejaVu Sans Condensed Bold", "DejaVu Sans Condensed Bold Oblique", "DejaVu Sans Condensed Oblique", "DejaVu Sans Mono", "DejaVu Sans Mono Bold", "DejaVu Sans Oblique", "EversonMono", "EversonMono-Oblique", "Symbola", "Free Serif", "Quivira", "Rail Model", Code2000 
 }
@@ -748,10 +754,6 @@ button:active {
   display: none;
 }
 
-#navigation.show-subnav-button li.show-subnav + li {
-    border-left-width:1px;
-}
-
 /* Change Log Section */
 .change-log li h2 {
 	font-size: 1em;
@@ -770,7 +772,7 @@ button:active {
 }
 
 .run .eval {
-	z-index: 100;
+	z-index: 29;
 	position: absolute;
   bottom: 12px;
   left: 10px;
@@ -912,24 +914,6 @@ aside  li:hover:after  {
 }
 
 
-.ace_cursor.ace_hidden {
-	opacity: 0!important;
-}
-
-.ace_editor {
-	font-family: 'Ubuntu Mono', monospace !important;
-  font-size: 1.6em !important;
-  left:30px;
-}
-
-.ace_editor .ace_sb {
-  overflow-y: auto !important;
-}
-
-.ace_scroller {
-    overflow-x: auto !important;
-}
-
 
 @media (min-width:340px) {
 	#navigation {
@@ -938,13 +922,21 @@ aside  li:hover:after  {
 }
 
 
-@media (min-width:35em) {
+@media (min-width:48em) {
 
 
   header img {
     width: 281px;
   }
-
+  
+  #navigation {
+    position: static;
+  }
+  
+  #navigation.float {
+    top: 0em;
+  }
+  
 	#navigation li {
 		font-size: 1.8em;
 	}
@@ -958,7 +950,15 @@ aside  li:hover:after  {
 		margin-right: auto;
 	}
 
+  header {
+    position: static;
+  }
   
+  
+  section .permalink {
+    top: -70px; /* The height of the nav so it doesn't get hidden under */
+    padding-top: 70px;
+  }
 
   header h1 {
     width : 61em;
@@ -1099,10 +1099,15 @@ aside  li:hover:after  {
     margin-left: 0;
   }
 
-    #subnav,
-    #subnav.show-nav {
-        opacity : 1;
-    }
+  #subnav,
+  #subnav.show-nav {
+    opacity : 1;
+    -webkit-transition: opacity 300ms ease-in-out;
+    -moz-transition: opacity 300ms ease-in-out;
+    -o-transition: opacity 300ms ease-in-out;
+    -ms-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
+  }
   
   section pre {
     position: relative;

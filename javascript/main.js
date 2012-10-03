@@ -334,11 +334,12 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
   
   // Set a fixed height on the subnav at the point
   // the subnav is taller than the available space on-screen
-  Subnav.prototype.setSubnavHeight  = function setSubnavHeight() {
-    var availHeight = window.innerHeight - this.el.offsetTop - 10;
+  Subnav.prototype.setSubnavHeight  = function setSubnavHeight(setHeight) {
+    var availHeight = window.innerHeight - this.el.offsetTop - 10,
+        navHeight = narrowScreen ? headerHeight + navEl.clientHeight : 0;
     
-    if(this.isScrollGtHeader && (this.height > availHeight)){
-      this.el.style.height = availHeight + 'px';
+    if((this.isScrollGtHeader || setHeight) && (this.height > availHeight)){
+      this.el.style.height = (availHeight - 20) + 'px';
     }else{
       this.el.style.height = null;
     }
@@ -357,30 +358,37 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     this.el.classList.add("show-nav");
     var subnav = this,  
         gutter = (window.innerWidth - contentWidth)/2;
-        
-    content.style.left = (this.width - gutter) + (this.margin * 2) + "px"; 
     
-    this.el.style.opacity = 0;
-        
-    // set open left position in model after the
-    // animation to open is complete
-    this.timeout = window.setTimeout(function(){
-      subnav.openPos = subnav.getLeftPos();
-      if(subnav.isScrollGtHeader){
-        // set the left pos if position fixed
-        subnav.el.style.left = subnav.openPos;
-      }
-      subnav.el.style.opacity = 1;
-    }, 309); 
-    
+    if(narrowScreen){
+      this.el.classList.add("show-nav-small");
+    }
+    else{  
+      content.style.left = (this.width - gutter) + (this.margin * 2) + "px"; 
+      this.el.style.opacity = 0;
+          
+      // set open left position in model after the
+      // animation to open is complete
+      this.timeout = window.setTimeout(function(){
+        subnav.openPos = subnav.getLeftPos();
+        if(subnav.isScrollGtHeader){
+          // set the left pos if position fixed
+          subnav.el.style.left = subnav.openPos;
+        }
+        subnav.el.style.opacity = 1;
+      }, 309); 
+    }
   };
   
   Subnav.prototype.close = function() {
     this.isOpen = false;
     this.el.classList.remove("show-nav");
-    content.style.left = null;
-    this.el.style.opacity = null;
-    clearTimeout(this.timeout);
+    if(narrowScreen){
+      this.el.classList.remove("show-nav-small");
+    } else {
+      content.style.left = null;
+      this.el.style.opacity = null;
+      clearTimeout(this.timeout);
+    }
   };
   
   Subnav.prototype.isAncestor = function(child){
@@ -406,18 +414,31 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     navigation = new Navigation(navEl);
     subnav = new Subnav(subnavEl);
     
-    window.addEventListener('scroll', throttle(function(){
-      $.publish('scrollGtHeader', isScrollGtHeader());
-    } , 1), false);
+    // don't do transition of navigation on narrow screens
+    if(narrowScreen){
+      content.classList.add('content-small');
+      subnav.setSubnavHeight(true);
+    }
+    else{
     
-    window.addEventListener('resize', throttle(function(){
-      $.publish('subnavSqueezed', isSubnavSqueezed());
-      $.publish('windowResized');
-    } , 1), false);
+      window.addEventListener('scroll', throttle(function(){
+        $.publish('scrollGtHeader', isScrollGtHeader());
+      } , 1), false);
+      
+      window.addEventListener('resize', throttle(function(){
+        $.publish('subnavSqueezed', isSubnavSqueezed());
+        $.publish('windowResized');
+      } , 1), false);
+    
+    }
     
     window.addEventListener('load', function(){
       $.publish('subnavSqueezed', isSubnavSqueezed());
     });
+    
+    document.body.addEventListener('orientationchange', function(){
+      subnav.setSubnavHeight(true);
+    }, false);
     
     // Handle scroll between inter-document links.
     document.body.addEventListener('click', function (event) {
