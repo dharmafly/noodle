@@ -754,6 +754,13 @@ button:active {
   display: none;
 }
 
+#navigation li.show-subnav + li {
+  border-left-width:0; 
+}
+#navigation.show-subnav-button li.show-subnav + li {
+  border-left-width:1px; 
+}
+
 /* Change Log Section */
 .change-log li h2 {
 	font-size: 1em;
