@@ -154,6 +154,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
   var narrowScreen = GLOBAL.narrowScreen, 
       navEl = $qS('#navigation'),
       header = $qS('header'),
+      headerHeight = navEl.offsetTop,
       subnavId = 'subnav',
       subnavEl = $qS('#subnav'),
       content = $qS('section.content'),
@@ -197,7 +198,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
   
   // Scroll position > height of the header
   function isScrollGtHeader(){ 
-    return window.pageYOffset > navEl.offsetTop;
+    return window.pageYOffset > headerHeight;
   }
   
   // space on left of page < width of subnav 
