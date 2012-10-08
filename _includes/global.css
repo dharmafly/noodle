@@ -181,9 +181,16 @@ header a,
 header a:hover,
 header a:focus,
 header a:active,
-footer a {
-    color: {{ page.highlight_colour }};
-    text-decoration: none;
+footer a,
+footer a:hover,
+footer a:focus,
+footer a:active{
+  {% if page.overview_inverse %}
+  color:{{ page.content_hover_colour }};
+  {% else %}
+  color: {{ page.highlight_colour }};
+  {% endif %}
+  text-decoration: none;
 }
 
 footer {
