@@ -5,8 +5,13 @@ var examples = {};
     examples.index = 0;
 
 // For each code block, create an editor
-jQuery('pre').each(function () {
+
+      
+
+if(!GLOBAL.narrowScreen){
+  jQuery('pre').each(function () {
     var $pre = jQuery(this);
+    
     $pre.addClass("runnable").wrap('<div class="run" />');
 
     var code = $pre.find('code'),
@@ -34,7 +39,8 @@ jQuery('pre').each(function () {
       jQuery(this).removeClass("runnable");
       
     }
-});
+  });
+}
 
 // Attach handlers to "Run" buttons
 jQuery('button.eval')
