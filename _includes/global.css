@@ -193,6 +193,15 @@ footer a:active{
   text-decoration: none;
 }
 
+{% if page.overview_inverse %}
+header a,
+header a:hover,
+header a:focus,
+header a:active{
+  color:{{ page.copy_colour }};
+}
+{% endif %}
+
 footer {
   padding: 2em;
 }
