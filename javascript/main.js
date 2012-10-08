@@ -391,6 +391,22 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     }
   };
   
+  Subnav.prototype.setSelectSubnav = function() {
+  
+    var options = $(this.el).find('a').map(function(){
+      var link = this;
+      return $('<option>').attr('value',link.hash).text(link.innerHTML)[0];
+    })
+    
+    var $select = $('<select id="subnav-menu">').append(options);
+    
+    $select.on('change', function(){
+      window.location.hash = $(this).val();
+    });
+    
+    $(navEl).find('ul').append($select[0]);
+  };
+  
   Subnav.prototype.isAncestor = function(child){
     var parent = child.parentNode,
         isAncestor = false;
@@ -418,7 +434,9 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     if(narrowScreen){
       content.classList.add('content-small');
       document.body.classList.add('narrowScreen');
-      subnav.setSubnavHeight(true);
+      // replaced by a non-visible select box (setSelectSubnav)
+      //subnav.setSubnavHeight(true); 
+      subnav.setSelectSubnav();
     }
     else{
     
@@ -437,9 +455,9 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
       $.publish('subnavSqueezed', isSubnavSqueezed());
     });
     
-    document.body.addEventListener('orientationchange', function(){
+    /* document.body.addEventListener('orientationchange', function(){
       subnav.setSubnavHeight(true);
-    }, false);
+    }, false);*/
     
     // Handle scroll between inter-document links.
     document.body.addEventListener('click', function (event) {
@@ -450,7 +468,10 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
       // open close subnav was clicked 
       if(getTargetId(hashId) === subnavId) {
         event.preventDefault(); 
-        subnav.toggle();
+        if(!narrowScreen){
+          // replaced by a non-visible select box (setSelectSubnav)
+          subnav.toggle();
+        }
       } 
       // link within page was clicked
       else if (anchor) {

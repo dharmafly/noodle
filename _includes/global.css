@@ -295,6 +295,7 @@ section.overview a:active {
 
 #navigation ul {
 	margin-bottom: 0;
+  position: relative;
 }
 
 #navigation li {
@@ -363,9 +364,19 @@ section.overview a:active {
   text-align:left;
 }
 
+#subnav-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  opacity: 0;
+  width: 35px;
+  height: 35px;
+}
+
 #subnav li {
-    margin: 0;
-    padding: 0.8em 0 0.5em 0;
+  margin: 0;
+  padding: 0.8em 0 0.5em 0;
 }
 
 #subnav a {
@@ -746,7 +757,7 @@ button:active {
 
 #navigation li.show-subnav {
   float: left;
-  margin-top: -0.3em;
+  margin-top: -0.2em;
   border-right:0;
   background: {{ page.icon_colour }};
   border: 1px solid {{ page.icon_border }};
@@ -760,6 +771,10 @@ button:active {
   padding-left: 0;
   padding-right: 0;
   margin-right: 1em;
+}
+
+.narrowScreen #navigation li.show-subnav {
+  margin-top: 0;
 }
 
 .ltIE9 #navigation li.show-subnav {
