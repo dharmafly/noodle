@@ -147,6 +147,25 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     }
   }
   
+  function setPermalinkTopOffset(){
+    var permalinks = document.querySelectorAll('.permalink'),
+        navHeight = navEl.getBoundingClientRect().height,
+        margin = 10,
+        topOffset;
+    
+      
+    topOffset = narrowScreen ? 
+                  navHeight + navOffsetTop - (margin*2)
+                : navHeight + margin;
+    
+    for (var i = 0; i < permalinks.length; ++i) {
+      var permalink = permalinks[i];  
+      permalink.style.paddingTop = topOffset + 'px';
+      permalink.style.top = '-' + topOffset + 'px';
+    }
+      
+  }
+  
   // ---------------------
   
   // GLOBALS
@@ -154,7 +173,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
   var narrowScreen = GLOBAL.narrowScreen, 
       navEl = $qS('#navigation'),
       header = $qS('header'),
-      headerHeight = navEl.offsetTop,
+      navOffsetTop = navEl.offsetTop,
       subnavId = 'subnav',
       subnavEl = $qS('#subnav'),
       content = $qS('section.content'),
@@ -198,7 +217,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
   
   // Scroll position > height of the header
   function isScrollGtHeader(){ 
-    return window.pageYOffset > headerHeight;
+    return window.pageYOffset > navOffsetTop;
   }
   
   // space on left of page < width of subnav 
@@ -490,6 +509,8 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     // -------
    
     setLogoPosition();
+    
+    setPermalinkTopOffset();
     
   };
   

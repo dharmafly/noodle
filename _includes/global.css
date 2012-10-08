@@ -1208,7 +1208,8 @@ aside  li:hover:after  {
   position: fixed;
   z-index:101;
   width:100%;
-  top: 0;
+  top: -800px;
+  padding-top:800px; /* http://git.io/mIiHQg */
   left: 0;
 }
 .narrowScreen header h1 {
@@ -1227,8 +1228,8 @@ aside  li:hover:after  {
 }
 
 .narrowScreen section .permalink {
-  top: -120px; /* The height of the nav so it doesn't get hidden under */
-  padding-top: 120px;
+  top: -115px; /* The height of the nav so it doesn't get hidden under */
+  padding-top: 115px;
   z-index: 1;
   pointer-events:none;
 }
