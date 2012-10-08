@@ -290,7 +290,6 @@ section.overview a:active {
     float: left;
     font-size: 1.8em;
     color: {{ page.highlight_colour }};
-    border-right:1px solid {{ page.nav_border_colour }};
     display: none; /* only shown above 35em */
 }
 
@@ -312,10 +311,18 @@ section.overview a:active {
   padding-left: 1em;
   padding-right: 1em;
   float: none;
+  border-left:1px solid {{ page.nav_border_colour }};
 }
 
-#navigation li:last-child{
-  border-right-width:0;
+#navigation li.show-subnav + li{
+  border-left-width:0px;
+  padding-left:0px;
+}
+
+#navigation h1.title + li,
+#navigation.show-subnav-button li.show-subnav + li{
+  border-left-width:1px;
+  padding-left: 1em;
 }
 
 #navigation a {
