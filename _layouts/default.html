@@ -26,7 +26,7 @@
 <html lang="en"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=0.75">
+    <meta name="viewport" content="width=device-width,initial-scale=0.75,user-scalable=no,maximum-scale=0.75,maximum-scale=0.75">
     <title>{{ page.name }} : {{ site.PROJECT_NAME }}</title>
       {% include googlefonts.liquid %}
       <!--[if lt IE 9]>
@@ -82,7 +82,7 @@
 
     <script>
       var GLOBAL = GLOBAL || {};
-      GLOBAL.narrowScreen = ((window.innerWidth > 0) ? window.innerWidth : screen.width) < 480;
+      GLOBAL.narrowScreen = screen.width < 480;
       GLOBAL.isltIE10 = false;
       GLOBAL.relative_path = '{{ relative_path }}';
     </script>
@@ -96,10 +96,8 @@
     <!--[if IE 9]>
       <script src="{{ relative_path }}javascript/IEshims.js"></script>
     <![endif]-->
-
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="{{ relative_path }}javascript/jquery-1.7.1.min.js"><\/script>')</script>
-    
     <script src="{{ relative_path }}javascript/main.js"></script>
     <script src="{{ relative_path }}javascript/hijs.js"></script>
     <script src="{{ relative_path }}javascript/demo.js"></script>

@@ -181,9 +181,20 @@ header a,
 header a:hover,
 header a:focus,
 header a:active,
-footer a {
-    color: {{ page.highlight_colour }};
-    text-decoration: none;
+footer a,
+footer a:hover,
+footer a:focus,
+footer a:active{
+  {% if page.overview_inverse %}
+  color:{{ page.content_hover_colour }};
+  {% else %}
+  color: {{ page.highlight_colour }};
+  {% endif %}
+  text-decoration: none;
+}
+
+footer {
+  padding: 2em;
 }
 
 footer p {
@@ -260,7 +271,7 @@ section.overview a:active {
 	left: 0;
 	right: 0;
 	margin: 0;
-	box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
 }
 
 #navigation.float h1 {
@@ -290,9 +301,6 @@ section.overview a:active {
   display: inline;
   padding-left: 1em;
   padding-right: 1em;
-  border-left:1px solid {{ page.nav_border_colour }};
-  border-right:1px solid {{ page.nav_border_colour }};
-  border-left-width:0;
   float: none;
 }
 
@@ -309,6 +317,9 @@ section.overview a:active {
     left: -42em;
     text-align: right;
     width: 40em;
+    overflow-y:auto; 
+    overflow-x:hidden; 
+    -webkit-overflow-scrolling: touch;
 }
 
 #subnav.fixed {
@@ -332,17 +343,25 @@ section.overview a:active {
     -o-transition: opacity 300ms ease-in-out;
     -ms-transition: opacity 300ms ease-in-out;
     transition: opacity 300ms ease-in-out;
-}
+}  
 
-/* Debug - no js show the nav at small device widths
-#subnav:focus {
-  left: -34px;
-  top: 0;
-  background: {{ page.content_bg_colour }};
-  border: 1px solid {{ page.body_background_colour }};
-  z-index: 30;
-}
+
+
+/* show the nav at small device widths
 */
+#subnav.show-nav-small {
+  left: 0 !important;
+  background: {{ page.body_background_colour }};
+  z-index: 30;
+  position: fixed;
+  top: 7.5em;
+  width:auto;
+  -moz-box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+  -webkit-overflow-scrolling: touch; 
+  text-align:left;
+}
 
 #subnav li {
     margin: 0;
@@ -389,6 +408,14 @@ section.content {
 }
 
 
+section.content.content-small {
+  margin-top: 7.4em;
+    -moz-transition: none;
+    -webkit-transition: none;
+    -ms-transition: none;
+    -o-transition: left 0 ease-in;
+    transition: none;
+}
 
 
 section.content:after{
@@ -739,9 +766,6 @@ button:active {
   display: none;
 }
 
-#navigation.show-subnav-button li.show-subnav + li {
-    border-left-width:1px;
-}
 
 /* Change Log Section */
 .change-log li h2 {
@@ -761,7 +785,7 @@ button:active {
 }
 
 .run .eval {
-	z-index: 100;
+	z-index: 28;
 	position: absolute;
   bottom: 12px;
   left: 10px;
@@ -903,35 +927,6 @@ aside  li:hover:after  {
 }
 
 
-.ace_cursor.ace_hidden {
-	opacity: 0!important;
-}
-
-.ace_editor {
-	font-family: 'Ubuntu Mono', monospace !important;
-  font-size: 1.6em !important;
-  left:30px;
-}
-
-.ace_editor .ace_sb {
-  overflow-y: auto !important;
-}
-
-.ace_scroller {
-    overflow-x: auto !important;
-}
-
-  /* set scrolling on short height browsers */
-@media only screen and (min-height:20px)  and (max-height:520px) {
-  #subnav.show-nav {
-    overflow:auto; 
-    -webkit-overflow-scrolling: touch;
-    height:340px;
-  }  
-  #subnav.show-nav.fixed {
-    height:440px;
-  }
-}  
 
 
 @media (min-width:340px) {
@@ -941,7 +936,7 @@ aside  li:hover:after  {
 }
 
 
-@media (min-width:35em) {
+@media (min-width:48em) {
 
 
   header img {
@@ -1015,7 +1010,7 @@ aside  li:hover:after  {
 
   footer > div {
       text-align: right;
-      padding:2em 2em 2em 0;
+      padding:0 2em 0 0;
   }
 
 	section:after {
@@ -1185,3 +1180,31 @@ aside  li:hover:after  {
 
 }
 
+.narrowScreen header{
+  position: fixed;
+  z-index:101;
+  width:100%;
+  top: 0;
+  left: 0;
+}
+.narrowScreen header h1 {
+  font-size: 20px;
+}
+
+.narrowScreen #navigation,
+.narrowScreen #navigation.float {
+   z-index: 101;
+   position: fixed;
+   top: 3.4em;
+   left: 0;
+   right: 0;
+   margin: 0;
+   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+.narrowScreen section .permalink {
+  top: -120px; /* The height of the nav so it doesn't get hidden under */
+  padding-top: 120px;
+  z-index: 1;
+  pointer-events:none;
+}
