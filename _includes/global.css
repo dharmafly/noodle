@@ -193,6 +193,15 @@ footer a:active{
   text-decoration: none;
 }
 
+{% if page.overview_inverse %}
+header a,
+header a:hover,
+header a:focus,
+header a:active{
+  color:{{ page.copy_colour }};
+}
+{% endif %}
+
 footer {
   padding: 2em;
 }
@@ -281,12 +290,11 @@ section.overview a:active {
     float: left;
     font-size: 1.8em;
     color: {{ page.highlight_colour }};
-    border-right:1px solid {{ page.nav_border_colour }};
     display: none; /* only shown above 35em */
 }
 
 #navigation.float h1 a {
-    color: {{ page.highlight_colour }};
+  color: {{ page.highlight_colour }};
 }
 
 #navigation.hidden {
@@ -295,6 +303,7 @@ section.overview a:active {
 
 #navigation ul {
 	margin-bottom: 0;
+  position: relative;
 }
 
 #navigation li {
@@ -302,10 +311,18 @@ section.overview a:active {
   padding-left: 1em;
   padding-right: 1em;
   float: none;
+  border-left:1px solid {{ page.nav_border_colour }};
 }
 
-#navigation li:last-child{
-  border-right-width:0;
+#navigation li.show-subnav + li{
+  border-left-width:0px;
+  padding-left:0px;
+}
+
+#navigation h1.title + li,
+#navigation.show-subnav-button li.show-subnav + li{
+  border-left-width:1px;
+  padding-left: 1em;
 }
 
 #navigation a {
@@ -363,9 +380,19 @@ section.overview a:active {
   text-align:left;
 }
 
+#subnav-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  opacity: 0;
+  width: 35px;
+  height: 35px;
+}
+
 #subnav li {
-    margin: 0;
-    padding: 0.8em 0 0.5em 0;
+  margin: 0;
+  padding: 0.8em 0 0.5em 0;
 }
 
 #subnav a {
@@ -746,7 +773,7 @@ button:active {
 
 #navigation li.show-subnav {
   float: left;
-  margin-top: -0.3em;
+  margin-top: -0.2em;
   border-right:0;
   background: {{ page.icon_colour }};
   border: 1px solid {{ page.icon_border }};
@@ -760,6 +787,10 @@ button:active {
   padding-left: 0;
   padding-right: 0;
   margin-right: 1em;
+}
+
+.narrowScreen #navigation li.show-subnav {
+  margin-top: 0;
 }
 
 .ltIE9 #navigation li.show-subnav {
@@ -977,6 +1008,17 @@ aside  li:hover:after  {
     left: 0;
   }
   
+  header a,
+  header a:hover,
+  header a:focus,
+  header a:active {
+    {% if page.overview_inverse %}
+    color:{{ page.content_hover_colour }};
+    {% else %}
+    color: {{ page.highlight_colour }};
+    {% endif %}
+  }
+  
   header h1:after {
     position: absolute;
     content: '';
@@ -1184,7 +1226,8 @@ aside  li:hover:after  {
   position: fixed;
   z-index:101;
   width:100%;
-  top: 0;
+  top: -800px;
+  padding-top:800px; /* http://git.io/mIiHQg */
   left: 0;
 }
 .narrowScreen header h1 {
@@ -1203,8 +1246,13 @@ aside  li:hover:after  {
 }
 
 .narrowScreen section .permalink {
-  top: -120px; /* The height of the nav so it doesn't get hidden under */
-  padding-top: 120px;
+  top: -115px; /* The height of the nav so it doesn't get hidden under */
+  padding-top: 115px;
   z-index: 1;
   pointer-events:none;
+}
+
+/* Set to display none before initialising the view */
+#subnav {
+  visibility:hidden;
 }
