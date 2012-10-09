@@ -294,7 +294,7 @@ section.overview a:active {
 }
 
 #navigation.float h1 a {
-    color: {{ page.highlight_colour }};
+  color: {{ page.highlight_colour }};
 }
 
 #navigation.hidden {
@@ -1008,6 +1008,17 @@ aside  li:hover:after  {
     left: 0;
   }
   
+  header a,
+  header a:hover,
+  header a:focus,
+  header a:active {
+    {% if page.overview_inverse %}
+    color:{{ page.content_hover_colour }};
+    {% else %}
+    color: {{ page.highlight_colour }};
+    {% endif %}
+  }
+  
   header h1:after {
     position: absolute;
     content: '';
@@ -1239,4 +1250,9 @@ aside  li:hover:after  {
   padding-top: 115px;
   z-index: 1;
   pointer-events:none;
+}
+
+/* Set to display none before initialising the view */
+#subnav {
+  visibility:hidden;
 }

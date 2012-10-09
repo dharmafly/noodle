@@ -26,14 +26,22 @@
 <html lang="en"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=0.75,user-scalable=no,maximum-scale=0.75,maximum-scale=0.75">
+    <meta name="viewport" content=""> 
+    <script>
+      var GLOBAL = GLOBAL || {};
+      GLOBAL.isIPad = navigator.userAgent.match(/iPad/i) != null;
+      if(document.getElementsByName && !GLOBAL.isIPad){
+        document.getElementsByName('viewport')[0]
+          .setAttribute('content','width=device-width,initial-scale=0.75,user-scalable=no,maximum-scale=0.75');
+      }
+    </script>
     <title>{{ page.name }} : {{ site.PROJECT_NAME }}</title>
-      {% include googlefonts.liquid %}
-      <!--[if lt IE 9]>
-          <script src="{{ relative_path }}javascript/html5shiv.js"></script>
-      <![endif]-->
-      <link href="{{ relative_path }}css/{{ site.THEME }}.css" rel="stylesheet">
-      <link rel="shortcut icon" href="{{ relative_path }}img/{{ site.THEME }}-favicon.ico">
+    {% include googlefonts.liquid %}
+    <!--[if lt IE 9]>
+        <script src="{{ relative_path }}javascript/html5shiv.js"></script>
+    <![endif]-->
+    <link href="{{ relative_path }}css/{{ site.THEME }}.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ relative_path }}img/{{ site.THEME }}-favicon.ico">
   </head>
   
   <body>
@@ -81,7 +89,6 @@
     </footer>
 
     <script>
-      var GLOBAL = GLOBAL || {};
       GLOBAL.narrowScreen = screen.width < 480;
       GLOBAL.isltIE10 = false;
       GLOBAL.relative_path = '{{ relative_path }}';

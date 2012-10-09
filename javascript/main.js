@@ -169,8 +169,13 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
   // ---------------------
   
   // GLOBALS
-      
+  
+     
   var narrowScreen = GLOBAL.narrowScreen, 
+      // Why sniff for ipad? 
+      // It's to prevent iOS5 position fixed bugs, 
+      // rather than anything to do with width
+      isIPad = GLOBAL.isIPad, 
       navEl = $qS('#navigation'),
       header = $qS('header'),
       navOffsetTop = navEl.offsetTop,
@@ -194,7 +199,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
         distance =  Math.abs(scrollYPos - window.pageYOffset);
     
     // the distance between link and anchor > x screen heights
-    if((distance > maxScrollDist) || narrowScreen){
+    if((distance > maxScrollDist)){
       // jump to anchor
       window.scrollTo(0, scrollYPos); 
       setLocationHash();
@@ -338,8 +343,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
       if(state !== subnav.isSubnavSqueezed){
         subnav.isSubnavSqueezed = state;   
         
-        navigation.setSubnavButtonState(state);
-        setClass(subnav.el, 'off-left', state);
+        subnav.updateSubnavView(state);
         
         // if there's enough room for the subnav and the subnav is open
         if(subnav.isOpen && subnav.isSubnavSqueezed === false){
@@ -349,6 +353,11 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
       }
     });
     
+  };
+  
+  Subnav.prototype.updateSubnavView  = function updateSubnavView(state) {
+    navigation.setSubnavButtonState(state);
+    setClass(this.el, 'off-left', state);
   };
   
   // Set a fixed height on the subnav at the point
@@ -446,6 +455,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
   
   function init(){
   
+    
     navigation = new Navigation(navEl);
     subnav = new Subnav(subnavEl);
     
@@ -459,15 +469,26 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     }
     else{
     
+      
+      if(isIPad){
+        // always use a select as a dropdown on the ipad
+        subnav.setSelectSubnav();  
+        subnav.updateSubnavView(true);
+      }else{
+        
+        subnavEl.style.visibility = 'visible';
+        // publish resize events for setting subnav visibility
+        window.addEventListener('resize', throttle(function(){
+          $.publish('subnavSqueezed', isSubnavSqueezed());
+          $.publish('windowResized');
+        } , 1), false);
+      }
+      
+      
       window.addEventListener('scroll', throttle(function(){
         $.publish('scrollGtHeader', isScrollGtHeader());
       } , 1), false);
       
-      window.addEventListener('resize', throttle(function(){
-        $.publish('subnavSqueezed', isSubnavSqueezed());
-        $.publish('windowResized');
-      } , 1), false);
-    
     }
     
     window.addEventListener('load', function(){
@@ -482,19 +503,21 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     document.body.addEventListener('click', function (event) {
       var hashId = event.target.hash,
           anchor = hashId && $qS(hashId);
+      
+      // replaced by a non-visible select box (setSelectSubnav)
+      var selectNav = narrowScreen || isIPad;
        
       
       // open close subnav was clicked 
       if(getTargetId(hashId) === subnavId) {
-        event.preventDefault(); 
-        if(!narrowScreen){
-          // replaced by a non-visible select box (setSelectSubnav)
+        event.preventDefault();
+        if(!selectNav){
           subnav.toggle();
         }
       } 
       // link within page was clicked
-      else if (anchor) {
-      
+      else if (anchor && !selectNav) {
+        
         event.preventDefault();
         
         if(subnav.isAncestor(event.target)){
