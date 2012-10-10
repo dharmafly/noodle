@@ -34,7 +34,7 @@ icon_colour: "#CC661A"
 icon_stop: "#CC661A"
 icon_border: "#CC661A"
 #badge_overlay: "#88B8DC"
-badge_overlay: "rgba%28255%2C%20232%2C%200%2C%200.5%29"  #url encoded for firefox
+badge_overlay: "rgba%28246%2C160%2C26%2C0.5%29"  #url encoded for firefox
 badge_border: "%23ffe800"  #url encoded for firefox
 
 # logo area
@@ -61,7 +61,7 @@ quote_svg_right_pos: "47%"
 quote_svg_right_mod: "15px"
 quote_svg_grayscale: true
 
-subnav_underline: ABAAA7
+subnav_underline: FFE800
 show_subnav_icon: FFE800
  
 # svg element attaching twitter, github buttons to main content
