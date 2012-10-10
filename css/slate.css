@@ -1,11 +1,11 @@
 ---
-font: 'Megrim'
+font: 'Michroma'
 
 background_tile: none
 
 #colours
 
-overview_inverse: true
+overview_inverse: false
 
 copy_colour: "#000000" 
 lowlight_background: "#F6A01A" 
