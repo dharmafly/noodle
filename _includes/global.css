@@ -266,7 +266,7 @@ section.overview a {
 section.overview a:hover,
 section.overview a:focus,
 section.overview a:active {
-    color:{{ page.link_colour_alt }};
+    color:{{ page.nav_hover_color }};
     -webkit-transition : color 0.1s ease-in;
     -moz-transition : color 0.1s ease-in;
     -o-transition : color 0.1s ease-in;
@@ -465,7 +465,10 @@ section.content:after{
   -o-transform: rotate({{ page.svg_asset_rotation }});
   transform: rotate({{ page.svg_asset_rotation }});
   opacity: 0.2;
-  background-size: {{ page.svg_asset_size }}
+  background-size: {{ page.svg_asset_size }};
+  {% if  page.svg_asset_contrast %}
+  -webkit-filter:contrast({{ page.svg_asset_contrast }}%);
+  {% endif %}
 }
 
 .ie section.content:after{
@@ -685,28 +688,28 @@ article > h2 + p,
 }
 
 button {
-    color:{{ page.highlight_colour }};
-    border: 1px solid {{ page.button_border }};
-    border-radius: 3px;
-    background: {{ page.lowlight_colour }};
-    background: -moz-linear-gradient(top, {{ page.lowlight_colour }} 0%, {{ page.lowlight_colour }} 18%, {{ page.button_mid_stop }} 78%, {{ page.button_mid_stop }} 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,{{ page.lowlight_colour }}), color-stop(18%,{{ page.lowlight_colour }}), color-stop(78%,{{ page.button_mid_stop }}), color-stop(100%,{{ page.button_mid_stop }}));
-    background: -webkit-linear-gradient(top, {{ page.lowlight_colour }} 0%,{{ page.lowlight_colour }} 18%,{{ page.button_mid_stop }} 78%,{{ page.button_mid_stop }} 100%);
-    background: -o-linear-gradient(top, {{ page.lowlight_colour }} 0%,{{ page.lowlight_colour }} 18%,{{ page.button_mid_stop }} 78%,{{ page.button_mid_stop }} 100%);
-    background: -ms-linear-gradient(top, {{ page.lowlight_colour }} 0%,{{ page.lowlight_colour }} 18%,{{ page.button_mid_stop }} 78%,{{ page.button_mid_stop }} 100%);
-    background: linear-gradient(top, {{ page.lowlight_colour }} 0%,{{ page.lowlight_colour }} 18%,{{ page.button_mid_stop }} 78%,{{ page.button_mid_stop }} 100%);
+  color:{{ page.highlight_colour }};
+  border: 1px solid {{ page.button_border }};
+  border-radius: 3px;
+  background: {{ page.lowlight_colour }};
+  background: -moz-linear-gradient(top, {{ page.lowlight_colour }} 0%, {{ page.lowlight_colour }} 18%, {{ page.button_mid_stop }} 78%, {{ page.button_mid_stop }} 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,{{ page.lowlight_colour }}), color-stop(18%,{{ page.lowlight_colour }}), color-stop(78%,{{ page.button_mid_stop }}), color-stop(100%,{{ page.button_mid_stop }}));
+  background: -webkit-linear-gradient(top, {{ page.lowlight_colour }} 0%,{{ page.lowlight_colour }} 18%,{{ page.button_mid_stop }} 78%,{{ page.button_mid_stop }} 100%);
+  background: -o-linear-gradient(top, {{ page.lowlight_colour }} 0%,{{ page.lowlight_colour }} 18%,{{ page.button_mid_stop }} 78%,{{ page.button_mid_stop }} 100%);
+  background: -ms-linear-gradient(top, {{ page.lowlight_colour }} 0%,{{ page.lowlight_colour }} 18%,{{ page.button_mid_stop }} 78%,{{ page.button_mid_stop }} 100%);
+  background: linear-gradient(top, {{ page.lowlight_colour }} 0%,{{ page.lowlight_colour }} 18%,{{ page.button_mid_stop }} 78%,{{ page.button_mid_stop }} 100%);
 }
 
 button:hover,
 button:focus,
 button:active {
-    background: {{ page.button_colour }};
-    background: -moz-linear-gradient(top, {{ page.button_colour }} 0%, {{ page.button_colour_highlight }} 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,{{ page.button_colour }}), color-stop(100%,{{ page.button_colour_highlight }}));
-    background: -webkit-linear-gradient(top, {{ page.button_colour }} 0%,{{ page.button_colour_highlight }} 100%);
-    background: -o-linear-gradient(top, {{ page.button_colour }} 0%,{{ page.button_colour_highlight }} 100%);
-    background: -ms-linear-gradient(top, {{ page.button_colour }} 0%,{{ page.button_colour_highlight }} 100%);
-    background: linear-gradient(top, {{ page.button_colour }} 0%,{{ page.button_colour_highlight }} 100%);
+  background: {{ page.button_colour }};
+  background: -moz-linear-gradient(top, {{ page.button_colour }} 0%, {{ page.button_colour_highlight }} 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,{{ page.button_colour }}), color-stop(100%,{{ page.button_colour_highlight }}));
+  background: -webkit-linear-gradient(top, {{ page.button_colour }} 0%,{{ page.button_colour_highlight }} 100%);
+  background: -o-linear-gradient(top, {{ page.button_colour }} 0%,{{ page.button_colour_highlight }} 100%);
+  background: -ms-linear-gradient(top, {{ page.button_colour }} 0%,{{ page.button_colour_highlight }} 100%);
+  background: linear-gradient(top, {{ page.button_colour }} 0%,{{ page.button_colour_highlight }} 100%);
 }
 
 .buttons {

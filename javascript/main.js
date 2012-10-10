@@ -150,12 +150,12 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
   function setPermalinkTopOffset(){
     var permalinks = document.querySelectorAll('.permalink'),
         navHeight = navEl.getBoundingClientRect().height,
-        margin = 10,
+        margin = 20,
         topOffset;
     
       
     topOffset = narrowScreen ? 
-                  navHeight + navOffsetTop - (margin*2)
+                  navHeight + navOffsetTop - margin
                 : navHeight + margin;
     
     for (var i = 0; i < permalinks.length; ++i) {
