@@ -237,11 +237,7 @@ pre code {
 
 #navigation, section.overview {
 	background-color: {{ page.lowlight_background }};
-  {% if page.overview_inverse %}
-  color:{{ page.highlight_colour }};
-  {% else %}
   color:{{ page.lowlight_colour }};
-  {% endif %}
 }
 
 #navigation a{
@@ -260,6 +256,7 @@ section.overview a {
   {% endif %}
 }
   
+
 #navigation a:hover,
 #navigation a:focus,
 #navigation a:active,
@@ -514,7 +511,7 @@ section .permalink {
 }
 
 .overview .project-name {
-    color: {{ page.highlight_colour }};
+  color: {{ page.highlight_colour }};
 }
 
 
