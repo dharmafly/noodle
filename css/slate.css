@@ -7,67 +7,69 @@ background_tile: none
 
 overview_inverse: false
 
-copy_colour: "#000000" 
-lowlight_background: "#F6A01A" 
-lowlight_colour: "#000000"
-lowlight_border: "#000000" 
-body_background_colour: "#B8B7B5"
-background_mid_stop: "#97C2E4"
-link_colour: "#F6A01A"
-subnav_link_color: "#F6A01A"
-subnav_hover_color: "#FFE800"
-nav_hover_color: "#FFE800"
-content_bg_colour: "#FFE800"
+copy_colour: "#454460" 
+lowlight_background: "#454460" 
+lowlight_colour: "#BAC4CC"
+lowlight_border: "#8DB8AF" 
+body_background_colour: "#A5D9C9"
+background_mid_stop: "#A5D9C9"
+link_colour: "#50A6AB" 
+subnav_link_color: "#455560"
+subnav_hover_color: "#40A0A4"
+nav_hover_color: "#CFD4D8"
+content_bg_colour: "#E4E8EA"
 content_hover_colour: "#ffffff"
-nav_border_colour: "#000000"
+nav_border_colour: "#CFD4D8"
 highlight_colour: "#fff"
 greyed_out: "#b8b7b5"
 code_colour: "#9CCDD2"
-code_background: "#653f16"
+code_background: "#2f3b42"
 button_border: "transparent"
-button_colour: "#B96F00"
-button_colour_highlight: "#8A5609" 
-button_hover_colour: "#DD911B" 
-button_hover_highlight: "#ff9b00" 
+button_colour_highlight: "#636B70" 
+button_colour:  "#243536" 
+button_hover_colour: "#05707E" 
+button_hover_highlight: "#9DD4C5" 
 large_button_colour: "#B8810D"
 large_button_stop: "#D59F0D"
 large_button_highlight: "#E6C026"
-icon_colour: "#CC661A"
-icon_stop: "#CC661A"
-icon_border: "#CC661A"
+icon_colour: "#2C3033"
+icon_stop: "#2C3033"
+icon_border: "#2C3033"
 #badge_overlay: "#88B8DC"
-badge_overlay: "rgba%28246%2C160%2C26%2C0.5%29"  #url encoded for firefox
-badge_border: "%23ffe800"  #url encoded for firefox
+badge_overlay: "rgba%28165%2C217%2C201%2C0.5%29"  #url encoded for firefox  165,217,201
+badge_border: "%23E4E8EA"  #url encoded for firefox
 
 # logo area
 
-header_font_size: 7.2 #em
-logo_width: 350 #px
-logo_height: 100 #px
+header_font_size: 3.6 #em
+logo_width: 310 #px
+logo_height: 128 #px
 
 # svg
 
 # for main title svg
-svg_asset: node_horus.svg
+svg_asset: node_slate.svg
 svg_title_filter: none
 svg_title_rotation: rotate(0deg)
 # for svg element on left hand side of content
-svg_asset_size: "112%"
-svg_asset_rotation: 59deg
-svg_asset_left_pos: -408px
+svg_asset_size: false
+svg_asset_rotation: -99deg
+svg_asset_left_pos: -375px
+svg_asset_size: 100%
+svg_asset_contrast: 50
 # for 'wings' above quote, if present
-quote_svg_right_transform: rotate(46deg)
-quote_svg_left_transform: rotate(-46deg) scaleX(-1)
-quote_svg_left_pos: "46%"
-quote_svg_right_pos: "47%"
-quote_svg_right_mod: "15px"
-quote_svg_grayscale: true
+quote_svg_right_transform: rotate(240deg)
+quote_svg_left_transform: rotate(-240deg) scaleX(-1)
+quote_svg_left_pos: "48%"
+quote_svg_right_pos: "48.5%"
+quote_svg_right_mod: "0px"
+quote_svg_grayscale: false
 
-subnav_underline: FFE800
-show_subnav_icon: FFE800
+subnav_underline: E4E8EA
+show_subnav_icon: A5D9C9
  
 # svg element attaching twitter, github buttons to main content
-icon_stem: ffe800
+icon_stem: E4E8EA
 
 
 ---

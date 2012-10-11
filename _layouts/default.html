@@ -10,6 +10,8 @@
 
   Greetings, source geek.
   
+  {{ page.url }}
+  
 -->
 
 {% assign sections = site.sections %}
@@ -25,6 +27,7 @@
 <!--[if !IE ]><!-->
 <html lang="en"> <!--<![endif]-->
   <head>
+    <title>{{ page.name }} : {{ site.PROJECT_NAME }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content=""> 
     <script>
@@ -35,7 +38,6 @@
           .setAttribute('content','width=device-width,initial-scale=0.75,user-scalable=no,maximum-scale=0.75');
       }
     </script>
-    <title>{{ page.name }} : {{ site.PROJECT_NAME }}</title>
     {% include googlefonts.liquid %}
     <!--[if lt IE 9]>
         <script src="{{ relative_path }}javascript/html5shiv.js"></script>

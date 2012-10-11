@@ -12,7 +12,7 @@
 
 var jQuery1_7_1 = jQuery;
 
-dDocs = (function ($, $qS) { // jQuery and document.querySelector
+var satya = (function ($, $qS) { // jQuery and document.querySelector
 
   // --------------------
   
@@ -531,7 +531,7 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
     
     // -------
    
-    setLogoPosition();
+   
     
     setPermalinkTopOffset();
     
@@ -540,6 +540,12 @@ dDocs = (function ($, $qS) { // jQuery and document.querySelector
   // Initialise after feature detection
   if (document.querySelectorAll && document.body.classList) {
     init();
+  }
+  
+  return {
+    // returned here to the global scope in order to be called
+    // by external functions (e.g. googlefonts callbacks)
+     setLogoPosition :  setLogoPosition
   }
   
 })(jQuery1_7_1, function () { return document.querySelector.apply(document, arguments); });

@@ -1,4 +1,3 @@
- <!-- link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic:latin|{% case site.THEME %}{% when 'ocean' %}Advent+Pro::latin{% when 'horus' %}Megrim::latin{% else %}Forum{% endcase %}|Inconsolata::latin" rel="stylesheet" / -->
 <script type="text/javascript">
     WebFontConfig = {
         google: {
@@ -9,9 +8,13 @@
                 {% when 'horus' %}'Megrim::latin',
                 {% when 'seagrass' %}'Zeyada::latin',
                 {% when 'sundae' %}'Electrolize::latin',
+                {% when 'slate' %}'Michroma::latin',
                 {% else %} 'Forum::latin',
                 {% endcase %} 'Ubuntu+Mono::latin'
             ]
+        },
+        active: function() {
+          satya.setLogoPosition();
         }
     };
     (function() {
@@ -19,7 +22,7 @@
         wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
           '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
         wf.type = 'text/javascript';
-        wf.async = 'true';
+        //wf.async = 'true';
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(wf, s);
     })();
