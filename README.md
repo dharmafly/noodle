@@ -119,6 +119,31 @@ The site theme is specified per site within the `_config.yml`. The CSS file is a
 To add a new theme:
 
 1. Create a new theme CSS file - copy an existing theme file and update the values in the front matter. The theme file comprises a YAML front matter section and a line including the `global.css` file.
+2. Create a new theme font-face file - copy an existing css font file (within `/css/fonts` and update the first `@font-face` declaration. 
+3. To add a new font, adapt the `family` attribute in this url `http://fonts.googleapis.com/css?family=Michroma&subset=latin`. You should get a rule of the form
+
+```
+@font-face {
+  font-family: 'Michroma';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Michroma'), url(http://themes.googleusercontent.com/static/fonts/michroma/v4/FZQqjemuMkmQGwk1YxMXlfesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+}
+```
+
+Add this rule to your new theme's font css file.
+
+Take the `src` property's `url` attribute and download the WOFF file. Store this locally in `/fonts/`. Update the `src` property's `url` attribute in your theme's font file with your local relative path e.g.
+
+```
+@font-face {
+  font-family: 'Michroma';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Michroma'), url(../../fonts/michroma.woff) format('woff');
+}
+```
+
 2. Add a new main SVG asset (optional). The SVG asset could be a new SVG file, or one of the existing SVG elements could be reused. These are stored within the `/css/svg` directory. Specify the new SVG file in your new theme file front matter by updateing the `svg_asset` property
 3. Add a favicon to the /img/ directory. The favicons are named to match the theme, so `ocean-favicon.ico` is used in the `ocean` theme.
 
