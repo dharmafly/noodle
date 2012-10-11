@@ -493,6 +493,7 @@ var satya = (function ($, $qS) { // jQuery and document.querySelector
     
     window.addEventListener('load', function(){
       $.publish('subnavSqueezed', isSubnavSqueezed());
+      setLogoPosition();
     });
     
     /* document.body.addEventListener('orientationchange', function(){
@@ -530,8 +531,6 @@ var satya = (function ($, $qS) { // jQuery and document.querySelector
     });
     
     // -------
-   
-   
     
     setPermalinkTopOffset();
     
@@ -542,11 +541,6 @@ var satya = (function ($, $qS) { // jQuery and document.querySelector
     init();
   }
   
-  return {
-    // returned here to the global scope in order to be called
-    // by external functions (e.g. googlefonts callbacks)
-     setLogoPosition :  setLogoPosition
-  }
   
 })(jQuery1_7_1, function () { return document.querySelector.apply(document, arguments); });
 

@@ -1,10 +1,10 @@
 # The project
-PROJECT_NAME: Dharmafly Docs
+PROJECT_NAME: Elsewhere
 GITHUB_CURRENT_VERSION: 1.0
 GITHUB_PROJECT_URL: https://github.com/dharmafly/dharmafly-docs
 
 # Site theme (options: forest, ocean, horus, seagrass, sundae, slate)
-THEME: forest
+THEME: seagrass
 
 
 ############ Options

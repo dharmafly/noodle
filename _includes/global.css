@@ -998,7 +998,11 @@ aside  li:hover:after  {
   header h1 a {
     max-width: 610px;
 		font-size: {{ page.header_font_size }}em;
+    {% if page.header_bottom_space %}
+    padding:0 0 {{ page.header_bottom_space }}px 0;
+    {% else %}
     padding:0 0 {{ page.header_font_size | times:3 }}px 0;
+    {% endif %}
     position: absolute;
     bottom: 0;
     left: 0;

@@ -1,0 +1,30 @@
+<script type="text/javascript">
+    WebFontConfig = {
+        custom: { 
+          families: [
+              'Lato:400,700,400italic:latin',
+              {% case site.THEME %} 
+              {% when 'ocean' %}'Advent+Pro::latin',
+              {% when 'horus' %}'Megrim::latin',
+              {% when 'seagrass' %}'Zeyada::latin',
+              {% when 'sundae' %}'Electrolize::latin',
+              {% when 'slate' %}'Michroma::latin',
+              {% else %} 'Forum::latin',
+              {% endcase %} 'Ubuntu+Mono::latin'
+          ],
+          urls: [ 
+            '{{ relative_path }}css/fonts/{{ site.THEME }}.css'
+          ] 
+        }
+    };
+    (function() {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+          '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+    })();
+</script>
+
