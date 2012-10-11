@@ -532,9 +532,8 @@ section .permalink {
 }
 
 .quote cite {
-    font-size: 1.3em;
+    font-size: 1.5em;
     font-style: italic;
-    font-family: {{ page.font}} , serif;
 }
 
 .quote {
