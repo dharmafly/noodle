@@ -1003,7 +1003,7 @@ aside  li:hover:after  {
   header h1 a {
     max-width: 610px;
 		font-size: {{ page.header_font_size }}em;
-    padding:{{ page.header_font_size | times:0.03 }}em 0 {{ page.header_font_size | times:0.03 }}em 0;
+    padding:0 0 {{ page.header_font_size | times:3 }}px 0;
     position: absolute;
     bottom: 0;
     left: 0;
