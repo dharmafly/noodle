@@ -249,11 +249,7 @@ pre code {
 }
 
 section.overview a {
-  {% if page.overview_inverse %}
-  color:{{ page.highlight_colour }};
-  {% else %}
   color:{{ page.lowlight_colour }};
-  {% endif %}
 }
   
 
