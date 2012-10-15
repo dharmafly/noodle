@@ -10,15 +10,14 @@
 
   Greetings, source geek.
   
-  {{ page.url }}
   
 -->
 
 {% assign sections = site.sections %}
-{% assign relative_path  = "./" %}
+{% assign relative_path  = "." %}
 {% assign page_path  = "" %}
 {% if page.layout_type == 'subpage' %}
-    {% assign relative_path  = "../" %}
+    {% assign relative_path  = ".." %}
     {% assign page_path  = "../" %}
 {% endif %}
 
@@ -39,11 +38,11 @@
       }
     </script>
     <!--[if lt IE 9]>
-        <script src="{{ relative_path }}javascript/html5shiv.js"></script>
+        <script src="{{ relative_path }}/javascript/html5shiv.js"></script>
     <![endif]-->
-    <link href="{{ relative_path }}css/fonts/{{ site.THEME }}.css" rel="stylesheet">
-    <link href="{{ relative_path }}css/{{ site.THEME }}.css" rel="stylesheet">
-    <link rel="shortcut icon" href="{{ relative_path }}img/{{ site.THEME }}-favicon.ico">
+    <link href="{{ relative_path }}/css/fonts/{{ site.THEME }}.css" rel="stylesheet">
+    <link href="{{ relative_path }}/css/{{ site.THEME }}.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ relative_path }}/img/{{ site.THEME }}-favicon.ico">
   </head>
   
   <body>
@@ -59,8 +58,9 @@
       <ul>
         <li class="show-subnav"><a href="#subnav" class="icon">Go to navigation for this page</a></li>
         {% for section in sections %}
+        
         <li>
-            <a href="{{ relative_path }}{{ section.path }}">
+            <a href="{{ relative_path }}{{ section.path }}"{% if page.url == section.path %} class="active"{% endif %}>
             {{ section.name }}
             </a>
         </li>
@@ -93,7 +93,7 @@
     <script>
       GLOBAL.narrowScreen = screen.width < 480;
       GLOBAL.isltIE10 = false;
-      GLOBAL.relative_path = '{{ relative_path }}';
+      GLOBAL.relative_path = '{{ relative_path }}/';
     </script>
     
     <!--[if lt IE 10]> 
@@ -103,13 +103,13 @@
     <![endif]-->
       
     <!--[if IE 9]>
-      <script src="{{ relative_path }}javascript/IEshims.js"></script>
+      <script src="{{ relative_path }}/javascript/IEshims.js"></script>
     <![endif]-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="{{ relative_path }}javascript/jquery-1.7.1.min.js"><\/script>')</script>
-    <script src="{{ relative_path }}javascript/main.js"></script>
-    <script src="{{ relative_path }}javascript/hijs.js"></script>
-    <script src="{{ relative_path }}javascript/demo.js"></script>
+    <script>window.jQuery || document.write('<script src="{{ relative_path }}/javascript/jquery-1.7.1.min.js"><\/script>')</script>
+    <script src="{{ relative_path }}/javascript/main.js"></script>
+    <script src="{{ relative_path }}/javascript/hijs.js"></script>
+    <script src="{{ relative_path }}/javascript/demo.js"></script>
 
     {% for script in site.SCRIPTS %}
     <script src="{{ script.src }}"></script>
