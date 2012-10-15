@@ -252,7 +252,7 @@ section.overview a {
   color:{{ page.lowlight_colour }};
 }
   
-
+#navigation a.active,
 #navigation a:hover,
 #navigation a:focus,
 #navigation a:active,

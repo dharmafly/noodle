@@ -29,21 +29,18 @@ QUOTE:
 # Site analytics
 GA_ID:
 
+# Page names
+# The following paths are hard-coded to match directory names / site categories.
+sections:
+ - path: /index.html
+   name: Overview
+ - path: /reference/index.html
+   name: Reference
 
-############ Deprecated / Temporary
+############ Deprecated 
 
 # Link from overview to reference
 REFERENCE_LINK_TEXT: "Complete documentation can be found here:"
-
-# Page names
-# In future, new site sections will be dynamically created.
-# The following paths are hard-coded to match directory names / site categories.
-sections:
- - path:
-   name: Overview
- - path: reference
-   name: Reference
-
 
 ############ Jekyll options
 
