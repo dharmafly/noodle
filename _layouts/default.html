@@ -37,9 +37,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content=""> 
     <script>
-      var GLOBAL = GLOBAL || {};
-      GLOBAL.isIPad = navigator.userAgent.match(/iPad/i) != null;
-      if(document.getElementsByName && !GLOBAL.isIPad){
+      var satya = satya || {};
+      satya.isIPad = navigator.userAgent.match(/iPad/i) != null;
+      if(document.getElementsByName && !satya.isIPad){
         document.getElementsByName('viewport')[0]
           .setAttribute('content','width=device-width,initial-scale=0.75,user-scalable=no,maximum-scale=0.75');
       }
@@ -98,14 +98,14 @@
     </footer>
 
     <script>
-      GLOBAL.narrowScreen = screen.width < 480;
-      GLOBAL.isltIE10 = false;
-      GLOBAL.relative_path = '{{ relative_path }}/';
+      satya.narrowScreen = screen.width < 480;
+      satya.isltIE10 = false;
+      satya.relative_path = '{{ relative_path }}/';
     </script>
     
     <!--[if lt IE 10]> 
       <script>
-        GLOBAL.isltIE10 = true;
+        satya.isltIE10 = true;
       </script>
     <![endif]-->
       

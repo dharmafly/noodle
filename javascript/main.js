@@ -11,8 +11,9 @@
 ***********************************************/
 
 var jQuery1_7_1 = jQuery;
+var satya = satya || {};
 
-var satya = (function ($, $qS) { // jQuery and document.querySelector
+satya.page = (function ($, $qS) { // jQuery and document.querySelector
 
   // --------------------
   
@@ -168,14 +169,14 @@ var satya = (function ($, $qS) { // jQuery and document.querySelector
   
   // ---------------------
   
-  // GLOBALS
+  // satyaS
   
      
-  var narrowScreen = GLOBAL.narrowScreen, 
+  var narrowScreen = satya.narrowScreen, 
       // Why sniff for ipad? 
       // It's to prevent iOS5 position fixed bugs, 
       // rather than anything to do with width
-      isIPad = GLOBAL.isIPad, 
+      isIPad = satya.isIPad, 
       navEl = $qS('#navigation'),
       header = $qS('header'),
       navOffsetTop = navEl.offsetTop,

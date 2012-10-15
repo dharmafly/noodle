@@ -8,7 +8,7 @@ var examples = {};
 
       
 
-if(!GLOBAL.narrowScreen){
+if(!satya.narrowScreen){
   jQuery('pre').each(function () {
     var $pre = jQuery(this);
     
