@@ -10,8 +10,8 @@
 
 ***********************************************/
 
-var jQuery1_7_1 = jQuery;
 var satya = satya || {};
+satya.jQuery = jQuery.noConflict(true);
 
 satya.page = (function ($, $qS) { // jQuery and document.querySelector
 
@@ -543,7 +543,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
   }
   
   
-})(jQuery1_7_1, function () { return document.querySelector.apply(document, arguments); });
+})(satya.jQuery, function () { return document.querySelector.apply(document, arguments); });
 
 
 
