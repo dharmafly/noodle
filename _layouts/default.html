@@ -26,7 +26,14 @@
 <!--[if !IE ]><!-->
 <html lang="en"> <!--<![endif]-->
   <head>
-    <title>{{ page.name }} : {{ site.PROJECT_NAME }}</title>
+    <title>
+      {% for section in sections %}
+        {% if page.url == section.path %} 
+          {% if page.url != '/index.html' %}  {{ section.name }} : {% endif %}
+          {{ site.PROJECT_NAME }}
+        {% endif %}
+      {% endfor %}
+    </title>
     <meta charset="utf-8">
     <meta name="viewport" content=""> 
     <script>
