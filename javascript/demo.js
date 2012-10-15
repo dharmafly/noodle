@@ -1,16 +1,17 @@
-/*globals ace jQuery*/
-/*jshint indent:4*/
 
-var examples = {};
-    examples.index = 0;
 
 // For each code block, create an editor
 
-      
+var satya = satya || {};
 
-if(!GLOBAL.narrowScreen){
-  jQuery('pre').each(function () {
-    var $pre = jQuery(this);
+(function ($) {
+
+var examples = {};
+    examples.index = 0;
+    
+if(!satya.narrowScreen){
+  $('pre').each(function () {
+    var $pre = $(this);
     
     $pre.addClass("runnable").wrap('<div class="run" />');
 
@@ -25,35 +26,35 @@ if(!GLOBAL.narrowScreen){
       
       code.attr('contenteditable', true).attr('id', 'code-' + examples.index);
       
-      output = jQuery('<output>click \'run\' button</output>').attr('id', 'output-' + examples.index);
-      button = jQuery('<button class="eval">Run</button>').data({
+      output = $('<output>click \'run\' button</output>').attr('id', 'output-' + examples.index);
+      button = $('<button class="eval">Run</button>').data({
           output: output,
           index: examples.index
       });
 
-      jQuery(this.parentNode).append(output[0]);
-      jQuery(this).append(button[0]);
+      $(this.parentNode).append(output[0]);
+      $(this).append(button[0]);
       
     }else{
       
-      jQuery(this).removeClass("runnable");
+      $(this).removeClass("runnable");
       
     }
   });
 }
 
 // Attach handlers to "Run" buttons
-jQuery('button.eval')
+$('button.eval')
 .click(function () {
-    var button = jQuery(this),
+    var button = $(this),
         index =  button.data('index'),  
         output = button.data('output');
 
     output.empty();
     setTimeout(function () {
-        var demoElement = 'jQuery("#' + output[0].id + '")[0]',
-            code  = jQuery('#code-' + index).text(),
-            $alert  = 'function (msg) {jQuery("#' + output[0].id + '").append("alert: " + msg + "</br/>");}';
+        var demoElement = '$("#' + output[0].id + '")[0]',
+            code  = $('#code-' + index).text(),
+            $alert  = 'function (msg) {$("#' + output[0].id + '").append("alert: " + msg + "</br/>");}';
 
         // Add and remove a class when the code is run.
         output.addClass('loaded');
@@ -64,12 +65,14 @@ jQuery('button.eval')
 
         // Execute the code in a custom scope that includes alert() and $output.
         try{
-        jQuery.globalEval('(function (demoElement, alert) {\n' + code + '\n})(' + demoElement + ', ' + $alert + ')');
+        $.globalEval('(function (demoElement, alert) {\n' + code + '\n})(' + demoElement + ', ' + $alert + ')');
         }catch(e){
           console.log(e);
           var error = e.message;
-          jQuery('#output-' + index).html('error: ' + error)
+          $('#output-' + index).html('error: ' + error)
         }
         
     }, 300);
 });
+
+})(satya.jQuery);

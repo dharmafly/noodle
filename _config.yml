@@ -18,6 +18,7 @@ LANG: html5
 
 # Documentation site scripts
 SCRIPTS:
+- src: //ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
 - src: https://raw.github.com/dharmafly/jquery.promises/master/image.js
 - src: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
 

@@ -10,9 +10,10 @@
 
 ***********************************************/
 
-var jQuery1_7_1 = jQuery;
+var satya = satya || {};
+satya.jQuery = jQuery.noConflict(true);
 
-var satya = (function ($, $qS) { // jQuery and document.querySelector
+satya.page = (function ($, $qS) { // jQuery and document.querySelector
 
   // --------------------
   
@@ -97,11 +98,17 @@ var satya = (function ($, $qS) { // jQuery and document.querySelector
   function animateScrollTo(offset, callback) {
   
     var total = Math.abs(window.pageYOffset - offset),
-        start = Math.ceil(1000 * total / 
-                  document.documentElement.scrollHeight),
+        start = document.documentElement.scrollHeight < window.innerHeight * 8 ? 
+                  window.Math.ceil(500 * total / 
+                    document.documentElement.scrollHeight) 
+                  : window.Math.ceil(1000 * total / 
+                    (window.innerHeight * 8)) ,
         last, 
         timer;
 
+        console.log('start', start)
+        console.log('total', total)
+        
     clearTimeout(timer);
     
     (function doScroll() {
@@ -113,7 +120,7 @@ var satya = (function ($, $qS) { // jQuery and document.querySelector
 
       var difference = window.pageYOffset - offset,
           direction  = difference < 1 ? 1 : -1,
-          modifier   = Math.abs(difference) / total,
+          modifier   = Math.abs(difference) / total,  
           increment  = Math.ceil(start * modifier);
       
       if (difference !== last && 
@@ -168,14 +175,14 @@ var satya = (function ($, $qS) { // jQuery and document.querySelector
   
   // ---------------------
   
-  // GLOBALS
+  // satyaS
   
      
-  var narrowScreen = GLOBAL.narrowScreen, 
+  var narrowScreen = satya.narrowScreen, 
       // Why sniff for ipad? 
       // It's to prevent iOS5 position fixed bugs, 
       // rather than anything to do with width
-      isIPad = GLOBAL.isIPad, 
+      isIPad = satya.isIPad, 
       navEl = $qS('#navigation'),
       header = $qS('header'),
       navOffsetTop = navEl.offsetTop,
@@ -542,7 +549,7 @@ var satya = (function ($, $qS) { // jQuery and document.querySelector
   }
   
   
-})(jQuery1_7_1, function () { return document.querySelector.apply(document, arguments); });
+})(satya.jQuery, function () { return document.querySelector.apply(document, arguments); });
 
 
 
