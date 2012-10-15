@@ -38,10 +38,10 @@
           .setAttribute('content','width=device-width,initial-scale=0.75,user-scalable=no,maximum-scale=0.75');
       }
     </script>
-    {% include googlefonts.liquid %}
     <!--[if lt IE 9]>
         <script src="{{ relative_path }}javascript/html5shiv.js"></script>
     <![endif]-->
+    <link href="{{ relative_path }}css/fonts/{{ site.THEME }}.css" rel="stylesheet">
     <link href="{{ relative_path }}css/{{ site.THEME }}.css" rel="stylesheet">
     <link rel="shortcut icon" href="{{ relative_path }}img/{{ site.THEME }}-favicon.ico">
   </head>
