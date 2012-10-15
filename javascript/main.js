@@ -98,11 +98,17 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
   function animateScrollTo(offset, callback) {
   
     var total = Math.abs(window.pageYOffset - offset),
-        start = Math.ceil(1000 * total / 
-                  document.documentElement.scrollHeight),
+        start = document.documentElement.scrollHeight < window.innerHeight * 8 ? 
+                  window.Math.ceil(500 * total / 
+                    document.documentElement.scrollHeight) 
+                  : window.Math.ceil(1000 * total / 
+                    (window.innerHeight * 8)) ,
         last, 
         timer;
 
+        console.log('start', start)
+        console.log('total', total)
+        
     clearTimeout(timer);
     
     (function doScroll() {
@@ -114,7 +120,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
 
       var difference = window.pageYOffset - offset,
           direction  = difference < 1 ? 1 : -1,
-          modifier   = Math.abs(difference) / total,
+          modifier   = Math.abs(difference) / total,  
           increment  = Math.ceil(start * modifier);
       
       if (difference !== last && 
