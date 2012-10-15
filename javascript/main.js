@@ -15,6 +15,8 @@ satya.jQuery = jQuery.noConflict(true);
 
 satya.page = (function ($, $qS) { // jQuery and document.querySelector
 
+  "use strict";
+
   // --------------------
   
   // LIBRARIES
@@ -80,15 +82,6 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     return visualWidth;
   }
   
-  // Finds the width in ems of any string
-  function getEmWidth(chars){
-    var p = document.createElement("span");
-    p.innerHTML = chars;
-    document.body.appendChild(p);
-    var width = p.getBoundingClientRect().width;
-    document.body.removeChild(p);
-    return width;
-  }
   
   function getTargetId(hashId){
     return hashId ? hashId.substring(1, hashId.length) : null;
@@ -105,9 +98,6 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
                     (window.innerHeight * 8)) ,
         last, 
         timer;
-
-        console.log('start', start)
-        console.log('total', total)
         
     clearTimeout(timer);
     
@@ -123,10 +113,8 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
           modifier   = Math.abs(difference) / total,  
           increment  = Math.ceil(start * modifier);
       
-      if (difference !== last && 
-        (direction < 0 || 
-          window.innerHeight + window.pageYOffset 
-          !== document.documentElement.scrollHeight)) {
+      if (difference !== last &&  (direction < 0 || 
+          window.innerHeight + window.pageYOffset !== document.documentElement.scrollHeight)) {
         if (difference < increment && difference > increment * -1) {
           increment = Math.abs(difference);
         }
@@ -148,7 +136,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
   
   function setLogoPosition(){
     var header = $qS('h1.title'),
-        svg_width = parseInt(getComputedStyle(header, ':after').width);
+        svg_width = parseInt(getComputedStyle(header, ':after').width, 10);
     if(($qS('h1.title a').clientWidth + svg_width) > header.clientWidth){
       header.classList.add('long-title');
     }
@@ -234,8 +222,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
   
   // space on left of page < width of subnav 
   function isSubnavSqueezed(){
-    return subnav.width + (subnav.margin * 2) + (contentWidth/2) 
-           > (window.innerWidth/2);
+    return subnav.width + (subnav.margin * 2) + (contentWidth/2) > (window.innerWidth/2);
   } 
   
   // COMPONENTS
@@ -289,8 +276,8 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     this.el = el; 
     this.isScrollGtHeader = false;
     this.isSubnavSqueezed = false;
-    this.isOpen;
-    this.timeout; 
+    this.isOpen = null;
+    this.timeout = null; 
     this.width = getLinkListWidth(el); 
     this.height = this.el.getBoundingClientRect().height;
     // TO DO
@@ -370,8 +357,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
   // Set a fixed height on the subnav at the point
   // the subnav is taller than the available space on-screen
   Subnav.prototype.setSubnavHeight  = function setSubnavHeight(setHeight) {
-    var availHeight = window.innerHeight - this.el.offsetTop - 10,
-        navHeight = narrowScreen ? navEl.offsetTop + navEl.clientHeight : 0;
+    var availHeight = window.innerHeight - this.el.offsetTop - 10;
     
     if((this.isScrollGtHeader || setHeight) && (this.height > availHeight)){
       this.el.style.height = (availHeight - 20) + 'px';
@@ -385,7 +371,12 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
   };
   
   Subnav.prototype.toggle = function() {
-    this.isOpen ? this.close() : this.open();
+    if(this.isOpen){ 
+      this.close();
+    } 
+    else {
+      this.open();
+    }  
   };
   
   Subnav.prototype.open = function() {
@@ -431,7 +422,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     var options = $(this.el).find('a').map(function(){
       var link = this;
       return $('<option>').attr('value',link.hash).text(link.innerHTML)[0];
-    })
+    });
     
     var $select = $('<select id="subnav-menu">').append(options);
     
@@ -541,7 +532,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     
     setPermalinkTopOffset();
     
-  };
+  }
   
   // Initialise after feature detection
   if (document.querySelectorAll && document.body.classList) {
@@ -549,7 +540,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
   }
   
   
-})(satya.jQuery, function () { return document.querySelector.apply(document, arguments); });
+})(satya.jQuery, function () { "use strict"; return document.querySelector.apply(document, arguments); });
 
 
 

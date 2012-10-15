@@ -6,6 +6,8 @@ var satya = satya || {};
 
 (function ($) {
 
+"use strict";
+
 var examples = {};
     examples.index = 0;
     
@@ -67,9 +69,8 @@ $('button.eval')
         try{
         $.globalEval('(function (demoElement, alert) {\n' + code + '\n})(' + demoElement + ', ' + $alert + ')');
         }catch(e){
-          console.log(e);
           var error = e.message;
-          $('#output-' + index).html('error: ' + error)
+          $('#output-' + index).html('error: ' + error);
         }
         
     }, 300);
