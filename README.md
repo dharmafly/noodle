@@ -73,7 +73,7 @@ How-to
 How Can I set up a new Dharmafly project website?
 ----------------------------
 
-It's recommended that you use the project's build script, `Rakefile` to build and update your project website(and far easier).
+It's recommended that you use the project's build script, `satya` to build and update your project website (and far easier).
 
 ### Using the build script
 
@@ -89,10 +89,8 @@ For the Rakefile (build script) to operate correctly, the documentation should b
 #### 2) Run the build script
 
 1. Set up a [ruby installation] (http://www.ruby-lang.org/), if you don't already have one in your environment.
-2. [Download this Rakefile](https://github.com/downloads/dharmafly/dharmafly-docs/Rakefile) to your project's working branch.
-3. Run `rake build` to setup Dharmafly Docs in a new gh-pages branch. 
-
-You can find the Rakefile documentation here https://github.com/dharmafly/dharmafly-docs/wiki/Rakefile-Guide
+2. Follow the instructions in the [`command-line-tool`](https://github.com/dharmafly/dharmafly-docs/tree/command-line-tool) branch, to install `satya`.
+3. Run [`satya build`](https://github.com/dharmafly/dharmafly-docs/tree/command-line-tool#build) to setup Dharmafly Docs in a new gh-pages branch. 
 
 ### Setting up manually
 
