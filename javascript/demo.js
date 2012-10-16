@@ -48,15 +48,16 @@ if(!satya.narrowScreen){
 // Attach handlers to "Run" buttons
 $('button.eval')
 .click(function () {
+    
     var button = $(this),
         index =  button.data('index'),  
         output = button.data('output');
-
+    
     output.empty();
     setTimeout(function () {
-        var demoElement = '$("#' + output[0].id + '")[0]',
+        var demoElement = 'satya.jQuery("#' + output[0].id + '")[0]',
             code  = $('#code-' + index).text(),
-            $alert  = 'function (msg) {$("#' + output[0].id + '").append("alert: " + msg + "</br/>");}';
+            $alert  = 'function (msg) {satya.jQuery("#' + output[0].id + '").append("alert: " + msg + "</br/>");}';
 
         // Add and remove a class when the code is run.
         output.addClass('loaded');
