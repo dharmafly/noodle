@@ -164,7 +164,6 @@ quote_svg_right_pos: "49%"
 
 These attributes allow you to position these two elements on the page. The quote_svg_right_transform and quote_svg_left_transform allow you to flip or rotate these SVG elements.
 
-![Variations on the SVG element] (https://raw.github.com/dharmafly/dharmafly-docs/gh-pages/assets/svg-post/images/nodewing-variations.png)
 
 ### Updating SVG elements
 
