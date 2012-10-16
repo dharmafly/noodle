@@ -37,9 +37,9 @@ layout: default
             <h1>
                 <a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>{{ post.title }}
             </h1>
-			<article class="embedded markdown">
-			 {{ post.content }}
-			</article>
+            <article class="embedded markdown">
+             {{ post.content }}
+            </article>
         </section>
     {% endif %}
 {% endfor %}
@@ -47,15 +47,22 @@ layout: default
 {% include aside.liquid %}
 
         <section>
-        	<h1><a id="download" class="permalink" href="#download">&#9875;</a> Download</h1>
-            <p><a href="{{ site.GITHUB_PROJECT_URL }}" target="blank">Star the project</a> on GitHub, or <a target="blank" href="{{ site.GITHUB_ZIP_URL }}">download it</a>:</p>
+            <h1><a id="download" class="permalink" href="#download">&#9875;</a> Download</h1>
+            <p><a href="{{ site.GITHUB_PROJECT_URL }}" target="_blank">Star the project</a> on GitHub, or {% if site.GITHUB_ZIP_URL %}<a target="_blank" href="{{ site.GITHUB_ZIP_URL }}">{% endif %}download it{% if site.GITHUB_ZIP_URL %}</a>{% endif %}:</p>
 
         	<p class="buttons">
-                <a class="badge github" href="{{ site.GITHUB_PROJECT_URL }}" title="{{ site.PROJECT_NAME }} on GitHub" target="blank"><span>{{ site.PROJECT_NAME }} on GitHub</span></a>
+                {% assign version = '{{ version }}' %}
+                <a class="badge github" href="{{ site.GITHUB_PROJECT_URL }}" title="{{ site.PROJECT_NAME }} on GitHub" target="_blank"><span>{{ site.PROJECT_NAME }} on GitHub</span></a>
                 {% if site.GITHUB_ZIP_URL %}
-        		<a class="button" href="{{ site.GITHUB_ZIP_URL }}" target="blank">{{ site.PROJECT_NAME }} <span class="version">v{{ site.GITHUB_CURRENT_VERSION }}</span></a>
+                  <a class="button" href="{{ site.GITHUB_ZIP_URL }}" target="_blank">{{ site.PROJECT_NAME }} <span class="subtext">v{{ site.VERSION }}</span></a>
                 {% endif %}
-        	</p>
+                {% for link in site.DOWNLOAD_LINKS %}
+                  <a class="button" href="{{ link.href }}" target="_blank"{% if link.title %} title="{{ link.title }}"{% endif %}>
+                    {{ link.text }}
+                    {% if link.subtext %}<span class="subtext">{{link.subtext | replace:version,site.VERSION }}</span>{% endif %}
+                  </a>
+                {% endfor %}      
+            </p>
         </section>
 
 {% for post in category reversed %}

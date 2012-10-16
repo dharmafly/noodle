@@ -289,7 +289,7 @@ DOWNLOAD_LINKS:
     title: minified, gzipped
 ```
 
-The subtext will appear next to the main text of the link. `subtext` can take any text, the tag `{{ version }}` will be replaced with the value of your site's `VERSION` variable
+The subtext will appear next to the main text of the link. `subtext` can take any text, the tag `{{ version }}` will be replaced with the value of your site's `VERSION` variable.
 
 Updating the Overview page reference text
 -----------------------------------------

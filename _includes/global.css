@@ -715,8 +715,10 @@ button:active {
   background: linear-gradient(top, {{ page.button_hover_colour }} 0%,{{ page.button_hover_highlight }} 100%);
 }
 
-.buttons {
-	margin-top: 1.5em;
+p.buttons {
+	margin: 1.5em auto 0 1em;
+  line-height: 1;
+  padding-left: 3.75em;
 }
 
 .button {
@@ -732,8 +734,7 @@ button:active {
 	border-radius: 5px;
 	border: 2px solid {{ page.highlight_colour }};
   font-family: Lato, sans-serif;
-  font-weight: bold;
-  font-size:112.5%;
+  margin: 0.25em 0.25em 0.5em 0;
 }
 
 .button:hover {
@@ -751,9 +752,10 @@ button:active {
   color:{{ page.highlight_colour }};
 }
 
-.button .version{
+.button .subtext{
   color: {{ page.copy_colour }};
   font-size:77%;
+  padding-left: 0.25em;
 }
 
 .button:first-child {
@@ -865,6 +867,10 @@ aside li,
   position:relative;
 }
 
+.buttons .badge.github {
+  margin-left: -3.75em;
+}
+
 aside:after {
   content: "";
   display: block;
@@ -889,6 +895,9 @@ aside li  span,
   padding-top: 3.025em;
   display:block;
   background: url(./img/icon-sprite.png) no-repeat;
+}
+aside li  a,
+aside li  span{
   -webkit-filter: grayscale(1);
   filter:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter%20id%3D%22desaturate%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%3C/filter%3E%3C/svg%3E#desaturate);
 }
