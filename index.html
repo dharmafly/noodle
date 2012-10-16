@@ -59,7 +59,7 @@ layout: default
                 {% for link in site.DOWNLOAD_LINKS %}
                   <a class="button" href="{{ link.href }}" target="_blank"{% if link.title %} title="{{ link.title }}"{% endif %}>
                     {{ link.text }}
-                    {% if link.subtext %}<span class="subtext"> {{link.subtext | replace:version,site.VERSION }}</span>{% endif %}
+                    {% if link.subtext %}<span class="subtext">{{link.subtext | replace:version,site.VERSION }}</span>{% endif %}
                   </a>
                 {% endfor %}      
             </p>

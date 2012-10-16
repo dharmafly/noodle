@@ -12,19 +12,14 @@ THEME: sundae
 
 # URLs
 DOWNLOAD_LINKS:
-  - text: Master branch
-    href: https://github.com/dharmafly/dharmafly-docs/downloads
-    title: Main working version of the code
+  - text: Dharmafly Docs
+    subtext: v{{ version }}
+    href: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
+    title: zipped
   - text: Dharmafly Docs
     subtext: v{{ version }}.min
-    href: '#'
-  - text: Satya build tool
-    href: https://github.com/dharmafly/dharmafly-docs/tree/command-line-tool
-    title: command line tool to build a project version of Dharmafly Docs
-  - text: Github pages branch
-    subtext: (current)
-    href: https://github.com/dharmafly/dharmafly-docs/tree/gh-pages
-    title: The working branch
+    href: https://github.com/dharmafly/dharmafly-docs/downloads
+    title: minified, gzipped
 TWITTER_PROJECT_URL: https://twitter.com/dharmafly
 
 # Primary language or technology (options: javascript, css, html5)
@@ -57,7 +52,7 @@ sections:
 # Link from overview to reference
 REFERENCE_LINK_TEXT: "Complete documentation can be found here:"
 
-GITHUB_ZIP_URL: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
+#GITHUB_ZIP_URL: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
 
 ############ Jekyll options
 
