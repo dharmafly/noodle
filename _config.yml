@@ -1,16 +1,24 @@
 # The project
-PROJECT_NAME: Lanyrd.js
+PROJECT_NAME: Dharmafly Docs
 GITHUB_CURRENT_VERSION: 1.0
 GITHUB_PROJECT_URL: https://github.com/dharmafly/dharmafly-docs
 
 # Site theme (options: forest, ocean, horus, seagrass, sundae, slate)
-THEME: ocean
+THEME: sundae
 
 
 ############ Options
 
 # URLs
-GITHUB_ZIP_URL: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
+DOWNLOAD_LINKS:
+  - text: Master branch
+    href: https://github.com/dharmafly/dharmafly-docs/downloads
+  - text: Minified
+    href: '#'
+  - text: Satya build tool
+    href: https://github.com/dharmafly/dharmafly-docs/tree/command-line-tool
+  - text: Github pages branch
+    href: https://github.com/dharmafly/dharmafly-docs/tree/gh-pages
 TWITTER_PROJECT_URL: https://twitter.com/dharmafly
 
 # Primary language or technology (options: javascript, css, html5)
@@ -42,6 +50,8 @@ sections:
 
 # Link from overview to reference
 REFERENCE_LINK_TEXT: "Complete documentation can be found here:"
+
+GITHUB_ZIP_URL: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
 
 ############ Jekyll options
 
