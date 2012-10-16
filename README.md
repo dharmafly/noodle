@@ -23,7 +23,7 @@ Contents
 - [Changing the language icon] (#changing-the-language-icon)
 - [Adding your project code to the page] (#adding-your-project-code-to-the-page)
 - [Adding a link to your twitter account] (#adding-a-link-to-your-twitter-account)
-- [Adding a download button] (#adding-a-download-button)
+- [Adding download buttons] (#adding-download-buttons)
 - [Updating the Overview page reference text] (#updating-the-overview-page-reference-text)
 - [Adding a quote to your project] (#adding-a-quote-to-your-project)
 - [Including Google Analytics tracking] (#including-google-analytics-tracking)
@@ -196,7 +196,7 @@ Set in `_config.yml` in the form
 
     # Your project's details
     PROJECT_NAME: Project Name
-    GITHUB_CURRENT_VERSION: 1.0
+    VERSION: 1.0
     GITHUB_PROJECT_URL: https://github.com/dharmafly/your-project
 
 There are many more optional variables that can be updated:
@@ -266,14 +266,30 @@ If your project has a twitter account, you can add a link to it in the `_config.
 An icon will appear on the right hand side under the github icon for your project.
 
 
-Adding a download button
+Adding download buttons
 ------------------------
 
 The site will already include a link to your project. If you have a downloadable zip of your project, you can add this by editing the `_config.yml`.
 
-    GITHUB_ZIP_URL: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
+Deprecated: 
 
-This will add a download button to your site.
+    ~~GITHUB_ZIP_URL: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages~~
+
+There is now the facility to add mutiple download buttons to your site (for example for minified code, or older versions).
+
+```
+DOWNLOAD_LINKS:
+  - text: Dharmafly Docs
+    subtext: v{{ version }}
+    href: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
+    title: zipped
+  - text: Dharmafly Docs
+    subtext: v{{ version }}.min
+    href: https://github.com/dharmafly/dharmafly-docs/downloads
+    title: minified, gzipped
+```
+
+The subtext will appear next to the main text of the link. `subtext` can take any text, the tag `{{ version }}` will be replaced with the value of your site's `VERSION` variable
 
 Updating the Overview page reference text
 -----------------------------------------
