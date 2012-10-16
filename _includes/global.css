@@ -1256,13 +1256,14 @@ aside  li:hover:after  {
 }
 .narrowScreen header h1 {
   font-size: 20px;
+  padding: 11px;
 }
 
 .narrowScreen #navigation,
 .narrowScreen #navigation.float {
    z-index: 101;
    position: fixed;
-   top: 3.4em;
+   top: 42px;
    left: 0;
    right: 0;
    margin: 0;
