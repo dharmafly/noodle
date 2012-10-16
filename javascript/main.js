@@ -150,7 +150,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     
       
     topOffset = narrowScreen ? 
-                  navHeight + navOffsetTop - margin
+                  navHeight + navOffsetTop
                 : navHeight + margin;
     
     for (var i = 0; i < permalinks.length; ++i) {
