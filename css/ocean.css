@@ -13,7 +13,7 @@ lowlight_border: "#3F6B98"
 body_background_colour: "#88B8DC"
 background_mid_stop: "#97C2E4"
 link_colour: "#006FB0"
-subnav_link_color: "#006FB0"
+subnav_link_color: "#2F475F"
 subnav_hover_color: "#006FB0"
 nav_hover_color: "#5DC4FF"
 content_bg_colour: "#CDDEF2"
@@ -41,15 +41,15 @@ badge_border: "%23CDDEF2"  #url encoded for firefox
 # logo area
 
 header_font_size: 5.4 #em
-logo_width: 280 #px
-logo_height: 126 #px
+logo_width: 322 #px
+logo_height: 110 #px
 
 # svg
 
 # for main title svg
 svg_asset: node_ocean.svg
 svg_title_filter: none
-svg_title_rotation: rotate(-18deg)
+svg_title_rotation: rotate(0deg)
 # for svg element on left hand side of content
 svg_asset_size: "112%"
 svg_asset_rotation: 93deg
