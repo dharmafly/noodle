@@ -754,7 +754,7 @@ p.buttons {
   color:{{ page.highlight_colour }};
 }
 
-.button .version{
+.button .subtext{
   color: {{ page.copy_colour }};
   font-size:77%;
 }

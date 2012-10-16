@@ -1,6 +1,7 @@
 # The project
 PROJECT_NAME: Dharmafly Docs
-GITHUB_CURRENT_VERSION: 1.0
+# Version number as a string
+VERSION: '1.0'
 GITHUB_PROJECT_URL: https://github.com/dharmafly/dharmafly-docs
 
 # Site theme (options: forest, ocean, horus, seagrass, sundae, slate)
@@ -13,12 +14,17 @@ THEME: sundae
 DOWNLOAD_LINKS:
   - text: Master branch
     href: https://github.com/dharmafly/dharmafly-docs/downloads
-  - text: Minified
+    title: Main working version of the code
+  - text: Dharmafly Docs
+    subtext: v{{ version }}.min
     href: '#'
   - text: Satya build tool
     href: https://github.com/dharmafly/dharmafly-docs/tree/command-line-tool
+    title: command line tool to build a project version of Dharmafly Docs
   - text: Github pages branch
+    subtext: (current)
     href: https://github.com/dharmafly/dharmafly-docs/tree/gh-pages
+    title: The working branch
 TWITTER_PROJECT_URL: https://twitter.com/dharmafly
 
 # Primary language or technology (options: javascript, css, html5)
