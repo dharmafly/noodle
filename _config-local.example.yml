@@ -1,0 +1,48 @@
+# The project
+PROJECT_NAME: Dharmafly Docs
+# Version number as a string
+VERSION: '1.0'
+GITHUB_PROJECT_URL: https://github.com/dharmafly/dharmafly-docs
+
+# Site theme (options: forest, ocean, horus, seagrass, sundae, slate)
+THEME: sundae
+
+
+############ Options
+
+# URLs
+DOWNLOAD_LINKS:
+  - text: Dharmafly Docs
+    subtext: v{{ version }}
+    href: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
+    title: zipped
+  - text: Dharmafly Docs
+    subtext: v{{ version }}.min
+    href: https://github.com/dharmafly/dharmafly-docs/downloads
+    title: minified, gzipped
+TWITTER_PROJECT_URL: https://twitter.com/dharmafly
+
+# Primary language or technology (options: javascript, css, html5)
+LANG: html5
+
+# Documentation site scripts
+SCRIPTS:
+- src: //ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
+- src: https://raw.github.com/dharmafly/jquery.promises/master/image.js
+- src: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
+
+# Footer quote
+QUOTE:
+  quote: Ink is better than the best memory.
+  cite: Chinese proverb
+
+# Site analytics
+GA_ID:
+
+# Page names
+# Do not update the paths.
+sections:
+ - path: /index.html
+   name: Overview
+ - path: /reference/index.html
+   name: Reference
