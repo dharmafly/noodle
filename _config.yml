@@ -21,7 +21,7 @@ DOWNLOAD_LINKS:
   - text: Dharmafly Docs
     subtext: v{{ version }}
     href: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
-    title: zipped   
+    title: Download zipfile 
 
 ############ Deprecated 
 
