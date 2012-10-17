@@ -46,6 +46,7 @@ baseurl:     /
 exclude: ['README.md', 'assets', 'FiddlerRules.farx']
 
 ###############################################################
+#
 # _config-local.example.yml
 
 # The project
