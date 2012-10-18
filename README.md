@@ -24,7 +24,6 @@ Contents
 - [Adding your project code to the page] (#adding-your-project-code-to-the-page)
 - [Adding a link to your twitter account] (#adding-a-link-to-your-twitter-account)
 - [Adding download buttons] (#adding-download-buttons)
-- [Updating the Overview page reference text] (#updating-the-overview-page-reference-text)
 - [Adding a quote to your project] (#adding-a-quote-to-your-project)
 - [Including Google Analytics tracking] (#including-google-analytics-tracking)
 - [Changing the project colourscheme] (#changing-the-project-colourscheme)
@@ -73,34 +72,35 @@ How-to
 How Can I set up a new Dharmafly project website?
 ----------------------------
 
-It's recommended that you use the project's build script, `satya` to build and update your project website (and far easier).
+It's recommended that you use the project's command line tool, `satya` to build and update your project website (and far easier).
 
-### Using the build script
+### Using the command line tool
 
 #### 1) Prepare the documentation
 
 You will first need your documentation written in your working branch. 
 
-For the Rakefile (build script) to operate correctly, the documentation should be in the [appropriate format] (#required-post-formatting) and in the correct file location:
+For the command line tool (satya) to operate correctly, the documentation should be in the [appropriate format] (#required-post-formatting) and in the correct file location:
 
 1. In a `docs` directory.
 2. With filenames in the form: `1. Example title.md`, `2. Another doc.md` etc.
 
-#### 2) Run the build script
+#### 2) Run the command line tool
 
 1. Set up a [ruby installation] (http://www.ruby-lang.org/), if you don't already have one in your environment.
 2. Follow the instructions in the [`command-line-tool`](https://github.com/dharmafly/dharmafly-docs/tree/command-line-tool) branch, to install `satya`.
 3. Run [`satya build`](https://github.com/dharmafly/dharmafly-docs/tree/command-line-tool#build) to setup Dharmafly Docs in a new gh-pages branch. 
+4. [Follow the instructions](https://github.com/dharmafly/dharmafly-docs/tree/command-line-tool#build) and create a `_config-local.yml` file to [customise your site](#site-variables-1)
 
 ### Setting up manually
 
-If you don't have access to Ruby or if the Rakefile fails, then follow the steps [in the Wiki] (https://github.com/dharmafly/dharmafly-docs/wiki/Setting-up-a-Dharmafly-Docs-project-instance-manually) to setup Dharmafly Docs.
+If you don't have access to Ruby or if the command line tool fails, then follow the steps [in the Wiki] (https://github.com/dharmafly/dharmafly-docs/wiki/Setting-up-a-Dharmafly-Docs-project-instance-manually) to setup Dharmafly Docs.
 
 ### Testing your project site locally
 
 You'll probably want to test the changes to your documentation site locally before you push.
 
-If you're [using the Rakefile] (#using-the-build-script), run `rake server` and navigate to `http://0.0.0.0:4000`. 
+If you're [using the command line tool] (#using-the-build-script), run `satya server` and navigate to `http://0.0.0.0:4000`. 
 
 If not, [install jekyll] (https://github.com/mojombo/jekyll/wiki/Install) and [run the server locally] (https://github.com/mojombo/jekyll/wiki/usage).
 
@@ -112,7 +112,7 @@ Ensure that your documentation is stored in markdown files within your working b
 1. In a `docs` directory.
 2. With filenames in the form: `1. Example title.md`, `2. Another doc.md` etc.
 
-This will enable you to [build your project website with the build script] (#2-run-the-build-script)
+This will enable you to [build your project website with the command line tool] (#2-run-the-build-script)
 
 ### Required post formatting
 
@@ -163,9 +163,9 @@ If a project has a website hosted on github pages it will have a gh-pages branch
 
 The project website will either be hosted at dharmafly.github.com/project-name/ or at a custom domain.
 
-If you are using the [Rakefile] (#using-the-build-script), follow the same steps for [setting up a new project] (#2-run-the-build-script).
+If you are using the [command line tool] (#using-the-build-script), follow the same steps for [setting up a new project] (#2-run-the-build-script).
 
-If not, you can set up your new [project documentation manually] (https://github.com/dharmafly/dharmafly-docs/wiki/Manually-adding-posts)
+If not, you can set up your new [project documentation manually] (https://github.com/dharmafly/dharmafly-docs/wiki/Manually-adding-posts) (not recommended).
 
 Changing the domain for your project's site
 ---------------------------------------------
@@ -185,14 +185,20 @@ There are no required posts, however the first post in your `docs` directory wil
 
 ### Manually adding posts
 
-It's recommended that you use the Rakefile to add posts.
+It's recommended that you use the command line tool to add posts.
 
 If you are unable, you can add posts manually. [Details on the wiki] (https://github.com/dharmafly/dharmafly-docs/wiki/Manually-adding-posts)
 
 Site variables
 ==================
 
-Set in `_config.yml` in the form
+These are set in `_config-local.yml`. 
+
+### `config-local.yml`
+
+On first building the documentation site using the command line tool, you will need to create the `_config-local.yml` file by copying (not renaming) the `config-local.example.yml` file in your `gh-pages` branch.
+
+Site variables are in the following format (YAML)
 
     # Your project's details
     PROJECT_NAME: Project Name
@@ -207,21 +213,21 @@ Updating the main nav
 
 ### How to rename the items in the main nav
 
-Edit the `_config/yml`:
+Edit your [`_config-local.yml`](#site-variables-1):
 
     # Page names (paths are currently hard-coded to match directory names / site categories)
     sections:
-     - path:
+     - path: /index.html
        name: Overview
-     - path: reference
+     - path: /reference/index.html
        name: Reference
 
 To rename the items in the main nav, change the `name` variable. For example
 
     sections:
-     - path:
-       name: About
-     - path: reference
+     - path: /index.html
+       name: Overview
+     - path: /reference/index.html
        name: API Documentation
 
 Would change the main nav items to *About | API Documentation*.
@@ -233,7 +239,7 @@ Changing the language icon
 
 The language icon is on the top right hand side of the main content under the github and twitter icons. It's there to quickly show site visitors the main focus of the project.
 
-To change the language icon, edit the `_config.yml`
+To change the language icon, edit your [`_config-local.yml`](#site-variables-1)
 
     # javascript, css or html5
     LANG: javascript
@@ -245,7 +251,7 @@ If your project language is not in this list, adding a new icon will require [up
 Adding your project code to the page
 ----------------------------------------
 
-To add your own JavaScript files to the page to be available to the code blocks, edit the `_config.yml`:
+To add your own JavaScript files to the page to be available to the code blocks, edit your [`_config-local.yml`](#site-variables-1):
 
     SCRIPTS:
     - src: https://raw.github.com/dharmafly/jquery.promises/master/image.js
@@ -259,7 +265,7 @@ The examples here use files from the [jquery.promises](http://jquerypromises.com
 Adding a link to your twitter account
 -------------------------------------
 
-If your project has a twitter account, you can add a link to it in the `_config.yml`.
+If your project has a twitter account, you can add a link to it in your [`_config-local.yml`](#site-variables-1).
 
     TWITTER_PROJECT_URL: https://twitter.com/dharmafly
 
@@ -269,7 +275,7 @@ An icon will appear on the right hand side under the github icon for your projec
 Adding download buttons
 ------------------------
 
-The site will already include a link to your project. If you have a downloadable zip of your project, you can add this by editing the `_config.yml`.
+The site will already include a link to your project. If you have a downloadable zip of your project, you can add this by editing your [`_config-local.yml`](#site-variables-1).
 
 Deprecated: 
 
@@ -291,21 +297,10 @@ DOWNLOAD_LINKS:
 
 The subtext will appear next to the main text of the link. `subtext` can take any text, the tag `{{ version }}` will be replaced with the value of your site's `VERSION` variable.
 
-Updating the Overview page reference text
------------------------------------------
-
-The last section on the overview page is a link to the reference section. 
-
-This link isn't editable via the `_config.yml`, but the text introducing it can be changed through the `REFERENCE_LINK_TEXT` variable
-in the in the `_config.yml`. For example:
-
-    REFERENCE_LINK_TEXT: "Complete documentation can be found here:"
-
-
 Adding a quote to your project
 ------------------------------
 
-If you have a quote that sums up the ideas in your project, you can optionally add it by editing the `_config.yml`.
+If you have a quote that sums up the ideas in your project, you can optionally add it by editing your [`_config-local.yml`](#site-variables-1).
 
     QUOTE:
       quote: Promises are the uniquely human way of ordering the future, making it predictable and reliable to the extent that this is humanly possible.
@@ -322,7 +317,7 @@ Add your Google Analytics web property ID (in the form 'UA-XXXXX-X') within `_co
 Changing the project colourscheme
 -------------------------------------------
 
-In the `_config.yml`, update the `THEME` variable. There are two available colourscheme options, `forest`, or `ocean`.
+In your [`_config-local.yml`](#site-variables-1), update the `THEME` variable. Options: `forest`, `ocean`, `horus`, `seagrass`, `sundae` and `slate`.
 
 Formatting your posts
 ====================
@@ -366,9 +361,9 @@ The `dharmafly-docs` project
 How can I get bugfixes and enhancements for my `dharmafly-docs` project instance
 ------------------------------------------------------------------
 
-If you have the `Rakefile`, run `rake upgrade` from your working branch.
+Using the command line tool, run `satya upgrade` from your working branch.
 
-If not see the [guide in the wiki] (https://github.com/dharmafly/dharmafly-docs/wiki/Manually-upgrading-a-project-website)
+(If you do not have the command line tool see the [guide in the wiki] (https://github.com/dharmafly/dharmafly-docs/wiki/Manually-upgrading-a-project-website))
 
 How can I update the styling or format of all Dharmafly project websites?
 ------------------------------
@@ -386,7 +381,7 @@ There's no process yet to do this easily, but [this issue outlines the process r
 Is there a process for automatically generating new project websites from project documentation?
 ----------------------------
 
-This is the standard way of generating project websites, using the build script, `Rakefile`. See [How can I set up a new Dharmafly project website] (#how-can-i-set-up-a-new-dharmafly-project-website) 
+This is the standard way of generating project websites, using the command line tool. See [How can I set up a new Dharmafly project website] (#how-can-i-set-up-a-new-dharmafly-project-website) 
 
 How do I add a new icon for the coding language my project's about? 
 -------------------------------------------------
