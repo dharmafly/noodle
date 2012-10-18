@@ -827,7 +827,7 @@ p.buttons {
 	z-index: 28;
 	position: absolute;
   bottom: 12px;
-  left: 10px;
+  right: 10px;
 	cursor: pointer;
 }
 
@@ -1093,7 +1093,7 @@ aside  li:hover:after  {
 	}
   
   section pre.runnable {
-		padding-left: 63px;
+		padding-right: 63px;
     padding-bottom: 1.5em;
 	}
   
@@ -1112,11 +1112,8 @@ aside  li:hover:after  {
   }
 
  .run .eval {
-    left: 14px;
-  }
-  
-  .ace_editor {
-    left:20px;
+    right: 14px;
+    border: 2px solid {{ page.content_bg_colour }};
   }
   
   .ie .run code {
