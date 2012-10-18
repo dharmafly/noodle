@@ -69,10 +69,25 @@ The templating language for github pages is [Liquid](http://liquidmarkup.org/).
 
 Within any HTML, CSS, JavaScript page on the site any liquid tags are parsed by [Jekyll](https://github.com/mojombo/jekyll/) (the templating engine).
 
+### Updating the config files (`_config.yml`, `_config-local.example.yml`)
+
+There are two config files 
+
+- `_config.yml`
+- `_config-local.example.yml`
+
+The `_config.yml` should only contain required variables for the site. It is not user-editable.
+
+`_config-local.example.yml` should contain example properties for all user-editable variables.
+
+### Testing the changes to config files
+
+Unfortunately, you will currently have to manually append the content of `_config-local.example.yml` to `_config.yml`. **Before committing, you will need to undo this change**.
+
 ### Pre-defined global variables
 
 The key [predefined Jekyll global variables](https://github.com/mojombo/jekyll/wiki/Template-Data) are 
-- `site`, which contains global properties for the site (e.g. those [specified within `_cofig.yml`](https://github.com/dharmafly/dharmafly-docs/#site-variables)), 
+- `site`, which contains global properties for the site (e.g. those [specified within `_config.yml`](https://github.com/dharmafly/dharmafly-docs/#site-variables)), 
 - `post`, which contains details for each post, 
 - `categories`/`category` which group posts 
 - `layout`, mentioned [above](#the-site-structure) and 
