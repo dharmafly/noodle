@@ -51,6 +51,8 @@ To update the [`master` branch] (https://github.com/dharmafly/dharmafly-docs), s
 
 If you've added any files to the `assets` directory, or updated any posts in the `_posts` directory, these will be pulled-in to the `master` branch. As you won't really want instances of Dharmafly Docs to contain all the assets (psd files, master pngs, etc), or any of the Dharmafly Docs posts, you should delete these directories before commiting.
 
+If you've updated the `_config.yml`, after pulling from `gh-pages`, **remove all variables local to `gh-pages`**. (There should be nothing after the 'jekyll options' section).
+
 Once happy with your merge to the `master` branch,  `add`, `commit` the `git push origin master`.
 
 The site structure
@@ -82,7 +84,9 @@ The `_config.yml` should only contain required variables for the site. It is not
 
 ### Testing the changes to config files
 
-Unfortunately, you will currently have to manually append the content of `_config-local.example.yml` to `_config.yml`. **Before committing, you will need to undo this change**.
+Within this branch, `_config.yml` has to contain the details for the Dharmafly Docs example website. 
+
+**After pulling this branch from master, you must remove all variables local to dharmafly docs before committing**.
 
 ### Pre-defined global variables
 
