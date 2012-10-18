@@ -1,3 +1,6 @@
+#####################################
+# master _config.yml
+
 # The project
 PROJECT_NAME: Dharmafly Docs
 # Version number as a string
@@ -44,3 +47,5 @@ permalink:   /:title
 baseurl:     /
 
 exclude: ['README.md', 'assets', 'FiddlerRules.farx']
+
+########### END master _config.yml ##################
