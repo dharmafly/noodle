@@ -9,6 +9,11 @@ body {
 	font: 62.5%/1 Lato, serif;
 	padding: 0;
 	margin: 0;
+  -webkit-transition: opacity 500ms ease-in-out;
+  -moz-transition: opacity 500ms ease-in-out;
+  -o-transition: opacity 500ms ease-in-out;
+  -ms-transition: opacity 500ms ease-in-out;
+  transition: opacity 500ms ease-in-out;
 	color: {{ page.copy_colour }};
   background: {{ page.body_background_colour }};
   background-image: {{ page.background_tile }};
@@ -20,9 +25,6 @@ body {
   background-attachment: fixed;
 }
 
-i, em {
-    font-family: "Lato italic", serif;
-}
 
 a {
 	color: {{ page.copy_colour }};
@@ -1238,7 +1240,7 @@ aside  li:hover:after  {
 
 /* Force correct font loading behaviour to avoid FOUT in all browsers */
 
-.wf-loading h1,
+/*.wf-loading h1,
 .wf-loading h2,
 .wf-loading h3,
 .wf-loading h4,
@@ -1252,6 +1254,16 @@ aside  li:hover:after  {
 
   visibility: hidden;
 
+}*/
+.ie .loading h1.title,
+.wf-electrolize-n4-loading h1,
+.wf-loading h1{
+
+  visibility: hidden;
+
+}
+.ie  h1.title{
+  visibility: visible;
 }
 
 .narrowScreen header{
