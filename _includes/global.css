@@ -200,6 +200,7 @@ header h1:after {
   transform: {{ page.svg_title_rotation }};
 }
 
+
 header a,
 header a:hover,
 header a:focus,
@@ -1264,6 +1265,18 @@ aside  li:hover:after  {
 .narrowScreen header h1 {
   font-size: 20px;
   padding: 11px;
+  padding-right:{{ page.logo_width | divided_by:3 }}px;
+  background: url(./svg/{{ page.svg_asset }}) no-repeat  97% 5px;
+  background-size: 21%;
+  -webkit-filter: {{ page.svg_title_filter }};
+  -webkit-transform: {{ page.svg_title_rotation }};
+  -moz-transform: {{ page.svg_title_rotation }};
+  -ms-transform: {{ page.svg_title_rotation }};
+  -o-transform: {{ page.svg_title_rotation }};
+  transform: {{ page.svg_title_rotation }};
+}
+.narrowScreen header h1:after{
+  display:none;
 }
 
 .narrowScreen #navigation,
