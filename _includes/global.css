@@ -1267,7 +1267,7 @@ aside  li:hover:after  {
   padding: 11px;
   padding-right:{{ page.logo_width | divided_by:3 }}px;
   background: url(./svg/{{ page.svg_asset }}) no-repeat  97% 7px;
-  background-size: 21%;
+  background-size: 18%;
   -webkit-filter: {{ page.svg_title_filter }};
   -webkit-transform: {{ page.svg_title_rotation }};
   -moz-transform: {{ page.svg_title_rotation }};

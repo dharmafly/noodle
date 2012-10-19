@@ -62,7 +62,7 @@ VERSION: '1.0'
 GITHUB_PROJECT_URL: https://github.com/dharmafly/dharmafly-docs
 
 # Site theme (options: forest, ocean, horus, seagrass, sundae, slate)
-THEME: forest
+THEME: horus
 
 
 ############ Options
