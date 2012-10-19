@@ -36,8 +36,9 @@ icon_colour: "#2C3033"
 icon_stop: "#2C3033"
 icon_border: "#2C3033"
 #badge_overlay: "#88B8DC"
-badge_overlay: "rgba%28165%2C217%2C201%2C0.5%29"  #url encoded for firefox  165,217,201
-badge_border: "%23E4E8EA"  #url encoded for firefox
+badge_overlay: "rgba(165,217,201,0.5)"  
+badge_border: "E4E8EA"  
+badge_border_hover: "ffffff"  
 
 # logo area
 

@@ -882,24 +882,24 @@ aside:after {
 aside li  a,
 aside li  span,
 .buttons .badge span {
-  width: 3em;
+  width: 50px;
   height: 0em;
-  border: 0.62em solid {{ page.content_hover_colour }};
-  border-radius: 3em;
+  border: 7px solid {{ page.content_hover_colour }};
+  border-radius: 50px;
+  padding-top: 50px;
   -webkit-transition: border-color 0.3s ease-out;
   -moz-transition: border-color 0.3s ease-out;
   -ms-transition: border-color 0.3s ease-out;
   -o-transition: border-color 0.3s ease-out;
   transition: border-color 0.3s ease-out;
   overflow: hidden;
-  padding-top: 3.025em;
   display:block;
   background: url(./img/icon-sprite.png) no-repeat;
 }
 aside li  a,
 aside li  span{
   -webkit-filter: grayscale(1);
-  filter:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter%20id%3D%22desaturate%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%3C/filter%3E%3C/svg%3E#desaturate);
+  filter:/*url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter%20id%3D%22desaturate%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%3C/filter%3E%3C/svg%3E#desaturate);*/
 }
 
 
@@ -937,9 +937,11 @@ aside li:after ,
 .buttons .badge:after {
   content: "";
   display: block;
-  width: 4.25em;
-  height: 4.25em;
-  background: url('data:image/svg+xml,%3Csvg%20width%3D%2278%22%20height%3D%2278%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Ccircle%20fill%3D%22{{ page.badge_overlay }}%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%2210%22%20cx%3D%2234%22%20cy%3D%2234%22%20r%3D%2229%22/%3E%3C/svg%3E') no-repeat left top;
+  width: 64px;
+  height: 64px;
+  background: url('data:image/svg+xml,<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg"><circle fill="{{ page.badge_overlay }}" stroke="#{{ page.badge_border_hover }}" stroke-width="6" cx="32" cy="32" r="29"/></svg>') no-repeat left top;
+  /*background: url('data:image/svg+xml,%3Csvg%20width=%2264%22%20height=%2264%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3Ccircle%20fill=%22{{ page.badge_overlay }}%22%20stroke=%22#{{ page.badge_border_hover }}%22%20stroke-width=%226%22%20cx=%2232%22%20cy=%2232%22%20r=%2229%22/%3E%3C/svg%3E') no-repeat left top;*/
+  background-size: 100%;
   opacity: 1;
   transition: opacity .25s ease-in-out;
   -moz-transition: opacity .25s ease-in-out;
@@ -952,7 +954,6 @@ aside li:after ,
   pointer-events: none;
 }
 
-
 .buttons .badge:after {
   width: 2.75em;
   height: 2.75em;
@@ -962,7 +963,7 @@ aside li:after ,
 }
 
 
-.ltIE9 aside li:after {
+.ie aside li:after {
   display: none;
   background-color: transparent;
 }
@@ -1207,8 +1208,8 @@ aside  li:hover:after  {
     }
     
     aside li:after {
-      /*background: url('data:image/svg+xml;utf-8,<svg width="78" height="78" xmlns="http://www.w3.org/2000/svg"><circle fill="{{ page.badge_overlay }}" stroke="{{ page.content_bg_colour }}" stroke-width="10" cx="34" cy="34" r="29"/></svg>') no-repeat left top;*/
-      background: url('data:image/svg+xml,%3Csvg%20width%3D%2278%22%20height%3D%2278%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Ccircle%20fill%3D%22{{ page.badge_overlay }}%22%20stroke%3D%22{{ page.badge_border }}%22%20stroke-width%3D%2210%22%20cx%3D%2234%22%20cy%3D%2234%22%20r%3D%2229%22/%3E%3C/svg%3E') no-repeat left top;
+      background: url('data:image/svg+xml,<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg"><circle fill="{{ page.badge_overlay }}" stroke="#{{ page.badge_border }}" stroke-width="8" cx="32" cy="32" r="28"/></svg>') no-repeat left top;
+      /*background: url('data:image/svg+xml,%3Csvg%20width=%2264%22%20height=%2264%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3Ccircle%20fill=%22{{ page.badge_overlay }}%22%20stroke=%22#{{ page.badge_border }}%22%20stroke-width=%228%22%20cx=%2232%22%20cy=%2232%22%20r=%2228%22/%3E%3C/svg%3E') no-repeat left top;*/
     }
 
 }
