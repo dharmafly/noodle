@@ -177,6 +177,30 @@ h1.title {
 	font-family: {{ page.font }}, "Helvetica Neue", sans-serif;
 }
 
+header h1:after {
+  position: absolute;
+  content: '';
+  top: 10px;
+  right: 10px;
+  width: {{ page.logo_width | divided_by:3 }}px;
+  height: {{ page.logo_height | divided_by:3 }}px;
+  padding:0;
+  background-image: url(./svg/{{ page.svg_asset }});
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  background-size: 100%;
+  background-origin: padding-box;
+  background-color: transparent;
+  
+  -webkit-filter: {{ page.svg_title_filter }};
+  -webkit-transform: {{ page.svg_title_rotation }};
+  -moz-transform: {{ page.svg_title_rotation }};
+  -ms-transform: {{ page.svg_title_rotation }};
+  -o-transform: {{ page.svg_title_rotation }};
+  transform: {{ page.svg_title_rotation }};
+}
+
+
 header a,
 header a:hover,
 header a:focus,
@@ -1040,26 +1064,12 @@ aside  li:hover:after  {
   }
   
   header h1:after {
-    position: absolute;
-    content: '';
     top: 0;
     right: 0;
     width: {{ page.logo_width }}px;
     height: {{ page.logo_height }}px;
     padding:{{ 160 | minus:page.logo_height }}px 4px 10px 0;
-    background-image: url(./svg/{{ page.svg_asset }});
-    background-repeat: no-repeat;
-    background-position: bottom right;
     background-size: 100%;
-    background-origin: padding-box;
-    background-color: transparent;
-    
-    -webkit-filter: {{ page.svg_title_filter }};
-    -webkit-transform: {{ page.svg_title_rotation }};
-    -moz-transform: {{ page.svg_title_rotation }};
-    -ms-transform: {{ page.svg_title_rotation }};
-    -o-transform: {{ page.svg_title_rotation }};
-    transform: {{ page.svg_title_rotation }};
   }
   
   header h1.long-title {
@@ -1255,6 +1265,18 @@ aside  li:hover:after  {
 .narrowScreen header h1 {
   font-size: 20px;
   padding: 11px;
+  padding-right:{{ page.logo_width | divided_by:3 }}px;
+  background: url(./svg/{{ page.svg_asset }}) no-repeat  97% 7px;
+  background-size: 18%;
+  -webkit-filter: {{ page.svg_title_filter }};
+  -webkit-transform: {{ page.svg_title_rotation }};
+  -moz-transform: {{ page.svg_title_rotation }};
+  -ms-transform: {{ page.svg_title_rotation }};
+  -o-transform: {{ page.svg_title_rotation }};
+  transform: {{ page.svg_title_rotation }};
+}
+.narrowScreen header h1:after{
+  display:none;
 }
 
 .narrowScreen #navigation,
