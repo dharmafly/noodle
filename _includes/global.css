@@ -939,8 +939,8 @@ aside li:after ,
   display: block;
   width: 64px;
   height: 64px;
-  background: url('data:image/svg+xml,<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg"><circle fill="{{ page.badge_overlay }}" stroke="#{{ page.badge_border_hover }}" stroke-width="6" cx="32" cy="32" r="29"/></svg>') no-repeat left top;
-  /*background: url('data:image/svg+xml,%3Csvg%20width=%2264%22%20height=%2264%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3Ccircle%20fill=%22{{ page.badge_overlay }}%22%20stroke=%22#{{ page.badge_border_hover }}%22%20stroke-width=%226%22%20cx=%2232%22%20cy=%2232%22%20r=%2229%22/%3E%3C/svg%3E') no-repeat left top;*/
+  /*background: url('data:image/svg+xml,<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg"><circle fill="{{ page.badge_overlay }}" stroke="#{{ page.badge_border_hover }}" stroke-width="6" cx="32" cy="32" r="29"/></svg>') no-repeat left top;*/
+  background: url('data:image/svg+xml,%3Csvg%20width=%2264%22%20height=%2264%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3Ccircle%20fill=%22{{ page.badge_overlay }}%22%20stroke=%22%23{{ page.badge_border_hover }}%22%20stroke-width=%226%22%20cx=%2232%22%20cy=%2232%22%20r=%2229%22/%3E%3C/svg%3E') no-repeat left top;
   background-size: 100%;
   opacity: 1;
   transition: opacity .25s ease-in-out;
@@ -1208,8 +1208,8 @@ aside  li:hover:after  {
     }
     
     aside li:after {
-      background: url('data:image/svg+xml,<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg"><circle fill="{{ page.badge_overlay }}" stroke="#{{ page.badge_border }}" stroke-width="8" cx="32" cy="32" r="28"/></svg>') no-repeat left top;
-      /*background: url('data:image/svg+xml,%3Csvg%20width=%2264%22%20height=%2264%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3Ccircle%20fill=%22{{ page.badge_overlay }}%22%20stroke=%22#{{ page.badge_border }}%22%20stroke-width=%228%22%20cx=%2232%22%20cy=%2232%22%20r=%2228%22/%3E%3C/svg%3E') no-repeat left top;*/
+      /*background: url('data:image/svg+xml,<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg"><circle fill="{{ page.badge_overlay }}" stroke="#{{ page.badge_border }}" stroke-width="8" cx="32" cy="32" r="28"/></svg>') no-repeat left top;*/
+      background: url('data:image/svg+xml,%3Csvg%20width=%2264%22%20height=%2264%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3Ccircle%20fill=%22{{ page.badge_overlay }}%22%20stroke=%22%23{{ page.badge_border }}%22%20stroke-width=%228%22%20cx=%2232%22%20cy=%2232%22%20r=%2228%22/%3E%3C/svg%3E') no-repeat left top;
     }
 
 }
