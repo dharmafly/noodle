@@ -492,6 +492,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     window.addEventListener('load', function(){
       $.publish('subnavSqueezed', isSubnavSqueezed());
       setLogoPosition();
+      document.body.classList.remove('loading');
     });
     
     /* document.body.addEventListener('orientationchange', function(){
@@ -529,14 +530,14 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     });
     
     // -------
-    
     setPermalinkTopOffset();
-    
   }
   
   // Initialise after feature detection
   if (document.querySelectorAll && document.body.classList) {
     init();
+  }else{
+    document.body.className = document.body.className.replace( /(?:^|\s)loading(?!\S)/g , '' );
   }
   
   

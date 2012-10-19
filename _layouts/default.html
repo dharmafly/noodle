@@ -47,14 +47,14 @@
     <!--[if lt IE 9]>
         <script src="{{ relative_path }}/javascript/html5shiv.js"></script>
     <![endif]-->
-    <link href="{{ relative_path }}/css/fonts/{{ site.THEME }}.css" rel="stylesheet">
+    {% include fonts.liquid %}
     <link href="{{ relative_path }}/css/{{ site.THEME }}.css" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="{{ relative_path }}/img/{{ site.THEME }}-favicon.ico">
     <link rel="icon" type="image/ico" href="{{ relative_path }}/img/{{ site.THEME }}-favicon.ico">
     <link rel="apple-touch-icon" href="{{ relative_path }}/img/{{ site.THEME }}-apple-touch-icon.png">
   </head>
   
-  <body>
+  <body class="loading">
     <header>
       <h1 class="title">
         <a href="{{ page_path }}">
