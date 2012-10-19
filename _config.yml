@@ -2,25 +2,25 @@
 # master _config.yml
 
 # The project
-PROJECT_NAME: Dharmafly Docs
+project_name: Dharmafly Docs
 # Version number as a string
-VERSION: '1.0'
-GITHUB_PROJECT_URL: https://github.com/dharmafly/dharmafly-docs
+version: '1.0'
+project_url: https://github.com/dharmafly/dharmafly-docs
 
-THEME: forest
-DOWNLOAD_LINKS:
-TWITTER_PROJECT_URL:
-LANG:
-SCRIPTS:
-QUOTE:
-GA_ID:
+theme: forest
+download_links:
+twitter_url:
+lang:
+scripts:
+quote:
+ga_id:
 sections:
  - path: /index.html
    name: Overview
  - path: /reference/index.html
    name: Reference
 
-DOWNLOAD_LINKS:
+download_links:
   - text: Dharmafly Docs
     subtext: v{{ version }}
     href: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages

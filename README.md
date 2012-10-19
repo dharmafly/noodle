@@ -201,9 +201,9 @@ On first building the documentation site using the command line tool, you will n
 Site variables are in the following format (YAML)
 
     # Your project's details
-    PROJECT_NAME: Project Name
-    VERSION: 1.0
-    GITHUB_PROJECT_URL: https://github.com/dharmafly/your-project
+    project_name: Project Name
+    version: 1.0
+    project_url: https://github.com/dharmafly/your-project
 
 There are many more optional variables that can be updated:
 
@@ -242,7 +242,7 @@ The language icon is on the top right hand side of the main content under the gi
 To change the language icon, edit your [`_config-local.yml`](#site-variables-1)
 
     # javascript, css or html5
-    LANG: javascript
+    lang: javascript
 
 There are icons for JavaScript, CSS and HTML5.
 
@@ -253,7 +253,7 @@ Adding your project code to the page
 
 To add your own JavaScript files to the page to be available to the code blocks, edit your [`_config-local.yml`](#site-variables-1):
 
-    SCRIPTS:
+    scripts:
     - src: https://raw.github.com/dharmafly/jquery.promises/master/image.js
     - src: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
 
@@ -267,7 +267,7 @@ Adding a link to your twitter account
 
 If your project has a twitter account, you can add a link to it in your [`_config-local.yml`](#site-variables-1).
 
-    TWITTER_PROJECT_URL: https://twitter.com/dharmafly
+    twitter_url: https://twitter.com/dharmafly
 
 An icon will appear on the right hand side under the github icon for your project.
 
@@ -284,7 +284,7 @@ Deprecated:
 There is now the facility to add mutiple download buttons to your site (for example for minified code, or older versions).
 
 ```
-DOWNLOAD_LINKS:
+download_links:
   - text: Dharmafly Docs
     subtext: v{{ version }}
     href: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
@@ -295,14 +295,14 @@ DOWNLOAD_LINKS:
     title: minified, gzipped
 ```
 
-The subtext will appear next to the main text of the link. `subtext` can take any text, the tag `{{ version }}` will be replaced with the value of your site's `VERSION` variable.
+The subtext will appear next to the main text of the link. `subtext` can take any text, the tag `{{ version }}` will be replaced with the value of your site's `version` variable.
 
 Adding a quote to your project
 ------------------------------
 
 If you have a quote that sums up the ideas in your project, you can optionally add it by editing your [`_config-local.yml`](#site-variables-1).
 
-    QUOTE:
+    quote:
       quote: Promises are the uniquely human way of ordering the future, making it predictable and reliable to the extent that this is humanly possible.
       cite: Hannah Arendt
 
@@ -311,13 +311,13 @@ Including Google Analytics tracking
 
 Add your Google Analytics web property ID (in the form 'UA-XXXXX-X') within `_config.yml`. E.g.
 
-    GA_ID: UA-XXXXX-X
+    ga_id: UA-XXXXX-X
 
 
 Changing the project colourscheme
 -------------------------------------------
 
-In your [`_config-local.yml`](#site-variables-1), update the `THEME` variable. Options: `forest`, `ocean`, `horus`, `seagrass`, `sundae` and `slate`.
+In your [`_config-local.yml`](#site-variables-1), update the `theme` variable. Options: `forest`, `ocean`, `horus`, `seagrass`, `sundae` and `slate`.
 
 Formatting your posts
 ====================

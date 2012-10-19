@@ -48,18 +48,18 @@ layout: default
 
         <section>
             <h1><a id="download" class="permalink" href="#download">&#9875;</a> Download</h1>
-            <p><a href="{{ site.GITHUB_PROJECT_URL }}" target="_blank">Star the project</a> on GitHub, or {% if site.GITHUB_ZIP_URL %}<a target="_blank" href="{{ site.GITHUB_ZIP_URL }}">{% endif %}download it{% if site.GITHUB_ZIP_URL %}</a>{% endif %}:</p>
+            <p><a href="{{ site.project_url }}" target="_blank">Star the project</a> on GitHub, or {% if site.GITHUB_ZIP_URL %}<a target="_blank" href="{{ site.GITHUB_ZIP_URL }}">{% endif %}download it{% if site.GITHUB_ZIP_URL %}</a>{% endif %}:</p>
 
         	<p class="buttons">
                 {% assign version = '{{ version }}' %}
-                <a class="badge github" href="{{ site.GITHUB_PROJECT_URL }}" title="{{ site.PROJECT_NAME }} on GitHub" target="_blank"><span>{{ site.PROJECT_NAME }} on GitHub</span></a>
+                <a class="badge github" href="{{ site.project_url }}" title="{{ site.project_name }} on GitHub" target="_blank"><span>{{ site.project_name }} on GitHub</span></a>
                 {% if site.GITHUB_ZIP_URL %}
-                  <a class="button" href="{{ site.GITHUB_ZIP_URL }}" target="_blank">{{ site.PROJECT_NAME }} <span class="subtext">v{{ site.VERSION }}</span></a>
+                  <a class="button" href="{{ site.GITHUB_ZIP_URL }}" target="_blank">{{ site.project_name }} <span class="subtext">v{{ site.version }}</span></a>
                 {% endif %}
-                {% for link in site.DOWNLOAD_LINKS %}
+                {% for link in site.download_links %}
                   <a class="button" href="{{ link.href }}" target="_blank"{% if link.title %} title="{{ link.title }}"{% endif %}>
                     {{ link.text }}
-                    {% if link.subtext %}<span class="subtext">{{link.subtext | replace:version,site.VERSION }}</span>{% endif %}
+                    {% if link.subtext %}<span class="subtext">{{link.subtext | replace:version,site.version }}</span>{% endif %}
                   </a>
                 {% endfor %}      
             </p>
