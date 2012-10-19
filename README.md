@@ -172,7 +172,7 @@ Take the `src` property's `url` attribute and download the WOFF file. Store this
 - `svg_asset` specifies the main SVG element used on the page. It will refer to your main SVG file within `/css/svg`.
 - `svg_title_filter` and `svg_title_rotation` allow you to apply a filter and rotation to the `svg_asset` within the main title area.
 - The size and rotation of the main SVG element as applied to the bottom left of the content area can be updated using `svg_asset_size` and `svg_asset_rotation`.
-- There are two scaled versions of the main SVG element above the `QUOTE` (as specified in `_config.yml`), if present. 
+- There are two scaled versions of the main SVG element above the `quote` (as specified in `_config.yml`), if present. 
 
 ```
 quote_svg_left_transform: none

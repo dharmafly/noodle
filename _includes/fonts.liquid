@@ -2,8 +2,8 @@
     WebFontConfig = {
         custom: { 
           families: [
-              'Lato:400,700:latin',
-              {% case site.THEME %} 
+              'Lato:400,700,400italic:latin',
+              {% case site.theme %} 
               {% when 'ocean' %}'Advent+Pro::latin',
               {% when 'horus' %}'Megrim::latin',
               {% when 'seagrass' %}'Zeyada::latin',
@@ -13,7 +13,7 @@
               {% endcase %} 'Ubuntu+Mono::latin'
           ],
           urls: [ 
-            '{{ relative_path }}/css/fonts/{{ site.THEME }}.css'
+            '{{ relative_path }}/css/fonts/{{ site.theme }}.css'
           ] 
         }
     };

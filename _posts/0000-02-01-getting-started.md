@@ -2,7 +2,7 @@
 category: overview
 heading: Getting Started
 ---
-Starting with {{ site.PROJECT_NAME }}
+Starting with {{ site.project_name }}
 =====================
 
 If a project has a website hosted on github pages it will have a gh-pages branch.

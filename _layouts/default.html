@@ -30,7 +30,7 @@
       {% for section in sections %}
         {% if page.url == section.path %} 
           {% if page.url != '/index.html' %}  {{ section.name }} : {% endif %}
-          {{ site.PROJECT_NAME }}
+          {{ site.project_name }}
         {% endif %}
       {% endfor %}
     </title>
@@ -48,17 +48,17 @@
         <script src="{{ relative_path }}/javascript/html5shiv.js"></script>
     <![endif]-->
     {% include fonts.liquid %}
-    <link href="{{ relative_path }}/css/{{ site.THEME }}.css" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" href="{{ relative_path }}/img/{{ site.THEME }}-favicon.ico">
-    <link rel="icon" type="image/ico" href="{{ relative_path }}/img/{{ site.THEME }}-favicon.ico">
-    <link rel="apple-touch-icon" href="{{ relative_path }}/img/{{ site.THEME }}-apple-touch-icon.png">
+    <link href="{{ relative_path }}/css/{{ site.theme }}.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="{{ relative_path }}/img/{{ site.theme }}-favicon.ico">
+    <link rel="icon" type="image/ico" href="{{ relative_path }}/img/{{ site.theme }}-favicon.ico">
+    <link rel="apple-touch-icon" href="{{ relative_path }}/img/{{ site.theme }}-apple-touch-icon.png">
   </head>
   
   <body class="loading">
     <header>
       <h1 class="title">
         <a href="{{ page_path }}">
-        {{ site.PROJECT_NAME }}
+        {{ site.project_name }}
         </a>
       </h1>
     </header>
@@ -81,12 +81,12 @@
     <section class="content">
     {{ content }}
 
-    {% if site.QUOTE.quote %}
+    {% if site.quote.quote %}
       <section class="quote">
         <blockquote>
-            {{ site.QUOTE.quote }}
+            {{ site.quote.quote }}
         </blockquote>
-        <cite>{{ site.QUOTE.cite }}</cite>
+        <cite>{{ site.quote.cite }}</cite>
       </section>
     {% endif %}
     </section>
@@ -120,14 +120,14 @@
     <script src="{{ relative_path }}/javascript/hijs.js"></script>
     <script src="{{ relative_path }}/javascript/demo.js"></script>
 
-    {% for script in site.SCRIPTS %}
+    {% for script in site.scripts %}
     <script src="{{ script.src }}"></script>
     {% endfor %}      
 
-    {% if site.GA_ID %}
+    {% if site.ga_id %}
     <script>
       var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', '{{ site.GA_ID }}']);
+      _gaq.push(['_setAccount', '{{ site.ga_id }}']);
       _gaq.push(['_trackPageview']);
 
       (function() {
