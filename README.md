@@ -1,10 +1,11 @@
-node-scrape-query-language
-==========================
+noodle
+======
 
-nsql is a server which can be queried to scrape pages from a client side browser.
-It uses the jQuery query selector or [JSONSelect](http://jsonselect.org/#tryit) 
-to extract information from web pages and returns the data in JSON. The server 
-supports JSONP (?callback=foo) and POST.
+noodle is a server which can be queried to scrape pages from a client side 
+browser. It uses the jQuery query selector or 
+[JSONSelect](http://jsonselect.org/#tryit) to extract information from web 
+pages and returns the data in JSON. The server supports JSONP (?callback=foo) 
+and POST.
 
 In your call to the server you just specify your query(s) and recieve your data 
 back in JSON.
@@ -17,25 +18,25 @@ Features
 - Multiple queries can be made per request
 - In memory caching
 
-[Try it out!](http://dharmafly.github.com/nsql/#try-it-out)
+[Try it out!](http://dharmafly.github.com/noodle/#try-it-out)
 
 Getting started
 ---------------
 
 Setup
 
-    $ git clone https://github.com/dharmafly/nsql.git
-    $ cd nsql
+    $ git clone https://github.com/dharmafly/noodle.git
+    $ cd noodle
     $ npm install
 
 Start the server by running the binary
 
-    $ bin/nsql-server
+    $ bin/noodle-server
      Server running on port 8888
 
 You may specify a port number as a command line argument
 
-    $ bin/nsql-server 9090
+    $ bin/noodle-server 9090
      Server running on port 9090
 
 Usage
@@ -59,8 +60,8 @@ jQuery.param(query);
 
 ### with POST
 
-You can also POST your query as json (`application/json`) to the nsql server. 
-This is preferable if your request is too large or you're talking to nsql from 
+You can also POST your query as json (`application/json`) to the noodle server. 
+This is preferable if your request is too large or you're talking to noodle from 
 another server.
 
 ### Writing a query
@@ -103,7 +104,7 @@ always assumed.
 Having `"html"` or `"innerHTML"` as the `extract` value will return the
 containing HTML within that element.
 
-Having `"text"` as the `extract` value will return only the text. nsql will 
+Having `"text"` as the `extract` value will return only the text. noodle will 
 strip out any new line characters found in the text.
 
 Return data looks like this:
@@ -208,8 +209,8 @@ Response:
 
 ### Errors
 
-nsql fails silently and assumes error handling to be handled by the client side.
-Consider the following JSON response to a partially incorrect query.
+noodle fails silently and assumes error handling to be handled by the client 
+side. Consider the following JSON response to a partially incorrect query.
 
 Query:
 
