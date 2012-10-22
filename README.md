@@ -1,9 +1,10 @@
 node-scrape-query-language
 ==========================
 
-nsql is a server which can be used to scrape pages from a client side browser.
-It uses the jQuery query selector to extract information from web pages and
-returns the data in JSON. The server supports JSONP (?callback=foo) and POST.
+nsql is a server which can be queried to scrape pages from a client side browser.
+It uses the jQuery query selector or [JSONSelect](http://jsonselect.org/#tryit) 
+to extract information from web pages and returns the data in JSON. The server 
+supports JSONP (?callback=foo) and POST.
 
 In your call to the server you just specify your query(s) and recieve your data 
 back in JSON.
@@ -11,9 +12,9 @@ back in JSON.
 Features
 --------------
 
-- Cross domain DOM querying
-- JSONP and JSON POST
-- Multiple queries per request
+- Cross domain DOM or JSON document querying
+- Supports querying via JSONP and JSON POST
+- Multiple queries can be made per request
 - In memory caching
 
 [Try it out!](http://dharmafly.github.com/nsql/#try-it-out)
@@ -64,19 +65,40 @@ another server.
 
 ### Writing a query
 
-A simple query looks like this:
+A simple query to a DOM document looks like this:
 
 ```JSON
 {
   "url": "http://chrisnewtn.com",
   "selector": "ul.social li a",
-  "extract": "href"
+  "extract": "href",
+  "type": "html"
 }
 ```
 
+The `type` property is used to tell noodle if you are wanting to scrape a html 
+page or a json document. If no type is specified then a html page will be 
+assumed.
+
+A similar query can be constructed to extract information from a JSON document.
+JSONSelect is used as the underlying library to do this. It supports common CSS3 
+selector functionality. You can [familiarize yourself with it here.](http://jsonselect.org/#tryit)
+
+```JSON
+{
+  "url": "https://search.twitter.com/search.json?q=friendship"
+  "selector: ".results .from_user",
+  "type": "json"
+}
+```
+
+An `extract` property is not needed for a query on JSON documents.
+
 #### Extracting data
 
-The `extract` property could be the HTML element's attribute.
+The `extract` property could be the HTML element's attribute. This property 
+should be ommitted when selecting from a JSON Document as the node value is 
+always assumed.
 
 Having `"html"` or `"innerHTML"` as the `extract` value will return the
 containing HTML within that element.
@@ -135,7 +157,8 @@ Response:
 
 #### Multiple queries per request
 
-Multiple queries can be made per request to the server.
+Multiple queries can be made per request to the server. You can mix between 
+both `html` type queries or `json` type queries in the same request.
 
 ```JSON
 [
