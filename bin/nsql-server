@@ -76,5 +76,5 @@ function finish (res, params) {
 
 
 http.createServer(app).listen(port, function () {
-  console.log('nsql serving on ' + port);
+  console.log('noodle serving on ' + port);
 });
