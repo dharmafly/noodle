@@ -87,7 +87,7 @@ selector functionality. You can [familiarize yourself with it here.](http://json
 ```JSON
 {
   "url": "https://search.twitter.com/search.json?q=friendship",
-  "selector: ".results .from_user",
+  "selector": ".results .from_user",
   "type": "json"
 }
 ```
