@@ -143,8 +143,6 @@ If no `selector` is specified than the entire document is returned:
 }
 ```
 
-Note the value of the document is not held in an array.
-
 #### Multiple extract rules
 
 It is also possible to request multiple properties to extract in one query via
