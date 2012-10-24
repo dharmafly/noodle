@@ -126,6 +126,8 @@ Return data looks like this:
 Having no specific extract rule will assume a default of extracting `"html"` 
 from the `selector`.
 
+##### Getting full JSON or HTML documents
+
 If no `selector` is specified than the entire document is returned:
 
 ```JSON
@@ -136,9 +138,12 @@ If no `selector` is specified than the entire document is returned:
 
 ```JSON
 {
-  "results": ["<full document contents>"]
+  "results": "<full document contents>",
+  "created": "2012-10-24T15:37:29.796Z"
 }
 ```
+
+Note the value of the document is not held in an array.
 
 #### Multiple extract rules
 
