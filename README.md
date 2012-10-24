@@ -161,6 +161,8 @@ Response:
 Multiple queries can be made per request to the server. You can mix between 
 both `html` type queries or `json` type queries in the same request.
 
+noodle will respond in an array if you send your queries as an array.
+
 ```JSON
 [
   {
@@ -209,8 +211,33 @@ Response:
 
 ### Errors
 
-noodle fails silently and assumes error handling to be handled by the client 
-side. Consider the following JSON response to a partially incorrect query.
+noodle aims to give errors for possible the use cases were a query does not yield 
+any results.
+
+Each error is specific to one result object and are contained in the `error` 
+property with a string message.
+
+Example:
+
+```JSON
+{
+        "results": [],
+        "error": "Page not found"
+}
+```
+
+**Caught errors**
+
+- `'Page not found'` &mdash; when the provided url does not lead to a resource.
+- `'Could not match with that selector'` &mdash; when the selector is left empty 
+or the results of the selector yield an empty array.
+- `'Could not parse JSON document'` &mdash; when the query type is specified as 
+`'json'` but the url provided does not point to a valid JSON document.
+
+noodle also falls silently with the `'extract'` property by ommitting any 
+extract results from the results object.
+
+Consider the following JSON response to a partially incorrect query.
 
 Query:
 
@@ -241,8 +268,8 @@ on the element.
 }
 ```
 
-If the selector is invalid or none of the extract rules match up then you will receive
-an empty array.
+If the selector is invalid or none of the extract rules match up then you 
+will receive an empty array.
 
 Query:
 
@@ -268,5 +295,8 @@ Response:
 Caching is done on a singular query basis and not per request.
 
 Cache is cleared every hour as specified in `lib/cache.js`.
+
+If a result object has a `created` field this signifies that it has been cached.
+Failed queries such from 404 errors will not be cached.
 
 A more sophisticated cache module is planned.
