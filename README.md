@@ -138,7 +138,7 @@ If no `selector` is specified than the entire document is returned:
 
 ```JSON
 {
-  "results": "<full document contents>",
+  "results": ["<full document contents>"],
   "created": "2012-10-24T15:37:29.796Z"
 }
 ```
