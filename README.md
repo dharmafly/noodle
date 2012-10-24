@@ -123,6 +123,23 @@ Return data looks like this:
 }
 ```
 
+Having no specific extract rule will assume a default of extracting `"html"` 
+from the `selector`.
+
+If no `selector` is specified than the entire document is returned:
+
+```JSON
+{
+  "url": "https://search.twitter.com/search.json?q=friendship"
+}
+```
+
+```JSON
+{
+  "results": ["<full document contents>"]
+}
+```
+
 #### Multiple extract rules
 
 It is also possible to request multiple properties to extract in one query via
