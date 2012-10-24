@@ -1,37 +1,21 @@
-#####################################
-# master _config.yml
+#########################################
+# global config
 
-# The project
-project_name: Dharmafly Docs
-# Version number as a string
-version: '1.0'
-project_url: https://github.com/dharmafly/dharmafly-docs
-
+project_name: Project site
+project_url: https://github.com/dharmafly/PROJECT-REPO
+version: '0.0.1'
 theme: forest
-download_links:
-twitter_url:
-lang:
+twitter_url: https://twitter.com/dharmafly
+lang: javascript
 scripts:
 quote:
 ga_id:
+download_links:
 sections:
  - path: /index.html
    name: Overview
  - path: /reference/index.html
    name: Reference
-
-download_links:
-  - text: Dharmafly Docs
-    subtext: v{{ version }}
-    href: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
-    title: Download zipfile 
-
-############ Deprecated 
-
-# Link from overview to reference
-REFERENCE_LINK_TEXT: 
-
-GITHUB_ZIP_URL: 
 
 ############ Jekyll options
 
@@ -48,4 +32,4 @@ baseurl:     /
 
 exclude: ['README.md', 'assets', 'FiddlerRules.farx']
 
-########### END master _config.yml ##################
+########### END global config ###########
