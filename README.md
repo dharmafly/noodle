@@ -128,13 +128,18 @@ from the `selector`.
 
 ##### Getting full JSON or HTML documents
 
-If no `selector` is specified than the entire document is returned:
+If no `selector` is specified than the entire document is returned. The 
+`extract` rule will be ignored if included.
+
+Query:
 
 ```JSON
 {
   "url": "https://search.twitter.com/search.json?q=friendship"
 }
 ```
+
+Response:
 
 ```JSON
 {
@@ -182,6 +187,8 @@ Multiple queries can be made per request to the server. You can mix between
 both `html` type queries or `json` type queries in the same request.
 
 noodle will respond in an array if you send your queries as an array.
+
+Query:
 
 ```JSON
 [
@@ -237,7 +244,7 @@ any results.
 Each error is specific to one result object and are contained in the `error` 
 property with a string message.
 
-Example:
+Response:
 
 ```JSON
 {
