@@ -1,0 +1,39 @@
+#########################################
+# project site config
+
+project_name: Project site
+project_url: https://github.com/dharmafly/PROJECT-REPO
+version: '0.0.1'
+# options: forest, ocean, horus, seagrass, sundae, slate
+theme: forest
+twitter_url: https://twitter.com/dharmafly
+# options: javascript, css, html5
+lang: javascript
+scripts:
+#  - src: //ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js
+#  - src: https://raw.github.com/dharmafly/PROJECT-REPO/master/PROJECT.js
+quote:
+- quote: Ink is better than the best memory.
+- cite: Chinese proverb
+# analytics
+ga_id: UA-34978047-5
+download_links:
+  - text: project.js
+    subtext: v{{ version }}
+    href: https://raw.github.com/dharmafly/PROJECT-REPO/master/PROJECT.js
+    title: Full source code, for use in development
+  - text: project.min.js
+    subtext: v{{ version }}
+    href: https://github.com/downloads/dharmafly/PROJECT-REPO/PROJECT.min.js
+    title: Minified, for use in production
+  - text: Edge
+    subtext: (master)
+    href: https://github.com/dharmafly/PROJECT-REPO/zipball/master
+    title: The repo's latest codebase (zip). Potentially unstable.
+sections:
+ - path: /index.html
+   name: Overview
+ - path: /reference/index.html
+   name: Reference
+
+######## END project site config ########
