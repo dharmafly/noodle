@@ -323,8 +323,10 @@ Response:
 
 Caching is done on a singular query basis and not per request.
 
-Cache is cleared every hour and has a total size of 100 recorded queries and 
-associated results in memory. This is specified in `lib/cache.js` .
+An individual query is cleared every hour. The cache itself has a total size of 
+100 recorded queries and associated results in memory. 
+
+These time values can be changed at the top of the `lib/cache.js` script.
 
 If a result object has a `created` field this signifies that it has been cached.
 Failed queries such from 404 errors will not be cached.
