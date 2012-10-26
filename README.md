@@ -238,11 +238,11 @@ Response:
 
 ### Errors
 
-noodle aims to give errors for possible the use cases were a query does not yield 
-any results.
+noodle aims to give errors for the possible use cases were a query does 
+not yield any results.
 
 Each error is specific to one result object and are contained in the `error` 
-property with a string message.
+property as a string message.
 
 Response:
 
