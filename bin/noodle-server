@@ -2,6 +2,8 @@
 
 var connect = require('connect'),
     http    = require('http'),
+    util    = require('util'),
+    config  = require('../lib/config'),
     scraper = require('../lib/scraper'),
 
     port    = process.argv[2] || 8888,
@@ -62,18 +64,38 @@ function finish (res, params) {
 
     // Results as JSONP
 
-    res.writeHead('200', {'Content-type':'text/javascript; charset=utf-8'});
+    res.writeHead('200', {
+      'Content-type': 'text/javascript; charset=utf-8',
+      'Expires': setExpiresHeader(params.results)
+    });
     res.end(callback + '(' + results + ')');
 
   } else {
 
     // Results as JSON
 
-    res.writeHead('200', {'Content-type':'application/json; charset=utf-8'});
+    res.writeHead('200', {
+      'Content-type': 'application/json; charset=utf-8',
+      'Expires': setExpiresHeader(params.results)
+    });
     res.end(results);
   }
 }
 
+function setExpiresHeader (results) {
+  results = (util.isArray(results)) ? results : [results];
+    results.sort(function (a, b) {
+    var timeA = a.created || 0,
+        timeB = b.created || 0;
+
+    return timeB - timeA;
+  });
+  if (results[0].created) {
+    return new Date(results[0].created.getTime() + config.cacheMaxTime);
+  } else {
+    return new Date();
+  }
+}
 
 http.createServer(app).listen(port, function () {
   console.log('noodle serving on ' + port);
