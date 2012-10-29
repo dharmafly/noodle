@@ -11,7 +11,7 @@ In your call to the server you just specify your query(s) and recieve your data
 back in JSON.
 
 noodle can also be used as a 
-[simple npm module](https://github.com/dharmafly/noodle#noodle-as-npm-module).
+[simple npm module](https://github.com/dharmafly/noodle#noodle-as-an-npm-module).
 
 Features
 --------------
