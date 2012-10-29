@@ -62,7 +62,7 @@ jQuery.param(query);
 
 You can also POST your query as json (`application/json`) to the noodle server. 
 This is preferable if your request is too large or you're talking to noodle from 
-another server.
+another server. However the browser [may not cache](http://stackoverflow.com/questions/626057/is-it-possible-to-cache-post-methods-in-http) these requests.
 
 ### Writing a query
 
@@ -331,6 +331,9 @@ All the mentioned time values can be changed in `lib/config.js`.
 
 If a result object has a `created` field this signifies that it has been cached.
 Failed queries such from 404 errors will not be cached.
+
+Take not however that the browser [may not cache](http://stackoverflow.com/questions/626057/is-it-possible-to-cache-post-methods-in-http) POST requests to the noodle 
+server.
 
 #### HTTP caching headers
 
