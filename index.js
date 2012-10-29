@@ -1,1 +1,1 @@
-exports.noodle = require('./lib/noodle');
+exports.scrape = require('./lib/noodle').scrape;
