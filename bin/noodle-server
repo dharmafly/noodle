@@ -91,7 +91,7 @@ function setExpiresHeader (results) {
   results = (util.isArray(results)) ? results : [results];
 
   results.sort(function (a, b) {
-    return (a.created || 0) - (b.created || 0)  
+    return (b.created || 0) - (a.created || 0);
   });
 
   // Return oldest to expire or return the present time for 
