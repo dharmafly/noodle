@@ -85,19 +85,17 @@ function finish (res, params) {
 
 function setExpiresHeader (results) {
 
-  // Normalise results to array and get the oldest 
-  // time first (sooner to expire)
+  // Normalise results to array and get the earliest 
+  // time first (last to expire)
 
   results = (util.isArray(results)) ? results : [results];
 
   results.sort(function (a, b) {
-    var timeA = a.created || 0,
-        timeB = b.created || 0;
-
-    return timeA - timeB;
+    return (a.created || 0) - (b.created || 0)  
   });
 
-  // Return soonest to expire or return the present time
+  // Return oldest to expire or return the present time for 
+  // a bad result which was not cached
 
   if (results[0].created) {
     return moment(results[0].created.getTime() + config.cacheMaxTime)
