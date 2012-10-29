@@ -347,7 +347,7 @@ noodle as an npm module
 -----------------------
 
 The main entry point to noodle's functionality is the `scrape` method. The 
-query parameter can be a query represented as an object literal of an array 
+query parameter can be a query represented as an object literal or an array 
 of queries.
 
 ```JavaScript
