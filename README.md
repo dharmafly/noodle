@@ -42,7 +42,7 @@ You may specify a port number as a command line argument
 Usage
 -----
 
-The server can accept scraping queries in a variety of ways:
+The server can accept scraping queries in 2 ways:
 
 ### with JSONP
 
@@ -321,14 +321,14 @@ Response:
 
 ### Caching
 
-Caching is done on a singular query basis and not per request.
-
-An individual query is cleared every hour. The cache itself has a total size of 
-100 recorded queries and associated results in memory. 
-
-These time values can be changed in `lib/config.js`.
+Caching is done on a singular query basis and not per request. An individual 
+query is cleared every hour. The cache itself has a total size of 100 recorded 
+queries and associated results in memory. These time values can be changed in 
+`lib/config.js`.
 
 If a result object has a `created` field this signifies that it has been cached.
 Failed queries such from 404 errors will not be cached.
 
-A more sophisticated cache module is planned.
+#### HTTP caching headers
+
+The `Expires` header is set to the oldest to expire query in a result set.
