@@ -346,7 +346,9 @@ The `Expires` header is set to the oldest to expire query in a result set.
 noodle as an npm module
 -----------------------
 
-The main entry point to noodle's functionality is the `scrape` method.
+The main entry point to noodle's functionality is the `scrape` method. The 
+query is parameter can be a query represented as an object literal of an array 
+of queries.
 
 ```JavaScript
 var noodle = require('noodle');
