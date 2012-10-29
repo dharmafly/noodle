@@ -10,6 +10,9 @@ and POST.
 In your call to the server you just specify your query(s) and recieve your data 
 back in JSON.
 
+noodle can also be used as a 
+[simple npm module](https://github.com/dharmafly/noodle#noodle-as-npm-module).
+
 Features
 --------------
 
@@ -338,3 +341,21 @@ server.
 #### HTTP caching headers
 
 The `Expires` header is set to the oldest to expire query in a result set.
+
+
+noodle as an npm module
+-----------------------
+
+The main entry point to noodle's functionality is the `scrape` method.
+
+```JavaScript
+var noodle = require('noodle');
+
+noodle.scrape(query, function (err, results) {
+  if (!err) {
+    console.log(results);
+  } else {
+    console.log(err);
+  }
+});
+```
