@@ -3,6 +3,7 @@
 var connect = require('connect'),
     http    = require('http'),
     util    = require('util'),
+    moment  = require('moment'),
     config  = require('../lib/config'),
     scraper = require('../lib/scraper'),
 
@@ -99,9 +100,11 @@ function setExpiresHeader (results) {
   // Return soonest to expire or return the present time
 
   if (results[0].created) {
-    return new Date(results[0].created.getTime() + config.cacheMaxTime);
+    return moment(results[0].created.getTime() + config.cacheMaxTime)
+            .format('ddd, D MMM YYYY HH:mm:ss') + ' GMT';
   } else {
-    return new Date();
+    return moment(new Date())
+            .format('ddd, D MMM YYYY HH:mm:ss') + ' GMT';
   }
 }
 
