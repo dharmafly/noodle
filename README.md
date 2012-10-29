@@ -1,4 +1,4 @@
-noodle
+noodle :ramen: 
 ======
 
 noodle is a server which can be queried to scrape pages from a client side 
@@ -361,6 +361,3 @@ noodle.scrape(query, function (err, results) {
   }
 });
 ```
-
----
-:ramen: 
