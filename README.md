@@ -344,20 +344,27 @@ The `Expires` header is set to the oldest to expire query in a result set.
 noodle as a node module
 =======================
 
-The main entry point to noodle's functionality is the `scrape` method. The 
+The main entry point to noodle's functionality is the `fetch` method. The 
 query parameter can be a query represented as an object or an array 
 of query objects.
 
 ```JavaScript
 var noodle = require('noodle');
 
-noodle.scrape(query, function (err, results) {
-  if (!err) {
-    console.log(results);
-  } else {
-    console.log(err);
-  }
+noodle.fetch(query, function (results) {
+  console.log(results);
 });
+```
+
+The `fetch` method also returns a promise object which can have the `then` 
+handlers attached to it.
+
+```JavaScript
+var noodle = require('noodle');
+
+noodle.scrape(query).then(function (results) {
+  console.log(results);
+})
 ```
 
 Configuration
