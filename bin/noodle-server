@@ -4,7 +4,7 @@ var connect = require('connect'),
     http    = require('http'),
     noodle  = require('../lib/noodle-middleware'),
 
-    port    = process.argv[2] || require('../lib/config').serverPort,
+    port    = process.argv[2] || 8888,
 
     app     = connect()
               .use(connect.query())
