@@ -333,8 +333,9 @@ The entire cache is cleared on a weekly basis by default.
 If a result object has a `created` field this signifies that it has been cached.
 Failed queries such from 404 errors will not be cached.
 
-Take not however that the browser [may not cache](http://stackoverflow.com/questions/626057/is-it-possible-to-cache-post-methods-in-http) POST requests to the noodle 
-server.
+Take note however that the browser 
+[may not cache](http://stackoverflow.com/questions/626057) POST requests to the 
+noodle server.
 
 #### HTTP caching headers
 
@@ -365,6 +366,22 @@ var noodle = require('noodle');
 noodle.scrape(query).then(function (results) {
   console.log(results);
 })
+```
+
+Error handling
+--------------
+
+An error parameter is not passed into the `fetch` callback as it may vary 
+which of the possible multiple queries have failed.
+
+One can look through the result set passed back for an error property instead:
+
+```JavaScript
+noodle.scrape(query).then(function (results) {
+  results.forEach(function (result) {
+    if (result.error) /*Do something*/;
+  });
+});
 ```
 
 Configuration
