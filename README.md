@@ -369,8 +369,7 @@ noodle.scrape(query).then(function (results) {
 })
 ```
 
-Error handling
---------------
+### Error handling
 
 An error parameter is not passed into the `fetch` callback as it may vary 
 which of the possible multiple queries have failed.
@@ -385,8 +384,7 @@ noodle.scrape(query).then(function (results) {
 });
 ```
 
-Configuration
--------------
+### Configuration
 
 Various settings (mostly cache related) are exposed in noodle's `config` 
 property.
