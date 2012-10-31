@@ -347,7 +347,8 @@ noodle as a node module
 
 The main entry point to noodle's functionality is the `fetch` method. The 
 query parameter can be a query represented as an object or an array 
-of query objects.
+of query objects. The same rules apply as if one were to query the server with 
+JSON (see [writing a query](https://github.com/dharmafly/noodle#writing-a-query)).
 
 ```JavaScript
 var noodle = require('noodle');
@@ -387,7 +388,8 @@ noodle.scrape(query).then(function (results) {
 Configuration
 -------------
 
-The cache settings are exposed in noodle's `config` property.
+Various settings (mostly cache related) are exposed in noodle's `config` 
+property.
 
 ```JavaScript
 var noodle = require('noodle');
