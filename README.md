@@ -11,7 +11,7 @@ In your call to the server you just specify your query(s) and recieve your data
 back in JSON.
 
 noodle can also be used as a 
-[simple npm module](https://github.com/dharmafly/noodle#noodle-as-an-npm-module).
+[node module](https://github.com/dharmafly/noodle#noodle-as-an-npm-module).
 
 Features
 --------------
@@ -330,8 +330,6 @@ recorded queries and associated results in memory.
 
 The entire cache is cleared on a weekly basis by default.
 
-All the mentioned time values can be changed in `lib/config.js`.
-
 If a result object has a `created` field this signifies that it has been cached.
 Failed queries such from 404 errors will not be cached.
 
@@ -347,8 +345,8 @@ noodle as an npm module
 -----------------------
 
 The main entry point to noodle's functionality is the `scrape` method. The 
-query parameter can be a query represented as an object literal or an array 
-of queries.
+query parameter can be a query represented as an object or an array 
+of query objects.
 
 ```JavaScript
 var noodle = require('noodle');
@@ -360,4 +358,17 @@ noodle.scrape(query, function (err, results) {
     console.log(err);
   }
 });
+```
+
+Configuration
+=============
+
+The cache settings are exposed in noodle's `config` property.
+
+```JavaScript
+var noodle = require('noodle');
+
+noodle.config.cacheMaxTime   = 60 * 60 * 1000;
+noodle.config.cacheMaxSize   = ((60 * 60 * 1000) * 24) * 7;
+noodle.config.cachePurgeTime = 124;
 ```
