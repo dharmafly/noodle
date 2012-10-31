@@ -356,8 +356,8 @@ noodle.fetch(query, function (results) {
 });
 ```
 
-The `fetch` method also returns a promise object which can have the `then` 
-handlers attached to it.
+The `fetch` method also returns a 
+[promise object](https://github.com/wookiehangover/underscore.deferred).
 
 ```JavaScript
 var noodle = require('noodle');
