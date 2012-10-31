@@ -1,0 +1,29 @@
+<svg width="367" height="128" xmlns="http://www.w3.org/2000/svg">
+ <style>.style0{
+		fill:	#0092FF;
+	}
+	.style1,
+  .style2 {
+		stroke:	#0092FF;
+		stroke-width:	5;
+		stroke-miterlimit:	10;
+		fill:	none;
+	}
+	.style2{
+		stroke-width:	3;
+	}</style>
+ <g>
+  <title>Layer 1</title>
+  <circle class="style0" cx="213" cy="9" r="7" id="svg_6"/>
+  <circle fill="none" class="style1" cx="353" cy="60" r="10" id="svg_1"/>
+  <circle fill="none" class="style1" cx="13.5" cy="88.5" r="10" id="svg_2"/>
+  <circle fill="none" class="style1" cx="170" cy="112.5" r="10" id="svg_3"/>
+  <circle fill="none" class="style2" cx="106.75" cy="112.75" r="4.5" id="svg_4"/>
+  <g class="style1" id="svg_7">
+   <path d="m172.04501,105c1.99599,-13.096 7.995,-25.776 18.09499,-35.842l4.80602,-4.805c13.57997,-13.57999 19.81001,-31.743 19.15199,-48.987" id="svg_8"/>
+   <path d="m214.85701,16c13.88197,14 34,24 55.99998,24.241l27.504,0c16.89801,-0.029 32,5 45,14" id="svg_9"/>
+   <path d="m20.167,85c21.953,-16.147 49.131,-25.869 78.46899,-25.817l15.24902,0c39.51398,0 75.078,-17.441 99.20699,-43.481" id="svg_10"/>
+  </g>
+  <path fill="black" d="m109.44501,108c8.69101,-16.847 22.97301,-30.912 41.64801,-39.12l16.79999,-7.791c16.02499,-7.073 32.629,-20.517 44.683,-40.752" class="style2" id="svg_1"/>
+ </g>
+</svg>

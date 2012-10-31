@@ -1,0 +1,79 @@
+---
+font: 'Zeyada'
+
+background_tile: none
+
+#colours
+
+overview_inverse: false
+
+copy_colour: "#00807B" 
+lowlight_background: "#399ca1" 
+lowlight_colour: "#CCe8DD"
+lowlight_border: "#86D9D2" 
+body_background_colour: "#86D9D2"
+background_mid_stop: "#86D9D2"
+link_colour: "#399ca1" 
+subnav_link_color: "#399ca1"
+subnav_hover_color: "#ffffff"
+nav_hover_color: "#86D9D2"
+content_bg_colour: "#CCe8DD"
+content_hover_colour: "#ffffff"
+nav_border_colour: "#86D9D2"
+highlight_colour: "#fff"
+greyed_out: "#b8b7b5"
+code_colour: "#9CCDD2"
+code_background: "#004946"
+button_border: "transparent"
+button_colour: "#00807B" 
+button_colour_highlight: "#399ca1"  
+button_hover_colour: "#CCe8DD"
+button_hover_highlight: "#4EC7BD"
+large_button_colour: "#B8810D"
+large_button_stop: "#D59F0D"
+large_button_highlight: "#E6C026"
+icon_colour: "#00807B"
+icon_stop: "#00807B"
+icon_border: "#00807B"
+#badge_overlay: "#88B8DC"
+badge_overlay: "rgba(204,232,221,0.5)" 
+badge_border: "CCe8DD"
+badge_border_hover: "ffffff"
+
+# logo area
+
+header_font_size: 7.2 #em
+logo_width: 325 #px
+logo_height: 97 #px
+header_bottom_space: 0 #em
+
+# svg
+
+# for main title svg
+svg_asset: node_seagrass.svg
+svg_title_filter: none
+svg_title_rotation: rotate(0deg)
+# for svg element on left hand side of content
+svg_asset_size: false
+svg_asset_rotation: -86deg
+svg_asset_left_pos: -280px
+svg_asset_contrast: 75 #%
+svg_asset_size: 100%
+# for 'wings' above quote, if present
+quote_svg_right_transform: rotate(35deg)
+quote_svg_left_transform: rotate(-35deg) scaleX(-1)
+quote_svg_left_pos: "48%"
+quote_svg_right_pos: "48.5%"
+quote_svg_right_mod: "15px"
+quote_svg_grayscale: false
+
+subnav_underline: CCe8DD
+show_subnav_icon: 86D9D2
+ 
+# svg element attaching twitter, github buttons to main content
+icon_stem: CCe8DD
+
+
+---
+
+{% include global.css %}

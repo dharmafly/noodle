@@ -1,84 +1,100 @@
 ---
 layout: default
 ---
-{% assign overview = site.categories.overview %}
+{% assign category = site.categories.overview %}
 
-{% assign relative_path  = "./" %}
-{% assign page_path  = "" %}
-
-{% if page.layout_type == 'subpage' %} 
-    {% assign relative_path  = "../" %}
-    {% assign page_path  = "../" %}
-{% endif %}
-
-            <nav id="subnav">
-                <ul>
-                {% for post in overview reversed %}
-                    {% if forloop.first %}                    
-                <li><a href="{{ page_path }}#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a></li>
-                    {% endif %}
-                {% endfor %}
-                <li><a href="{{ page_path }}#download">Download</a></li>
-                {% for post in overview reversed %}
-                    {% unless forloop.first %}
-                <li><a href="{{ page_path }}#{{ post.url | replace_first:'/','' }}">
-                    {% if post.heading %}
-                        {{ post.heading }}
-                    {% else %}
-                        {{ post.title }}
-                    {% endif %}
-                    </a></li>
-                    {% endunless %}
-                {% endfor %}
-                </ul>
-            </nav>
-            
-            {% for post in overview reversed %}
-                {% if forloop.first %}
-                    <section class="overview">
-                        <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>{{ post.title }}</h1>
-						<article class="embedded markdown">
-						{{ post.content }}
-						</article>
-                    </section>
-                {% endif %}
-            {% endfor %}
-            
-            {% include aside.liquid %}
-            
-			<section>
-				<h1><a id="download" class="permalink" href="#download">&#9875;</a> Download</h1>
-				<p>The current version of {{ site.PROJECT_NAME }} is {{ site.GITHUB_CURRENT_VERSION }} you can download it below.</p>
-				<p class="buttons">
-                    <a class="badge github" href="{{ site.GITHUB_PROJECT_URL }}" title="{{ site.PROJECT_NAME }} on Github"><span>{{ site.PROJECT_NAME }} on Github</span></a>
-                    {% if site.GITHUB_ZIP_URL %}
-					<a class="button" href="{{ site.GITHUB_ZIP_URL }}">{{ site.PROJECT_NAME }} <span class="version">v{{ site.GITHUB_CURRENT_VERSION }}</span></a>
-                    {% endif %}
-				</p>
-			</section>
-				{% for post in overview reversed %}
-          {% unless forloop.first %}
-          <section>
-            <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>
+<nav id="subnav">
+    <ul>
+    {% for post in category reversed %}
+        {% if forloop.first %}                    
+        <li>
+            <a href="{{ page_path }}#{{ post.url | replace_first:'/','' }}">{{ post.title }}</a>
+        </li>
+            {% endif %}
+        {% endfor %}
+        <li>
+            <a href="{{ page_path }}#download">Download</a>
+        </li>
+        {% for post in category reversed %}
+        {% unless forloop.first %}
+        <li>
+            <a href="{{ page_path }}#{{ post.url | replace_first:'/','' }}">
             {% if post.heading %}
                 {{ post.heading }}
             {% else %}
                 {{ post.title }}
             {% endif %}
+            </a>
+        </li>
+        {% endunless %}
+        {% endfor %}
+    </ul>
+</nav>
+
+{% for post in category reversed %}
+    {% if forloop.first %}
+        <section class="overview">
+            <h1>
+                <a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>{{ post.title }}
             </h1>
             <article class="embedded markdown">
-            {{ post.content }}
+             {{ post.content }}
             </article>
-          </section>
-          {% endunless %}
-				{% endfor %}
-            
-            {% for section in site.sections %}
-                {% if section.path == 'reference' %}
-            <section>
-                <h1><a id="reference" class="permalink" href="#reference">&#9875;</a><a href="{{ relative_path }}{{ section.path }}">{{ section.name }}</a></h1>
-                <p>{{ site.REFERENCE_LINK_TEXT }} <a href="{{ relative_path }}{{ section.path }}">{{ section.name }}</a></p>
-            </section>
+        </section>
+    {% endif %}
+{% endfor %}
+
+{% include aside.liquid %}
+
+        <section>
+            <h1><a id="download" class="permalink" href="#download">&#9875;</a> Download</h1>
+            <p><a href="{{ site.project_url }}" target="_blank">Star the project</a> on GitHub, or {% if site.GITHUB_ZIP_URL %}<a target="_blank" href="{{ site.GITHUB_ZIP_URL }}">{% endif %}download it{% if site.GITHUB_ZIP_URL %}</a>{% endif %}:</p>
+
+        	<p class="buttons">
+                {% assign version = '{{ version }}' %}
+                <a class="badge github" href="{{ site.project_url }}" title="{{ site.project_name }} on GitHub" target="_blank"><span>{{ site.project_name }} on GitHub</span></a>
+                {% if site.GITHUB_ZIP_URL %}
+                  <a class="button" href="{{ site.GITHUB_ZIP_URL }}" target="_blank">{{ site.project_name }} <span class="subtext">v{{ site.version }}</span></a>
                 {% endif %}
-            {% endfor %}
-			
+                {% for link in site.download_links %}
+                  <a class="button" href="{{ link.href }}" target="_blank"{% if link.title %} title="{{ link.title }}"{% endif %}>
+                    {{ link.text }}
+                    {% if link.subtext %}<span class="subtext">{{link.subtext | replace:version,site.version }}</span>{% endif %}
+                  </a>
+                {% endfor %}      
+            </p>
+        </section>
+
+{% for post in category reversed %}
+    {% unless forloop.first %}
+        <section>
+            <h1>
+                <a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>
+                {% if post.heading %}
+                    {{ post.heading }}
+                {% else %}
+                    {{ post.title }}
+                {% endif %}
+            </h1>
+
+            <article class="embedded markdown">
+                {{ post.content }}
+            </article>
+        </section>
+    {% endunless %}
+{% endfor %}
+
+{% comment %}
+{% for section in site.sections %}
+    {% if section.path == 'reference' %}
+        <section>
+            <h1>
+                <a id="reference" class="permalink" href="#reference">&#9875;</a><a href="{{ relative_path }}{{ section.path }}">{{ section.name }}</a>
+            </h1>
+            <p>
+                {{ site.REFERENCE_LINK_TEXT }} <a href="{{ relative_path }}{{ section.path }}">{{ section.name }}</a>
+            </p>
+        </section>
+    {% endif %}
+{% endfor %}
+{% endcomment %}
