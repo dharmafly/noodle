@@ -342,7 +342,7 @@ The `Expires` header is set to the oldest to expire query in a result set.
 
 
 noodle as an npm module
------------------------
+=======================
 
 The main entry point to noodle's functionality is the `scrape` method. The 
 query parameter can be a query represented as an object or an array 
@@ -361,14 +361,15 @@ noodle.scrape(query, function (err, results) {
 ```
 
 Configuration
-=============
+-------------
 
 The cache settings are exposed in noodle's `config` property.
 
 ```JavaScript
 var noodle = require('noodle');
 
-noodle.config.cacheMaxTime   = 60 * 60 * 1000;
-noodle.config.cacheMaxSize   = ((60 * 60 * 1000) * 24) * 7;
-noodle.config.cachePurgeTime = 124;
+noodle.config.cacheMaxTime        = 60 * 60 * 1000;
+noodle.config.cacheMaxSize        = ((60 * 60 * 1000) * 24) * 7;
+noodle.config.cachePurgeTime      = 124;
+noodle.config.defaultDocumentType = 'html';
 ```
