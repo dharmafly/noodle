@@ -1,10 +1,14 @@
----
-category: reference
+--- 
 heading: Multiple queries per request
+category: reference
 ---
 
+Multiple queries can be made per request to the server. You can mix between 
+both `html` type queries or `json` type queries in the same request.
 
-Multiple queries can be made per request to the server.
+noodle will respond in an array if you send your queries as an array.
+
+Query:
 
     [
       {
