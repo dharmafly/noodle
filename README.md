@@ -11,7 +11,7 @@ In your call to the server you just specify your query(s) and recieve your data
 back in JSON.
 
 noodle can also be used as a 
-[node module](https://github.com/dharmafly/noodle#noodle-as-an-npm-module).
+[node module](https://github.com/dharmafly/noodle#noodle-as-a-node-module).
 
 Features
 --------------
@@ -341,7 +341,7 @@ server.
 The `Expires` header is set to the oldest to expire query in a result set.
 
 
-noodle as an npm module
+noodle as a node module
 =======================
 
 The main entry point to noodle's functionality is the `scrape` method. The 
