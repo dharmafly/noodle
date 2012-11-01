@@ -1,6 +1,6 @@
 --- 
-category: reference
 heading: Multiple queries per request
+category: reference
 ---
 
 Multiple queries can be made per request to the server. You can mix between 
