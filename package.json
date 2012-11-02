@@ -10,7 +10,8 @@
     "feedparser": "0.10.7",
     "moment": "1.7.2",
     "cheerio": "0.10.1",
-    "request": "2.11.4"
+    "request": "2.11.4",
+    "q": "0.8.9"
   },
   "devDependencies": {},
   "scripts": {
