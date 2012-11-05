@@ -1,16 +1,17 @@
 #!/usr/bin/env node
 
-var connect = require('connect'),
-    http    = require('http'),
-    noodle  = require('../lib/noodle-middleware'),
+var connect  = require('connect'),
+    http     = require('http'),
+    noodlemw = require('../lib/noodle-middleware'),
 
-    port    = process.argv[2] || 8888,
+    port     = process.argv[2] || 8888,
 
-    app     = connect()
+    app      = connect()
               .use(connect.query())
               .use(connect.json())
-              .use(noodle.handle)
-              .use(noodle.finish);
+              .use(noodlemw.parseQueries)
+              .use(noodlemw.useNoodle)
+              .use(noodlemw.finish);
 
 http.createServer(app).listen(port, function () {
   console.log('noodling on ' + port);
