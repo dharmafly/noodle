@@ -11,7 +11,7 @@ var connect  = require('connect'),
               .use(connect.json())
               .use(noodlemw.parseQueries)
               .use(noodlemw.useNoodle)
-              .use(noodlemw.finish);
+              .use(noodlemw.respond);
 
 http.createServer(app).listen(port, function () {
   console.log('noodling on ' + port);
