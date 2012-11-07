@@ -16,9 +16,9 @@ noodle can also be used as a
 Features
 --------------
 
-- Cross domain DOM or JSON document querying
+- Cross domain document querying (html, json, xml feeds)
 - Supports querying via JSONP and JSON POST
-- Multiple queries can be made per request
+- Multiple queries per request
 - In memory caching
 
 [Try it out!](http://dharmafly.github.com/noodle/#try-it-out)
@@ -45,7 +45,7 @@ You may specify a port number as a command line argument
 Usage
 -----
 
-The server can accept scraping queries in 2 ways:
+The server can accept queries in 2 ways:
 
 ### with JSONP
 
@@ -102,7 +102,7 @@ An `extract` property is not needed for a query on JSON documents.
 
 The `extract` property could be the HTML element's attribute. This property 
 should be ommitted when selecting from a JSON Document as the node value is 
-always assumed.
+always assumed. This same rule applies to feed and xml types.
 
 Having `"html"` or `"innerHTML"` as the `extract` value will return the
 containing HTML within that element.
@@ -129,7 +129,7 @@ Return data looks like this:
 Having no specific extract rule will assume a default of extracting `"html"` 
 from the `selector`.
 
-##### Getting full JSON or HTML documents
+##### Getting full documents
 
 If no `selector` is specified than the entire document is returned. The 
 `extract` rule will be ignored if included.
@@ -150,6 +150,16 @@ Response:
   "created": "2012-10-24T15:37:29.796Z"
 }
 ```
+
+#### Document types and selector usage
+
+Different document types need a different type of selector to be used.
+
+- `html` requires the use of standard css dom selectors
+- `json` requires the use of JSONSelect style selectors
+- `feed` requires the use of JSONSelect style selectors
+- `xml`  requires the use of JSONSelect style selectors
+
 
 #### Multiple extract rules
 
@@ -187,9 +197,7 @@ Response:
 #### Multiple queries per request
 
 Multiple queries can be made per request to the server. You can mix between 
-both `html` type queries or `json` type queries in the same request.
-
-noodle will respond in an array if you send your queries as an array.
+different types of queries in the same request.
 
 Query:
 
@@ -256,16 +264,6 @@ Response:
 }
 ```
 
-**Caught errors**
-
-- `'Page not found'` &mdash; when the provided url does not lead to a resource.
-- `'Could not match with that selector'` &mdash; when the selector is left empty 
-or the results of the selector yield an empty array.
-- `'Invalid query type'` &mdash; when the query type specified is a document 
-format which noodle doesn't support.
-- `'Could not parse JSON document'` &mdash; when the query type is specified as 
-`'json'` but the url provided does not point to a valid JSON document.
-
 noodle also falls silently with the `'extract'` property by ommitting any 
 extract results from the results object.
 
@@ -324,6 +322,10 @@ Response:
 
 ### Caching
 
+Noodle internally has its own caching for both results and requested pages.
+
+#### Result cache
+
 Caching is done on a singular query basis and not per request. An individual 
 query is cleared every hour. The cache itself has a total size of 124 (default) 
 recorded queries and associated results in memory. 
@@ -337,6 +339,12 @@ Take note however that the browser
 [may not cache](http://stackoverflow.com/questions/626057) POST requests to the 
 noodle server.
 
+#### Page cache
+
+Noodle uses the same cache for requested pages over HTTP as the one it uses to 
+store saved results. However both caches have different configurations which 
+can be set in `lib/config.json`.
+
 #### HTTP caching headers
 
 The `Expires` header is set to the oldest to expire query in a result set.
@@ -345,21 +353,25 @@ The `Expires` header is set to the oldest to expire query in a result set.
 noodle as a node module
 =======================
 
-The main entry point to noodle's functionality is the `fetch` method. The 
-query parameter can be a query represented as an object or an array 
-of query objects. The same rules apply as if one were to query the server with 
-JSON (see [writing a query](https://github.com/dharmafly/noodle#writing-a-query)).
+The main entry point to noodle's functionality is the `fetch` method of the 
+various supported document type namespaces.
+
+The default namespaces are follow:
 
 ```JavaScript
 var noodle = require('noodle');
 
-noodle.fetch(query, function (results) {
-  console.log(results);
-});
+noodle.html;
+noodle.feed;
+noodle.json;
+noodle.xml;
 ```
 
-The `fetch` method also returns a 
-[promise object](https://github.com/wookiehangover/underscore.deferred).
+The query parameter can be a query represented as an object or an array 
+of query objects. The same rules apply as if one were to query the server with 
+JSON (see [writing a query](https://github.com/dharmafly/noodle#writing-a-query)).
+
+The `fetch` method returns a [promise object](https://github.com/kriskowal/q).
 
 ```JavaScript
 var noodle = require('noodle');
@@ -371,29 +383,45 @@ noodle.scrape(query).then(function (results) {
 
 ### Error handling
 
-An error parameter is not passed into the `fetch` callback as it may vary 
-which of the possible multiple queries have failed.
-
-One can look through the result set passed back for an error property instead:
+Noodle will fire various errors which one can listen for with the `fail()` 
+handler.
 
 ```JavaScript
-noodle.scrape(query).then(function (results) {
-  results.forEach(function (result) {
-    if (result.error) /*Do something*/;
-  });
-});
-```
+noodle.scrape(query)
+.then(function (result) {
+  console.log('The results are', results);
+})
+.fail(function (error) {
+  console.log('Uh oh, ' error.message);
+})
+
+#### Possible errors
+
+The noodle module itself emits only one error:
+
+- `"Document not found"` when a targetted url is not found.
+
+Were as the specific document type modules emit their own:
+
+- `'Could not parse XML to JSON'`
+- `'Could not parse JSON document'`
+- `'Could not match with that selector'`
+- `'Could not match with that selector or extract value'`
 
 ### Configuration
 
-Various settings (mostly cache related) are exposed in noodle's `config` 
-property.
+Various settings (mostly cache related) are exposed in `lib/config.json`.
 
-```JavaScript
-var noodle = require('noodle');
+```json
+{
+  "resultsCacheMaxTime":  3600000,
+  "resultsCachePurgeTime": 60480000,
+  "resultsCacheMaxSize":   124,
 
-noodle.config.cacheMaxTime        = 60 * 60 * 1000;
-noodle.config.cacheMaxSize        = ((60 * 60 * 1000) * 24) * 7;
-noodle.config.cachePurgeTime      = 124;
-noodle.config.defaultDocumentType = 'html';
+  "pageCacheMaxTime":      3600000,
+  "pageCachePurgeTime":    60480000,
+  "pageCacheMaxSize":      32,
+
+  "defaultDocumentType":  "html"
+}
 ```
