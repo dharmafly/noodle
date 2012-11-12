@@ -367,19 +367,64 @@ noodle.json;
 noodle.xml;
 ```
 
-The query parameter can be a query represented as an object or an array 
-of query objects. The same rules apply as if one were to query the server with 
-JSON (see [writing a query](https://github.com/dharmafly/noodle#writing-a-query)).
-
 The `fetch` method returns a [promise object](https://github.com/kriskowal/q).
 
 ```JavaScript
 var noodle = require('noodle');
 
-noodle.scrape(query).then(function (results) {
+noodle.html.fetch(query).then(function (results) {
   console.log(results);
 })
 ```
+
+The query parameter can be a query represented as an object or an array 
+of query objects. The same rules apply as if one were to query the server with 
+JSON (see [writing a query](https://github.com/dharmafly/noodle#writing-a-query)).
+
+The api also exposes lower level methods which the `fetch` methods make use of.
+These low level methods all return [promises](https://github.com/kriskowal/q).
+
+**noodle.fetch**
+
+Calling `noodle.fetch` from the noodle namespace and not the type namespace is 
+different. Instead it is used for retrieving a web document.
+
+```javascript
+noodle.fetch(url).then(function (page) {
+  console.log(page);
+});
+```
+
+**noodle.html.select**
+
+For applying one query to a html string and retrieving the results.
+
+```javascript
+noodle.html.select(html, {selector: 'title', extract: 'innerHTML'})
+.then(function (result) {
+  console.log(result);
+});
+```
+
+**noodle.json.select**
+
+For applying one query to a parsed JSON representation (object).
+
+```javascript
+var parsed = JSON.parse(json);
+noodle.html.select(parsed, {selector: '.name'})
+.then(function (result) {
+  console.log(result);
+});
+```
+
+**noodle.xml.select**
+
+Proxies too `noodle.json.select`.
+
+**noodle.feed.select**
+
+Proxies too `noodle.json.select`.
 
 ### Error handling
 
@@ -387,13 +432,14 @@ Noodle will fire various errors which one can listen for with the `fail()`
 handler.
 
 ```JavaScript
-noodle.scrape(query)
+noodle.html.fetch(query)
 .then(function (result) {
   console.log('The results are', results);
 })
 .fail(function (error) {
   console.log('Uh oh, ' error.message);
 })
+```
 
 #### Possible errors
 
