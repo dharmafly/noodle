@@ -377,9 +377,9 @@ noodle.html.fetch(query).then(function (results) {
 })
 ```
 
-The query parameter can be a query represented as an object or an array 
-of query objects. The same rules apply as if one were to query the server with 
-JSON (see [writing a query](https://github.com/dharmafly/noodle#writing-a-query)).
+The query parameter is key/value pair object. 
+The same rules apply as if one were to query the server with JSON 
+(see [writing a query](https://github.com/dharmafly/noodle#writing-a-query)).
 
 The api also exposes lower level methods which the `fetch` methods make use of.
 These low level methods all return [promises](https://github.com/kriskowal/q).
