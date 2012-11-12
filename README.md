@@ -353,7 +353,7 @@ The `Expires` header is set to the oldest to expire query in a result set.
 noodle as a node module
 =======================
 
-#### API
+### API
 
 The main entry point to noodle's functionality is the `fetch` method of the 
 various supported document type namespaces.
@@ -374,7 +374,7 @@ The `fetch` method returns a [promise object](https://github.com/kriskowal/q).
 ```JavaScript
 var noodle = require('noodle');
 
-noodle.html.fetch(query).then(function (results) {
+noodle.html.fetch(url, query).then(function (results) {
   console.log(results);
 })
 ```
@@ -471,5 +471,58 @@ Various settings (mostly cache related) are exposed in `lib/config.json`.
   "pageCacheMaxSize":      32,
 
   "defaultDocumentType":  "html"
+}
+```
+
+### Extending
+
+More noodle types can be supported by adding the name of the type in 
+`node_modules/noodle/lib/types/`.
+
+For example `node_modules/noodle/lib/types/csv.js`.
+
+A type should expose an `_init` function which accepts the main `noodle` option 
+as the parameter. You should keep hold of this reference.
+
+A type should expose at least a fetch method with the following signature and 
+should return a promise which resolves with the results.
+
+`exports.fetch = function (url, query)`
+
+Within that it is recommended you use the core `noodle.fetch` to get your page 
+so its cached.
+
+It is also recommended you expose your query algorithm to allow other developers 
+have access to it. However this is not necessary.
+
+In your algorithm do not account for multiple queries. Types are iterated over 
+by the noodle server middleware.
+
+`exports.select = function (page, query)`
+
+An example implementation could look like this:
+
+```javascript
+var q      = require('q'),
+    noodle ;
+
+exports._init = function (n) {
+  noodle = n;
+}
+
+exports.fetch = function (url, query) {
+  return noodle.fetch(url).then(function (page) {
+    return exports.select(page, query);
+  });
+}
+
+exports.select = function (page, query) {
+  var deferred = q.Defer();
+
+  /* your algorithm here
+  deferred.resolve(result);
+  */
+
+  return deferred.promise;
 }
 ```
