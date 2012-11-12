@@ -353,6 +353,8 @@ The `Expires` header is set to the oldest to expire query in a result set.
 noodle as a node module
 =======================
 
+#### API
+
 The main entry point to noodle's functionality is the `fetch` method of the 
 various supported document type namespaces.
 
