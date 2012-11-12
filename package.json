@@ -1,6 +1,6 @@
 {
   "name": "noodle",
-  "version": "0.0.1",
+  "version": "0.0.1-1",
   "description": "noodle is a proxy server which allows for cross domain DOM query or JSON selectors from a client.",
   "main": "app.js",
   "dependencies": {
@@ -11,7 +11,9 @@
     "moment": "1.7.2",
     "cheerio": "0.10.1",
     "request": "2.11.4",
-    "q": "0.8.9"
+    "q": "0.8.9",
+    "xml2json": "0.3.2",
+    "underscore":"1.4.2"
   },
   "devDependencies": {},
   "scripts": {
@@ -30,5 +32,6 @@
     "proxy"
   ],
   "author": "Dharmafly",
-  "license": "BSD"
+  "license": "BSD",
+  "subdomain": "dharmafly.noodle"
 }
