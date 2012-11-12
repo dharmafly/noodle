@@ -1,6 +1,6 @@
 --- 
-heading: Multiple extract rules
 category: reference
+heading: Multiple extract rules
 ---
 
 It is also possible to request multiple properties to extract in one query via
