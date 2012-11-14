@@ -41,7 +41,7 @@ You may specify a port number as a command line argument
      Server running on port 9090
 
 Or if you are interested in the node module just require it and 
-consult the [noodle api](http://noodlejs.com/reference/#noodle-as-module);
+consult the [noodle api](http://noodlejs.com/reference/#noodle-as-module).
 
 `var noodle = require('noodle')`
 
