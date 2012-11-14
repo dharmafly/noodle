@@ -4,9 +4,7 @@ heading: Multiple queries per request
 ---
 
 Multiple queries can be made per request to the server. You can mix between 
-both `html` type queries or `json` type queries in the same request.
-
-noodle will respond in an array if you send your queries as an array.
+different types of queries in the same request.
 
 Query:
 

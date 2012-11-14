@@ -5,7 +5,7 @@ heading: Extracting data
 
 The `extract` property could be the HTML element's attribute. This property 
 should be ommitted when selecting from a JSON Document as the node value is 
-always assumed.
+always assumed. This same rule applies to feed and xml types.
 
 Having `"html"` or `"innerHTML"` as the `extract` value will return the
 containing HTML within that element.
@@ -30,7 +30,7 @@ Return data looks like this:
 Having no specific extract rule will assume a default of extracting `"html"` 
 from the `selector`.
 
-## Getting full JSON or HTML documents
+## Getting the entire web document
 
 If no `selector` is specified than the entire document is returned. The 
 `extract` rule will be ignored if included.
@@ -46,4 +46,32 @@ Response:
     {
       "results": ["<full document contents>"],
       "created": "2012-10-24T15:37:29.796Z"
+    }
+
+## Getting the server headers
+
+noodle can proxy the requested urls server headers. Within a query include the 
+`headers` property with an array value listing the headers you wish to recieve 
+back as an object structure. `'all'` may also be used as a value to return all 
+of the server headers.
+
+Headers are treated case-insensitive and the returned property names will 
+match exactly to the string you requested with.
+
+Query:
+
+    {
+      "url": "http://github.com",
+      "headers": ["conection", "content-TYPE"]
+    }
+
+Result:
+
+    {
+      "results": [...],
+      "headers": {
+        "connection": "keep-alive",
+        "content-TYPE": "text/html"
+      }
+      "created":"2012-11-14T13:06:02.521Z"
     }

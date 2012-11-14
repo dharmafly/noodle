@@ -1,0 +1,18 @@
+--- 
+category: reference
+heading: Configuration
+---
+
+Various settings (mostly cache related) are exposed in `lib/config.json`.
+
+    {
+      "resultsCacheMaxTime":  3600000,
+      "resultsCachePurgeTime": 60480000,
+      "resultsCacheMaxSize":   124,
+
+      "pageCacheMaxTime":      3600000,
+      "pageCachePurgeTime":    60480000,
+      "pageCacheMaxSize":      32,
+
+      "defaultDocumentType":  "html"
+    }

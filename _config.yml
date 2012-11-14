@@ -1,36 +1,36 @@
 --- 
+lsi: false
+auto: false
 version: 0.0.1
+lang: javascript
+markdown: maruku
+project_name: Noodle
+theme: ocean
+quote: 
+- quote: 
+- cite: 
+server: false
+baseurl: /
+project_url: https://github.com/dharmafly/noodle
+ga_id: UA-34978047-6
+download_links: 
+- text: Edge
+  title: The repo's latest codebase (zip). Potentially unstable.
+  href: https://github.com/dharmafly/noodle/zipball/master
+  subtext: (master)
+twitter_url: https://twitter.com/dharmafly
+exclude: 
+- README.md
+- assets
+- FiddlerRules.farx
 sections: 
 - path: /index.html
   name: Overview
 - path: /reference/index.html
   name: Reference
-lsi: false
-lang: javascript
-baseurl: /
-auto: false
-project_url: https://github.com/dharmafly/noodle
-theme: ocean
-quote: 
-- quote: 
-- cite: 
-ga_id: UA-34978047-6
-server: false
-twitter_url: https://twitter.com/dharmafly
+future: true
+permalink: /:title
 scripts: 
 - src: 
-download_links: 
-- href: https://github.com/dharmafly/noodle/zipball/master
-  title: The repo's latest codebase (zip). Potentially unstable.
-  text: Edge
-  subtext: (master)
-project_name: Noodle
-permalink: /:title
-exclude: 
-- README.md
-- assets
-- FiddlerRules.farx
 safe: false
-future: true
 pygments: false
-markdown: maruku
