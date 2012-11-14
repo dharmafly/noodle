@@ -10,7 +10,7 @@ var connect  = require('connect'),
               .use(connect.query())
               .use(connect.json())
               .use(noodlemw.parseQueries)
-              .use(noodlemw.useNoodle)
+              .use(noodlemw.noodleQueries)
               .use(noodlemw.respond);
 
 http.createServer(app).listen(port, function () {
