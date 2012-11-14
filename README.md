@@ -151,6 +151,32 @@ Response:
 }
 ```
 
+#### Getting server headers
+
+noodle can proxy the requested urls server headers. Within a query include the 
+`headers` property with an array value listing the headers you wish to recieve 
+back as an object structure.
+
+Headers are treated case-insensitive and the returned property names will 
+match exactly to the string you requested with.
+
+```JSON
+{
+  "url": "http://github.com",
+  "headers": ["conection", "content-TYPE"]
+}
+```
+
+```JSON
+{
+  "results": [...],
+  "headers": {
+    "connection": "keep-alive",
+    "content-TYPE": "text/html"
+  }
+  "created":"2012-11-14T13:06:02.521Z"
+}
+
 #### Document types and selector usage
 
 Different document types need a different type of selector to be used.
@@ -355,10 +381,23 @@ noodle as a node module
 
 ### API
 
-The main entry point to noodle's functionality is the `fetch` method of the 
-various supported document type namespaces.
+The main entry point to noodle's functionality is the `query` method. This 
+method accepts a query or an array of queries as its only parameter and returns 
+a [promise](https://github.com/kriskowal/q). 
 
-The default namespaces are follow:
+```JavaScript
+var noodle = require('noodle');
+noodle.query(queries).then(function (results) {
+  console.log(results);
+})
+```
+
+The makeup of query(s) is analagous to using noodle as a web service as 
+[stated above](https://github.com/dharmafly/noodle#writing-a-query)). The 
+exception being that you supply a proper object and not JSON.
+
+For more programmability one can utilise the `fetch` method of the various 
+supported document type namespaces. These namespaces follow:
 
 ```JavaScript
 var noodle = require('noodle');
@@ -378,10 +417,6 @@ noodle.html.fetch(url, query).then(function (results) {
   console.log(results);
 })
 ```
-
-The query parameter is key/value pair object. 
-The same rules apply as if one were to query the server with JSON 
-(see [writing a query](https://github.com/dharmafly/noodle#writing-a-query)).
 
 The api also exposes lower level methods which the `fetch` methods make use of.
 These low level methods all return [promises](https://github.com/kriskowal/q).
