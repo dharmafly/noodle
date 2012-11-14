@@ -45,4 +45,7 @@ consult the [noodle api]();
 
 `var noodle = require('noodle')`
 
-# Learn it at [http://noodlejs.com/](http://noodlejs.com/)
+Learn noodle
+------------
+
+You can understand noodle fully at [http://noodlejs.com/](http://noodlejs.com/).
