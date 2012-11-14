@@ -44,3 +44,5 @@ Or if you are interested in the node module just require it and
 consult the [noodle api]();
 
 `var noodle = require('noodle')`
+
+# Learn it at [http://noodlejs.com/](http://noodlejs.com/)
