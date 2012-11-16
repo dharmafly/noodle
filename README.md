@@ -1,5 +1,5 @@
-noodle 
-======
+[noodle](http://noodlejs.com) 
+=============================
 
 noodle is a server and node module which individuals can use to query data from 
 web documents like html, json and xml feeds.
