@@ -10,8 +10,7 @@ twitter_url: https://twitter.com/dharmafly
 # options: javascript, css, html5
 lang: javascript
 scripts:
-- src: 
-  - src: //ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js
+  - src: http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js
 quote:
 - quote: 
 - cite: 
