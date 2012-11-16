@@ -1,4 +1,4 @@
---- 
+---
 category: reference
 heading: Usage as module
 ---
@@ -12,8 +12,8 @@ a [promise](https://github.com/kriskowal/q).
       console.log(results);
     });
 
-The makeup of query(s) is analagous to using noodle as a web service as 
-[stated above](https://github.com/dharmafly/noodle#writing-a-query)). The 
+The makeup of query(s) is analagous to using noodle as a web service (as 
+[stated above](http://noodlejs.com/reference/#writing-a-query)). The 
 exception being that you supply a proper object and not JSON.
 
 For more programmability one can utilise the `fetch` method of the various 

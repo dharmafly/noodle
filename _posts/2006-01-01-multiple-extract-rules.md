@@ -1,4 +1,4 @@
---- 
+---
 category: reference
 heading: Multiple extract rules
 ---

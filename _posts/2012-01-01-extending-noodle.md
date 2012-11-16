@@ -1,4 +1,4 @@
---- 
+---
 category: reference
 heading: Extending noodle
 ---
@@ -9,7 +9,8 @@ More noodle types can be supported by adding the name of the type in
 For example `node_modules/noodle/lib/types/csv.js`.
 
 A type should expose an `_init` function which accepts the main `noodle` option 
-as the parameter. You should keep hold of this reference.
+as the parameter. You should keep hold of this reference so you can make use of 
+the result cache.
 
 A type should expose at least a fetch method with the following signature and 
 should return a promise which resolves with the results.
