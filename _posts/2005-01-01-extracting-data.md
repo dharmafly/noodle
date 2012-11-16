@@ -102,8 +102,8 @@ Result:
       "headers": {
         "connection": "keep-alive",
         "link": {
-            "next": "https://api.github.com/users/premasagar/starred?page=2",
-            "last": "https://api.github.com/users/premasagar/starred?page=2"
+          "next": "https://api.github.com/users/premasagar/starred?page=2",
+          "last": "https://api.github.com/users/premasagar/starred?page=2"
         }
       },
       "created": "2012-11-16T15:48:33.866Z"

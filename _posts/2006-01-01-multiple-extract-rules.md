@@ -17,15 +17,15 @@ Query:
 Response:
 
     {
-        "results": [
-            {
-                "href": "http://twitter.com/chrisnewtn",
-                "text": "Twitter"
-            },
-            {
-                "href": "http://plus.google.com/u/0/111845796843095584341",
-                "text": "Google+"
-            }
-        ],
-        "created": "2012-08-01T16:23:41.913Z"
+      "results": [
+        {
+            "href": "http://twitter.com/chrisnewtn",
+            "text": "Twitter"
+        },
+        {
+            "href": "http://plus.google.com/u/0/111845796843095584341",
+            "text": "Google+"
+        }
+      ],
+      "created": "2012-08-01T16:23:41.913Z"
     }

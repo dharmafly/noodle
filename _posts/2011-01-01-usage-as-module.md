@@ -70,11 +70,11 @@ For applying one query to a parsed JSON representation (object).
 
 **noodle.xml.select**
 
-Proxies too `noodle.json.select`.
+Proxies to `noodle.json.select`.
 
 **noodle.feed.select**
 
-Proxies too `noodle.json.select`.
+Proxies to `noodle.json.select`.
 
 ### Error handling
 
