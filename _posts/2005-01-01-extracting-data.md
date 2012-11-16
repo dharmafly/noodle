@@ -95,16 +95,16 @@ Result:
 
     {
       "results": [
-          "JavaScript",
-          "Ruby",
-          "JavaScript",
+        "JavaScript",
+        "Ruby",
+        "JavaScript",
       ],
       "headers": {
-          "connection": "keep-alive",
-          "link": {
-              "next": "https://api.github.com/users/premasagar/starred?page=2",
-              "last": "https://api.github.com/users/premasagar/starred?page=2"
-          }
+        "connection": "keep-alive",
+        "link": {
+            "next": "https://api.github.com/users/premasagar/starred?page=2",
+            "last": "https://api.github.com/users/premasagar/starred?page=2"
+        }
       },
       "created": "2012-11-16T15:48:33.866Z"
     }
