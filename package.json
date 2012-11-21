@@ -5,7 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "connect": "~2.3.5",
-    "connect-ratelimit": "0.0.1",
+    "connect-ratelimit": "0.0.2",
     "async": "0.1.22",
     "JSONSelect": "0.4.0",
     "feedparser": "0.10.7",
