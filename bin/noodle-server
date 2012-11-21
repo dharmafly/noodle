@@ -8,7 +8,9 @@ var connect  = require('connect'),
     port     = process.argv[2] || 8888,
 
     app      = connect()
-              .use(limiter({ignore: ['127.0.0.1']}))
+              .use(limiter({
+                whitelist: ['127.0.0.1']
+              }))
               .use(connect.query())
               .use(connect.json())
               .use(noodlemw.parseQueries)
