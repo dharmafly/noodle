@@ -3,10 +3,12 @@
 var connect  = require('connect'),
     http     = require('http'),
     noodlemw = require('../lib/noodle-middleware'),
+    limiter  = require('connect-ratelimit'),
 
     port     = process.argv[2] || 8888,
 
     app      = connect()
+              .use(limiter({ignore: ['127.0.0.1']}))
               .use(connect.query())
               .use(connect.json())
               .use(noodlemw.parseQueries)
