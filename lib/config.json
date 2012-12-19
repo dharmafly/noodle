@@ -7,13 +7,7 @@
   "pageCachePurgeTime":    60480000,
   "pageCacheMaxSize":      32,
 
-  // If no query type option is supplied then 
-  // what should noodle assume
-
   "defaultDocumentType":  "html",
-
-  // How the noodle scraper identifies itself 
-  // to scrape targets
   
   "userAgent":            ""
 }
