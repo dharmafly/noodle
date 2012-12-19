@@ -10,7 +10,16 @@ var connect  = require('connect'),
     app      = connect()
               .use(limiter({
                 whitelist: ['127.0.0.1']
+                end: false
               }))
+              .use(function (req, res, next) {
+                if (res.ratelimit.exceeded) {
+                  res.statusCode = 429;
+                  res.end('{"results": [], "error": "Rate limit exceeded"}');
+                } else {
+                  next();
+                }
+              })
               .use(connect.query())
               .use(connect.json())
               .use(noodlemw.parseQueries)
