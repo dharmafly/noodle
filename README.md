@@ -19,10 +19,13 @@ Features
 - Server supports querying via JSONP and JSON POST
 - Multiple queries per request
 - Access to queried server headers
+- Allows for POSTing to scrape url
 - In memory caching
 
-Getting started
----------------
+[http://noodlejs.com/](http://noodlejs.com/).
+
+Server quick start
+------------------
 
 Setup
 
@@ -30,22 +33,24 @@ Setup
     $ cd noodle
     $ npm install
 
+or
+
+    $ npm install noodle
+
 Start the server by running the binary
 
     $ bin/noodle-server
      Server running on port 8888
 
-You may specify a port number as a command line argument
+You may specify a port number as a second argument
 
     $ bin/noodle-server 9090
      Server running on port 9090
 
-Or if you are interested in the node module just require it and 
-consult the [noodle api](http://noodlejs.com/reference/#usage-as-module).
+Noodle as a node module
+-----------------------
+
+If you are interested in the node module just require it and check out the 
+[noodle api](http://noodlejs.com/reference/#usage-as-module)  
 
 `var noodle = require('noodle')`
-
-Learn noodle
-------------
-
-You can understand noodle fully at [http://noodlejs.com/](http://noodlejs.com/).
