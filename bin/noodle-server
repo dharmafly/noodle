@@ -9,7 +9,7 @@ var connect  = require('connect'),
 
     app      = connect()
               .use(limiter({
-                whitelist: ['127.0.0.1']
+                whitelist: ['127.0.0.1'],
                 end: false
               }))
               .use(function (req, res, next) {
