@@ -24,7 +24,7 @@ It is also recommended you expose your query algorithm to allow other developers
 have access to it. However this is not necessary.
 
 In your algorithm do not account for multiple queries. Types are iterated over 
-by the noodle server middleware (by using `noodle.query`).
+by the noodle server middleware.
 
 `exports.select = function (page, query)`
 
@@ -48,7 +48,8 @@ An example implementation could look like this:
 
       /* 
         your algorithm here, dont forget to
-        deferred.resolve(result);
+        deferred.resolve(result) and/or 
+        deferred.fail(new Error("Selector was bad"))
       */
 
       return deferred.promise;
