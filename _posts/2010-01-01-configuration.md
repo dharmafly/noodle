@@ -3,10 +3,10 @@ category: reference
 heading: Configuration
 ---
 
-Various settings (mostly cache related) are exposed in `lib/config.json`.
+Various settings are exposed and can be edited in `lib/config.json`.
 
     {
-      "resultsCacheMaxTime":  3600000,
+      "resultsCacheMaxTime":   3600000,
       "resultsCachePurgeTime": 60480000,
       "resultsCacheMaxSize":   124,
 
@@ -14,5 +14,13 @@ Various settings (mostly cache related) are exposed in `lib/config.json`.
       "pageCachePurgeTime":    60480000,
       "pageCacheMaxSize":      32,
 
-      "defaultDocumentType":  "html"
+      // If no query type option is supplied then 
+      // what should noodle assume
+
+      "defaultDocumentType":  "html",
+
+      // How the noodle scraper identifies itself 
+      // to scrape targets
+      
+      "userAgent":            ""
     }
