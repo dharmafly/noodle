@@ -1,4 +1,4 @@
-Dharmafly Docs
+Satya
 ==============
 
 Contents
@@ -6,8 +6,8 @@ Contents
 
 ### Overview
 
-- [What is Dharmafly Docs for?] (#what-is-dharmafly-docs-for)
-- [What does this project contain] (#what-does-this-project-dharmafly-docs-contain)
+- [What is Satya for?] (#what-is-satya-for)
+- [What does this project contain] (#what-does-this-project-satya-contain)
 
 ### [How-to] (#how-to-1)
 
@@ -33,38 +33,38 @@ Contents
 - [Special sections] (#special-sections)
 - [Code Blocks in Posts] (#code-blocks-in-posts)
 
-### [The `dharmafly-docs` project] (#the-dharmafly-docs-project)
+### [The `satya` project] (#the-satya-project)
 
-- [How can I get bugfixes and enhancements for my `dharmafly-docs` project instance] (#how-can-i-get-bugfixes-and-enhancements-for-my-dharmafly-docs-project-instance)
+- [How can I get bugfixes and enhancements for my `satya` project instance] (#how-can-i-get-bugfixes-and-enhancements-for-my-satya-project-instance)
 - [How can I update the styling or format of all Dharmafly project websites?] (#how-can-i-update-the-styling-or-format-of-all-dharmafly-project-websites)
 - [How Can I add a new page (not a new post) to a Dharmafly project] (#how-can-i-add-a-new-page-not-a-new-post-to-a-dharmafly-project)
 - [Is there a process for automatically generating new project websites from project documentation?] (#is-there-a-process-for-automatically-generating-new-project-websites-from-project-documentation)
 - [How do I add a new icon for the coding language my project's about?] (#how-do-i-add-a-new-icon-for-the-coding-language-my-projects-about-)
 
 
-What is Dharmafly Docs for?
+What is Satya for?
 -----------------------------
 
-Dharmafly Docs should be used to create Github Pages (websites) for any Dharmafly project
+Satya should be used to create Github Pages (websites) for any Dharmafly project
 
 ### About this project
 
-Dharmafly Docs uses github's in-built Github Pages facility to build a project website.
+Satya uses github's in-built Github Pages facility to build a project website.
 
-Project documentation is automatically transformed by [Jekyll] (https://github.com/mojombo/jekyll) into a static site whenever your project's dharmafly docs repository is pushed to GitHub.
+Project documentation is automatically transformed by [Jekyll] (https://github.com/mojombo/jekyll) into a static site whenever your project's satya repository is pushed to GitHub.
 
-Dharmafly Docs itself has a project website and styleguide at [http://dharmafly.github.com/dharmafly-docs/] (http://dharmafly.github.com/dharmafly-docs/)
+Satya itself has a project website and styleguide at [http://dharmafly.github.com/satya/] (http://dharmafly.github.com/satya/)
 
-What does this project ([`dharmafly-docs`] (https://github.com/dharmafly/dharmafly-docs)) contain?
+What does this project ([`satya`] (https://github.com/dharmafly/satya)) contain?
 ------------------------------------------------------------------------
 
 This project comprises two branches: `master` and `gh-pages`.
 
-This branch (`master`) contains an empty instance of Dharmafly Docs.
+This branch (`master`) contains an empty instance of Satya.
 
-The other branch, [`gh-pages`] (https://github.com/dharmafly/dharmafly-docs/tree/gh-pages) contains a working Dharmafly project website template (which also acts as a styleguide) showing all modules you can use in your project site. 
+The other branch, [`gh-pages`] (https://github.com/dharmafly/satya/tree/gh-pages) contains a working Dharmafly project website template (which also acts as a styleguide) showing all modules you can use in your project site. 
 
-The `gh-pages` branch contains the code used in the [Dharmafly Docs website] (http://dharmafly.github.com/dharmafly-docs)
+The `gh-pages` branch contains the code used in the [Satya website] (http://dharmafly.github.com/satya)
 
 How-to
 ========
@@ -87,14 +87,13 @@ For the command line tool (satya) to operate correctly, the documentation should
 
 #### 2) Run the command line tool
 
-1. Set up a [ruby installation] (http://www.ruby-lang.org/), if you don't already have one in your environment.
-2. Follow the instructions in the [`command-line-tool`](https://github.com/dharmafly/dharmafly-docs/tree/command-line-tool) branch, to install `satya`.
-3. Run [`satya build`](https://github.com/dharmafly/dharmafly-docs/tree/command-line-tool#build) to setup Dharmafly Docs in a new gh-pages branch. 
-4. [Follow the instructions](https://github.com/dharmafly/dharmafly-docs/tree/command-line-tool#build) and create a `_config-local.yml` file to [customise your site](#site-variables-1)
+1. Follow the instructions in the [`satya-cli`](https://github.com/dharmafly/satya-cli) repository, to install `satya`.
+2. Run [`satya build`](https://github.com/dharmafly/satya-cli#build) to setup Satya in a new gh-pages branch. 
+3. [Follow the instructions](https://github.com/dharmafly/satya-cli#build) and update the generated config file to [customise your site](#site-variables-1)
 
 ### Setting up manually
 
-If you don't have access to Ruby or if the command line tool fails, then follow the steps [in the Wiki] (https://github.com/dharmafly/dharmafly-docs/wiki/Setting-up-a-Dharmafly-Docs-project-instance-manually) to setup Dharmafly Docs.
+If you don't have access to Ruby or if the command line tool fails, then follow the steps [in the Wiki] (https://github.com/dharmafly/satya/wiki/Setting-up-a-Dharmafly-Docs-project-instance-manually) to setup Satya.
 
 ### Testing your project site locally
 
@@ -165,7 +164,7 @@ The project website will either be hosted at dharmafly.github.com/project-name/ 
 
 If you are using the [command line tool] (#using-the-build-script), follow the same steps for [setting up a new project] (#2-run-the-build-script).
 
-If not, you can set up your new [project documentation manually] (https://github.com/dharmafly/dharmafly-docs/wiki/Manually-adding-posts) (not recommended).
+If not, you can set up your new [project documentation manually] (https://github.com/dharmafly/satya/wiki/Manually-adding-posts) (not recommended).
 
 Changing the domain for your project's site
 ---------------------------------------------
@@ -187,16 +186,16 @@ There are no required posts, however the first post in your `docs` directory wil
 
 It's recommended that you use the command line tool to add posts.
 
-If you are unable, you can add posts manually. [Details on the wiki] (https://github.com/dharmafly/dharmafly-docs/wiki/Manually-adding-posts)
+If you are unable, you can add posts manually. [Details on the wiki] (https://github.com/dharmafly/satya/wiki/Manually-adding-posts)
 
 Site variables
 ==================
 
-These are set in `_config-local.yml`. 
+~These are set in `/docs/.satya-config.yml`.~
 
-### `config-local.yml`
+~### `/docs/.satya-config.yml`~ Section to be updated.
 
-On first building the documentation site using the command line tool, you will need to create the `_config-local.yml` file by copying (not renaming) the `config-local.example.yml` file in your `gh-pages` branch.
+~On first building the documentation site using the command line tool, you will need to update the `/docs/.satya-config.yml` file by copying (not renaming) the `config-local.example.yml` file in your `gh-pages` branch.~
 
 Site variables are in the following format (YAML)
 
@@ -213,7 +212,7 @@ Updating the main nav
 
 ### How to rename the items in the main nav
 
-Edit your [`_config-local.yml`](#site-variables-1):
+Edit your [local config file](#site-variables-1):
 
     # Page names (paths are currently hard-coded to match directory names / site categories)
     sections:
@@ -239,7 +238,7 @@ Changing the language icon
 
 The language icon is on the top right hand side of the main content under the github and twitter icons. It's there to quickly show site visitors the main focus of the project.
 
-To change the language icon, edit your [`_config-local.yml`](#site-variables-1)
+To change the language icon, edit your [local config file](#site-variables-1)
 
     # javascript, css or html5
     lang: javascript
@@ -251,7 +250,7 @@ If your project language is not in this list, adding a new icon will require [up
 Adding your project code to the page
 ----------------------------------------
 
-To add your own JavaScript files to the page to be available to the code blocks, edit your [`_config-local.yml`](#site-variables-1):
+To add your own JavaScript files to the page to be available to the code blocks, edit your [local config file](#site-variables-1):
 
     scripts:
     - src: https://raw.github.com/dharmafly/jquery.promises/master/image.js
@@ -265,7 +264,7 @@ The examples here use files from the [jquery.promises](http://jquerypromises.com
 Adding a link to your twitter account
 -------------------------------------
 
-If your project has a twitter account, you can add a link to it in your [`_config-local.yml`](#site-variables-1).
+If your project has a twitter account, you can add a link to it in your [local config file](#site-variables-1).
 
     twitter_url: https://twitter.com/dharmafly
 
@@ -275,23 +274,23 @@ An icon will appear on the right hand side under the github icon for your projec
 Adding download buttons
 ------------------------
 
-The site will already include a link to your project. If you have a downloadable zip of your project, you can add this by editing your [`_config-local.yml`](#site-variables-1).
+The site will already include a link to your project. If you have a downloadable zip of your project, you can add this by editing your [local config file](#site-variables-1).
 
 Deprecated: 
 
-    ~~GITHUB_ZIP_URL: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages~~
+    ~~GITHUB_ZIP_URL: https://github.com/dharmafly/satya/zipball/gh-pages~~
 
 There is now the facility to add mutiple download buttons to your site (for example for minified code, or older versions).
 
 ```
 download_links:
-  - text: Dharmafly Docs
+  - text: Satya
     subtext: v{{ version }}
-    href: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
+    href: https://github.com/dharmafly/satya/zipball/gh-pages
     title: zipped
-  - text: Dharmafly Docs
+  - text: Satya
     subtext: v{{ version }}.min
-    href: https://github.com/dharmafly/dharmafly-docs/downloads
+    href: https://github.com/dharmafly/satya/downloads
     title: minified, gzipped
 ```
 
@@ -300,7 +299,7 @@ The subtext will appear next to the main text of the link. `subtext` can take an
 Adding a quote to your project
 ------------------------------
 
-If you have a quote that sums up the ideas in your project, you can optionally add it by editing your [`_config-local.yml`](#site-variables-1).
+If you have a quote that sums up the ideas in your project, you can optionally add it by editing your [local config file](#site-variables-1).
 
     quote:
       quote: Promises are the uniquely human way of ordering the future, making it predictable and reliable to the extent that this is humanly possible.
@@ -317,7 +316,7 @@ Add your Google Analytics web property ID (in the form 'UA-XXXXX-X') within `_co
 Changing the project colourscheme
 -------------------------------------------
 
-In your [`_config-local.yml`](#site-variables-1), update the `theme` variable. Options: `forest`, `ocean`, `horus`, `seagrass`, `sundae` and `slate`.
+In your [local config file](#site-variables-1), update the `theme` variable. Options: `forest`, `ocean`, `horus`, `seagrass`, `sundae` and `slate`.
 
 Formatting your posts
 ====================
@@ -355,28 +354,28 @@ For example:
 The code snippet will appear with a run button. In this example, when the image has loaded then
 the element will be appended to the output.
 
-The `dharmafly-docs` project
+The `satya` project
 ==============================
 
-How can I get bugfixes and enhancements for my `dharmafly-docs` project instance
+How can I get bugfixes and enhancements for my `satya` project instance
 ------------------------------------------------------------------
 
 Using the command line tool, run `satya upgrade` from your working branch.
 
-(If you do not have the command line tool see the [guide in the wiki] (https://github.com/dharmafly/dharmafly-docs/wiki/Manually-upgrading-a-project-website))
+(If you do not have the command line tool see the [guide in the wiki] (https://github.com/dharmafly/satya/wiki/Manually-upgrading-a-project-website))
 
 How can I update the styling or format of all Dharmafly project websites?
 ------------------------------
 
-Changes made to the Dharmafly Docs project won't automatically be reflected in projects previously created using the code in this repository and the github pages facility.
+Changes made to the Satya project won't automatically be reflected in projects previously created using the code in this repository and the github pages facility.
 
-There's currently no facility to automatically update all instances of Dharmafly Docs with bugfixes. An [issue exists] (https://github.com/dharmafly/dharmafly-docs/issues/8) for this enhancement.
+There's currently no facility to automatically update all instances of Satya with bugfixes. An [issue exists] (https://github.com/dharmafly/satya/issues/8) for this enhancement.
 
 How Can I add a new page (not a new post) to a Dharmafly project
 -----------------------------------------------
 
 There's no process yet to do this easily, but [this issue outlines the process required to generalise adding new page levels]
-(https://github.com/dharmafly/dharmafly-docs/issues/1)
+(https://github.com/dharmafly/satya/issues/1)
 
 Is there a process for automatically generating new project websites from project documentation?
 ----------------------------
@@ -386,4 +385,4 @@ This is the standard way of generating project websites, using the command line 
 How do I add a new icon for the coding language my project's about? 
 -------------------------------------------------
 
-If the language exists as an icon, please see the [documentation on the gh-pages branch] (https://github.com/dharmafly/dharmafly-docs/#changing-the-language-icon). If not, you can [create a new icon to be available to all projects using dharmafly-docs] (https://github.com/dharmafly/dharmafly-docs/wiki/Adding-a-new-language-icon-to-the-sidebar)
+If the language exists as an icon, please see the [documentation on the gh-pages branch] (https://github.com/dharmafly/satya/#changing-the-language-icon). If not, you can [create a new icon to be available to all projects using satya] (https://github.com/dharmafly/satya/wiki/Adding-a-new-language-icon-to-the-sidebar)
