@@ -27,5 +27,5 @@ var connect  = require('connect'),
               .use(noodlemw.respond);
 
 http.createServer(app).listen(port, function () {
-  console.log('noodling on ' + port);
+  console.log('noodling on port ' + port);
 });
