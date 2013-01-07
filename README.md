@@ -51,6 +51,6 @@ Noodle as a node module
 -----------------------
 
 If you are interested in the node module just require it and check out the 
-[noodle api](http://noodlejs.com/reference/#usage-as-module)  
+[noodle api](http://noodlejs.com/reference/#usage-as-a-module)  
 
 `var noodle = require('noodle')`
