@@ -1,37 +1,39 @@
-#####################################
-# master _config.yml
+#################################
+## config details for dharmafly-docs gh-pages branch
 
-# The project
+## THIS FILE MUST BE REMOVED BEFORE COMMITTING TO MASTER
+
 project_name: Dharmafly Docs
-# Version number as a string
-version: '1.0'
 project_url: https://github.com/dharmafly/dharmafly-docs
-
-theme: forest
-download_links:
-twitter_url:
-lang:
+version: '1.0'
+# options: forest, ocean, horus, seagrass, sundae, slate
+theme: horus
+twitter_url: https://twitter.com/dharmafly
+# options: javascript, css, html5
+lang: html5
 scripts:
+- src: //ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
+- src: https://raw.github.com/dharmafly/jquery.promises/master/image.js
+- src: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
 quote:
+  quote: Ink is better than the best memory.
+  cite: Chinese proverb
+# analytics
 ga_id:
+download_links:
+  - text: Dharmafly Docs
+    subtext: v{{ version }}
+    href: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
+    title: zipped
+  - text: Dharmafly Docs
+    subtext: v{{ version }}.min
+    href: https://github.com/dharmafly/dharmafly-docs/downloads
+    title: minified, gzipped
 sections:
  - path: /index.html
    name: Overview
  - path: /reference/index.html
    name: Reference
-
-download_links:
-  - text: Dharmafly Docs
-    subtext: v{{ version }}
-    href: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
-    title: Download zipfile 
-
-############ Deprecated 
-
-# Link from overview to reference
-REFERENCE_LINK_TEXT: 
-
-GITHUB_ZIP_URL: 
 
 ############ Jekyll options
 
@@ -49,57 +51,3 @@ baseurl:     /
 exclude: ['README.md', 'assets', 'FiddlerRules.farx']
 
 
-#################################
-## config details for dharmafly-docs gh-pages branch
-
-## THESE MUST BE REMOVED BEFORE COMMITTING TO MASTER
-
-
-# The project
-project_name: Dharmafly Docs
-# Version number as a string
-version: '1.0'
-project_url: https://github.com/dharmafly/dharmafly-docs
-
-# Site theme (options: forest, ocean, horus, seagrass, sundae, slate)
-theme: horus
-
-
-############ Options
-
-# URLs
-download_links:
-  - text: Dharmafly Docs
-    subtext: v{{ version }}
-    href: https://github.com/dharmafly/dharmafly-docs/zipball/gh-pages
-    title: zipped
-  - text: Dharmafly Docs
-    subtext: v{{ version }}.min
-    href: https://github.com/dharmafly/dharmafly-docs/downloads
-    title: minified, gzipped
-twitter_url: https://twitter.com/dharmafly
-
-# Primary language or technology (options: javascript, css, html5)
-lang: html5
-
-# Documentation site scripts
-scripts:
-- src: //ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
-- src: https://raw.github.com/dharmafly/jquery.promises/master/image.js
-- src: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
-
-# Footer quote
-quote:
-  quote: Ink is better than the best memory.
-  cite: Chinese proverb
-
-# Site analytics
-ga_id:
-
-# Page names
-# Do not update the paths.
-sections:
- - path: /index.html
-   name: Overview
- - path: /reference/index.html
-   name: Reference
