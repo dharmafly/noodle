@@ -1,55 +1,55 @@
 About this project
 -------------------
 
-Dharmafly Docs is a Github Pages templating system. It allows project members to create a website for their Dharmafly projects.
+Satya is a Github Pages templating system. It allows project members to create a website for their Dharmafly projects.
 
 
 About this branch
 -----------------
 
-This is the development branch. If you're looking to create a website for your Dharmafly project, see the main [README] (https://github.com/dharmafly/dharmafly-docs)
+This is the development branch. If you're looking to create a website for your Dharmafly project, see the main [README] (https://github.com/dharmafly/satya)
 
-If you're looking to update the general Dharmafly Docs template, carry out all development work on Dharmafly Docs in this branch.
+If you're looking to update the general Satya template, carry out all development work on Satya in this branch.
 
-This branch is also the working code for the [Dharmafly Docs project website] (http://dharmafly.github.com/dharmafly-docs/), which contains the styleguide.
+This branch is also the working code for the [Satya project website] (http://dharmafly.github.com/satya/), which contains the styleguide.
 
-The [`master` branch] (https://github.com/dharmafly/dharmafly-docs) contains an empty template, reflecting the latest code and should be used by project developers to generate new project websites.
+The [`master` branch] (https://github.com/dharmafly/satya) contains an empty template, reflecting the latest code and should be used by project developers to generate new project websites.
 
 Before starting
 ------------------
 
-Before updating the Dharmafly Docs website, it is assumed you're familiar with creating Dharmafly Docs instances and have read the main [Dharmafly Docs README](https://github.com/dharmafly/dharmafly-docs/)
+Before updating the Satya website, it is assumed you're familiar with creating Satya instances and have read the main [Satya README](https://github.com/dharmafly/satya/)
 
 Updating an existing project
 -----------------------------
 
-Full documentation can be found on the main [README] (https://github.com/dharmafly/dharmafly-docs#updating-an-existing-project)
+Full documentation can be found on the main [README] (https://github.com/dharmafly/satya#updating-an-existing-project)
 
 
 How Can I set up a new Dharmafly project website?
 ----------------------------
 
-Full documentation can be found on the main [README] (https://github.com/dharmafly/dharmafly-docs#https://github.com/dharmafly/dharmafly-docs#how-can-i-set-up-a-new-dharmafly-project-website)
+Full documentation can be found on the main [README] (https://github.com/dharmafly/satya#https://github.com/dharmafly/satya#how-can-i-set-up-a-new-dharmafly-project-website)
 
 Getting started
 ===================
 
-How do I update the Dharmafly Docs project itself?
+How do I update the Satya project itself?
 --------------------------------------
 
 This is the development branch, you should carry out all work in this branch. 
 
-First clone this repository (`git clone git@github.com:dharmafly/dharmafly-docs.git`) and switch to this branch (`git checkout gh-pages`.)
+First clone this repository (`git clone git@github.com:dharmafly/satya.git`) and switch to this branch (`git checkout gh-pages`.)
 
 You should make your changes within `gh-pages` as this branch contains example posts that will enable you to test your changes.
 
-Once pushed to this branch (`git push origin gh-pages`), Github will automatically regenerate the [Dharmafly Docs project website] (http://dharmafly.github.com/dharmafly-docs/).
+Once pushed to this branch (`git push origin gh-pages`), Github will automatically regenerate the [Satya project website] (http://dharmafly.github.com/satya/).
 
-The `master` branch contains an empty instance of Dharmafly Docs. You will need to update this branch, to allow other projects to update, or create new instances.
+The `master` branch contains an empty instance of Satya. You will need to update this branch, to allow other projects to update, or create new instances.
 
-To update the [`master` branch] (https://github.com/dharmafly/dharmafly-docs), switch to the master branch (`git checkout master`), then pull the changes made in this branch (`git pull origin gh-pages`). This may result in a merge conflict with the `README.md` (as the content on the `master` branch is different to this README). The temporary fix for this is to copy the current `master` README from https://github.com/dharmafly/dharmafly-docs/blob/master/README.md.
+To update the [`master` branch] (https://github.com/dharmafly/satya), switch to the master branch (`git checkout master`), then pull the changes made in this branch (`git pull origin gh-pages`). This may result in a merge conflict with the `README.md` (as the content on the `master` branch is different to this README). The temporary fix for this is to copy the current `master` README from https://github.com/dharmafly/satya/blob/master/README.md.
 
-If you've added any files to the `assets` directory, or updated any posts in the `_posts` directory, these will be pulled-in to the `master` branch. As you won't really want instances of Dharmafly Docs to contain all the assets (psd files, master pngs, etc), or any of the Dharmafly Docs posts, you should delete these directories before commiting.
+If you've added any files to the `assets` directory, or updated any posts in the `_posts` directory, these will be pulled-in to the `master` branch. As you won't really want instances of Satya to contain all the assets (psd files, master pngs, etc), or any of the Satya posts, you should delete these directories before commiting.
 
 If you've updated the `_config.yml`, after pulling from `gh-pages`, **remove all variables local to `gh-pages`**. (There should be nothing after the 'jekyll options' section).
 
@@ -71,27 +71,18 @@ The templating language for github pages is [Liquid](http://liquidmarkup.org/).
 
 Within any HTML, CSS, JavaScript page on the site any liquid tags are parsed by [Jekyll](https://github.com/mojombo/jekyll/) (the templating engine).
 
-### Updating the config files (`_config.yml`, `_config-local.example.yml`)
+### Updating the config file (`_config.yml`)
 
-There are two config files 
+Within this branch, `_config.yml` contains the details for the Satya example website. 
 
-- `_config.yml`
-- `_config-local.example.yml`
+**After pulling this branch from master, you must remove `_config.yml` before committing**.
 
-The `_config.yml` should only contain required variables for the site. It is not user-editable.
-
-`_config-local.example.yml` should contain example properties for all user-editable variables.
-
-### Testing the changes to config files
-
-Within this branch, `_config.yml` has to contain the details for the Dharmafly Docs example website. 
-
-**After pulling this branch from master, you must remove all variables local to dharmafly docs before committing**.
+(The satya-cli tool will create the `_config.yml` for each project instance, so the master template should not contain this file).
 
 ### Pre-defined global variables
 
 The key [predefined Jekyll global variables](https://github.com/mojombo/jekyll/wiki/Template-Data) are 
-- `site`, which contains global properties for the site (e.g. those [specified within `_config.yml`](https://github.com/dharmafly/dharmafly-docs/#site-variables)), 
+- `site`, which contains global properties for the site (e.g. those [specified within `_config.yml`](https://github.com/dharmafly/satya/#site-variables)), 
 - `post`, which contains details for each post, 
 - `categories`/`category` which group posts 
 - `layout`, mentioned [above](#the-site-structure) and 
@@ -112,7 +103,7 @@ We use this category value as a way of choosing which posts will be displayed on
 Adding new pages
 -------------------
 
-There is no facility to do this easily - [a ticket exists](https://github.com/dharmafly/dharmafly-docs/issues/1) to add new pages to the site based on the directory structure of the `master` branch's `docs` directory.
+There is no facility to do this easily - [a ticket exists](https://github.com/dharmafly/satya/issues/1) to add new pages to the site based on the directory structure of the `master` branch's `docs` directory.
 
 To do this manually, you would need to:
 
@@ -220,7 +211,7 @@ The code block syntax highlighting uses the lightweight `hijs.js`, `/javascript/
 
 ### Code highlighting themes
 
-The theme used by Dharmafly Docs is implemented by `hijs.js`. The colouring is controlled within the main CSS file, `/_includes/global.css`.
+The theme used by Satya is implemented by `hijs.js`. The colouring is controlled within the main CSS file, `/_includes/global.css`.
 
 ### Allowing users to edit and run code inline
 
@@ -271,4 +262,4 @@ The `scroll` and `resize` event publishers are executed on a throttled interval 
 SVG - how and where it's used
 ------------------------------
 
-More details in [this post](https://github.com/dharmafly/dharmafly-docs/blob/gh-pages/assets/svg-post/svg%20post.md).
+More details in [this post](https://github.com/dharmafly/satya/blob/gh-pages/assets/svg-post/svg%20post.md).
