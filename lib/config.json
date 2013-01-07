@@ -1,4 +1,6 @@
 {
+  "debug":                 true,
+
   "resultsCacheMaxTime":   3600000,
   "resultsCachePurgeTime": 60480000,
   "resultsCacheMaxSize":   124,
@@ -7,7 +9,7 @@
   "pageCachePurgeTime":    60480000,
   "pageCacheMaxSize":      32,
 
-  "defaultDocumentType":  "html",
-  
-  "userAgent":            ""
+  "defaultDocumentType":   "html",
+
+  "userAgent":             ""
 }
