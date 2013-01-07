@@ -211,7 +211,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
   // --------------------
 
   // NAV STATE CONTROLLER
-  // See https://github.com/dharmafly/dharmafly-docs/wiki/Navigation-State
+  // See wiki/Navigation-State
  
   // HELPERS
   
