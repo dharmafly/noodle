@@ -163,7 +163,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
   
   // ---------------------
   
-  // satyaS
+  // satya
   
      
   var narrowScreen = satya.narrowScreen, 
@@ -420,8 +420,14 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
   Subnav.prototype.setSelectSubnav = function() {
   
     var options = $(this.el).find('a').map(function(){
-      var link = this;
-      return $('<option>').attr('value',link.hash).text(link.innerHTML)[0];
+      var link = this,
+          $link = $(link),
+          linktext = $.trim($link.text()),
+          option = $('<option></option>')
+            .attr('value',link.hash)
+            .text(linktext);
+      
+      return option[0];
     });
     
     var $select = $('<select id="subnav-menu">').append(options);
