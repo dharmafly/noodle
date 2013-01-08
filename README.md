@@ -54,3 +54,21 @@ If you are interested in the node module just require it and check out the
 [noodle api](http://noodlejs.com/reference/#usage-as-a-module)  
 
 `var noodle = require('noodle')`
+
+Tests
+-----
+
+To run tests you can use the provided binary *from the noodle package 
+root directory*:
+
+    $ bin/tests
+
+Assuming you have mocha installed globally (`npm install mocha -g`). You can 
+use mocha to run the tests files directly.
+
+    $ mocha tests/tests.js
+
+If you don't want to install mocha globally it is provided to you in noodle's
+`node_modules` directory:
+
+    $ node_modules/mocha/bin/mocha tests/tests.js
