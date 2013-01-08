@@ -86,7 +86,37 @@ describe('Cache', function () {
 });
 
 describe('Query', function () {
+  describe('type: html', function () {
 
+  });
+
+  describe('type: json', function () {
+
+  });
+
+  describe('type: feed', function () {
+
+  });
+
+  describe('type: xml', function () {
+
+  });
+
+  describe('map notation', function () {
+
+  });
+
+  describe('post data', function () {
+
+  });
+
+  describe('headers', function () {
+
+  });
+
+  describe('multiple queries', function () {
+
+  });
 });
 
 function isPromise (obj) {
