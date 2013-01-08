@@ -58,6 +58,9 @@ If you are interested in the node module just require it and check out the
 Tests
 -----
 
+The noodle tests create a temporary server on port 8889 which the automated 
+tests tell noodle to query against. 
+
 To run tests you can use the provided binary *from the noodle package 
 root directory*:
 
