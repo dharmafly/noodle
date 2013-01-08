@@ -11,9 +11,11 @@ exports.documents = {
 
 // Queries
 
-exports.querySimple = {
-  url: 'http://localhost:8889',
-  type: 'html',
-  selector: 'body',
-  extract: 'text'
+exports.queries = {
+  simple: {
+    url: 'http://localhost:8889/html',
+    type: 'html',
+    selector: 'title',
+    extract: 'text'
+  }
 };

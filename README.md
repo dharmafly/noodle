@@ -65,13 +65,3 @@ To run tests you can use the provided binary *from the noodle package
 root directory*:
 
     $ bin/tests
-
-Assuming you have mocha installed globally (`npm install mocha -g`). You can 
-use mocha to run the tests files directly.
-
-    $ mocha tests/tests.js
-
-If you don't want to install mocha globally it is provided to you in noodle's
-`node_modules` directory:
-
-    $ node_modules/mocha/bin/mocha tests/tests.js

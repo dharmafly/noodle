@@ -12,31 +12,6 @@ var fs       = require('fs'),
     serve    = 'html',
     server;
 
-
-// Fake webserver for noodle tests
-server = http.createServer(function (req, res) {
-  switch (serve) {
-    case 'html':
-      res.writeHead(200, {'Content-type':'text/html'});
-      res.end(fixtures.documents.html);
-      break;
-    case 'json':
-      res.writeHead(200, {'Content-type':'application/json'});
-      res.end(fixtures.documents.json);
-      break;
-    case 'feed':
-      res.writeHead(200, {'Content-type':'application/atom+xml'});
-      res.end(fixtures.documents.feed);
-      break;
-    case 'xml':
-      res.writeHead(200, {'Content-type':'text/xml'});
-      res.end(fixtures.documents.xml);
-      break;
-  }
-}).listen(8889);
-console.log('Test server temporarily running on port 8889');
-
-
 noodle.configure({
   "resultsCacheMaxTime":   60480000,
   "resultsCachePurgeTime": 60480000,
@@ -64,7 +39,13 @@ describe('noodle', function () {
 
 describe('Types', function () {
   describe('html', function () {
-
+    it('should return an array', function (done) {
+      noodle.query(fixtures.queries.simple)
+        .then(function (results) {
+          expect(results).to.be.a('array');
+          done();
+        });
+    });
   });
 
   describe('json', function () {
@@ -82,12 +63,11 @@ describe('Types', function () {
 
 describe('Cache', function () {
 
-  server.close();
 });
 
 describe('Query', function () {
   describe('type: html', function () {
-
+    
   });
 
   describe('type: json', function () {
