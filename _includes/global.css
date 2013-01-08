@@ -956,7 +956,7 @@ aside li span:hover {
 .ltIE9 aside li.github a {  background-position: -4px 4px; background-color: white;}
 aside li.github a {  background-position: -4px 0; }
 aside li.twitter a{ background-position: -2px -128px; }
-aside li.code-javascript span { background-position: -6px -246px; }
+aside li.code-javascript span { background-position: -4px -246px; }
 aside li.code-html5 span { background-position: -2px -457px; }
 aside li.code-css span { background-position: -2px -546px; }
 
