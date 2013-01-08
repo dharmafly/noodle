@@ -505,8 +505,11 @@ section.content:after{
   background-image: none;
 }
 
-section > h1 {
+section > h1,
+article > h2 {
 	position: relative;
+}
+section > h1 {
 	left: -1.1em;
   text-indent: 1.1em;
 }
