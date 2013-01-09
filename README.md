@@ -7,7 +7,7 @@ Satya is a Github Pages templating system. It allows project members to create a
 About this branch
 -----------------
 
-This is the development branch. If you're looking to create a website for your Dharmafly project, see the main [README] (https://github.com/dharmafly/satya)
+This is the development branch. If you're looking to create a website for your Dharmafly project, see the [website](https://dharmafly.github.com/satya)
 
 If you're looking to update the general Satya template, carry out all development work on Satya in this branch.
 
@@ -18,18 +18,18 @@ The [`master` branch] (https://github.com/dharmafly/satya) contains an empty tem
 Before starting
 ------------------
 
-Before updating the Satya website, it is assumed you're familiar with creating Satya instances and have read the main [Satya README](https://github.com/dharmafly/satya/)
+Before updating the Satya website, it is assumed you're familiar with creating Satya instances and have read the [documentation on the website](https://dharmafly.github.com/satya
 
 Updating an existing project
 -----------------------------
 
-Full documentation can be found on the main [README] (https://github.com/dharmafly/satya#updating-an-existing-project)
+Full documentation can be found on the [website](https://dharmafly.github.com/satya#updating-an-existing-project)
 
 
 How Can I set up a new Dharmafly project website?
 ----------------------------
 
-Full documentation can be found on the main [README] (https://github.com/dharmafly/satya#https://github.com/dharmafly/satya#how-can-i-set-up-a-new-dharmafly-project-website)
+Full documentation can be found on the [website](https://dharmafly.github.com/satya#https://github.com/dharmafly/satya#how-can-i-set-up-a-new-dharmafly-project-website)
 
 Getting started
 ===================
@@ -45,13 +45,15 @@ You should make your changes within `gh-pages` as this branch contains example p
 
 Once pushed to this branch (`git push origin gh-pages`), Github will automatically regenerate the [Satya project website] (http://dharmafly.github.com/satya/).
 
+### Updating the master branch ** IMPORTANT **
+
 The `master` branch contains an empty instance of Satya. You will need to update this branch, to allow other projects to update, or create new instances.
 
-To update the [`master` branch] (https://github.com/dharmafly/satya), switch to the master branch (`git checkout master`), then pull the changes made in this branch (`git pull origin gh-pages`). This may result in a merge conflict with the `README.md` (as the content on the `master` branch is different to this README). The temporary fix for this is to copy the current `master` README from https://github.com/dharmafly/satya/blob/master/README.md.
+To update the [`master` branch] (https://github.com/dharmafly/satya), switch to the master branch (`git checkout master`), then pull the changes made in this branch (`git pull origin gh-pages`). 
 
-If you've added any files to the `assets` directory, or updated any posts in the `_posts` directory, these will be pulled-in to the `master` branch. As you won't really want instances of Satya to contain all the assets (psd files, master pngs, etc), or any of the Satya posts, you should delete these directories before commiting.
+If you've added any files to the `assets` directory, or updated any posts in the `_posts` directory, these will be pulled-in to the `master` branch. As you won't really want instances of Satya to contain all the assets (psd files, master pngs, etc), or any of the Satya posts, **you should delete these directories before commiting**.
 
-If you've updated the `_config.yml`, after pulling from `gh-pages`, **remove all variables local to `gh-pages`**. (There should be nothing after the 'jekyll options' section).
+If you've updated the `_config.yml`, after pulling from `gh-pages`, **update the relevant sections in `_satya-exampleconfig.yml` and `_satya-globalconfig.yml`**. These files are used by Satya-cli to create `_config.yml` files on all project websites. 
 
 Once happy with your merge to the `master` branch,  `add`, `commit` the `git push origin master`.
 
@@ -74,6 +76,8 @@ Within any HTML, CSS, JavaScript page on the site any liquid tags are parsed by 
 ### Updating the config file (`_config.yml`)
 
 Within this branch, `_config.yml` contains the details for the Satya example website. 
+
+If you've updated the `_config.yml`, ensure the relavant sections in `_satya-exampleconfig.yml` and `_satya-globalconfig.yml` are also changed. Any project websites will not see your changes to `_config.yml` without updating these files. 
 
 **After pulling this branch from master, you must remove `_config.yml` before committing**.
 
