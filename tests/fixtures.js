@@ -131,4 +131,4 @@ exports.queries = {
     },
     emptyQuery: {}
   }
-}
+};
