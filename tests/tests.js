@@ -42,8 +42,8 @@ describe('Types', function () {
     it('should return an array', function (done) {
       noodle.query(fixtures.queries.html.simple)
         .then(function (results) {
-          expect(results).to.be.an('array');
           done();
+          expect(results).to.be.an('array');
         });
     });
   });
