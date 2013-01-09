@@ -64,6 +64,11 @@ exports.queries = {
       url: 'http://localhost:8889/json',
       type: 'json',
       selector: 'BAD SELECTOR'
+    },
+    badParse: {
+      url: 'http://localhost:8889/html',
+      type: 'json',
+      selector: '.query'
     }
   },
   feed: {
@@ -84,6 +89,11 @@ exports.queries = {
       url: 'http://localhost:8889/feed',
       type: 'feed',
       selector: 'BAD SELECTOR'
+    },
+    badParse: {
+      url: 'http://localhost:8889/json',
+      type: 'feed',
+      selector: '.title'
     }
   },
   xml: {
@@ -104,6 +114,11 @@ exports.queries = {
       url: 'http://localhost:8889/xml',
       type: 'xml',
       selector: 'BAD SELECTOR'
+    },
+    badParse: {
+      url: 'http://localhost:8889/json',
+      type: 'xml',
+      selector: '.CustomerName'
     }
   },
   misc: {
