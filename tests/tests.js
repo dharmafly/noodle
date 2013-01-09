@@ -1,6 +1,4 @@
-var fs       = require('fs'),
-    http     = require('http'),
-    assert   = require('assert'),
+var assert   = require('assert'),
     expect   = require('chai').expect,
     fixtures = require('./fixtures'),
     noodle   = require('../lib/noodle'),
@@ -8,9 +6,7 @@ var fs       = require('fs'),
     html     = require('../lib/types/html'),
     json     = require('../lib/types/json'),
     feed     = require('../lib/types/feed'),
-    xml      = require('../lib/types/xml'),
-    serve    = 'html',
-    server;
+    xml      = require('../lib/types/xml');
 
 noodle.configure({
   "resultsCacheMaxTime":   60480000,
@@ -200,7 +196,7 @@ describe('Query responses', function () {
 
   describe('consistent response format', function () {
     it('should return all responses as arrays', function () {
-      expect(asArrays.indexOf(false)).to.be(-1);
+      expect(asArrays.indexOf(false)).to.eql(-1);
     });
   });
 });
