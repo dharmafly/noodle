@@ -2,22 +2,17 @@ var url      = require('url'),
     fixtures = require('./fixtures');
 
 require('http').createServer(function (req, res) {
-  var serve = url.parse(req.url).pathname.split('/')[1];
-  switch (serve) {
-    case 'html':
-      res.writeHead(200, {'Content-type':'text/html'});
-      break;
-    case 'json':
-      res.writeHead(200, {'Content-type':'application/json'});
-      break;
-    case 'feed':
-      res.writeHead(200, {'Content-type':'application/atom+xml'});
-      break;
-    case 'xml':
-      res.writeHead(200, {'Content-type':'text/xml'});
-      break;
-  }
-  res.end(fixtures.documents[serve] || 'specify document type as url path');
-}).listen(8889);
+  var serve = url.parse(req.url).pathname.split('/')[1],
+      ct    = {
+        'html': 'text/html',
+        'json': 'application/json',
+        'feed': 'application/atom+xml',
+        'xml':  'text/xml'
+      };
 
-console.log('Test server running on port 8889');
+  res.writeHead(200, {'Content-type': ct[serve]});
+  res.end(fixtures.documents[serve] || 'specify document type as url path');
+})
+.listen(8889, function () {
+  console.log('Test server temporarily running on port 8889');
+});
