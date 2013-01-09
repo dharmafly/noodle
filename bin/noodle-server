@@ -15,7 +15,7 @@ var connect  = require('connect'),
               .use(function (req, res, next) {
                 if (res.ratelimit.exceeded) {
                   res.statusCode = 429;
-                  res.end('{"results": [], "error": "Rate limit exceeded"}');
+                  res.end('[{"results": [], "error": "Rate limit exceeded"}]');
                 } else {
                   next();
                 }
