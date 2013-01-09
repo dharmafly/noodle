@@ -38,25 +38,25 @@ describe('noodle', function () {
 // Tests regarding the noodle library's type modules
 
 describe('Types', function () {
-  describe('html', function () {
+  describe('noodle.html', function () {
     it('should return an array', function (done) {
-      noodle.query(fixtures.queries.simple)
+      noodle.query(fixtures.queries.html.simple)
         .then(function (results) {
-          expect(results).to.be.a('array');
+          expect(results).to.be.an('array');
           done();
         });
     });
   });
 
-  describe('json', function () {
+  describe('noodle.json', function () {
 
   });
 
-  describe('feed', function () {
+  describe('noodle.feed', function () {
 
   });
 
-  describe('xml', function () {
+  describe('noodle.xml', function () {
 
   });
 });
