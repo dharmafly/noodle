@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 <Order>
- <Date>2003/07/04</Date>
- <CustomerId>123</CustomerId>
- <CustomerName>Acme Alpha</CustomerName>
-   <Item>
- <ItemId> 987</ItemId>
- <ItemName>Coupler</ItemName>
- <Quantity>5</Quantity>
- </Item>
-<Item>
- <ItemId>654</ItemId>
- <ItemName>Connector</ItemName>
- <Quantity unit="12">3</Quantity>
- </Item>
-<Item>  
- <ItemId>579</ItemId>
- <ItemName>Clasp</ItemName>
- <Quantity>1</Quantity>
- </Item>
+  <Date>2003/07/04</Date>
+  <CustomerId>123</CustomerId>
+  <CustomerName>Acme Alpha</CustomerName>
+  <Item>
+    <ItemId> 987</ItemId>
+    <ItemName>Coupler</ItemName>
+    <Quantity>5</Quantity>
+  </Item>
+  <Item>
+    <ItemId>654</ItemId>
+    <ItemName>Connector</ItemName>
+    <Quantity unit="12">3</Quantity>
+  </Item>
+  <Item>  
+    <ItemId>579</ItemId>
+    <ItemName>Clasp</ItemName>
+    <Quantity>1</Quantity>
+  </Item>
 </Order>
