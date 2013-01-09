@@ -49,15 +49,33 @@ describe('Types', function () {
   });
 
   describe('noodle.json', function () {
-
+    it('should return an array', function (done) {
+      noodle.query(fixtures.queries.json.simple)
+        .then(function (results) {
+          done();
+          expect(results).to.be.an('array');
+        });
+    });
   });
 
   describe('noodle.feed', function () {
-
+    it('should return an array', function (done) {
+      noodle.query(fixtures.queries.feed.simple)
+        .then(function (results) {
+          done();
+          expect(results).to.be.an('array');
+        });
+    });
   });
 
   describe('noodle.xml', function () {
-
+    it('should return an array', function (done) {
+      noodle.query(fixtures.queries.xml.simple)
+        .then(function (results) {
+          done();
+          expect(results).to.be.an('array');
+        });
+    });
   });
 });
 
