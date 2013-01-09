@@ -21,6 +21,8 @@ noodle.configure({
   "pageCacheMaxSize":      60480000
 });
 
+// Tests regarding the noodle library
+
 describe('noodle', function () {
   describe('query()', function () {
     it('should return a promise', function () {
@@ -36,6 +38,8 @@ describe('noodle', function () {
     });
   });
 });
+
+// Tests regarding the noodle library's type modules
 
 describe('Types', function () {
   describe('html', function () {
@@ -61,43 +65,147 @@ describe('Types', function () {
   });
 });
 
+// Tests regarding noodle's cache module
+
 describe('Cache', function () {
 
 });
 
-describe('Query', function () {
+// Tests regarding the noodle queries
+
+describe('Query responses', function () {
+  var asArrays = [];
+
   describe('type: html', function () {
-    
+    it('should have result data', function () {
+
+    });
+
+    it('should still return some data if no selector is specified', function () {
+
+    });
+
+    it('should still return some data if no extract is specified', function () {
+
+    });
+
+    it('should still return some data if no type is specified', function () {
+
+    });
+
+    describe('errors', function () {
+      it('should report on a poor selector', function () {
+
+      });
+    });
   });
 
   describe('type: json', function () {
+    it('should have result data', function () {
 
+    });
+
+    it('should still return some data if no selector is specified', function () {
+
+    });
+
+    it('should still return some data if no type is specified', function () {
+
+    });
+
+    describe('errors', function () {
+      it('should report on a poor selector', function () {
+
+      });
+      
+      it('should report on a parse error', function () {
+
+      });
+    });
   });
 
   describe('type: feed', function () {
+    it('should have result data', function () {
 
+    });
+
+    it('should still return some data if no selector is specified', function () {
+
+    });
+
+    it('should still return some data if no type is specified', function () {
+
+    });
+
+    describe('errors', function () {
+      it('should report on a poor selector', function () {
+
+      });
+      
+      it('should report on a parse error', function () {
+
+      });
+    });
   });
 
   describe('type: xml', function () {
+    it('should have result data', function () {
 
+    });
+
+    it('should still return some data if no selector is specified', function () {
+
+    });
+
+    it('should still return some data if no type is specified', function () {
+
+    });
+
+    describe('errors', function () {
+      it('should report on a poor selector', function () {
+
+      });
+      
+      it('should report on a parse error', function () {
+
+      });
+    });
   });
 
   describe('map notation', function () {
+    it('result should contain properties as specified in the map', function () {
 
+    });
   });
 
   describe('post data', function () {
+    it('should return data from post requests', function () {
 
+    });
   });
 
   describe('headers', function () {
+    it('should parse headers', function () {
 
+    });
+
+    it('should parse link headers', function () {
+
+    });
   });
 
   describe('multiple queries', function () {
 
   });
+
+  describe('consistent response format', function () {
+    it('should return all responses as arrays', function () {
+      expect(asArrays.indexOf(false)).to.be(-1);
+    });
+  });
 });
+
+
 
 function isPromise (obj) {
   return !!(obj.promiseSend && obj.valueOf);
