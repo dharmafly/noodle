@@ -37,3 +37,58 @@ Different document types need a different type of selector to be used.
 - `json` requires the use of JSONSelect style selectors
 - `feed` requires the use of JSONSelect style selectors
 - `xml`  requires the use of JSONSelect style selectors
+
+## Mapping a query to familiar properties
+
+Queries can also be written in the map notation. The map notation allows for 
+the results to be accessible by custom and more helpful property names.
+
+In the example below map is used to create a result object of a person and 
+their repos.
+
+  {
+      "url": "https://github.com/chrisnewtn",
+      "type": "html",
+      "map": {
+          "person": {
+              "selector": "span[itemprop=name]",
+              "extract": "text"
+          },
+          "repos": {
+              "selector": "li h3",
+              "extract": "text"
+          }
+      }
+  }
+
+With results looking like this:  
+
+  [
+      {
+          "results": {
+              "person": [
+                  {
+                      "text": "Chris Newton"
+                  }
+              ],
+              "repos": [
+                  {
+                      "text": "cmd-async-slides"
+                  },
+                  {
+                      "text": "jquery-async-uploader"
+                  },
+                  {
+                      "text": "cmd.js"
+                  },
+                  {
+                      "text": "sitestatus"
+                  },
+                  {
+                      "text": "simplechat"
+                  }
+              ]
+          },
+          "created": "2013-01-07T16:13:14.947Z"
+      }
+  ]

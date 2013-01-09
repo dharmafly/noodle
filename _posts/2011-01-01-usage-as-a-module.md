@@ -78,6 +78,50 @@ Normalises an RSS, ATOM or RDF string with
 [node-feedparser](https://github.com/danmactough/node-feedparser) then proxies 
 that normalised object to `noodle.json.select`.
 
+### noodle events
+
+noodle's `noodle.events` namespace allows one to listen for emitted cache 
+related events. Noodle inherits from node's [EventEmitter](http://nodejs.org/api/events.html#events_class_events_eventemitter).
+
+  // Called when a page is cached
+  noodle.events.on('cache/page', function (obj) {
+    //obj is the page cache object detailing the page, its headers 
+    //and when it was first cached
+  });
+
+  // Called when a result is cached
+  noodle.events.on('cache/result', function (obj) {
+    //obj is the result cache object detailing the result and when
+    //it was first cached
+  });
+
+  // Called when the cache is purged
+  noodle.events.on('cache/purge', function (arg1, arg2) {
+    //arg1 is a javascript date representing when the cache was purged
+    //arg2 is the time in milliseconds until the next cache purge
+  });
+
+  // Called when a cached item has expired from the cache
+  noodle.events.on('cache/expire', function (obj) {
+    //obj is the cache item
+  }); 
+
+### Configuration
+
+Configuration is possible programmatically via `noodle.configure(obj)`.
+
+This accepts an object which is partly or fully representing the config optins.
+This object is applied over the existing config found in the `config.json`.
+
+Example to change just 2 settings:
+
+    var noodle = require('noodle');
+
+    noodle.configure({
+      debug: false,
+      defaultDocumentType: "json"
+    });
+
 ### Error handling
 
 Noodle will fire various errors which one can listen for with the `fail()` 
