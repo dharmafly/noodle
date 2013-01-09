@@ -21,19 +21,14 @@ If this is at the beginning of the line, you need to add an invisible unicode ch
 
 Any  code blocks in the markdown will be formatted as syntax highlighted code blocks in the website.
 
-If the example uses the `$output` variable or `alert()` then a "run" button will appear next to
-the code block allowing the user to run the example.
+If the example uses the `demoElement` variable or `alert()` then a "run" button will appear next to the code block allowing the user to run the example.
 
-Each code block is given access to a `$output` variable. This refers to a
+Each code block is given access to a `demoElement` variable. This refers to a
 jQuery wrapped `<output>` element inserted after the code block.
 
 For example:
 
-    var image = new Image()
-    image.src = "my-image.png";
-    image.onload = function () {
-      $output.append(image);
-    }
+    var text = "hello!";
+    alert(text);
 
-The code snippet will appear with a run button. In this example, when the image has loaded then
-the element will be appended to the output.
+The code snippet will appear with a run button. 
