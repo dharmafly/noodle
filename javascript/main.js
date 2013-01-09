@@ -280,20 +280,32 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     this.timeout = null; 
     this.width = getLinkListWidth(el); 
     this.height = this.el.getBoundingClientRect().height;
+    this.clone = this.el.cloneNode(true);
     // TO DO
     this.margin = 20;
-    this.fixedLeftPos = this.getLeftPos();
+    this.fixedLeftPos = 0;
     
+    this.addClone();
     this.subscribeEvents();
   }
   
   // Subnav (subnav)
-
+  
+  Subnav.prototype.addClone = function addClone() {
+    var subnav = this;
+    subnav.clone.id = 'subnavClone';
+    subnav.clone.style.visibility = 'hidden';
+    subnav.clone.style.top = '0px';
+    content.appendChild(subnav.clone);
+  };
+  
   Subnav.prototype.subscribeEvents = function() {  
     var subnav = this;
+
+    subnav.fixedLeftPos = subnav.getLeftOffset();
     
     // page scrolls beyond header height, set subnav to fixed, 
-    // set left subnav to former left position and vice versa
+    // set left subnav to former left position (and vice versa)
     $.subscribe('scrollGtHeader', function(e, state){
     
       if(state !== subnav.isScrollGtHeader){ // there's a boundary change
@@ -319,7 +331,8 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     $.subscribe('windowResized', function() {
       
       // update model for vertical scrolling state changes
-      subnav.fixedLeftPos = subnav.getLeftPos();
+      subnav.fixedLeftPos = subnav.getLeftOffset();
+      
       subnav.openPos = subnav.fixedLeftPos;
       
       // set the left pos if position fixed
@@ -366,8 +379,8 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     }
   };
   
-  Subnav.prototype.getLeftPos  = function getLeftPos() {
-    return content.offsetLeft - this.width - (2 * this.margin) + 'px';
+  Subnav.prototype.getLeftOffset  = function getLeftOffset() {
+    return $(this.clone).offset().left + 'px';
   };
   
   Subnav.prototype.toggle = function() {
@@ -395,7 +408,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
       // set open left position in model after the
       // animation to open is complete
       this.timeout = window.setTimeout(function(){
-        subnav.openPos = subnav.getLeftPos();
+        subnav.openPos = subnav.getLeftOffset();
         if(subnav.isScrollGtHeader){
           // set the left pos if position fixed
           subnav.el.style.left = subnav.openPos;

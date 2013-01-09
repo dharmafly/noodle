@@ -348,7 +348,8 @@ section.overview a:active {
 	text-decoration: none;
 }
 
-#subnav {
+#subnav,
+#subnavClone {
     position: absolute;
     left: -42em;
     text-align: right;
@@ -361,7 +362,6 @@ section.overview a:active {
 #subnav.fixed {
     position: fixed;
     top: 6em;
-    width:auto;
     /* calculate left offset dynamically */
 }
 
