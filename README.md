@@ -23,13 +23,13 @@ Before updating the Satya website, it is assumed you're familiar with creating S
 Updating an existing project
 -----------------------------
 
-Full documentation can be found on the [website](https://dharmafly.github.com/satya#updating-an-existing-project)
+Full documentation can be found on the [website](http://dharmafly.github.com/satya#updating-an-existing-project)
 
 
 How Can I set up a new Dharmafly project website?
 ----------------------------
 
-Full documentation can be found on the [website](https://dharmafly.github.com/satya#https://github.com/dharmafly/satya#how-can-i-set-up-a-new-dharmafly-project-website)
+Full documentation can be found on the [website](http://dharmafly.github.com/satya#how-can-i-set-up-a-new-dharmafly-project-website)
 
 Getting started
 ===================
