@@ -6,5 +6,5 @@ node tests/server.js & pid=$!
 # Run the tests
 node_modules/mocha/bin/mocha tests/tests.js --timeout 30000 --reporter spec
 
-# Kill the pid of the test server
+# Kill the test server via its pid
 kill $!
