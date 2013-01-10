@@ -14,7 +14,8 @@ noodle.configure({
   "resultsCacheMaxSize":   60480000,
   "pageCacheMaxTime":      60480000,
   "pageCachePurgeTime":    60480000,
-  "pageCacheMaxSize":      60480000
+  "pageCacheMaxSize":      60480000,
+  "debug":                 false
 });
 
 // Tests regarding the noodle library
