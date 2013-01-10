@@ -1,0 +1,28 @@
+---
+category: reference
+heading: 'Error handling'
+---
+
+Noodle will fire various errors which one can listen for with the `fail()` 
+handler.
+
+    noodle.html.fetch(query)
+    .then(function (result) {
+      console.log('The results are', results);
+    })
+    .fail(function (error) {
+      console.log('Uh oh, ' error.message);
+    });
+
+## Possible errors
+
+The noodle module itself emits only one error:
+
+- `"Document not found"` when a targetted url is not found.
+
+Were as the specific document type modules emit their own:
+
+- `'Could not parse XML to JSON'`
+- `'Could not parse JSON document'`
+- `'Could not match with that selector'`
+- `'Could not match with that selector or extract value'`
