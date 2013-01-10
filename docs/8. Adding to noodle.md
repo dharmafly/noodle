@@ -9,7 +9,7 @@ issues and forking is encouraged.
 
 ## Supporting different web documents
 
-By default noodle supports html, json, standard feeds and xml web documents. 
+By default noodle supports html, json, standard feeds and xml web documents but 
 noodle also provides a concise environment for developers to write their own 
 type modules with prior knowledge only needed in 
 [promises](https://github.com/kriskowal/q).
@@ -35,17 +35,16 @@ reference so you can make use of some important noodle methods covered in a bit.
 `exports.fetch = function (url, query) {}`
 
 This method is the entry point to your module by noodle and possibly other 
-developers. Within this you should begin all of your processing.
+developers. This is the function which leads to all of your processing.
 
 Make use of `noodle.cache.get` to resolve your promise early with a cached 
 results without the need to fetch the page and process the query.
 
 It is higly recommended you do not fetch the page yourself but use the core 
-`noodle.fetch` since this will handle page caching for you.
+`noodle.fetch` since this handles page caching for you.
 
 When you have the document pass it and the query to your `select` function for 
-processing with the query.
-
+processing with the query. 
     function fetch (url, query) {
       var deferred = q.defer();
       if (noodle.cache.check(query)) {
@@ -72,6 +71,25 @@ It is also highly recommended that you cache your result this is done simply by
 wrapping it in the `noodle._wrapResults` method.
 
 `deferred.resolve(noodle._wrapResults(results, query));`
+
+What defines query properties like `extract` or `select` is what your own 
+select function expects to find in the `query` object passed in. For example:
+
+
+    // Query
+    {
+      "url": "http://example.com/data.csv",
+      "type": "csv",
+      "from": "row1",
+      "to": "row10"
+    }
+
+    // Your interpretation
+    function select (document, query) {
+      ...
+      csvparser.sice(query.from, query.to);
+      ...
+    }
 
 **Example script**
 
