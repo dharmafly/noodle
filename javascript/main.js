@@ -220,9 +220,10 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     return window.pageYOffset > navOffsetTop;
   }
   
-  // space on left of page < width of subnav 
+  // width of subnav plus negative shift offscreen < visible width of subnav 
   function isSubnavSqueezed(){
-    return subnav.width + (subnav.margin * 2) + (contentWidth/2) > (window.innerWidth/2);
+    var subnavSqueezed = $(subnav.el).width() + parseInt(subnav.getLeftOffset(), 10) < subnav.width;
+    return subnavSqueezed;
   } 
   
   // COMPONENTS
@@ -278,7 +279,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     this.isSubnavSqueezed = false;
     this.isOpen = null;
     this.timeout = null; 
-    this.width = getLinkListWidth(el); 
+    this.width = null; 
     this.height = this.el.getBoundingClientRect().height;
     this.clone = this.el.cloneNode(true);
     // TO DO
@@ -353,6 +354,8 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
         subnav.updateSubnavView(state);
         
         // if there's enough room for the subnav and the subnav is open
+        // ISSUE: if the subnav is opened, then there's enough room for the subnav
+        // Required: if the subnav is open and there's a enough room for the subnav if the subnav was closed.
         if(subnav.isOpen && subnav.isSubnavSqueezed === false){
           subnav.close();
         }
@@ -472,7 +475,6 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
   
   function init(){
   
-    
     navigation = new Navigation(navEl);
     subnav = new Subnav(subnavEl);
     
@@ -509,6 +511,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     }
     
     window.addEventListener('load', function(){
+      subnav.width = getLinkListWidth(subnav.el); 
       $.publish('subnavSqueezed', isSubnavSqueezed());
       setLogoPosition();
       document.body.classList.remove('loading');
