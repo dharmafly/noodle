@@ -3,8 +3,8 @@ category: reference
 heading: Web service
 ---
 
-This reference documents the use of noodle as both a web service and a 
-node module.
+This code reference aims to document the use of noodle as both a web service 
+and a node module.
 
 With both web service and node module, the same key/value object maps are 
 used as queries to fetch and extract data from web documents.
@@ -42,15 +42,13 @@ noodle supports JSONP if a `callback` parameter is supplied.
 The query itself can be sent in the `q` parameter either as a url encoded 
 JSON blob or as a querystring serialised representation (`jQuery.param()`).
 
-example:
-`GET http://dharmafly.noodle-example.jit.su?q={JSONBLOB}&callback=foo`
+    GET http://dharmafly.noodle-example.jit.su?q={JSONBLOB}&callback=foo
 
 ### POST
 
 noodle also supports a query sent as JSON in the POST body.
 
-example:
-`POST http://dharmafly.noodle-example.jit.su`
+    POST http://dharmafly.noodle-example.jit.su
 
 ## Ratelimiting
 

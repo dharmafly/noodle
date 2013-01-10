@@ -31,7 +31,7 @@ selector functionality. You can [familiarize yourself with it here.](http://json
     }
 
 An `extract` property is not needed for a query on JSON documents as json 
-properties have no meta-data and just a value.
+properties have no metadata and just a value.
 
 ## Different types (html, json, feed & xml)
 
@@ -52,17 +52,19 @@ strip out any new line characters found in the text.
 
 Return data looks like this:
 
-    {
-        "results": [
-            {
-                "href": "http://twitter.com/chrisnewtn"
-            },
-            {
-                "href": "http://plus.google.com/u/0/111845796843095584341"
-            }
-        ],
-        "created": "2012-08-01T16:22:14.705Z"
-    }
+    [
+      {
+          "results": [
+              {
+                  "href": "http://twitter.com/chrisnewtn"
+              },
+              {
+                  "href": "http://plus.google.com/u/0/111845796843095584341"
+              }
+          ],
+          "created": "2012-08-01T16:22:14.705Z"
+      }
+    ]
 
 Having no specific extract rule will assume a default of extracting `"html"` 
 from the `selector`.
@@ -80,6 +82,7 @@ Query:
 
 Response:
 
+  [
     {
       "results": [
         {
@@ -93,6 +96,7 @@ Response:
       ],
       "created": "2012-08-01T16:23:41.913Z"
     }
+  ]
 
 In the query's `selector` property use the standard CSS DOM selectors.
 
@@ -134,11 +138,13 @@ Query:
     }
 
 Response:
-
-    {
-      "results": ["<full document contents>"],
-      "created": "2012-10-24T15:37:29.796Z"
-    }
+  
+    [
+      {
+        "results": ["<full document contents>"],
+        "created": "2012-10-24T15:37:29.796Z"
+      }
+    ]
 
 ## Mapping a query to familiar properties
 
@@ -212,15 +218,17 @@ Query:
     }
 
 Result:
-
-    {
-      "results": [...],
-      "headers": {
-        "connection": "keep-alive",
-        "content-TYPE": "text/html"
+  
+    [
+      {
+        "results": [...],
+        "headers": {
+          "connection": "keep-alive",
+          "content-TYPE": "text/html"
+        }
+        "created":"2012-11-14T13:06:02.521Z"
       }
-      "created":"2012-11-14T13:06:02.521Z"
-    }
+    ]
 
 ### Link headers for pagination
 
@@ -241,22 +249,24 @@ Query:
     }
 
 Result:  
-
-    {
-      "results": [
-        "JavaScript",
-        "Ruby",
-        "JavaScript",
-      ],
-      "headers": {
-        "connection": "keep-alive",
-        "link": {
-          "next": "https://api.github.com/users/premasagar/starred?page=2",
-          "last": "https://api.github.com/users/premasagar/starred?page=5"
-        }
-      },
-      "created": "2012-11-16T15:48:33.866Z"
-    }
+  
+    [
+      {
+        "results": [
+          "JavaScript",
+          "Ruby",
+          "JavaScript",
+        ],
+        "headers": {
+          "connection": "keep-alive",
+          "link": {
+            "next": "https://api.github.com/users/premasagar/starred?page=2",
+            "last": "https://api.github.com/users/premasagar/starred?page=5"
+          }
+        },
+        "created": "2012-11-16T15:48:33.866Z"
+      }
+    ]
 
 
 ## Querying to a POST url
@@ -298,10 +308,12 @@ property as a string message.
 
 Response:
 
-    {
-      "results": [],
-      "error": "Document not found"
-    }
+    [
+      {
+        "results": [],
+        "error": "Document not found"
+      }
+    ]
 
 noodle also falls silently with the `'extract'` property by ommitting any 
 extract results from the results object.
@@ -321,22 +333,25 @@ Response:
 The extract "nonexistent" property is left out because it was not found
 on the element.
 
-    {
-      "results": [
-        {
-          "href": "http://twitter.com/chrisnewtn"
-        },
-        {
-          "href": "http://plus.google.com/u/0/111845796843095584341"
-        }
-      ],
-      "created": "2012-08-01T16:28:19.167Z"
-    }
+    [
+      {
+        "results": [
+          {
+            "href": "http://twitter.com/chrisnewtn"
+          },
+          {
+            "href": "http://plus.google.com/u/0/111845796843095584341"
+          }
+        ],
+        "created": "2012-08-01T16:28:19.167Z"
+      }
+    ]
 
 ## Multiple queries
 
 Multiple queries can be made per request to the server. You can mix between 
-different types of queries in the same request.
+different types of queries in the same request as well as queries in the map 
+notation.
 
 Query:
 

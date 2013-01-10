@@ -20,7 +20,8 @@ The noodle module itself emits only one error:
 
 - `"Document not found"` when a targetted url is not found.
 
-Were as the specific document type modules emit their own:
+Were as the specific document type modules emit their own but should bubble 
+up to the main `noodle.query` method.
 
 - `'Could not parse XML to JSON'`
 - `'Could not parse JSON document'`
