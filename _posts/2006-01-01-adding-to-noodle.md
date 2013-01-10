@@ -1,0 +1,111 @@
+--- 
+category: reference
+heading: Adding to noodle
+---
+
+noodle is an open-source project 
+[maintained on github](https://github.com/dharmafly/premasagar) so raising 
+issues and forking is encouraged.
+
+## Supporting different web documents
+
+By default noodle supports html, json, standard feeds and xml web documents. 
+noodle also provides a concise environment for developers to write their own 
+type modules with prior knowledge only needed in 
+[promises](https://github.com/kriskowal/q).
+
+To add their own type, one creates the script for that type in 
+`noodlejs/lib/types` with the name being what one would type in a query.
+
+  $ touch noodlejs/lib/types/csv.js
+
+As for the content of the script a developer should expose at least 2 methods 
+(`_init` & `fetch`) and is recommended to expose a `select` method. These 
+methods must be written with a promise interface interoperable with 
+[the q library](https://github.com/kriskowal/q). It is reccomended you just use 
+[q](https://github.com/kriskowal/q).
+
+**Required methods**
+
+`exports._init = function (noodle) {}`
+
+This function is passed the main noodle library. You should keep hold of this 
+reference so you can make use of some important noodle methods covered in a bit.
+
+`exports.fetch = function (url, query) {}`
+
+This method is the entry point to your module by noodle and possibly other 
+developers. Within this you should begin all of your processing.
+
+Make use of `noodle.cache.get` to resolve your promise early with a cached 
+results without the need to fetch the page and process the query.
+
+It is higly recommended you do not fetch the page yourself but use the core 
+`noodle.fetch` since this will handle page caching for you.
+
+When you have the document pass it and the query to your `select` function for 
+processing with the query.
+
+    function fetch (url, query) {
+      var deferred = q.defer();
+      if (noodle.cache.check(query)) {
+        deferred.resolve(noodle.cache.get(query).value);
+        return deferred.promise;
+      } else {
+        return noodle.fetch(url, query).then(function (page) {
+          return select(page, query);
+        });
+      }
+    }
+
+**Recommended methods**
+
+`exports.select = function (document, query) {}`
+
+This method is where you do your actual selecting of the data using the web 
+document given from your `fetch` method via `noodle.fetch`.
+
+In your algorithm do not account for multiple queries. This is done at a higher 
+level by noodle which iterates over your type module.
+
+It is also highly recommended that you cache your result this is done simply by 
+wrapping it in the `noodle._wrapResults` method.
+
+`deferred.resolve(noodle._wrapResults(results, query));`
+
+**Example script**
+
+An example implementation could look like this:
+
+    var q      = require('q'),
+        noodle = null;
+
+    exports._init = function (n) {
+      noodle = n;
+    }
+
+    exports.fetch = function (url, query) {
+      var deferred = q.Defer();
+      if (noodle.cache.check(query)) {
+        deferred.resolve(noodle.cache.get(query).value);
+        return deferred.promise;
+      } else {
+        return noodle.fetch(url).then(function (page) {
+          return exports.select(page, query);
+        });
+      }
+    }
+
+    exports.select = function (page, query) {
+      var deferred  = q.Defer(),
+          myResults = [];
+
+      /* 
+        your algorithm here, dont forget to
+        deferred.resolve(noodle._wrapResults(myResults, query))
+        or
+        deferred.fail(new Error("Selector was bad or something like that"))
+      */
+
+      return deferred.promise;
+    }

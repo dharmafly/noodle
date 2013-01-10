@@ -1,0 +1,97 @@
+--- 
+category: reference
+heading: Web service
+---
+
+This reference documents the use of noodle as both a web service and a 
+node module.
+
+With both web service and node module, the same key/value object maps are 
+used as queries to fetch and extract data from web documents.
+
+noodle currently supports multiple web documents with an almost uniform 
+query syntax for grabbing data from the different types (html, json, feeds, xml).
+
+noodle is ready to run as a web service from `bin/noodle-server`.
+
+## Quick setup
+
+NPM method:
+
+    $ git clone https://github.com/dharmafly/noodle.git
+    $ cd noodle
+    $ npm install
+    $ bin/noodle-server
+      Server running on port 8888
+
+Git method:
+
+    $ npm install noodlejs
+    $ cd node_modules/noodlejs/
+    $ bin/noodle-server
+      Server running on port 8888
+
+## GET or POST
+
+The server supports a different ways for querying the service.
+
+### JSONP
+
+noodle supports JSONP if a `callback` parameter is supplied.
+
+The query itself can be sent in the `q` parameter either as a url encoded 
+JSON blob or as a querystring serialised representation (`jQuery.param()`).
+
+example:
+`GET http://dharmafly.noodle-example.jit.su?q={JSONBLOB}&callback=foo`
+
+### POST
+
+noodle also supports a query sent as JSON in the POST body.
+
+example:
+`POST http://dharmafly.noodle-example.jit.su`
+
+## Ratelimiting
+
+The web service also provides rate limiting out of the box with 
+[connect-ratelimit](https://github.com/dharmafly/connect-ratelimit).
+
+## Configuration
+
+### Server port
+
+The specify what port the noodle web service serves on just write it as the 
+first argument to the binary.
+
+   $ bin/noodle-server 9000
+     Server running on port 9000
+
+### Behaviour settings
+
+Various noodle settings are exposed and can be edited in `lib/config.json`.  
+
+    {
+      // Setting to true will log out information to the 
+      // terminal
+
+      "debug":                 true,
+
+      "resultsCacheMaxTime":   3600000,
+      "resultsCachePurgeTime": 60480000,
+      "resultsCacheMaxSize":   124,
+
+      "pageCacheMaxTime":      3600000,
+      "pageCachePurgeTime":    60480000,
+      "pageCacheMaxSize":      32,
+
+      // If no query type option is supplied then 
+      // what should noodle assume
+
+      "defaultDocumentType":   "html",
+
+      // How the noodle scraper identifies itself 
+      // to scrape targets
+
+      "userAgent":             ""
+    }

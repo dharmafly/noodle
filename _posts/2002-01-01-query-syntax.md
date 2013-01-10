@@ -1,0 +1,383 @@
+--- 
+category: reference
+heading: Query syntax
+---
+
+A simple query looks like this:
+
+    {
+      "url": "http://chrisnewtn.com",
+      "type": "html",
+      "selector": "ul.social li a",
+      "extract": "href",
+    }
+
+It says to go to a friend's website and for noodle to expect a html document. 
+Then to select anchor elements in a list and for each one extract the href 
+attribute's value.
+
+The `type` property is used to tell noodle if you are wanting to scrape a html 
+page, json document etc. If no type is specified then a html page will be 
+assumed by default.
+
+A similar query can be constructed to extract information from a JSON document.
+JSONSelect is used as the underlying library to do this. It supports common CSS3 
+selector functionality. You can [familiarize yourself with it here.](http://jsonselect.org/#tryit)
+
+    {
+      "url": "https://search.twitter.com/search.json?q=friendship",
+      "selector": ".results .from_user",
+      "type": "json"
+    }
+
+An `extract` property is not needed for a query on JSON documents as json 
+properties have no meta-data and just a value.
+
+## Different types (html, json, feed & xml)
+
+### html
+
+**Note:** Some xml documents can be parsed by noodle under the html type!
+
+The html type is the only type to have the `extract` property. This is because 
+the other types are converted to JSON.
+
+The `extract` property could be the HTML element's attribute.
+
+Having `"html"` or `"innerHTML"` as the `extract` value will return the
+containing HTML within that element.
+
+Having `"text"` as the `extract` value will return only the text. noodle will 
+strip out any new line characters found in the text.
+
+Return data looks like this:
+
+    {
+        "results": [
+            {
+                "href": "http://twitter.com/chrisnewtn"
+            },
+            {
+                "href": "http://plus.google.com/u/0/111845796843095584341"
+            }
+        ],
+        "created": "2012-08-01T16:22:14.705Z"
+    }
+
+Having no specific extract rule will assume a default of extracting `"html"` 
+from the `selector`.
+
+It is also possible to request multiple properties to extract in one query via
+array.
+
+Query:
+
+    {
+      "url": "http://chrisnewtn.com",
+      "selector": "ul.social li a",
+      "extract": ["href", "text"]
+    }
+
+Response:
+
+    {
+      "results": [
+        {
+            "href": "http://twitter.com/chrisnewtn",
+            "text": "Twitter"
+        },
+        {
+            "href": "http://plus.google.com/u/0/111845796843095584341",
+            "text": "Google+"
+        }
+      ],
+      "created": "2012-08-01T16:23:41.913Z"
+    }
+
+In the query's `selector` property use the standard CSS DOM selectors.
+
+### json and xml
+
+The same rules apply from html to the json and xml types. Only that the 
+`extract` property should be ommitted from queries as the JSON node value(s) 
+targetted by the `selector` is always assumed.
+
+In the query's `selector` property use 
+[JSONSelect](http://jsonselect.org/#tryit) style selectors.
+
+### feeds
+
+The same rules apply to the json and xml types. Only that the `extract` property 
+should be ommitted from queries as the JSON node value(s) targetted by the 
+`selector` is always assumed.
+
+In the query's `selector` property use 
+[JSONSelect](http://jsonselect.org/#tryit) style selectors.
+
+The feed type is based upon 
+[node-feedparser](https://github.com/danmactough/node-feedparser) so it 
+supports Robust RSS, Atom, and RDF standards.
+
+[Familiarize yourself with its](https://github.com/danmactough/node-feedparser#what-is-the-parsed-output-produced-by-feedparser) normalisation format before you use JSONSelect style 
+selector.
+
+## Getting the entire web document
+
+If no `selector` is specified than the entire document is returned. This is a 
+rule applied to all types of docments. The `extract` rule will be ignored if 
+included.
+
+Query:
+
+    {
+      "url": "https://search.twitter.com/search.json?q=friendship"
+    }
+
+Response:
+
+    {
+      "results": ["<full document contents>"],
+      "created": "2012-10-24T15:37:29.796Z"
+    }
+
+## Mapping a query to familiar properties
+
+Queries can also be written in the map notation. The map notation allows for 
+the results to be accessible by custom and more helpful property names.
+
+In the example below map is used to create a result object of a person and 
+their repos.
+
+  {
+      "url": "https://github.com/chrisnewtn",
+      "type": "html",
+      "map": {
+          "person": {
+              "selector": "span[itemprop=name]",
+              "extract": "text"
+          },
+          "repos": {
+              "selector": "li h3",
+              "extract": "text"
+          }
+      }
+  }
+
+With results looking like this:  
+
+  [
+      {
+          "results": {
+              "person": [
+                  {
+                      "text": "Chris Newton"
+                  }
+              ],
+              "repos": [
+                  {
+                      "text": "cmd-async-slides"
+                  },
+                  {
+                      "text": "jquery-async-uploader"
+                  },
+                  {
+                      "text": "cmd.js"
+                  },
+                  {
+                      "text": "sitestatus"
+                  },
+                  {
+                      "text": "simplechat"
+                  }
+              ]
+          },
+          "created": "2013-01-07T16:13:14.947Z"
+      }
+  ]
+
+## Getting hold of page headers
+
+Within a query include the  `headers` property with an array value listing the 
+headers you wish to recieve back as an object structure. `'all'` may also be 
+used as a value to return all of the server headers.
+
+Headers are treated case-insensitive and the returned property names will 
+match exactly to the string you requested with.
+
+Query:
+
+    {
+      "url": "http://github.com",
+      "headers": ["conection", "content-TYPE"]
+    }
+
+Result:
+
+    {
+      "results": [...],
+      "headers": {
+        "connection": "keep-alive",
+        "content-TYPE": "text/html"
+      }
+      "created":"2012-11-14T13:06:02.521Z"
+    }
+
+### Link headers for pagination
+
+noodle provides a shortcut to the server Link header with the query 
+`linkHeader` property set to `true`. Link headers are useful as some web APIs 
+use them to expose their pagination.
+
+The Link header will be parsed to an object structure. If you wish to have the Link header in its usual formatting then include it in the `headers` array instead.
+
+Query:
+    
+    {
+      "url": "https://api.github.com/users/premasagar/starred",
+      "type": "json",
+      "selector": ".language",
+      "headers": ["connection"],
+      "linkHeader": true
+    }
+
+Result:  
+
+    {
+      "results": [
+        "JavaScript",
+        "Ruby",
+        "JavaScript",
+      ],
+      "headers": {
+        "connection": "keep-alive",
+        "link": {
+          "next": "https://api.github.com/users/premasagar/starred?page=2",
+          "last": "https://api.github.com/users/premasagar/starred?page=5"
+        }
+      },
+      "created": "2012-11-16T15:48:33.866Z"
+    }
+
+
+## Querying to a POST url
+
+noodle allows for post data to be passed along to the target web server 
+specified in the url. This can be optionally done with the `post` property 
+which takes an object map of the post data key/values.
+
+    {
+      "url": "http://example.com/login.php",
+      "post": {
+        "username": "john",
+        "password": "123"
+      },
+      "select": "h1.username",
+      "type": "html"
+
+Take not however that queries with the `post` property will not be cached.
+
+## Querying without caching
+
+If `cache` is set to `false` in your query then noodle will not cache the 
+results or associated page and it will get the data fresh. This is useful for 
+debugging.
+
+    {
+      "url": "http://example.com",
+      "selector": "h1",
+      "cache": "false"
+    }
+  
+## Query errors
+
+noodle aims to give errors for the possible use cases were a query does 
+not yield any results.
+
+Each error is specific to one result object and are contained in the `error` 
+property as a string message.
+
+Response:
+
+    {
+      "results": [],
+      "error": "Document not found"
+    }
+
+noodle also falls silently with the `'extract'` property by ommitting any 
+extract results from the results object.
+
+Consider the following JSON response to a partially incorrect query.
+
+Query:
+
+    {
+      "url": "http://chrisnewtn.com",
+      "selector": "ul.social li a",
+      "extract": ["href", "nonexistent"]
+    }
+
+Response:
+
+The extract "nonexistent" property is left out because it was not found
+on the element.
+
+    {
+      "results": [
+        {
+          "href": "http://twitter.com/chrisnewtn"
+        },
+        {
+          "href": "http://plus.google.com/u/0/111845796843095584341"
+        }
+      ],
+      "created": "2012-08-01T16:28:19.167Z"
+    }
+
+## Multiple queries
+
+Multiple queries can be made per request to the server. You can mix between 
+different types of queries in the same request.
+
+Query:
+
+    [
+      {
+        "url": "http://chrisnewtn.com",
+        "selector": "ul.social li a",
+        "extract": ["text", "href"]
+      },
+      {
+        "url": "http://premasagar.com",
+        "selector": "#social_networks li a.url",
+        "extract": "href"
+      }
+    ]
+
+Response:
+
+    [
+      {
+        "results": [
+          {
+            "href": "http://twitter.com/chrisnewtn",
+            "text": "Twitter"
+          },
+          {
+            "href": "http://plus.google.com/u/0/111845796843095584341",
+            "text": "Google+"
+          }
+        ],
+        "created": "2012-08-01T16:23:41.913Z"
+      },
+      {
+        "results": [
+          {
+            "href": "http://dharmafly.com/blog"
+          },
+          {
+            "href": "http://twitter.com/premasagar"
+          }
+        ],
+        "created": "2012-08-01T16:22:13.339Z"
+      }
+    ]
