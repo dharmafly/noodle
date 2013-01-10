@@ -64,7 +64,7 @@ The web service also provides rate limiting out of the box with
 The specify what port the noodle web service serves on just write it as the 
 first argument to the binary.
 
-   $ bin/noodle-server 9000
+    $ bin/noodle-server 9000
      Server running on port 9000
 
 ### Behaviour settings
