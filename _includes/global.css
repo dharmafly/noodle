@@ -1,12 +1,12 @@
 
-{% if page.header_font %}
-    {% assign header_font  = page.header_font %}
+{% if page.headings_font %}
+    {% assign headings_font  = page.headings_font %}
 {% else %}
-    {% assign header_font  = "Lato" %}
+    {% assign headings_font  = "Open Sans" %}
 {% endif %}
 
 body {
-	font: 62.5%/1 Lato, serif;
+	font: 62.5%/1 'Open Sans', serif;
 	padding: 0;
 	margin: 0;
   -webkit-transition: opacity 500ms ease-in-out;
@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, h6, p, pre, ul, ol {
 }
 
 h1, h2 {
-	font-family: {{ header_font }}, "Helvetica Neue", sans-serif;
+	font-family: {{ headings_font }}, "Helvetica Neue", sans-serif; 
 	font-weight: 400;
 	margin-bottom: 0.75em;
 }
@@ -762,7 +762,6 @@ p.buttons {
 	background-image: linear-gradient(top,{{ page.large_button_colour }}, {{ page.large_button_stop }});
 	border-radius: 5px;
 	border: 2px solid {{ page.highlight_colour }};
-  font-family: Lato, sans-serif;
   margin: 0.25em 0.25em 0.5em 0;
 }
 
