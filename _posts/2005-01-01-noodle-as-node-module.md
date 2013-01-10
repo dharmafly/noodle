@@ -3,6 +3,14 @@ category: reference
 heading: Noodle as node module
 ---
 
+**Note:** Since noodle's internal cache uses an interval this will keep the 
+related node process running indefinately. Be sure to run `noodle.stopCache()` 
+when your code is finished with noodle.
+
+## Methods
+
+### noodle.query
+
 The main entry point to noodle's functionality is the `query` method. This 
 method accepts a query or an array of queries as its only parameter and returns 
 a [promise](https://github.com/kriskowal/q). 
@@ -13,42 +21,20 @@ a [promise](https://github.com/kriskowal/q).
     });
 
 The makeup of query(s) is analagous to using noodle as a web service (as 
-[stated above](http://noodlejs.com/reference/#writing-a-query)). The 
+[stated above](http://noodlejs.com/reference/#query-syntax)). The 
 exception being that you supply a proper object and not JSON.
 
-For more programmability one can utilise the `fetch` method of the various 
-supported document type namespaces. These namespaces follow:
+### noodle.fetch
 
-    var noodle = require('noodle');
-
-    noodle.html;
-    noodle.feed;
-    noodle.json;
-    noodle.xml;
-
-The `fetch` method returns a [promise object](https://github.com/kriskowal/q).
-
-    var noodle = require('noodle');
-
-    noodle.html.fetch(url, query).then(function (results) {
-      console.log(results);
-    })
-
-The api also exposes lower level methods which the `fetch` methods use. These 
-low level methods all return [promises](https://github.com/kriskowal/q).
-
-**noodle.fetch**
-
-Calling `noodle.fetch` from the noodle namespace and not the type namespace is 
-different. Instead it is used for simply retrieving a web document.
-
+This method returns a [promises](https://github.com/kriskowal/q). Which upon 
+resolutions hands over the requested web document.
 
     noodle.fetch(url).then(function (page) {
       console.log(page);
     });
 
 
-**noodle.html.select**
+### noodle.html.select
 
 For applying one query to a html string and retrieving the results.
 
@@ -58,7 +44,7 @@ For applying one query to a html string and retrieving the results.
     });
 
 
-**noodle.json.select**
+### noodle.json.select
 
 For applying one query to a parsed JSON representation (object).
 
@@ -68,15 +54,15 @@ For applying one query to a parsed JSON representation (object).
       console.log(result);
     });
 
-**noodle.xml.select**
-
-Proxies to `noodle.json.select`.
-
-**noodle.feed.select**
+## noodle.feed.select
 
 Normalises an RSS, ATOM or RDF string with 
 [node-feedparser](https://github.com/danmactough/node-feedparser) then proxies 
 that normalised object to `noodle.json.select`.
+
+### noodle.xml.select
+
+Proxies to `noodle.json.select`.
 
 ### noodle events
 
@@ -110,13 +96,18 @@ related events. Noodle inherits from node's [EventEmitter](http://nodejs.org/api
 
 Configuration is possible programmatically via `noodle.configure(obj)`.
 
-This accepts an object which is partly or fully representing the config optins.
+This accepts a conig object which can be partly or fully representing the 
+config options.
+
 This object is applied over the existing config found in the `config.json`.
 
-Example to change just two settings:
+Example for change just two settings:
 
     var noodle = require('noodle');
 
+    // Do not display messages to the terminal and set 
+    // the default document type to json
+    
     noodle.configure({
       debug: false,
       defaultDocumentType: "json"
