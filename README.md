@@ -79,7 +79,7 @@ Within this branch, `_config.yml` contains the details for the Satya example web
 
 If you've updated the `_config.yml`, ensure the relavant sections in `_satya-exampleconfig.yml` and `_satya-globalconfig.yml` are also changed. Any project websites will not see your changes to `_config.yml` without updating these files. 
 
-**After pulling this branch from master, you must remove `_config.yml` before committing**.
+**If you've modified the _config.yml, after pulling from `gh-pages` on the `master` branch, you must remove `_config.yml` before committing**.
 
 (The satya-cli tool will create the `_config.yml` for each project instance, so the master template should not contain this file).
 
