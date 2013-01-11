@@ -1,7 +1,9 @@
-{% if site.show_icons %}
+{% if site.project_url or site.twitter_url or site.lang %}
  <aside>
     <ul>
+        {% if site.project_url %}
         <li class="github"><a href="{{ site.project_url }}" title="{{ site.project_name }} on Github">{{ site.project_name }} on Github</a></li>
+        {% endif %}
         {% if site.twitter_url %}
         <li class="twitter"><a href="{{ site.twitter_url }}" title="{{ site.project_name }} on Twitter">
         {{ site.project_name }} on Twitter</a></li>
