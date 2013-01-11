@@ -6,7 +6,7 @@
 {% endif %}
 
 body {
-	font: 62.5%/1 'Open Sans', serif;
+	font: 62.5%/1 'Open Sans', sans-serif;
 	padding: 0;
 	margin: 0;
   -webkit-transition: opacity 500ms ease-in-out;
@@ -1240,23 +1240,7 @@ aside  li:hover:after  {
   }
 }
 
-/* Force correct font loading behaviour to avoid FOUT in IE9 */
-
-/*.wf-loading h1,
-.wf-loading h2,
-.wf-loading h3,
-.wf-loading h4,
-.wf-loading p,
-.wf-loading blockquote,
-.wf-loading ul,
-.wf-loading li,
-.wf-loading a,
-.wf-loading em,
-.wf-loading span {
-
-  visibility: hidden;
-
-}*/
+/* Force correct font loading behaviour to avoid FOUT  */
 .ie .loading h1.title,
 .wf-electrolize-n4-loading h1,
 .wf-loading h1{
