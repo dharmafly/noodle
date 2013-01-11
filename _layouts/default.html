@@ -20,6 +20,10 @@
     {% assign relative_path  = ".." %}
     {% assign page_path  = "../" %}
 {% endif %}
+{% if page.layout_type == 'absolute' %}
+    {% assign relative_path  = "" %}
+    {% assign page_path  = "" %}
+{% endif %}
 
 <!--[if IE 9]><html class="ie" lang="en"><![endif]-->
 <!--[if lt IE 9 ]> <html class="ie ltIE9" lang="en"> <![endif]-->
