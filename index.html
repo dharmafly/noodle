@@ -46,6 +46,7 @@ layout: default
 
 {% include aside.liquid %}
 
+        {% if site.project_url %}
         <section>
             <h1><a id="download" class="permalink" href="#download">&#9875;</a> Download</h1>
             <p><a href="{{ site.project_url }}" target="_blank">Star the project</a> on GitHub, or {% if site.GITHUB_ZIP_URL %}<a target="_blank" href="{{ site.GITHUB_ZIP_URL }}">{% endif %}download it{% if site.GITHUB_ZIP_URL %}</a>{% endif %}:</p>
@@ -64,6 +65,7 @@ layout: default
                 {% endfor %}      
             </p>
         </section>
+        {% endif %}
 
 {% for post in category reversed %}
     {% unless forloop.first %}
