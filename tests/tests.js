@@ -1,4 +1,5 @@
-var assert   = require('assert'),
+var util     = require('util'),
+    assert   = require('assert'),
     expect   = require('chai').expect,
     fixtures = require('./fixtures'),
     noodle   = require('../lib/noodle'),
@@ -40,7 +41,7 @@ describe('noodle', function () {
 
 describe('Types', function () {
   describe('noodle.html', function () {
-    it('should return an array', function (done) {
+    it('promise should resolve an array', function (done) {
       noodle.query(fixtures.queries.html.simple)
         .then(function (results) {
           done();
@@ -50,7 +51,7 @@ describe('Types', function () {
   });
 
   describe('noodle.json', function () {
-    it('should return an array', function (done) {
+    it('promise should resolve an array', function (done) {
       noodle.query(fixtures.queries.json.simple)
         .then(function (results) {
           done();
@@ -60,7 +61,7 @@ describe('Types', function () {
   });
 
   describe('noodle.feed', function () {
-    it('should return an array', function (done) {
+    it('promise should resolve an array', function (done) {
       noodle.query(fixtures.queries.feed.simple)
         .then(function (results) {
           done();
@@ -70,7 +71,7 @@ describe('Types', function () {
   });
 
   describe('noodle.xml', function () {
-    it('should return an array', function (done) {
+    it('promise should resolve an array', function (done) {
       noodle.query(fixtures.queries.xml.simple)
         .then(function (results) {
           done();
@@ -92,125 +93,219 @@ describe('Query responses', function () {
   var asArrays = [];
 
   describe('type: html', function () {
-    it('should have result data', function () {
-
+    it('should have result data', function (done) {
+      noodle.fetch(fixtures.queries.html.simple)
+        .then(function (results) {
+          done();
+          expect(results).to.eql(fixtures.queries.answers.html.simple);
+        });
     });
 
-    it('should still return some data if no selector is specified', function () {
-
+    it('should still return full document if no selector is specified', function () {
+      noodle.fetch(fixtures.queries.html.noSelector)
+        .then(function (results) {
+          done();
+          expect(results[0].results).to.be.a('string');
+        });
     });
 
     it('should still return some data if no extract is specified', function () {
-
+      noodle.fetch(fixtures.queries.html.noExtract)
+        .then(function (results) {
+          done();
+          expect(results).to.eql(fixtures.queries.answers.html.noExtract);
+        })
     });
 
     it('should still return some data if no type is specified', function () {
-
+      noodle.fetch(fixtures.queries.html.noType)
+        .then(function (results) {
+          done();
+          expect(results).to.eql(fixtures.queries.answers.html.noType);
+        });
     });
 
     describe('errors', function () {
       it('should report on a poor selector', function () {
+        noodle.fetch(fixtures.queries.html.badSelector)
+          .then(function (results) {
+            done();
+            expect(results).to.eql(fixtures.queries.answers.html.badSelector);
+          });
+      });
 
+      it('should default to selecting html if no extract is supplied', function (){
+        noodle.fetch(fixtures.queries.html.badExtract)
+          .then(function (results) {
+            done();
+            expect(results).to.eql(fixtures.queries.answers.html.badExtract);
+          });
       });
     });
   });
 
   describe('type: json', function () {
-    it('should have result data', function () {
+    before(function () {
+      noodle.configure({
+        defaultDocumentType: 'json'
+      });
+    });
 
+    it('should have result data', function () {
+      noodle.fetch(fixtures.queries.json.simple)
+        .then(function (results) {
+          done();
+          expect(results).to.eql(fixtures.queries.answers.json.simple);
+        });
     });
 
     it('should still return some data if no selector is specified', function () {
-
+      noodle.fetch(fixtures.queries.json.noSelector)
+        .then(function (results) {
+          done();
+          expect(results).to.eql(fixtures.queries.answers.json.noSelector);
+        });
     });
 
     it('should still return some data if no type is specified', function () {
-
+      noodle.fetch(fixtures.queries.json.noType)
+        .then(function (results) {
+          done();
+          expect(results).to.eql(fixtures.queries.answers.json.noType);
+        });
     });
 
     describe('errors', function () {
       it('should report on a poor selector', function () {
-
+        noodle.fetch(fixtures.queries.json.badSelector)
+          .then(function (results) {
+            done();
+            expect(results).to.eql(fixtures.queries.answers.json.badSelector);
+          });
       });
       
       it('should report on a parse error', function () {
-
+        noodle.fetch(fixtures.queries.json.badParse)
+          .then(function (results) {
+            done();
+            expect(results).to.eql(fixtures.queries.answers.json.badParse);
+          });
       });
     });
   });
 
   describe('type: feed', function () {
     it('should have result data', function () {
-
+      noodle.fetch(fixtures.queries.feed.simple)
+        .then(function (results) {
+          done();
+          expect(results).to.eql(fixtures.queries.answers.feed.simple);
+        });
     });
 
     it('should still return some data if no selector is specified', function () {
-
+      noodle.fetch(fixtures.queries.feed.noSelector)
+        .then(function (results) {
+          done();
+          expect(results).to.eql(fixtures.queries.answers.feed.noSelector);
+        });
     });
 
     it('should still return some data if no type is specified', function () {
-
+      noodle.fetch(fixtures.queries.feed.noType)
+        .then(function (results) {
+          done();
+          expect(results).to.eql(fixtures.queries.answers.feed.noType);
+        });
     });
 
     describe('errors', function () {
       it('should report on a poor selector', function () {
-
+        noodle.fetch(fixtures.queries.feed.badSelector)
+          .then(function (results) {
+            done();
+            expect(results).to.eql(fixtures.queries.answers.feed.badSelector);
+          });
       });
       
       it('should report on a parse error', function () {
-
-      });
+        noodle.fetch(fixtures.queries.feed.badParse)
+          .then(function (results) {
+            done();
+            expect(results).to.eql(fixtures.queries.answers.feed.badParse);
+          });
+        });
     });
   });
 
   describe('type: xml', function () {
     it('should have result data', function () {
-
+      noodle.fetch(fixtures.queries.xml.simple)
+        .then(function (results) {
+          done();
+          expect(results).to.eql(fixtures.queries.answers.xml.simple);
+        });
     });
 
     it('should still return some data if no selector is specified', function () {
-
+      noodle.fetch(fixtures.queries.xml.noSelector)
+        .then(function (results) {
+          done();
+          expect(results).to.eql(fixtures.queries.answers.xml.noSelector);
+        });
     });
 
     it('should still return some data if no type is specified', function () {
-
+      noodle.fetch(fixtures.queries.xml.noType)
+        .then(function (results) {
+          done();
+          expect(results).to.eql(fixtures.queries.answers.xml.noType);
+        });
     });
 
     describe('errors', function () {
       it('should report on a poor selector', function () {
-
+        noodle.fetch(fixtures.queries.xml.badSelector)
+          .then(function (results) {
+            done();
+            expect(results).to.eql(fixtures.queries.answers.xml.badSelector);
+          });
       });
       
       it('should report on a parse error', function () {
-
+        noodle.fetch(fixtures.queries.xml.badParse)
+          .then(function (results) {
+            done();
+            expect(results).to.eql(fixtures.queries.answers.xml.badParse);
+          });
       });
     });
   });
 
   describe('map notation', function () {
     it('result should contain properties as specified in the map', function () {
-
+      
     });
   });
 
   describe('post data', function () {
     it('should return data from post requests', function () {
-
+      
     });
   });
 
   describe('headers', function () {
     it('should parse headers', function () {
-
+      
     });
 
     it('should parse link headers', function () {
-
+      
     });
   });
 
   describe('multiple queries', function () {
-
+    
   });
 
   describe('consistent response format', function () {
