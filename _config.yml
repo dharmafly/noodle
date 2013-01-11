@@ -24,6 +24,7 @@ sections:
 server: false
 pygments: false
 version: 0.1.0
+show_icons: true
 twitter_url: https://twitter.com/dharmafly
 lang: javascript
 project_name: noodle
