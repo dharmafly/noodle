@@ -23,7 +23,7 @@ sections:
   path: /reference/index.html
 server: false
 pygments: false
-version: 0.0.3
+version: 0.1.0
 twitter_url: https://twitter.com/dharmafly
 lang: javascript
 project_name: noodle
