@@ -6,7 +6,6 @@
   "dependencies": {
     "connect": "~2.3.5",
     "connect-ratelimit": "0.0.5",
-    "async": "0.1.22",
     "JSONSelect": "0.4.0",
     "feedparser": "0.10.7",
     "moment": "1.7.2",
