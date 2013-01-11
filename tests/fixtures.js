@@ -158,13 +158,16 @@ exports.queries = {
 
 // Query answers
 
-exports.queries.html.simple.answer = [
-    {
+exports.queries.answers = {
+  html: {
+    simple: [
+      {
         "results": [
-            {
-                "text": "css Zen Garden: The Beauty in CSS Design"
-            }
-        ],
-        "created": "2013-01-11T12:14:07.016Z"
-    }
-];
+          {
+            "text": "css Zen Garden: The Beauty in CSS Design"
+          }
+        ]
+      }
+    ]
+  }
+};
