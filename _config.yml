@@ -13,8 +13,8 @@ twitter_url: https://twitter.com/dharmafly
 lang: html5
 scripts:
 - src: //ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
-- src: https://raw.github.com/dharmafly/jquery.promises/master/image.js
-- src: https://raw.github.com/dharmafly/jquery.promises/master/timer.js
+- src: /javascript/code-examples/jquery.promises/image.js
+- src: /javascript/code-examples/jquery.promises/timer.js
 quote:
   quote: Ink is better than the best memory.
   cite: Chinese proverb
