@@ -6,6 +6,7 @@ project_url: https://github.com/dharmafly/PROJECT-REPO
 version: '0.0.1'
 # options: forest, ocean, horus, seagrass, sundae, slate
 theme: forest
+show_icons: true
 twitter_url: https://twitter.com/dharmafly
 # options: javascript, css, html5
 lang: javascript
