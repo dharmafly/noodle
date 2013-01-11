@@ -1,3 +1,4 @@
+{% if site.show_icons %}
  <aside>
     <ul>
         <li class="github"><a href="{{ site.project_url }}" title="{{ site.project_name }} on Github">{{ site.project_name }} on Github</a></li>
@@ -17,3 +18,4 @@
         {% endcase %} 
     </ul>
 </aside>
+{% endif %}
