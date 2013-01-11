@@ -1,12 +1,12 @@
 
-{% if page.header_font %}
-    {% assign header_font  = page.header_font %}
+{% if page.headings_font %}
+    {% assign headings_font  = page.headings_font %}
 {% else %}
-    {% assign header_font  = "Lato" %}
+    {% assign headings_font  = "Open Sans" %}
 {% endif %}
 
 body {
-	font: 62.5%/1 Lato, serif;
+	font: 62.5%/1 'Open Sans', sans-serif;
 	padding: 0;
 	margin: 0;
   -webkit-transition: opacity 500ms ease-in-out;
@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, h6, p, pre, ul, ol {
 }
 
 h1, h2 {
-	font-family: {{ header_font }}, "Helvetica Neue", sans-serif;
+	font-family: {{ headings_font }}, "Helvetica Neue", sans-serif; 
 	font-weight: 400;
 	margin-bottom: 0.75em;
 }
@@ -348,7 +348,8 @@ section.overview a:active {
 	text-decoration: none;
 }
 
-#subnav {
+#subnav,
+#subnavClone {
     position: absolute;
     left: -42em;
     text-align: right;
@@ -361,7 +362,6 @@ section.overview a:active {
 #subnav.fixed {
     position: fixed;
     top: 6em;
-    width:auto;
     /* calculate left offset dynamically */
 }
 
@@ -505,8 +505,11 @@ section.content:after{
   background-image: none;
 }
 
-section > h1 {
+section > h1,
+article > h2 {
 	position: relative;
+}
+section > h1 {
 	left: -1.1em;
   text-indent: 1.1em;
 }
@@ -759,7 +762,6 @@ p.buttons {
 	background-image: linear-gradient(top,{{ page.large_button_colour }}, {{ page.large_button_stop }});
 	border-radius: 5px;
 	border: 2px solid {{ page.highlight_colour }};
-  font-family: Lato, sans-serif;
   margin: 0.25em 0.25em 0.5em 0;
 }
 
@@ -953,7 +955,7 @@ aside li span:hover {
 .ltIE9 aside li.github a {  background-position: -4px 4px; background-color: white;}
 aside li.github a {  background-position: -4px 0; }
 aside li.twitter a{ background-position: -2px -128px; }
-aside li.code-javascript span { background-position: -6px -246px; }
+aside li.code-javascript span { background-position: -4px -246px; }
 aside li.code-html5 span { background-position: -2px -457px; }
 aside li.code-css span { background-position: -2px -546px; }
 
@@ -1238,23 +1240,9 @@ aside  li:hover:after  {
   }
 }
 
-/* Force correct font loading behaviour to avoid FOUT in all browsers */
 
-/*.wf-loading h1,
-.wf-loading h2,
-.wf-loading h3,
-.wf-loading h4,
-.wf-loading p,
-.wf-loading blockquote,
-.wf-loading ul,
-.wf-loading li,
-.wf-loading a,
-.wf-loading em,
-.wf-loading span {
+/* Force correct font loading behaviour to avoid FOUT  */
 
-  visibility: hidden;
-
-}*/
 .ie .loading h1.title,
 .wf-electrolize-n4-loading h1,
 .wf-loading h1{

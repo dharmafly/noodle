@@ -29,7 +29,7 @@ $('pre').each(function () {
     code.attr('id', 'code-' + examples.index);
     
     if(!satya.narrowScreen){
-      code.attr('contenteditable', true)
+      code.attr('contenteditable', true);
     }
     
     output = $('<output>click \'run\' button</output>').attr('id', 'output-' + examples.index);
@@ -48,6 +48,18 @@ $('pre').each(function () {
   }
 });
 
+function getCode(codeElem){
+  var elem = jQuery(codeElem).clone();
+
+  elem.find('div,p,br').each(function(){
+    var newline = jQuery('<span>\n</span>');
+    jQuery(this).before(newline);
+  });
+  
+  return elem[0].textContent;
+  
+}
+
 
 // Attach handlers to "Run" buttons
 $('button.eval')
@@ -60,9 +72,12 @@ $('button.eval')
     output.empty();
     setTimeout(function () {
         var demoElement = 'satya.jQuery("#' + output[0].id + '")[0]',
-            code  = $('#code-' + index).text(),
-            $alert  = 'function (msg) {satya.jQuery("#' + output[0].id + '").append("alert: " + msg + "</br/>");}';
-
+            code = '',
+            codeEl = $('#code-' + index)[0],
+            $alert  = 'function (msg) { var text = satya.jQuery("<span />");text.text("alert: " + msg);satya.jQuery("#' + output[0].id + '").append(text).append("<br/>");}';
+        
+        code = getCode(codeEl);
+        
         // Add and remove a class when the code is run.
         output.addClass('loaded');
         setTimeout(function () {

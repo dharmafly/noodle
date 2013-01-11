@@ -163,7 +163,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
   
   // ---------------------
   
-  // satyaS
+  // satya
   
      
   var narrowScreen = satya.narrowScreen, 
@@ -211,7 +211,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
   // --------------------
 
   // NAV STATE CONTROLLER
-  // See https://github.com/dharmafly/dharmafly-docs/wiki/Navigation-State
+  // See wiki/Navigation-State
  
   // HELPERS
   
@@ -220,9 +220,12 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     return window.pageYOffset > navOffsetTop;
   }
   
-  // space on left of page < width of subnav 
+  // width of subnav plus negative shift offscreen < visible width of subnav
+  // or (space on left of content area < visible width of subnav (+ margin))
   function isSubnavSqueezed(){
-    return subnav.width + (subnav.margin * 2) + (contentWidth/2) > (window.innerWidth/2);
+    var subnavSqueezed = $(subnav.el).width() + parseInt(subnav.getLeftOffset(), 10) < subnav.width;
+    //var subnavSqueezed = $(content).offset().left < subnav.width + subnav.margin;
+    return subnavSqueezed;
   } 
   
   // COMPONENTS
@@ -278,22 +281,34 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     this.isSubnavSqueezed = false;
     this.isOpen = null;
     this.timeout = null; 
-    this.width = getLinkListWidth(el); 
+    this.width = null; 
     this.height = this.el.getBoundingClientRect().height;
+    this.clone = this.el.cloneNode(true);
     // TO DO
     this.margin = 20;
-    this.fixedLeftPos = this.getLeftPos();
+    this.fixedLeftPos = 0;
     
+    this.addClone();
     this.subscribeEvents();
   }
   
   // Subnav (subnav)
-
+  
+  Subnav.prototype.addClone = function addClone() {
+    var subnav = this;
+    subnav.clone.id = 'subnavClone';
+    subnav.clone.style.visibility = 'hidden';
+    subnav.clone.style.top = '0px';
+    content.appendChild(subnav.clone);
+  };
+  
   Subnav.prototype.subscribeEvents = function() {  
     var subnav = this;
+
+    subnav.fixedLeftPos = subnav.getLeftOffset();
     
     // page scrolls beyond header height, set subnav to fixed, 
-    // set left subnav to former left position and vice versa
+    // set left subnav to former left position (and vice versa)
     $.subscribe('scrollGtHeader', function(e, state){
     
       if(state !== subnav.isScrollGtHeader){ // there's a boundary change
@@ -319,7 +334,8 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     $.subscribe('windowResized', function() {
       
       // update model for vertical scrolling state changes
-      subnav.fixedLeftPos = subnav.getLeftPos();
+      subnav.fixedLeftPos = subnav.getLeftOffset();
+      
       subnav.openPos = subnav.fixedLeftPos;
       
       // set the left pos if position fixed
@@ -334,12 +350,15 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     // show and hide the subnav and its button depending on the
     // avaiable space to the left of the content area
     $.subscribe('subnavSqueezed', function(e, state){
+      subnav.el.style.visibility = 'visible';
       if(state !== subnav.isSubnavSqueezed){
         subnav.isSubnavSqueezed = state;   
         
         subnav.updateSubnavView(state);
         
         // if there's enough room for the subnav and the subnav is open
+        // ISSUE: if the subnav is opened, then there's enough room for the subnav
+        // Required: if the subnav is open and there's a enough room for the subnav if the subnav was closed.
         if(subnav.isOpen && subnav.isSubnavSqueezed === false){
           subnav.close();
         }
@@ -366,8 +385,8 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     }
   };
   
-  Subnav.prototype.getLeftPos  = function getLeftPos() {
-    return content.offsetLeft - this.width - (2 * this.margin) + 'px';
+  Subnav.prototype.getLeftOffset  = function getLeftOffset() {
+    return $(this.clone).offset().left + 'px';
   };
   
   Subnav.prototype.toggle = function() {
@@ -395,7 +414,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
       // set open left position in model after the
       // animation to open is complete
       this.timeout = window.setTimeout(function(){
-        subnav.openPos = subnav.getLeftPos();
+        subnav.openPos = subnav.getLeftOffset();
         if(subnav.isScrollGtHeader){
           // set the left pos if position fixed
           subnav.el.style.left = subnav.openPos;
@@ -420,8 +439,14 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
   Subnav.prototype.setSelectSubnav = function() {
   
     var options = $(this.el).find('a').map(function(){
-      var link = this;
-      return $('<option>').attr('value',link.hash).text(link.innerHTML)[0];
+      var link = this,
+          $link = $(link),
+          linktext = $.trim($link.text()),
+          option = $('<option></option>')
+            .attr('value',link.hash)
+            .text(linktext);
+      
+      return option[0];
     });
     
     var $select = $('<select id="subnav-menu">').append(options);
@@ -453,7 +478,6 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
   
   function init(){
   
-    
     navigation = new Navigation(navEl);
     subnav = new Subnav(subnavEl);
     
@@ -474,7 +498,6 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
         subnav.updateSubnavView(true);
       }else{
         
-        subnavEl.style.visibility = 'visible';
         // publish resize events for setting subnav visibility
         window.addEventListener('resize', throttle(function(){
           $.publish('subnavSqueezed', isSubnavSqueezed());
@@ -490,6 +513,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     }
     
     window.addEventListener('load', function(){
+      subnav.width = getLinkListWidth(subnav.el); 
       $.publish('subnavSqueezed', isSubnavSqueezed());
       setLogoPosition();
       document.body.classList.remove('loading');

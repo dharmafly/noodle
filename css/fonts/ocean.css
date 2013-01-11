@@ -1,30 +1,7 @@
-@font-face {
-  font-family: 'Advent Pro';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Advent Pro Regular'), local('AdventPro-Regular'), url(../../fonts/advent-pro.woff) format('woff');
-}
-@font-face {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Lato Bold'), local('Lato-Bold'), url(../../fonts/lato-bold.woff) format('woff');
-}
-@font-face {
-  font-family: 'Lato';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Lato Italic'), local('Lato-Italic'), url(../../fonts/lato-italic.woff) format('woff');
-}
-@font-face {
-  font-family: 'Ubuntu Mono';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Ubuntu Mono'), local('UbuntuMono-Regular'), url(../../fonts/ubuntu-mono.woff) format('woff');
-}
-@font-face {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Lato Regular'), local('Lato-Regular'), url(../../fonts/lato.woff) format('woff');
-}
+---
+font_name: Advent Pro
+font_family: Advent Pro Regular
+font_filename: advent-pro
+---
+
+{% include fonts.css %}
