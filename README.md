@@ -42,7 +42,7 @@ Start the server by running the binary
     $ bin/noodle-server
      Server running on port 8888
 
-You may specify a port number as a second argument
+You may specify a port number as an argument
 
     $ bin/noodle-server 9090
      Server running on port 9090
@@ -51,14 +51,14 @@ Noodle as a node module
 -----------------------
 
 If you are interested in the node module just require it and check out the 
-[noodle api](http://noodlejs.com/reference/#usage-as-a-module)  
+[noodle api](http://noodlejs.com/reference/#noodle-as-node-module)  
 
 `var noodle = require('noodle')`
 
 Tests
 -----
 
-The noodle tests create a temporary server on port 8889 which the automated 
+The noodle tests create a temporary server on port `8889` which the automated 
 tests tell noodle to query against. 
 
 To run tests you can use the provided binary *from the noodle package 
