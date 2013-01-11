@@ -220,9 +220,11 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     return window.pageYOffset > navOffsetTop;
   }
   
-  // width of subnav plus negative shift offscreen < visible width of subnav 
+  // width of subnav plus negative shift offscreen < visible width of subnav
+  // or (space on left of content area < visible width of subnav (+ margin))
   function isSubnavSqueezed(){
     var subnavSqueezed = $(subnav.el).width() + parseInt(subnav.getLeftOffset(), 10) < subnav.width;
+    //var subnavSqueezed = $(content).offset().left < subnav.width + subnav.margin;
     return subnavSqueezed;
   } 
   
@@ -348,6 +350,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     // show and hide the subnav and its button depending on the
     // avaiable space to the left of the content area
     $.subscribe('subnavSqueezed', function(e, state){
+      subnav.el.style.visibility = 'visible';
       if(state !== subnav.isSubnavSqueezed){
         subnav.isSubnavSqueezed = state;   
         
@@ -495,7 +498,6 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
         subnav.updateSubnavView(true);
       }else{
         
-        subnavEl.style.visibility = 'visible';
         // publish resize events for setting subnav visibility
         window.addEventListener('resize', throttle(function(){
           $.publish('subnavSqueezed', isSubnavSqueezed());
