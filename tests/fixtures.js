@@ -169,5 +169,13 @@ exports.queries.answers = {
         ]
       }
     ]
+  },
+  json: {},
+  feed: {},
+  xml: {},
+  misc: {
+    badUrl: [],
+    badType: [],
+    emptyQuery: []
   }
 };

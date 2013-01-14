@@ -96,6 +96,7 @@ describe('Query responses', function () {
     it('should have result data', function (done) {
       noodle.fetch(fixtures.queries.html.simple)
         .then(function (results) {
+          asArrays.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.html.simple);
         });
@@ -104,6 +105,7 @@ describe('Query responses', function () {
     it('should still return full document if no selector is specified', function () {
       noodle.fetch(fixtures.queries.html.noSelector)
         .then(function (results) {
+          asArrays.push(util.isArray(results));
           done();
           expect(results[0].results).to.be.a('string');
         });
@@ -112,14 +114,16 @@ describe('Query responses', function () {
     it('should still return some data if no extract is specified', function () {
       noodle.fetch(fixtures.queries.html.noExtract)
         .then(function (results) {
+          asArrays.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.html.noExtract);
-        })
+        });
     });
 
     it('should still return some data if no type is specified', function () {
       noodle.fetch(fixtures.queries.html.noType)
         .then(function (results) {
+          asArrays.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.html.noType);
         });
@@ -129,6 +133,7 @@ describe('Query responses', function () {
       it('should report on a poor selector', function () {
         noodle.fetch(fixtures.queries.html.badSelector)
           .then(function (results) {
+            asArrays.push(util.isArray(results));
             done();
             expect(results).to.eql(fixtures.queries.answers.html.badSelector);
           });
@@ -137,6 +142,7 @@ describe('Query responses', function () {
       it('should default to selecting html if no extract is supplied', function (){
         noodle.fetch(fixtures.queries.html.badExtract)
           .then(function (results) {
+            asArrays.push(util.isArray(results));
             done();
             expect(results).to.eql(fixtures.queries.answers.html.badExtract);
           });
@@ -154,6 +160,7 @@ describe('Query responses', function () {
     it('should have result data', function () {
       noodle.fetch(fixtures.queries.json.simple)
         .then(function (results) {
+          asArrays.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.json.simple);
         });
@@ -162,6 +169,7 @@ describe('Query responses', function () {
     it('should still return some data if no selector is specified', function () {
       noodle.fetch(fixtures.queries.json.noSelector)
         .then(function (results) {
+          asArrays.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.json.noSelector);
         });
@@ -170,6 +178,7 @@ describe('Query responses', function () {
     it('should still return some data if no type is specified', function () {
       noodle.fetch(fixtures.queries.json.noType)
         .then(function (results) {
+          asArrays.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.json.noType);
         });
@@ -179,6 +188,7 @@ describe('Query responses', function () {
       it('should report on a poor selector', function () {
         noodle.fetch(fixtures.queries.json.badSelector)
           .then(function (results) {
+            asArrays.push(util.isArray(results));
             done();
             expect(results).to.eql(fixtures.queries.answers.json.badSelector);
           });
@@ -187,6 +197,7 @@ describe('Query responses', function () {
       it('should report on a parse error', function () {
         noodle.fetch(fixtures.queries.json.badParse)
           .then(function (results) {
+            asArrays.push(util.isArray(results));
             done();
             expect(results).to.eql(fixtures.queries.answers.json.badParse);
           });
@@ -198,6 +209,7 @@ describe('Query responses', function () {
     it('should have result data', function () {
       noodle.fetch(fixtures.queries.feed.simple)
         .then(function (results) {
+          asArrays.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.feed.simple);
         });
@@ -206,6 +218,7 @@ describe('Query responses', function () {
     it('should still return some data if no selector is specified', function () {
       noodle.fetch(fixtures.queries.feed.noSelector)
         .then(function (results) {
+          asArrays.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.feed.noSelector);
         });
@@ -214,6 +227,7 @@ describe('Query responses', function () {
     it('should still return some data if no type is specified', function () {
       noodle.fetch(fixtures.queries.feed.noType)
         .then(function (results) {
+          asArrays.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.feed.noType);
         });
@@ -223,6 +237,7 @@ describe('Query responses', function () {
       it('should report on a poor selector', function () {
         noodle.fetch(fixtures.queries.feed.badSelector)
           .then(function (results) {
+            asArrays.push(util.isArray(results));
             done();
             expect(results).to.eql(fixtures.queries.answers.feed.badSelector);
           });
@@ -231,6 +246,7 @@ describe('Query responses', function () {
       it('should report on a parse error', function () {
         noodle.fetch(fixtures.queries.feed.badParse)
           .then(function (results) {
+            asArrays.push(util.isArray(results));
             done();
             expect(results).to.eql(fixtures.queries.answers.feed.badParse);
           });
@@ -242,6 +258,7 @@ describe('Query responses', function () {
     it('should have result data', function () {
       noodle.fetch(fixtures.queries.xml.simple)
         .then(function (results) {
+          asArrays.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.xml.simple);
         });
@@ -250,6 +267,7 @@ describe('Query responses', function () {
     it('should still return some data if no selector is specified', function () {
       noodle.fetch(fixtures.queries.xml.noSelector)
         .then(function (results) {
+          asArrays.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.xml.noSelector);
         });
@@ -258,6 +276,7 @@ describe('Query responses', function () {
     it('should still return some data if no type is specified', function () {
       noodle.fetch(fixtures.queries.xml.noType)
         .then(function (results) {
+          asArrays.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.xml.noType);
         });
@@ -267,6 +286,7 @@ describe('Query responses', function () {
       it('should report on a poor selector', function () {
         noodle.fetch(fixtures.queries.xml.badSelector)
           .then(function (results) {
+            asArrays.push(util.isArray(results));
             done();
             expect(results).to.eql(fixtures.queries.answers.xml.badSelector);
           });
@@ -275,6 +295,7 @@ describe('Query responses', function () {
       it('should report on a parse error', function () {
         noodle.fetch(fixtures.queries.xml.badParse)
           .then(function (results) {
+            asArrays.push(util.isArray(results));
             done();
             expect(results).to.eql(fixtures.queries.answers.xml.badParse);
           });
