@@ -6,6 +6,7 @@
 project_name: Satya
 project_url: https://github.com/dharmafly/satya
 version: '1.0'
+jquery_no_conflict: true
 # options: forest, ocean, horus, seagrass, sundae, slate
 theme: slate
 twitter_url: https://twitter.com/dharmafly
