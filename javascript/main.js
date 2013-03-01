@@ -11,7 +11,7 @@
 ***********************************************/
 
 var satya = satya || {};
-satya.jQuery = jQuery.noConflict(true);
+satya.jQuery = satya.noConflict ? jQuery.noConflict(satya.noConflict) : jQuery;
 
 satya.page = (function ($, $qS) { // jQuery and document.querySelector
 

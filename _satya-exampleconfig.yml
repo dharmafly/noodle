@@ -4,6 +4,7 @@
 project_name: Project site
 project_url: https://github.com/dharmafly/PROJECT-REPO
 version: '0.0.1'
+jquery_no_conflict: true
 # options: forest, ocean, horus, seagrass, sundae, slate
 theme: forest
 twitter_url: https://twitter.com/dharmafly
