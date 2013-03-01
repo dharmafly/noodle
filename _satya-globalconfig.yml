@@ -6,6 +6,7 @@ project_url: https://github.com/dharmafly/PROJECT-REPO
 version: '0.0.1'
 theme: forest
 twitter_url: https://twitter.com/dharmafly
+twitter_name: Dharmafly
 lang: javascript
 scripts:
 quote:
