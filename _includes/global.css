@@ -127,8 +127,6 @@ pre code .comment              { color: #75715E; }
 pre {
   position: relative;
 	font-size: 10px; /* Fixes odd issue in FF */
-	overflow: auto;
-	overflow-y: hidden;
 	-webkit-tab-size: 2;
 	-moz-tab-size: 2;
 	-o-tab-size: 2;
@@ -156,6 +154,10 @@ pre code {
 	font-size: 1.6em;
 	line-height: 1.2em;
   color: #F8F8F2;
+	overflow: auto;
+	overflow-y: hidden;
+  padding-bottom: 1em;
+  word-wrap: normal;
 }
 
 header {
@@ -1130,11 +1132,6 @@ aside  li:hover:after  {
     right: 14px;
     border: 2px solid {{ page.content_bg_colour }};
   }
-  
-  .ie .run code {
-    left:30px;
-  }
-
 
   .icon {
       width: 31px;
