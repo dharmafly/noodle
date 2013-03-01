@@ -103,11 +103,11 @@
     </footer>
 
     <script>
-      console.log("window.screen.width", window.screen.width);
+      console.log("window.screen.width " + window.screen.width);
        (function(){
         function getWidth(){
           window.clearTimeout(timeout);
-        console.log("window.screen.width after timeout", window.screen.width);
+        console.log("window.screen.width after timeout " + window.screen.width);
           return window.screen.width < 480; 
         }
         var timeout = setTimeout(function(){
