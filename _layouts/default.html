@@ -103,17 +103,7 @@
     </footer>
 
     <script>
-      console.log("window.screen.width " + window.screen.width);
-       (function(){
-        function getWidth(){
-          window.clearTimeout(timeout);
-        console.log("window.screen.width after timeout " + window.screen.width);
-          return window.screen.width < 480; 
-        }
-        var timeout = setTimeout(function(){
-          satya.narrowScreen = getWidth();
-        }, 300);
-        })();
+      satya.narrowScreen = window.screen.width < 480;
       satya.isltIE10 = false;
       satya.relative_path = '{{ relative_path }}/';
     </script>

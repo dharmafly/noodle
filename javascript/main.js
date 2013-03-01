@@ -482,7 +482,6 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     subnav = new Subnav(subnavEl);
     
     // don't do transition of navigation on narrow screens
-    console.log('narrowScreen ' +  narrowScreen)
     if(narrowScreen){
       content.classList.add('content-small');
       document.body.classList.add('narrowScreen');
