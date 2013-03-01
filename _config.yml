@@ -9,6 +9,7 @@ version: '1.0'
 # options: forest, ocean, horus, seagrass, sundae, slate
 theme: slate
 twitter_url: https://twitter.com/dharmafly
+twitter_name: Dharmafly
 # options: javascript, css, html5
 lang: html5
 scripts:
