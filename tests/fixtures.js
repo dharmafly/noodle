@@ -183,14 +183,74 @@ exports.queries.answers = {
           }
         ]
       }
+    ],
+    noExtract: [
+      {
+        "results": [
+          {
+            "html": "css Zen Garden: The Beauty in CSS Design"
+          }
+        ]
+      }
+    ],
+    noType: [
+      {
+        "results": [
+          {
+            "html": "css Zen Garden: The Beauty in CSS Design"
+          }
+        ]
+      }
+    ],
+    badSelector: [
+      {
+        "results": [],
+        "error": "Could not match with that selector or extract value"
+      }
+    ],
+    badExtract: [
+      {
+        "results": [],
+        "error": "Could not match with that selector or extract value"
+      }
     ]
   },
-  json: {},
+  json: {
+    simple: [
+        {
+            "results": [
+                "dinosaurs"
+            ]
+        }
+    ],
+    noType: [
+        {
+            "results": [
+                "dinosaurs"
+            ]
+        }
+    ],
+    badSelector: [
+        {
+            "results": [],
+            "error": "Could not match with that selector"
+        }
+    ],
+    badParse: [
+        {
+            "results": [],
+            "error": "Could not parse JSON document"
+        }
+    ]
+  },
   feed: {},
   xml: {},
   misc: {
     badUrl: [],
     badType: [],
     emptyQuery: []
+  },
+  map : {
+    simple: {}
   }
 };
