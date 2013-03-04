@@ -153,6 +153,21 @@ exports.queries = {
       cache: false
     },
     emptyQuery: {}
+  },
+  map: {
+    simple: {
+      url: 'http://localhost:8889/html',
+      type: 'html',
+      map: {
+        foo: {
+          select: 'h1',
+          extract: 'text'
+        },
+        bar: {
+          select: 'title'
+        }
+      }
+    }
   }
 };
 
