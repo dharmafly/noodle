@@ -90,40 +90,40 @@ describe('Cache', function () {
 // Tests regarding the noodle queries
 
 describe('Query responses', function () {
-  var asArrays = [];
+  var allObjects = [];
 
   describe('type: html', function () {
     it('should have result data', function (done) {
-      noodle.fetch(fixtures.queries.html.simple)
+      noodle.query(fixtures.queries.html.simple)
         .then(function (results) {
-          asArrays.push(util.isArray(results));
+          allObjects.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.html.simple);
         });
     });
 
     it('should still return full document if no selector is specified', function () {
-      noodle.fetch(fixtures.queries.html.noSelector)
+      noodle.query(fixtures.queries.html.noSelector)
         .then(function (results) {
-          asArrays.push(util.isArray(results));
+          allObjects.push(util.isArray(results));
           done();
           expect(results[0].results).to.be.a('string');
         });
     });
 
     it('should still return some data if no extract is specified', function () {
-      noodle.fetch(fixtures.queries.html.noExtract)
+      noodle.query(fixtures.queries.html.noExtract)
         .then(function (results) {
-          asArrays.push(util.isArray(results));
+          allObjects.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.html.noExtract);
         });
     });
 
     it('should still return some data if no type is specified', function () {
-      noodle.fetch(fixtures.queries.html.noType)
+      noodle.query(fixtures.queries.html.noType)
         .then(function (results) {
-          asArrays.push(util.isArray(results));
+          allObjects.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.html.noType);
         });
@@ -131,18 +131,18 @@ describe('Query responses', function () {
 
     describe('errors', function () {
       it('should report on a poor selector', function () {
-        noodle.fetch(fixtures.queries.html.badSelector)
+        noodle.query(fixtures.queries.html.badSelector)
           .then(function (results) {
-            asArrays.push(util.isArray(results));
+            allObjects.push(util.isArray(results));
             done();
             expect(results).to.eql(fixtures.queries.answers.html.badSelector);
           });
       });
 
       it('should default to selecting html if no extract is supplied', function (){
-        noodle.fetch(fixtures.queries.html.badExtract)
+        noodle.query(fixtures.queries.html.badExtract)
           .then(function (results) {
-            asArrays.push(util.isArray(results));
+            allObjects.push(util.isArray(results));
             done();
             expect(results).to.eql(fixtures.queries.answers.html.badExtract);
           });
@@ -158,27 +158,27 @@ describe('Query responses', function () {
     });
 
     it('should have result data', function () {
-      noodle.fetch(fixtures.queries.json.simple)
+      noodle.query(fixtures.queries.json.simple)
         .then(function (results) {
-          asArrays.push(util.isArray(results));
+          allObjects.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.json.simple);
         });
     });
 
     it('should still return some data if no selector is specified', function () {
-      noodle.fetch(fixtures.queries.json.noSelector)
+      noodle.query(fixtures.queries.json.noSelector)
         .then(function (results) {
-          asArrays.push(util.isArray(results));
+          allObjects.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.json.noSelector);
         });
     });
 
     it('should still return some data if no type is specified', function () {
-      noodle.fetch(fixtures.queries.json.noType)
+      noodle.query(fixtures.queries.json.noType)
         .then(function (results) {
-          asArrays.push(util.isArray(results));
+          allObjects.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.json.noType);
         });
@@ -186,18 +186,18 @@ describe('Query responses', function () {
 
     describe('errors', function () {
       it('should report on a poor selector', function () {
-        noodle.fetch(fixtures.queries.json.badSelector)
+        noodle.query(fixtures.queries.json.badSelector)
           .then(function (results) {
-            asArrays.push(util.isArray(results));
+            allObjects.push(util.isArray(results));
             done();
             expect(results).to.eql(fixtures.queries.answers.json.badSelector);
           });
       });
       
       it('should report on a parse error', function () {
-        noodle.fetch(fixtures.queries.json.badParse)
+        noodle.query(fixtures.queries.json.badParse)
           .then(function (results) {
-            asArrays.push(util.isArray(results));
+            allObjects.push(util.isArray(results));
             done();
             expect(results).to.eql(fixtures.queries.answers.json.badParse);
           });
@@ -207,27 +207,27 @@ describe('Query responses', function () {
 
   describe('type: feed', function () {
     it('should have result data', function () {
-      noodle.fetch(fixtures.queries.feed.simple)
+      noodle.query(fixtures.queries.feed.simple)
         .then(function (results) {
-          asArrays.push(util.isArray(results));
+          allObjects.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.feed.simple);
         });
     });
 
     it('should still return some data if no selector is specified', function () {
-      noodle.fetch(fixtures.queries.feed.noSelector)
+      noodle.query(fixtures.queries.feed.noSelector)
         .then(function (results) {
-          asArrays.push(util.isArray(results));
+          allObjects.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.feed.noSelector);
         });
     });
 
     it('should still return some data if no type is specified', function () {
-      noodle.fetch(fixtures.queries.feed.noType)
+      noodle.query(fixtures.queries.feed.noType)
         .then(function (results) {
-          asArrays.push(util.isArray(results));
+          allObjects.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.feed.noType);
         });
@@ -235,18 +235,18 @@ describe('Query responses', function () {
 
     describe('errors', function () {
       it('should report on a poor selector', function () {
-        noodle.fetch(fixtures.queries.feed.badSelector)
+        noodle.query(fixtures.queries.feed.badSelector)
           .then(function (results) {
-            asArrays.push(util.isArray(results));
+            allObjects.push(util.isArray(results));
             done();
             expect(results).to.eql(fixtures.queries.answers.feed.badSelector);
           });
       });
       
       it('should report on a parse error', function () {
-        noodle.fetch(fixtures.queries.feed.badParse)
+        noodle.query(fixtures.queries.feed.badParse)
           .then(function (results) {
-            asArrays.push(util.isArray(results));
+            allObjects.push(util.isArray(results));
             done();
             expect(results).to.eql(fixtures.queries.answers.feed.badParse);
           });
@@ -256,27 +256,27 @@ describe('Query responses', function () {
 
   describe('type: xml', function () {
     it('should have result data', function () {
-      noodle.fetch(fixtures.queries.xml.simple)
+      noodle.query(fixtures.queries.xml.simple)
         .then(function (results) {
-          asArrays.push(util.isArray(results));
+          allObjects.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.xml.simple);
         });
     });
 
     it('should still return some data if no selector is specified', function () {
-      noodle.fetch(fixtures.queries.xml.noSelector)
+      noodle.query(fixtures.queries.xml.noSelector)
         .then(function (results) {
-          asArrays.push(util.isArray(results));
+          allObjects.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.xml.noSelector);
         });
     });
 
     it('should still return some data if no type is specified', function () {
-      noodle.fetch(fixtures.queries.xml.noType)
+      noodle.query(fixtures.queries.xml.noType)
         .then(function (results) {
-          asArrays.push(util.isArray(results));
+          allObjects.push(util.isArray(results));
           done();
           expect(results).to.eql(fixtures.queries.answers.xml.noType);
         });
@@ -284,18 +284,18 @@ describe('Query responses', function () {
 
     describe('errors', function () {
       it('should report on a poor selector', function () {
-        noodle.fetch(fixtures.queries.xml.badSelector)
+        noodle.query(fixtures.queries.xml.badSelector)
           .then(function (results) {
-            asArrays.push(util.isArray(results));
+            allObjects.push(util.isArray(results));
             done();
             expect(results).to.eql(fixtures.queries.answers.xml.badSelector);
           });
       });
       
       it('should report on a parse error', function () {
-        noodle.fetch(fixtures.queries.xml.badParse)
+        noodle.query(fixtures.queries.xml.badParse)
           .then(function (results) {
-            asArrays.push(util.isArray(results));
+            allObjects.push(util.isArray(results));
             done();
             expect(results).to.eql(fixtures.queries.answers.xml.badParse);
           });
@@ -330,8 +330,9 @@ describe('Query responses', function () {
   });
 
   describe('consistent response format', function () {
-    it('should return all responses as arrays', function () {
-      expect(asArrays.indexOf(false)).to.eql(-1);
+    it('should return all responses not as arrays but single objects', function () {
+      
+      expect(allObjects.AllValuesSame()).to.eql(true);
     });
   });
 });
@@ -340,4 +341,16 @@ describe('Query responses', function () {
 
 function isPromise (obj) {
   return !!(obj.promiseSend && obj.valueOf);
+}
+
+Array.prototype.AllValuesSame = function(){
+
+    if(this.length > 0) {
+        for(var i = 1; i < this.length; i++)
+        {
+            if(this[i] !== this[0])
+                return false;
+        }
+    } 
+    return true;
 }
