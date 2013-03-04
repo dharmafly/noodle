@@ -7,7 +7,7 @@ require('http').createServer(function (req, res) {
         'html': 'text/html',
         'json': 'application/json',
         'feed': 'application/atom+xml',
-        'xml':  'text/xml'
+        'xml' :  'text/xml'
       };
 
   res.writeHead(200, {'Content-type': ct[serve]});
