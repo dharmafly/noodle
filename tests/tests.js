@@ -1,12 +1,13 @@
-var assert   = require('assert'),
-    _        = require('underscore'),
-    fixtures = require('./fixtures'),
-    noodle   = require('../lib/noodle'),
-    cache    = require('../lib/cache'),
-    html     = require('../lib/types/html'),
-    json     = require('../lib/types/json'),
-    feed     = require('../lib/types/feed'),
-    xml      = require('../lib/types/xml');
+var assert    = require('assert'),
+    _         = require('underscore'),
+    fixtures  = require('./fixtures'),
+    noodle    = require('../lib/noodle'),
+    cache     = require('../lib/cache'),
+    html      = require('../lib/types/html'),
+    json      = require('../lib/types/json'),
+    feed      = require('../lib/types/feed'),
+    xml       = require('../lib/types/xml'),
+    stringify = JSON.stringify;
 
 noodle.configure({
   "debug": false
@@ -273,7 +274,7 @@ describe('Noodle object query API', function () {
       noodle.query(fixtures.queries.feed.simple)
         .then(function (results) {
           allArrays.push(_.isArray(results.results));
-          if (_.isEqual(results.results, fixtures.queries.answers.feed.simple)) {
+          if (_.isEqual(results.results) === _.isEqual(fixtures.queries.answers.feed.simple)) {
             done();
           } else {
             done(new Error('Results and fixtures do not match up.'));
@@ -284,8 +285,8 @@ describe('Noodle object query API', function () {
     it('should still return some data if no selector is specified', function (done) {
       noodle.query(fixtures.queries.feed.noSelector)
         .then(function (results) {
-          allArrays.push(_.isArray(results));
-          if (_.isEqual(results.results, fixtures.queries.answers.feed.noSelector)) {
+          allArrays.push(_.isArray(results.results));
+          if (stringify(results.results) === stringify(fixtures.queries.answers.feed.noSelector)) {
             done();
           } else {
             done(new Error('Results and fixtures do not match up.'));
