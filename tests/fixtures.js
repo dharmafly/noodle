@@ -106,7 +106,7 @@ exports.queries = {
       "cache": false
     },
     badParse: {
-      "url": "http://localhost:8889/json",
+      "url": "http://localhost:8889/html",
       "type": "feed",
       "selector": ".title",
       "cache": false
@@ -136,7 +136,7 @@ exports.queries = {
       "cache": false
     },
     badParse: {
-      "url": "http://localhost:8889/json",
+      "url": "http://localhost:8889/html",
       "type": "xml",
       "selector": ".CustomerName",
       "cache": false
@@ -151,8 +151,7 @@ exports.queries = {
       "url": "http://localhost:8889/html",
       "type": "BAD TYPE",
       "cache": false
-    },
-    emptyQuery: {}
+    }
   },
   map: {
     simple: {
@@ -239,7 +238,7 @@ exports.queries.answers = {
     badParse: [
         {
             "results": [],
-            "error": "Could not parse document"
+            "error": "Could not parse JSON document"
         }
     ]
   },
@@ -372,7 +371,7 @@ exports.queries.answers = {
     badParse: [
         {
             "results": [],
-            "error": "Could not parse document"
+            "error": "The provided document couldn't be normalised"
         }
     ]
   },
@@ -433,7 +432,7 @@ exports.queries.answers = {
     badParse: [
         {
             "results": [],
-            "error": "Could not parse document"
+            "error": "Could not parse XML to JSON"
         }
     ]
   },
@@ -448,12 +447,6 @@ exports.queries.answers = {
         {
             "results": [],
             "error": "Document type not supported"
-        }
-    ],
-    emptyQuery: [
-        {
-            "results": [],
-            "error": "No query"
         }
     ]
   },
