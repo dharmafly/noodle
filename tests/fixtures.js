@@ -160,11 +160,11 @@ exports.queries = {
       "type": "html",
       "map": {
         "foo": {
-          "select": "h1",
+          "selector": "h1",
           "extract": "text"
         },
         "bar": {
-          "select": "title"
+          "selector": "title"
         }
       }
     }
@@ -255,33 +255,103 @@ exports.queries.answers = {
     noSelector: [
         {
             "results": [
-                {
-                    "Order": {
-                        "Date": "2003/07/04",
-                        "CustomerId": 123,
-                        "CustomerName": "Acme Alpha",
-                        "Item": [
-                            {
-                                "ItemId": 987,
-                                "ItemName": "Coupler",
-                                "Quantity": 5
+                [
+                    {
+                        "title": "Atom-Powered Robots Run Amok",
+                        "description": "Some text.",
+                        "summary": "Some text.",
+                        "date": "2003-12-13T18:30:02.000Z",
+                        "pubdate": "2003-12-13T18:30:02.000Z",
+                        "pubDate": "2003-12-13T18:30:02.000Z",
+                        "link": "http://example.org/2003/12/13/atom03",
+                        "guid": "urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a",
+                        "author": "John Doe",
+                        "comments": null,
+                        "origlink": null,
+                        "image": {},
+                        "source": {},
+                        "categories": [],
+                        "enclosures": [],
+                        "atom:@": {},
+                        "atom:title": {
+                            "@": {},
+                            "#": "Atom-Powered Robots Run Amok"
+                        },
+                        "atom:link": {
+                            "@": {
+                                "href": "http://example.org/2003/12/13/atom03"
+                            }
+                        },
+                        "atom:id": {
+                            "@": {},
+                            "#": "urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a"
+                        },
+                        "atom:updated": {
+                            "@": {},
+                            "#": "2003-12-13T18:30:02Z"
+                        },
+                        "atom:summary": {
+                            "@": {},
+                            "#": "Some text."
+                        },
+                        "meta": {
+                            "#ns": [
+                                {
+                                    "xmlns": "http://www.w3.org/2005/Atom"
+                                }
+                            ],
+                            "@": [
+                                {
+                                    "xmlns": "http://www.w3.org/2005/Atom"
+                                }
+                            ],
+                            "#type": "atom",
+                            "#version": "1.0",
+                            "title": "Example Feed",
+                            "description": null,
+                            "date": "2003-12-13T18:30:02.000Z",
+                            "pubdate": "2003-12-13T18:30:02.000Z",
+                            "pubDate": "2003-12-13T18:30:02.000Z",
+                            "link": "http://example.org/",
+                            "xmlurl": null,
+                            "xmlUrl": null,
+                            "author": "John Doe",
+                            "language": null,
+                            "favicon": null,
+                            "copyright": null,
+                            "generator": null,
+                            "image": {},
+                            "categories": [],
+                            "atom:@": {
+                                "xmlns": "http://www.w3.org/2005/Atom"
                             },
-                            {
-                                "ItemId": 654,
-                                "ItemName": "Connector",
-                                "Quantity": {
-                                    "unit": 12,
-                                    "$t": 3
+                            "atom:title": {
+                                "@": {},
+                                "#": "Example Feed"
+                            },
+                            "atom:link": {
+                                "@": {
+                                    "href": "http://example.org/"
                                 }
                             },
-                            {
-                                "ItemId": 579,
-                                "ItemName": "Clasp",
-                                "Quantity": 1
+                            "atom:updated": {
+                                "@": {},
+                                "#": "2003-12-13T18:30:02Z"
+                            },
+                            "atom:author": {
+                                "@": {},
+                                "name": {
+                                    "@": {},
+                                    "#": "John Doe"
+                                }
+                            },
+                            "atom:id": {
+                                "@": {},
+                                "#": "urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6"
                             }
-                        ]
+                        }
                     }
-                }
+                ]
             ]
         }
     ],
