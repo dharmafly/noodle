@@ -159,13 +159,13 @@ exports.queries = {
       "type": "html",
       "map": {
         "foo": {
-          "selector": "h1",
-          "extract": "text"
+          "selector": "h1"
         },
         "bar": {
           "selector": "title"
         }
-      }
+      },
+      "cache": false
     }
   }
 };
@@ -451,6 +451,21 @@ exports.queries.answers = {
     ]
   },
   map : {
-    simple: {}
+    simple: [
+        {
+            "results": {
+                "bar": [
+                    {
+                        "html": "css Zen Garden: The Beauty in CSS Design"
+                    }
+                ],
+                "foo": [
+                    {
+                        "html": "<span>css Zen Garden</span>"
+                    }
+                ]
+            }
+        }
+    ]
   }
 };

@@ -404,19 +404,6 @@ describe('Noodle object query API', function () {
   });
 
 describe('generic query error messages', function () {
-  // To fix in noodle: this error is accounted for but at the 
-  // connect middleware level
-  it('errors if no query is specified', function (done) {
-    noodle.query(fixtures.queries.misc.emptyQuery)
-      .then(function (results) {
-        if (_.isEqual(results.results, fixtures.queries.answers.misc.emptyQuery)) {
-          done();
-        } else {
-          done(new Error('Results and fixtures do not match up.'));
-        }
-      });
-  });
-
   it('errors if no url is specified', function (done) {
     noodle.query(fixtures.queries.misc.badUrl)
       .then(function (results) {
