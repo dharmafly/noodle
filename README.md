@@ -6,8 +6,8 @@ web documents like html, json and xml feeds.
 
 ```JSON
 {
-  "url":"https://github.com/explore",
-  "selector":"ol.ranked-repositories h3",
+  "url": "https://github.com/explore",
+  "selector": "ol.ranked-repositories h3",
   "extract": "text"
 }
 ```
@@ -15,12 +15,12 @@ web documents like html, json and xml feeds.
 Features
 --------
 
-- Cross domain document querying (html, json, xml feeds)
+- Cross domain document querying (html, json, xml, atom, rss feeds)
 - Server supports querying via JSONP and JSON POST
 - Multiple queries per request
 - Access to queried server headers
-- Allows for POSTing to scrape url
-- In memory caching
+- Allows for POSTing to web documents
+- In memory caching for query results and web documents
 
 [http://noodlejs.com/](http://noodlejs.com/).
 
