@@ -482,7 +482,7 @@ describe('generic query error messages', function () {
   });
 
   describe('consistent response format', function () {
-    it('should return all responses not as arrays but single objects', function () {
+    it('should return all responses as arrays', function () {
       assert.equal(true, allArrays.indexOf(false) === -1);
     });
   });
