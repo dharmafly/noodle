@@ -11,7 +11,11 @@ require('http').createServer(function (req, res) {
       };
 
   res.writeHead(200, {'Content-type': ct[serve]});
-  res.end(fixtures.documents[serve] || 'specify document type as url path');
+  if (req.method === 'POST') {
+    res.end('<html><body><h1>was posted</h1></body></html>');
+  } else {
+    res.end(fixtures.documents[serve] || 'specify document type as url path');
+  }
 })
 .listen(8889, function () {
   console.log('Test server temporarily running on port 8889');

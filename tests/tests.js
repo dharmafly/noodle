@@ -443,20 +443,37 @@ describe('generic query error messages', function () {
 
   describe('post data', function () {
     it('should return data from post requests', function (done) {
-      assert.ok(false, 'test not implemented');
-      done();
+      noodle.query(fixtures.queries.post.simple, function (results) {
+        if (_.isEqual(results.results, fixtures.queries.answers.post.simple)) {
+          done();
+        } else {
+          done(new Error('Results and fixtures do not match up.'));
+        }
+      });
     });
   });
 
   describe('headers', function () {
     it('should parse headers', function (done) {
-      assert.ok(false, 'test not implemented');
-      done();
+      noodle.query(fixtures.queries.headers.simple)
+        .then(function (results) {
+          if (_.isEqual(results.results, fixtures.queries.answers.headers.simple)) {
+            done();
+          } else {
+            done(new Error('Results and fixtures do not match up.'));
+          }
+        });
     });
 
     it('should parse link headers', function (done) {
-      assert.ok(false, 'test not implemented');
-      done();
+      noodle.query(fixtures.queries.headers.linkHeaders)
+        .then(function (results) {
+          if (_.isEqual(results.results, fixtures.queries.answers.headers.linkHeaders)) {
+            done();
+          } else {
+            done(new Error('Results and fixtures do not match up.'));
+          }
+        });
     });
   });
 

@@ -167,6 +167,26 @@ exports.queries = {
       },
       "cache": false
     }
+  },
+  post: {
+    simple: {
+      "url": "http://localhost:8889/html",
+      "type": "html",
+      "selector": "h1",
+      "extract": "text",
+      "post": {
+        "foo": "bar"
+      },
+      "cache": false
+    }
+  },
+  headers: {
+    simple: {
+
+    },
+    linkHeaders: {
+      
+    }
   }
 };
 
@@ -467,5 +487,24 @@ exports.queries.answers = {
             }
         }
     ]
+  },
+  post: {
+    simple: [
+      {
+        "results": [
+          {
+            "text": "was posted"
+          }
+        ]
+      }
+    ]
+  },
+  headers: {
+    simple: {
+
+    },
+    linkHeaders: {
+      
+    }
   }
 };
