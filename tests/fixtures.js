@@ -170,7 +170,7 @@ exports.queries = {
   },
   post: {
     simple: {
-      "url": "http://localhost:8889/html",
+      "url": "http://localhost:8889",
       "type": "html",
       "selector": "h1",
       "extract": "text",
@@ -182,7 +182,11 @@ exports.queries = {
   },
   headers: {
     simple: {
-
+      "url": "http://localhost:8889/html",
+      "type": "html",
+      "selector": "h1",
+      "headers": ["X-Powered-By"],
+      "cache": "false"
     },
     linkHeaders: {
       
@@ -500,9 +504,18 @@ exports.queries.answers = {
     ]
   },
   headers: {
-    simple: {
-
-    },
+    simple: [
+        {
+            "results": [
+                {
+                    "html": "<span>css Zen Garden</span>"
+                }
+            ],
+            "headers": {
+                "X-Powered-By": "Noodle testing server"
+            }
+        }
+    ],
     linkHeaders: {
       
     }
