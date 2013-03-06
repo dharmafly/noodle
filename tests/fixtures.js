@@ -520,8 +520,20 @@ exports.queries.answers = {
             }
         }
     ],
-    linkHeaders: {
-      
-    }
+    linkHeaders: [
+        {
+            "results": [
+                {
+                    "html": "<span>css Zen Garden</span>"
+                }
+            ],
+            "headers": {
+                "link": {
+                    "next": "foo",
+                    "last": "bar"
+                }
+            }
+        }
+    ]
   }
 };
