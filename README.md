@@ -32,10 +32,6 @@ Setup
     $ cd noodle
     $ npm install
 
-or
-
-    $ npm install noodle
-
 Start the server by running the binary
 
     $ bin/noodle-server
