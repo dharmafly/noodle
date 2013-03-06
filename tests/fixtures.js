@@ -189,7 +189,11 @@ exports.queries = {
       "cache": "false"
     },
     linkHeaders: {
-      
+      "url": "http://localhost:8889/html",
+      "type": "html",
+      "selector": "h1",
+      "linkHeader": true,
+      "cache": "false"
     }
   }
 };
