@@ -1,0 +1,20 @@
+---
+category: overview
+heading: 'Server quick setup'
+---
+
+Setup
+
+    $ git clone https://github.com/dharmafly/noodle.git
+    $ cd noodle
+    $ npm install
+
+Start the server by running the binary
+
+    $ bin/noodle-server
+     Server running on port 8888
+
+You may specify a port number as an argument
+
+    $ bin/noodle-server 9090
+     Server running on port 9090
