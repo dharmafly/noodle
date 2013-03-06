@@ -53,7 +53,18 @@ Noodle as a node module
 If you are interested in the node module just require it and check out the 
 [noodle api](http://noodlejs.com/reference/#noodle-as-node-module)  
 
-`var noodle = require('noodle')`
+```javascript
+var noodle = require('noodle');
+
+noodle.query({
+  url:      'https://github.com/explore',
+  selector: 'ol.ranked-repositories h3',
+  extract:  'text'
+})
+.then(function (results) {
+  console.log(results);
+});
+```
 
 Tests
 -----
