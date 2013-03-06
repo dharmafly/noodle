@@ -443,7 +443,8 @@ describe('generic query error messages', function () {
 
   describe('post data', function () {
     it('should return data from post requests', function (done) {
-      noodle.query(fixtures.queries.post.simple, function (results) {
+      noodle.query(fixtures.queries.post.simple)
+      .then(function (results) {
         if (_.isEqual(results.results, fixtures.queries.answers.post.simple)) {
           done();
         } else {
