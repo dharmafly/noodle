@@ -455,6 +455,8 @@ describe('generic query error messages', function () {
   });
 
   describe('headers', function () {
+    // Failing because 'created' property is in returned results
+    // Remove this comment when this is no longer the case
     it('should parse headers', function (done) {
       noodle.query(fixtures.queries.headers.simple)
         .then(function (results) {
@@ -467,6 +469,8 @@ describe('generic query error messages', function () {
     });
 
     it('should parse link headers', function (done) {
+      // Failing because 'created' property is in returned results
+      // Remove this comment when this is no longer the case
       noodle.query(fixtures.queries.headers.linkHeaders)
         .then(function (results) {
           if (_.isEqual(results.results, fixtures.queries.answers.headers.linkHeaders)) {
@@ -479,7 +483,66 @@ describe('generic query error messages', function () {
   });
 
   describe('multiple queries', function () {
-
+    it('(A) the returned order should match the order of the sent query', function (done) {
+      var queries = [
+        fixtures.queries.html.simple,
+        fixtures.queries.json.simple,
+        fixtures.queries.feed.simple,
+        fixtures.queries.xml.simple
+      ];
+      noodle.query(queries)
+        .then(function (results) {
+          var match1 = _.isEqual(results.results[0], fixtures.queries.answers.html.simple[0]),
+              match2 = _.isEqual(results.results[1], fixtures.queries.answers.json.simple[0]),
+              match3 = _.isEqual(results.results[2], fixtures.queries.answers.feed.simple[0]),
+              match4 = _.isEqual(results.results[3], fixtures.queries.answers.xml.simple[0]);
+          if (match1 && match2 && match3 && match4) {
+            done();
+          } else {
+            done(new Error('Order was not maintained or results/fixtures mismatch'));
+          }
+        });
+    });
+    it('(B) the returned order should match the order of the sent query', function (done) {
+      var queries = [
+        fixtures.queries.json.simple,
+        fixtures.queries.html.simple,
+        fixtures.queries.xml.simple,
+        fixtures.queries.feed.simple
+      ];
+      noodle.query(queries)
+        .then(function (results) {
+          var match1 = _.isEqual(results.results[1], fixtures.queries.answers.html.simple[0]),
+              match2 = _.isEqual(results.results[0], fixtures.queries.answers.json.simple[0]),
+              match3 = _.isEqual(results.results[3], fixtures.queries.answers.feed.simple[0]),
+              match4 = _.isEqual(results.results[2], fixtures.queries.answers.xml.simple[0]);
+          if (match1 && match2 && match3 && match4) {
+            done();
+          } else {
+            done(new Error('Order was not maintained or results/fixtures mismatch'));
+          }
+        });
+    });
+    it('(C) the returned order should match the order of the sent query', function (done) {
+      var queries = [
+        fixtures.queries.html.simple,
+        fixtures.queries.json.simple,
+        fixtures.queries.feed.simple,
+        fixtures.queries.xml.simple
+      ];
+      noodle.query(queries)
+        .then(function (results) {
+          var match1 = _.isEqual(results.results[0], fixtures.queries.answers.html.simple[0]),
+              match2 = _.isEqual(results.results[1], fixtures.queries.answers.json.simple[0]),
+              match3 = _.isEqual(results.results[2], fixtures.queries.answers.feed.simple[0]),
+              match4 = _.isEqual(results.results[3], fixtures.queries.answers.xml.simple[0]);
+          if (match1 && match2 && match3 && match4) {
+            done();
+          } else {
+            done(new Error('Order was not maintained or results/fixtures mismatch'));
+          }
+        });
+    });
   });
 
   describe('consistent response format', function () {
