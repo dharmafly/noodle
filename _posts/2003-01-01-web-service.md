@@ -1,6 +1,6 @@
 --- 
-category: reference
 heading: Web service
+category: reference
 ---
 
 This code reference aims to document the use of noodle as both a web service 

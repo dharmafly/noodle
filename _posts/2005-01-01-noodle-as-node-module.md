@@ -1,6 +1,6 @@
 --- 
-category: reference
 heading: Noodle as node module
+category: reference
 ---
 
 **Note:** Since noodle's internal cache uses an interval this will keep the 

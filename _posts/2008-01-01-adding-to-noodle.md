@@ -1,6 +1,6 @@
 --- 
-category: reference
 heading: Adding to noodle
+category: reference
 ---
 
 noodle is an open-source project 

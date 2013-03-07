@@ -1,6 +1,6 @@
 --- 
-category: reference
 heading: Query syntax
+category: reference
 ---
 
 A simple query looks like this:
@@ -214,7 +214,7 @@ Query:
 
     {
       "url": "http://github.com",
-      "headers": ["conection", "content-TYPE"]
+      "headers": ["connection", "content-TYPE"]
     }
 
 Result:
@@ -261,7 +261,7 @@ Result:
           "connection": "keep-alive",
           "link": {
             "next": "https://api.github.com/users/premasagar/starred?page=2",
-            "last": "https://api.github.com/users/premasagar/starred?page=5"
+            "last": "https://api.github.com/users/premasagar/starred?page=21"
           }
         },
         "created": "2012-11-16T15:48:33.866Z"
@@ -283,6 +283,7 @@ which takes an object map of the post data key/values.
       },
       "select": "h1.username",
       "type": "html"
+    }
 
 Take not however that queries with the `post` property will not be cached.
 
