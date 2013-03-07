@@ -49,11 +49,11 @@ $('pre').each(function () {
 });
 
 function getCode(codeElem){
-  var elem = jQuery(codeElem).clone();
+  var elem = $(codeElem).clone();
 
   elem.find('div,p,br').each(function(){
-    var newline = jQuery('<span>\n</span>');
-    jQuery(this).before(newline);
+    var newline = $('<span>\n</span>');
+    $(this).before(newline);
   });
   
   return elem[0].textContent;
