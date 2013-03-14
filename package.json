@@ -1,5 +1,5 @@
 {
-  "name": "noodle",
+  "name": "noodlejs",
   "version": "0.1.1",
   "description": "noodle is a proxy server which for cross domain data extraction from different web documents from the client.",
   "main": "bin/noodle-server",
@@ -35,6 +35,7 @@
     "cross-domain",
     "cross domain",
     "selectors",
+    "JSONSelect",
     "json",
     "html"
   ],
