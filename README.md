@@ -28,6 +28,10 @@ Server quick start
 
 Setup
 
+    $ npm install noodlejs
+
+or
+
     $ git clone https://github.com/dharmafly/noodle.git
     $ cd noodle
     $ npm install
