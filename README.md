@@ -32,7 +32,7 @@ Setup
 
 or
 
-    $ git clone https://github.com/dharmafly/noodle.git
+    $ git clone git@github.com:dharmafly/noodle.git
     $ cd noodle
     $ npm install
 
