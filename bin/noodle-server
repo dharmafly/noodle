@@ -10,7 +10,7 @@ var connect  = require('connect'),
     app;
 
     limits.end = false;
-    console.log(limits);
+
     app      = connect()
               .use(limiter(limits))
               .use(function (req, res, next) {
