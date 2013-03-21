@@ -5,13 +5,14 @@ var connect  = require('connect'),
     noodlemw = require('../lib/noodle-middleware'),
     limiter  = require('connect-ratelimit'),
 
+    limits   = getConfig().rateLimit,
     port     = process.argv[2] || 8888,
+    app;
 
+    limits.end = false;
+    console.log(limits);
     app      = connect()
-              .use(limiter({
-                whitelist: ['127.0.0.1'],
-                end: false
-              }))
+              .use(limiter(limits))
               .use(function (req, res, next) {
                 if (res.ratelimit.exceeded) {
                   res.statusCode = 429;
@@ -29,3 +30,9 @@ var connect  = require('connect'),
 http.createServer(app).listen(port, function () {
   console.log('noodling on port ' + port);
 });
+
+function getConfig () {
+  var path   = require('path').resolve(__dirname, '../lib/config.json'),
+      config = require('fs').readFileSync(path).toString();
+  return JSON.parse(config);
+}
