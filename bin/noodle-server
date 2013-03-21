@@ -2,9 +2,11 @@
 
 var connect  = require('connect'),
     http     = require('http'),
-    noodlemw = require('../lib/noodle-middleware'),
+    url      = require('url'),
+    fs       = require('fs'),
     limiter  = require('connect-ratelimit'),
-
+    noodlemw = require('../lib/noodle-middleware'),
+    version  = getVersion(),
     limits   = getConfig().rateLimit,
     port     = process.argv[2] || 8888,
     app;
@@ -12,6 +14,17 @@ var connect  = require('connect'),
     limits.end = false;
 
     app      = connect()
+              .use(function (req, res, next) {
+                console.log(url.parse(req.url).pathname);
+                if (url.parse(req.url).pathname === '/version') {
+                  res.writeHead(200, {
+                    'Content-Type': 'application/json; charset=utf-8'
+                  });
+                  res.end('{"version":' + version + '}');
+                } else {
+                  next();
+                }
+              })
               .use(limiter(limits))
               .use(function (req, res, next) {
                 if (res.ratelimit.exceeded) {
@@ -28,11 +41,20 @@ var connect  = require('connect'),
               .use(noodlemw.respond);
 
 http.createServer(app).listen(port, function () {
-  console.log('noodling on port ' + port);
+  console.log('Noodle server running on port ' + port);
 });
+
+// Return the noodle config as an object
 
 function getConfig () {
   var path   = require('path').resolve(__dirname, '../lib/config.json'),
-      config = require('fs').readFileSync(path).toString();
+      config = fs.readFileSync(path).toString();
   return JSON.parse(config);
+}
+
+// Return the noodle version number
+
+function getVersion () {
+  var path = require('path').resolve(__dirname, '../package.json');
+  return JSON.parse(fs.readFileSync(path).toString()).version;
 }
