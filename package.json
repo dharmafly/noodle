@@ -1,6 +1,6 @@
 {
   "name": "noodlejs",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "noodle is a proxy server which serves for cross domain data extraction from web documents for any client.",
   "main": "bin/noodle-server",
   "dependencies": {
@@ -15,7 +15,8 @@
     "xml2json": "0.3.2",
     "underscore": "1.4.2",
     "mocha": "1.7.4",
-    "chai": "1.4.2"
+    "chai": "1.4.2",
+    "colors": "0.6.0-1"
   },
   "devDependencies": {},
   "scripts": {
