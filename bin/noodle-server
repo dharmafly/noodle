@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+process.title = 'node-noodle';
+
 var connect  = require('connect'),
     http     = require('http'),
     url      = require('url'),
@@ -40,7 +42,12 @@ var connect  = require('connect'),
               .use(noodlemw.respond);
 
 http.createServer(app).listen(port, function () {
-  console.log('Noodle server running on port ' + port);
+  var l = console.log;
+  require('colors');
+  l(' Noodle node server started'.magenta);
+  l(' ├ process title '.magenta, process.title.toString().green);
+  l(' ├ process pid   '.magenta, process.pid.toString().green);
+  l(' └ server port   '.magenta, port.toString().green);
 });
 
 // Return the noodle config as an object
