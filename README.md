@@ -21,9 +21,6 @@ Features
 - Allows for POSTing to web documents
 - In memory caching for query results and web documents
 
-[http://noodlejs.com](http://noodlejs.com)  
-[https://github.com/dharmafly/noodle](https://github.com/dharmafly/noodle)  
-
 Server quick start
 ------------------
 
@@ -76,3 +73,11 @@ To run tests you can use the provided binary *from the noodle package
 root directory*:
 
     $ bin/tests
+
+Contribute
+----------
+
+Contributors and suggestions welcomed.
+
+- [http://noodlejs.com](http://noodlejs.com)  
+- [https://github.com/dharmafly/noodle](https://github.com/dharmafly/noodle)  
