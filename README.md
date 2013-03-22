@@ -1,6 +1,9 @@
 [noodle](http://noodlejs.com) 
 =============================
 
+[http://noodlejs.com](http://noodlejs.com)  
+[https://github.com/dharmafly/noodle](https://github.com/dharmafly/noodle)  
+
 noodle is a conigurable server and node module which individuals can use to query data from web documents like html, json and xml feeds.
 
 ```JSON
