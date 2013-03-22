@@ -22,7 +22,7 @@ Array.prototype.AllValuesSame = function(){
     }
   } 
   return true;
-}
+};
 
 function isPromise (obj) {
   return !!obj.promiseSend;
