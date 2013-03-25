@@ -6,8 +6,8 @@ noodle is a conigurable server and node module which individuals can use to quer
 ```JSON
 {
   "url": "https://github.com/explore",
-  "selector": "ol.ranked-repositories h3",
-  "extract": "text"
+  "selector": "ol.ranked-repositories h3 a",
+  "extract": "href"
 }
 ```
 
@@ -37,12 +37,20 @@ or
 Start the server by running the binary
 
     $ bin/noodle-server
-     Server running on port 8888
+    Noodle node server started
+    ├ process title  node-noodle
+    ├ process pid    4739
+    └ server port    8888
+
 
 You may specify a port number as an argument
 
     $ bin/noodle-server 9090
-     Server running on port 9090
+    Noodle node server started
+    ├ process title  node-noodle
+    ├ process pid    4739
+    └ server port    9090
+
 
 Noodle as a node module
 -----------------------
@@ -55,8 +63,8 @@ var noodle = require('noodle');
 
 noodle.query({
   url:      'https://github.com/explore',
-  selector: 'ol.ranked-repositories h3',
-  extract:  'text'
+  selector: 'ol.ranked-repositories h3 a',
+  extract:  'href'
 })
 .then(function (results) {
   console.log(results);
@@ -72,6 +80,7 @@ tests tell noodle to query against.
 To run tests you can use the provided binary *from the noodle package 
 root directory*:
 
+    $ cd noodle
     $ bin/tests
 
 Contribute
