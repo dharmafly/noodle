@@ -178,11 +178,11 @@ describe('Noodle object query API', function () {
           });
       });
 
-      it('should default to selecting html if no extract is supplied', function (done){
-        noodle.query(fixtures.queries.html.badExtract)
+      it('should default to selecting text if no extract is supplied', function (done){
+        noodle.query(fixtures.queries.html.noExtract)
           .then(function (results) {
             allArrays.push(_.isArray(results.results));
-            if (_.isEqual(results.results, fixtures.queries.answers.html.badExtract)) {
+            if (_.isEqual(results.results, fixtures.queries.answers.html.noExtract)) {
               done();
             } else {
               done(new Error('Results and fixtures do not match up.'));

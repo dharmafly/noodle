@@ -204,29 +204,17 @@ exports.queries.answers = {
   html: {
     simple: [
       {
-        "results": [
-          {
-            "text": "css Zen Garden: The Beauty in CSS Design"
-          }
-        ]
+        "results": ["css Zen Garden: The Beauty in CSS Design"]
       }
     ],
     noExtract: [
       {
-        "results": [
-          {
-            "html": "css Zen Garden: The Beauty in CSS Design"
-          }
-        ]
+        "results": ["css Zen Garden: The Beauty in CSS Design"]
       }
     ],
     noType: [
       {
-        "results": [
-          {
-            "text": "css Zen Garden: The Beauty in CSS Design"
-          }
-        ]
+        "results": ["css Zen Garden: The Beauty in CSS Design"]
       }
     ],
     badSelector: [
@@ -482,16 +470,8 @@ exports.queries.answers = {
     simple: [
         {
             "results": {
-                "bar": [
-                    {
-                        "html": "css Zen Garden: The Beauty in CSS Design"
-                    }
-                ],
-                "foo": [
-                    {
-                        "html": "<span>css Zen Garden</span>"
-                    }
-                ]
+                "bar": ["css Zen Garden: The Beauty in CSS Design"],
+                "foo": ["css Zen Garden"]
             }
         }
     ]
@@ -499,11 +479,7 @@ exports.queries.answers = {
   post: {
     simple: [
       {
-        "results": [
-          {
-            "text": "was posted"
-          }
-        ]
+        "results": ["was posted"]
       }
     ]
   },
