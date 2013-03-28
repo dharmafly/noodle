@@ -1,6 +1,6 @@
 --- 
-heading: Web service
 category: reference
+heading: Web service
 ---
 
 This code reference aims to document the use of noodle as both a web service 
@@ -67,7 +67,8 @@ first argument to the binary.
 
 ### Behaviour settings
 
-Various noodle settings are exposed and can be edited in `lib/config.json`.  
+Various noodle settings like cache and ratelimit settings are exposed 
+and can be edited in `lib/config.json`.  
 
     {
       // Setting to true will log out information to the 
@@ -76,11 +77,11 @@ Various noodle settings are exposed and can be edited in `lib/config.json`.
       "debug":                 true,
 
       "resultsCacheMaxTime":   3600000,
-      "resultsCachePurgeTime": 60480000,
+      "resultsCachePurgeTime": 60480000, // -1 will turn purging off
       "resultsCacheMaxSize":   124,
 
       "pageCacheMaxTime":      3600000,
-      "pageCachePurgeTime":    60480000,
+      "pageCachePurgeTime":    60480000, // -1 will turn purging off
       "pageCacheMaxSize":      32,
 
       // If no query type option is supplied then 
@@ -91,5 +92,27 @@ Various noodle settings are exposed and can be edited in `lib/config.json`.
       // How the noodle scraper identifies itself 
       // to scrape targets
 
-      "userAgent":             ""
+      "userAgent":             "",
+
+      // Rate limit settings
+      // https://npmjs.org/package/connect-ratelimit#readme
+
+      "rateLimit": {
+        "whitelist": ["127.0.0.1", "localhost"],
+        "blacklist": [],
+        "catagories": {
+          "normal": {
+            "totalRequests": 1000,
+            "every":         3600000000
+          },
+          "whitelist": {
+            "totalRequests": 10000,
+            "every":         60000000
+          },
+          "blacklist": {
+            "totalRequests": 0,
+            "every":         0
+          }
+        }
+      }
     }

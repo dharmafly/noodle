@@ -1,6 +1,6 @@
 --- 
-heading: Adding to noodle
 category: reference
+heading: Adding to noodle
 ---
 
 noodle is an open-source project 
@@ -17,7 +17,7 @@ type modules with prior knowledge only needed in
 To add their own type, one creates the script for that type in 
 `noodlejs/lib/types` with the name being what one would type in a query.
 
-  $ touch noodlejs/lib/types/csv.js
+`  $ touch noodlejs/lib/types/csv.js`
 
 As for the content of the script a developer should expose at least 2 methods 
 (`_init` & `fetch`) and is recommended to expose a `select` method. These 
