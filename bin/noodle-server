@@ -42,12 +42,13 @@ var connect  = require('connect'),
               .use(noodlemw.respond);
 
 http.createServer(app).listen(port, function () {
-  var l = console.log;
   require('colors');
-  l(' Noodle node server started'.magenta);
-  l(' ├ process title '.magenta, process.title.toString().green);
-  l(' ├ process pid   '.magenta, process.pid.toString().green);
-  l(' └ server port   '.magenta, port.toString().green);
+  with (console) {
+    log(' Noodle node server started'.magenta);
+    log(' ├ process title '.magenta, process.title.toString().green);
+    log(' ├ process pid   '.magenta, process.pid.toString().green);
+    log(' └ server port   '.magenta, port.toString().green);
+  }
 });
 
 // Return the noodle config as an object
