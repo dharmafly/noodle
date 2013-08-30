@@ -3,6 +3,9 @@
   "version": "0.2.0",
   "description": "noodle is a proxy server which serves for cross domain data extraction from web documents for any client.",
   "main": "bin/noodle-server",
+  "bin": {
+    "noodle": "./bin/noodle-server"
+  },
   "dependencies": {
     "connect": "~2.3.5",
     "connect-ratelimit": "0.0.5",
