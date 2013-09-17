@@ -55,11 +55,11 @@ You may specify a port number as an argument
 Noodle as a node module
 -----------------------
 
-If you are interested in the node module just require it and check out the 
-[noodle api](http://noodlejs.com/reference/#noodle-as-node-module)  
+If you are interested in the node module just run ```npm install noodlejs```,
+require it and check out the [noodle api](http://noodlejs.com/reference/#noodle-as-node-module)  
 
 ```javascript
-var noodle = require('noodle');
+var noodle = require('noodlejs/lib/noodle');
 
 noodle.query({
   url:      'https://github.com/explore',
