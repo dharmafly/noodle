@@ -1,6 +1,6 @@
 {
   "name": "noodlejs",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "noodle is a proxy server which serves for cross domain data extraction from web documents for any client.",
   "main": "./lib/noodle",
   "bin": {
