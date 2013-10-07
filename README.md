@@ -59,7 +59,7 @@ If you are interested in the node module just run ```npm install noodlejs```,
 require it and check out the [noodle api](http://noodlejs.com/reference/#noodle-as-node-module)  
 
 ```javascript
-var noodle = require('noodlejs/lib/noodle');
+var noodle = require('noodlejs');
 
 noodle.query({
   url:      'https://github.com/explore',
