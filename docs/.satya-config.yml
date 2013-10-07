@@ -3,7 +3,7 @@
 
 project_name: noodle
 project_url: https://github.com/dharmafly/noodle
-version: '0.1.0'
+version: '0.3.1'
 # options: forest, ocean, horus, seagrass, sundae, slate
 theme: ocean
 twitter_url: https://twitter.com/dharmafly
