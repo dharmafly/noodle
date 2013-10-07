@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    WebFontConfig = {
+    var WebFontConfig = {
         custom: { 
           families: [
               'Open+Sans:400,600:latin',
@@ -13,7 +13,7 @@
               {% endcase %} 'Ubuntu+Mono::latin'
           ],
           urls: [ 
-            '{{ relative_path }}/css/fonts/{{ site.theme }}.css'
+            '/css/fonts/{{ site.theme }}.css'
           ] 
         }
     };

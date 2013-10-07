@@ -8,21 +8,54 @@
  |_____/|__|__|___._|__| |__|__|__|___._|__| |__||___  |
                                                  |_____|
 
-  Greetings, source geek.
+  dharmafly.com
   
   
 -->
 
+{% assign ishome = false %}
+{% assign sectionname = "" %}
+{% assign directory = "" %}
+{% assign title = "" %}
+
 {% assign sections = site.sections %}
-{% assign relative_path  = "." %}
-{% assign page_path  = "" %}
+{% assign relative_path = "." %}
+{% assign page_path = "" %}
+{% assign body_class = "home" %}
 {% if page.layout_type == 'subpage' %}
-    {% assign relative_path  = ".." %}
-    {% assign page_path  = "../" %}
+    {% assign relative_path = ".." %}
+    {% assign page_path = "../" %}
+    {% assign body_class = page.layout_type %}
 {% endif %}
 {% if page.layout_type == 'absolute' %}
-    {% assign relative_path  = "" %}
-    {% assign page_path  = "" %}
+    {% assign relative_path = "" %}
+    {% assign page_path = "" %}
+    {% assign body_class = page.layout_type %}
+{% endif %}
+
+{% for section in sections %}
+  {% if page.url == section.path %}
+    {% if section.path == "/index.html" %}
+      {% assign ishome = true %}
+      {% assign title = site.project_name %}
+    {% else %}
+      {% assign sectionname = section.name %}
+      {% assign title = sectionname | append:" : " | append:site.project_name %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% if title == "" %}
+  {% assign directories = page.url | split:"/" %}
+  {% assign directory = directories | last %}
+  {% if directory == "index.html" %}
+    {% assign index = directories | size | minus:2 %}
+    {% assign directory = directories[index] %}
+  {% elsif directory == "404.html" %}
+    {% assign directory = "404" %}
+  {% endif %}
+
+  {% assign title = directory | append:" : " | append:site.project_name %}
 {% endif %}
 
 <!--[if IE 9]><html class="ie" lang="en"><![endif]-->
@@ -30,16 +63,9 @@
 <!--[if !IE ]><!-->
 <html lang="en"> <!--<![endif]-->
   <head>
-    <title>
-      {% for section in sections %}
-        {% if page.url == section.path %} 
-          {% if page.url != '/index.html' %}  {{ section.name }} : {% endif %}
-          {{ site.project_name }}
-        {% endif %}
-      {% endfor %}
-    </title>
     <meta charset="utf-8">
     <meta name="viewport" content=""> 
+    <title>{{ title }}</title>
     <script>
       var satya = satya || {};
       satya.isIPad = navigator.userAgent.match(/iPad/i) != null;
@@ -48,19 +74,21 @@
           .setAttribute('content','width=device-width,initial-scale=0.75,user-scalable=no,maximum-scale=0.75');
       }
     </script>
-    <!--[if lt IE 9]>
-        <script src="{{ relative_path }}/javascript/html5shiv.js"></script>
-    <![endif]-->
+    <!--[if lt IE 9]><script src="/javascript/html5shiv.js"></script><![endif]-->
     {% include fonts.liquid %}
-    <link href="{{ relative_path }}/css/{{ site.theme }}.css" rel="stylesheet">
-    <link rel="shortcut icon" sizes="16x16" type="image/vnd.microsoft.icon" href="{{ relative_path }}/img/{{ site.theme }}-favicon.ico"> 
-    <link rel="apple-touch-icon" href="{{ relative_path }}/img/{{ site.theme }}-apple-touch-icon.png">
+    <link href="/css/{{ site.theme }}.css?v2" rel="stylesheet">
+    {% for stylesheet in site.stylesheets %}
+    <link href="{{ stylesheet.url }}" rel="stylesheet">
+    {% endfor %}
+
+    <link rel="shortcut icon" sizes="16x16" type="image/vnd.microsoft.icon" href="/img/{{ site.theme }}-favicon.ico"> 
+    <link rel="apple-touch-icon" href="/img/{{ site.theme }}-apple-touch-icon.png">
   </head>
   
-  <body class="loading">
+  <body class="{{ body_class }} loading">
     <header>
       <h1 class="title">
-        <a href="{{ page_path }}">
+        <a href="/">
         {{ site.project_name }}
         </a>
       </h1>
@@ -70,16 +98,14 @@
       <ul>
         <li class="show-subnav"><a href="#subnav" class="icon">Go to navigation for this page</a></li>
         {% for section in sections %}
-        
         <li>
-            <a href="{{ relative_path }}{{ section.path | remove_first:'index.html' }}"{% if page.url == section.path %} class="active"{% endif %}>
+            <a href="{{ section.path | remove_first:'index.html' }}"{% if page.url == section.path %} class="active"{% endif %}>
             {{ section.name }}
             </a>
         </li>
         {% endfor %}
       </ul>
     </nav>
-
 
     <section class="content">
     {{ content }}
@@ -116,17 +142,17 @@
     <![endif]-->
       
     <!--[if IE 9]>
-      <script src="{{ relative_path }}/javascript/IEshims.js"></script>
+      <script src="/javascript/IEshims.js"></script>
     <![endif]-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="{{ relative_path }}/javascript/jquery-1.8.1.min.js"><\/script>')</script>
-    <script src="{{ relative_path }}/javascript/main.js"></script>
-    <script src="{{ relative_path }}/javascript/hijs.js"></script>
-    <script src="{{ relative_path }}/javascript/demo.js"></script>
+    <script>window.jQuery || document.write('<script src="/javascript/jquery-1.8.1.min.js"><\/script>')</script>
+    <script src="/javascript/main.js"></script>
+    <script src="/javascript/hijs.js"></script>
+    <script src="/javascript/demo.js"></script>
 
     {% for script in site.scripts %}
     <script src="{{ script.src }}"></script>
-    {% endfor %}      
+    {% endfor %}   
 
     {% if site.ga_id %}
     <script>
@@ -139,7 +165,6 @@
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       }());
-
     </script>
     {% endif %}    
   </body>

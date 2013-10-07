@@ -1,6 +1,7 @@
---- 
+---
 category: reference
 heading: Error handling
+path: reference
 ---
 
 Noodle will fire various errors which one can listen for with the `fail()` 

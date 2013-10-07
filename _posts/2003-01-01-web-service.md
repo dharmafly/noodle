@@ -1,6 +1,7 @@
---- 
+---
 category: reference
 heading: Web service
+path: reference
 ---
 
 This code reference aims to document the use of noodle as both a web service 
@@ -16,7 +17,7 @@ noodle is ready to run as a web service from `bin/noodle-server`.
 
 ## Quick setup
 
-NPM method:
+Git method:
 
     $ git clone https://github.com/dharmafly/noodle.git
     $ cd noodle
@@ -24,7 +25,7 @@ NPM method:
     $ bin/noodle-server
       Server running on port 8888
 
-Git method:
+NPM method:
 
     $ npm install noodlejs
     $ cd node_modules/noodlejs/

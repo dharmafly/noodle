@@ -1,0 +1,57 @@
+---
+layout: default
+layout_type: subpage
+---
+{% assign category = site.categories.CATEGORY_NAME %}
+
+
+<nav id="subnav">
+    <ul>
+    {% for post in category reversed %}
+        <li><a href="#{{ post.url | replace_first:'/','' }}">
+        {% if post.heading %}
+            {{ post.heading }}
+        {% else %}
+            {{ post.title }}
+        {% endif %}
+        </a></li>
+    {% endfor %}
+    </ul>
+</nav>
+
+{% for post in category reversed %}
+    {% if forloop.first %}
+    <section>
+        <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>
+        {% if post.heading %}
+            {{ post.heading }}
+        {% else %}
+            {{ post.title }}
+        {% endif %}
+        </h1>
+        <article class="embedded markdown">
+        {{ post.content }}
+        </article>
+    </section>
+    {% endif %}
+{% endfor %}
+
+
+{% include aside.liquid %}
+
+{% for post in category reversed %}
+    {% unless forloop.first %}
+    <section>
+        <h1><a id="{{ post.url | replace_first:'/','' }}" class="permalink" href="#{{ post.url | replace_first:'/','' }}">&#9875;</a>
+        {% if post.heading %}
+            {{ post.heading }}
+        {% else %}
+            {{ post.title }}
+        {% endif %}
+        </h1>
+        <article class="embedded markdown">
+        {{ post.content }}
+        </article>
+    </section>
+    {% endunless %}
+{% endfor %}
