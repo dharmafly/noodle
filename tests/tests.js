@@ -455,12 +455,12 @@ describe('generic query error messages', function () {
   });
 
   describe('headers', function () {
-    // Failing because 'created' property is in returned results
-    // Remove this comment when this is no longer the case
     it('should parse headers', function (done) {
       noodle.query(fixtures.queries.headers.simple)
         .then(function (results) {
-          if (_.isEqual(results.results, fixtures.queries.answers.headers.simple)) {
+          var fix = fixtures.queries.answers.headers.simple[0];
+          if (_.isEqual(results.results[0].results, fix.results) &&
+            _.isEqual(results.results[0].headers, fix.headers)) {
             done();
           } else {
             done(new Error('Results and fixtures do not match up.'));
@@ -469,11 +469,11 @@ describe('generic query error messages', function () {
     });
 
     it('should parse link headers', function (done) {
-      // Failing because 'created' property is in returned results
-      // Remove this comment when this is no longer the case
       noodle.query(fixtures.queries.headers.linkHeaders)
         .then(function (results) {
-          if (_.isEqual(results.results, fixtures.queries.answers.headers.linkHeaders)) {
+          var fix = fixtures.queries.answers.headers.linkHeaders[0];
+          if (_.isEqual(results.results[0].results, fix.results) &&
+            _.isEqual(results.results[0].headers, fix.headers)) {
             done();
           } else {
             done(new Error('Results and fixtures do not match up.'));
@@ -548,6 +548,17 @@ describe('generic query error messages', function () {
   describe('consistent response format', function () {
     it('should return all responses as arrays', function () {
       assert.equal(true, allArrays.indexOf(false) === -1);
+    });
+
+    it('should always return the "created" property from cache', function (done) {
+      noodle.query(fixtures.queries.html.withCache)
+        .then(function (results) {
+          if (results.results[0].created) {
+            done();
+          } else {
+            done(new Error('"created" property wasn\'t included with cached response.'));
+          }
+        });
     });
   });
 });

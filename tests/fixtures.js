@@ -20,6 +20,13 @@ exports.queries = {
       "extract": "text",
       "cache": false
     },
+    withCache: {
+      "url": "http://localhost:8889/html",
+      "type": "html",
+      "selector": "h1",
+      "extract": "text",
+      "cache": true
+    },
     noSelector: {
       "url": "http://localhost:8889/html",
       "type": "html",
@@ -486,11 +493,7 @@ exports.queries.answers = {
   headers: {
     simple: [
         {
-            "results": [
-                {
-                    "html": "<span>css Zen Garden</span>"
-                }
-            ],
+            "results": ["css Zen Garden"],
             "headers": {
                 "X-Powered-By": "Noodle testing server"
             }
@@ -498,11 +501,7 @@ exports.queries.answers = {
     ],
     linkHeaders: [
         {
-            "results": [
-                {
-                    "html": "<span>css Zen Garden</span>"
-                }
-            ],
+            "results": ["css Zen Garden"],
             "headers": {
                 "link": {
                     "next": "foo",
