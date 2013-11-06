@@ -13,16 +13,17 @@ var examples = {};
     
 
 $('pre').each(function () {
-  var $pre = $(this);
-  
-  $pre.addClass("runnable").wrap('<div class="run" />');
-
-  var code = $pre.find('code'),
+  var $pre = $(this),
+      code = $pre.find('code'),
       output, button;
+
+  $pre.wrap('<div/>');
   
   // Check code block for runnable keywords and setup output box
   // and run button.
   if (code.text().indexOf('demoElement') > -1 || code.text().indexOf('alert') > -1) {
+    $pre.addClass('runnable');
+    $pre.parent().addClass('run');
     
     examples.index += 1;
     

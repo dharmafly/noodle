@@ -76,7 +76,7 @@
     </script>
     <!--[if lt IE 9]><script src="/javascript/html5shiv.js"></script><![endif]-->
     {% include fonts.liquid %}
-    <link href="/css/{{ site.theme }}.css?v2" rel="stylesheet">
+    <link href="/css/{{ site.theme }}.css?v3" rel="stylesheet">
     {% for stylesheet in site.stylesheets %}
     <link href="{{ stylesheet.url }}" rel="stylesheet">
     {% endfor %}
@@ -148,7 +148,7 @@
     <script>window.jQuery || document.write('<script src="/javascript/jquery-1.8.1.min.js"><\/script>')</script>
     <script src="/javascript/main.js"></script>
     <script src="/javascript/hijs.js"></script>
-    <script src="/javascript/demo.js"></script>
+    <script src="/javascript/demo.js?v2"></script>
 
     {% for script in site.scripts %}
     <script src="{{ script.src }}"></script>

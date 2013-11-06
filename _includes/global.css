@@ -156,9 +156,14 @@ pre code {
   color: #F8F8F2;
 	overflow: auto;
 	overflow-y: hidden;
-  padding-bottom: 1em;
   word-wrap: normal;
 }
+
+/*
+.run pre code {
+  padding-bottom: 1em;
+}
+*/
 
 header {
   background : {{page.background_tile}};
