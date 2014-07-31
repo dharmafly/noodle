@@ -1,7 +1,7 @@
 [noodle](http://noodlejs.com) 
 =============================
 
-noodle is a configurable server and node module which individuals can use to query data from web documents like html, json and xml feeds.
+noodle is a Node.js server and module for querying and scraping data from web documents. It features:
 
 ```JSON
 {
