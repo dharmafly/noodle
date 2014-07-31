@@ -61,6 +61,18 @@ function getCode(codeElem){
   
 }
 
+satya._alertDemoElement = function(msg, id){
+    var text = satya.jQuery('<span>');
+
+    if (typeof msg === 'object' && msg !== null){
+        try {
+            msg = JSON.stringify(msg, null, 4);
+        }
+        catch(e){}
+    }
+    text.text('alert: ' + msg);
+    satya.jQuery('#' + id).append(text).append('<br>');
+};
 
 // Attach handlers to "Run" buttons
 $('button.eval')
@@ -72,12 +84,10 @@ $('button.eval')
     
     output.empty();
     setTimeout(function () {
-        var demoElement = 'satya.jQuery("#' + output[0].id + '")[0]',
-            code = '',
+        var outputId = output[0].id,
+            demoElement = 'satya.jQuery("#' + outputId + '")[0]',
             codeEl = $('#code-' + index)[0],
-            $alert  = 'function (msg) { var text = satya.jQuery("<span />");text.text("alert: " + msg);satya.jQuery("#' + output[0].id + '").append(text).append("<br/>");}';
-        
-        code = getCode(codeEl);
+            code = getCode(codeEl);
         
         // Add and remove a class when the code is run.
         output.addClass('loaded');
@@ -88,8 +98,12 @@ $('button.eval')
 
         // Execute the code in a custom scope that includes alert() and $output.
         try{
-        $.globalEval('(function (demoElement, alert) {\n' + code + '\n})(' + demoElement + ', ' + $alert + ')');
-        }catch(e){
+          $.globalEval('(function (demoElement, alert) {\n' + code + '\n}(' + demoElement + ', function(msg){' +
+                'satya._alertDemoElement(msg, "' + outputId + '");' +
+              '}));'
+          );
+        }
+        catch(e){
           var error = e.message;
           $('#output-' + index).html('error: ' + error);
         }

@@ -25,8 +25,8 @@ sections:
 safe:        false
 future:      true
 lsi:         false
-pygments:    false
-markdown:    maruku
+highlighter: pygments
+markdown:    kramdown
 permalink:   /:title
 baseurl:     /
 exclude: ['README.md', 'FiddlerRules.farx']
