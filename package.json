@@ -15,7 +15,7 @@
     "cheerio": "0.10.1",
     "request": "2.11.4",
     "q": "0.8.9",
-    "xml2json": "0.3.2",
+    "xml2json": "^0.5.1",
     "underscore": "1.4.2",
     "mocha": "1.7.4",
     "chai": "1.4.2",
