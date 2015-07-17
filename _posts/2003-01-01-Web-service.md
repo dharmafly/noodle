@@ -4,46 +4,33 @@ heading: Web service
 path: reference
 ---
 
-This code reference aims to document the use of noodle as both a web service 
-and a node module.
+Noodle can be used as both a web service and a node module. In each case, key/value objects are used as queries to fetch and extract data from web documents.
 
-With both web service and node module, the same key/value object maps are 
-used as queries to fetch and extract data from web documents.
-
-noodle currently supports multiple web documents with an almost uniform 
-query syntax for grabbing data from the different types (html, json, feeds, xml).
+noodle currently supports multiple web documents with an almost uniform query syntax for grabbing data from the different types (html, json, feeds, xml).
 
 noodle is ready to run as a web service from `bin/noodle-server`.
 
-## Quick setup
 
-Git method:
+## Run the server
 
-    $ git clone https://github.com/dharmafly/noodle.git
     $ cd noodle
-    $ npm install
+    # or `cd node_modules/noodlejs` if installed via npm
     $ bin/noodle-server
       Server running on port 8888
 
-NPM method:
-
-    $ npm install noodlejs
-    $ cd node_modules/noodlejs/
-    $ bin/noodle-server
-      Server running on port 8888
 
 ## GET or POST
 
-The server supports a different ways for querying the service.
+The server supports queries via both GET and POST.
 
-### JSONP
+### GET
+
+The query itself can be sent in the `q` parameter either as a url encoded JSON blob or as a querystring serialised representation (`jQuery.param()`).
 
 noodle supports JSONP if a `callback` parameter is supplied.
 
-The query itself can be sent in the `q` parameter either as a url encoded 
-JSON blob or as a querystring serialised representation (`jQuery.param()`).
-
     GET http://example.noodlejs.com?q={JSONBLOB}&callback=foo
+
 
 ### POST
 
@@ -51,10 +38,12 @@ noodle also supports a query sent as JSON in the POST body.
 
     POST http://example.noodlejs.com
 
-## Ratelimiting
+
+## Rate limiting
 
 The web service also provides rate limiting out of the box with 
 [connect-ratelimit](https://github.com/dharmafly/connect-ratelimit).
+
 
 ## Configuration
 

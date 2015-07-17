@@ -12,7 +12,7 @@ handler.
       console.log('The results are', results);
     })
     .fail(function (error) {
-      console.log('Uh oh, ' error.message);
+      console.log('Uh oh', error.message);
     });
 
 ## Possible errors

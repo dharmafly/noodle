@@ -16,7 +16,7 @@ The main entry point to noodle's functionality is the `query` method. This
 method accepts a query or an array of queries as its only parameter and returns 
 a [promise](https://github.com/kriskowal/q). 
 
-    var noodle = require('noodle');
+    var noodle = require('noodlejs');
     noodle.query(queries).then(function (results) {
       console.log(results);
     });

@@ -502,7 +502,7 @@ section.content:after{
   -webkit-filter:contrast({{ page.svg_asset_contrast }}%);
   {% endif %}
   {% if  page.svg_asset_grayscale %}
-  filter: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter%20id%3D%22desaturate%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%3C/filter%3E%3C/svg%3E#desaturate);
+  filter: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cfilter%20id%3D%22desaturate%22%3E%3CfeComponentTransfer%3E%3CfeFuncR%20type%3D%22linear%22%20intercept%3D%22-0.6%22%20slope%3D%221%22%2F%3E%3CfeFuncG%20type%3D%22linear%22%20intercept%3D%22-0.6%22%20slope%3D%221%22%2F%3E%3CfeFuncB%20type%3D%22linear%22%20intercept%3D%22-0.6%22%20slope%3D%221%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22%2F%3E%3C%2Ffilter%3E%3C%2Fsvg%3E#desaturate');
   filter: gray;
   -webkit-filter: grayscale(1) contrast(0%);
   {% endif %}
@@ -609,7 +609,7 @@ section.quote:after {
   transform: {{ page.quote_svg_left_transform }};
   visibility: visible;
   {% if  page.quote_svg_grayscale %}
-  filter: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter%20id%3D%22desaturate%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%3C/filter%3E%3C/svg%3E#desaturate);
+  filter: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cfilter%20id%3D%22desaturate%22%3E%3CfeComponentTransfer%3E%3CfeFuncR%20type%3D%22linear%22%20intercept%3D%22-0.6%22%20slope%3D%221%22%2F%3E%3CfeFuncG%20type%3D%22linear%22%20intercept%3D%22-0.6%22%20slope%3D%221%22%2F%3E%3CfeFuncB%20type%3D%22linear%22%20intercept%3D%22-0.6%22%20slope%3D%221%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22%2F%3E%3C%2Ffilter%3E%3C%2Fsvg%3E#desaturate');
   filter: gray;
   -webkit-filter: grayscale(1) contrast(0%);
   {% endif %}
@@ -872,6 +872,7 @@ p.buttons {
 .run output {
 	font-family: Menlo, mono-space;
 	display: block;
+  white-space: pre;
 	background-color: {{ page.content_bg_colour }};
 	font-size: 1.4em; /* Fixes odd issue in FF */
     min-height:1em;
@@ -926,6 +927,7 @@ aside.icons li  span,
 .buttons .badge span {
   width: 50px;
   height: 0em;
+  text-indent: -999em;
   border: 7px solid {{ page.content_hover_colour }};
   border-radius: 50px;
   padding-top: 50px;

@@ -477,6 +477,7 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
   // PAGE CONTROLLER
   
   function init(){
+    var loc = window.location;
   
     navigation = new Navigation(navEl);
     subnav = new Subnav(subnavEl);
@@ -525,11 +526,24 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
     
     // Handle scroll between inter-document links.
     document.body.addEventListener('click', function (event) {
-      var hashId = event.target.hash,
-          anchor = hashId && $qS(hashId);
+      var el = event.target,
+          hashId, anchor, selectNav;
+
+      if (el.nodeName !== 'A' ||
+          el.hash.length <= 1 ||
+          el.protocol !== loc.protocol ||
+          el.host !== loc.host ||
+          el.pathname !== loc.pathname
+      ){
+        // Not internal link
+        return;
+      }
+
+      hashId = event.target.hash;
+      anchor = hashId && $qS(hashId);
       
       // replaced by a non-visible select box (setSelectSubnav)
-      var selectNav = narrowScreen || isIPad;
+      selectNav = narrowScreen || isIPad;
        
       
       // open close subnav was clicked 
@@ -566,7 +580,3 @@ satya.page = (function ($, $qS) { // jQuery and document.querySelector
   
   
 })(satya.jQuery, function () { "use strict"; return document.querySelector.apply(document, arguments); });
-
-
-
-

@@ -17,8 +17,8 @@ scripts:
 stylesheets:
 #  - url: /mystylesheet.css
 quote:
-  - quote: Ink is better than the best memory.
-  - cite: Chinese proverb
+  quote: Ink is better than the best memory.
+  cite: Chinese proverb
 # analytics
 ga_id: UA-34978047-5
 download_links:

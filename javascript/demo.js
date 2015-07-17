@@ -61,18 +61,33 @@ function getCode(codeElem){
   
 }
 
-satya._alertDemoElement = function(msg, id){
+satya._alertDemoElement = (function(){
+  var arrayRegex = /": "(\[[^\]]*\])"/g;
+
+  function stringify(key, val){
+    if (Array.isArray(val)){
+      return '[' + val.map(function(item){return JSON.stringify(item);}).join(', ') + ']';
+    }
+    return val;
+  }
+
+  return function(msg, id){
     var text = satya.jQuery('<span>');
 
     if (typeof msg === 'object' && msg !== null){
         try {
-            msg = JSON.stringify(msg, null, 4);
+            msg = JSON.stringify(msg, stringify, 2)
+                      .replace(arrayRegex, '": $1')
+                      .replace(/"\[/g, '[')
+                      .replace(/\]"/g, ']')
+                      .replace(/\\"/g, '"');
         }
         catch(e){}
     }
     text.text('alert: ' + msg);
     satya.jQuery('#' + id).append(text).append('<br>');
-};
+  };
+}());
 
 // Attach handlers to "Run" buttons
 $('button.eval')
