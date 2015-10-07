@@ -4,30 +4,30 @@ heading: Noodle as node module
 path: reference
 ---
 
-**Note:** Since noodle's internal cache uses an interval this will keep the 
-related node process running indefinately. Be sure to run `noodle.stopCache()` 
+**Note:** Since noodle's internal cache uses an interval this will keep the
+related node process running indefinately. Be sure to run `noodle.stopCache()`
 in your code when you're finished with noodle.
 
 ## Methods
 
 ### noodle.query
 
-The main entry point to noodle's functionality is the `query` method. This 
-method accepts a query or an array of queries as its only parameter and returns 
-a [promise](https://github.com/kriskowal/q). 
+The main entry point to noodle's functionality is the `query` method. This
+method accepts a query or an array of queries as its only parameter and returns
+a [promise](https://github.com/kriskowal/q).
 
     var noodle = require('noodlejs');
     noodle.query(queries).then(function (results) {
       console.log(results);
     });
 
-The makeup of query(s) is analagous to using noodle as a web service (as 
-[stated above](http://noodlejs.com/reference/#query-syntax)). The 
+The makeup of query(s) is analagous to using noodle as a web service (as
+[stated above](http://noodlejs.com/reference/#query-syntax)). The
 exception being that you supply a proper object and not JSON.
 
 ### noodle.fetch
 
-This method returns a [promises](https://github.com/kriskowal/q). Which upon 
+This method returns a [promises](https://github.com/kriskowal/q). Which upon
 resolutions hands over the requested web document.
 
     noodle.fetch(url).then(function (page) {
@@ -57,8 +57,8 @@ For applying one query to a parsed JSON representation (object).
 
 ## noodle.feed.select
 
-Normalises an RSS, ATOM or RDF string with 
-[node-feedparser](https://github.com/danmactough/node-feedparser) then proxies 
+Normalises an RSS, ATOM or RDF string with
+[node-feedparser](https://github.com/danmactough/node-feedparser) then proxies
 that normalised object to `noodle.json.select`.
 
 ### noodle.xml.select
@@ -67,12 +67,12 @@ Proxies to `noodle.json.select`.
 
 ### noodle events
 
-noodle's `noodle.events` namespace allows one to listen for emitted cache 
+noodle's `noodle.events` namespace allows one to listen for emitted cache
 related events. Noodle inherits from node's [EventEmitter](http://nodejs.org/api/events.html#events_class_events_eventemitter).
 
     // Called when a page is cached
     noodle.events.on('cache/page', function (obj) {
-      //obj is the page cache object detailing the page, its headers 
+      //obj is the page cache object detailing the page, its headers
       //and when it was first cached
     });
 
@@ -91,24 +91,24 @@ related events. Noodle inherits from node's [EventEmitter](http://nodejs.org/api
     // Called when a cached item has expired from the cache
     noodle.events.on('cache/expire', function (obj) {
       //obj is the cache item
-    }); 
+    });
 
 ### Configuration
 
 Configuration is possible programmatically via `noodle.configure(obj)`.
 
-This accepts a conig object which can be partly or fully representing the 
+This accepts a conig object which can be partly or fully representing the
 config options.
 
 This object is applied over the existing config found in the `config.json`.
 
 Example for change just two settings:
 
-    var noodle = require('noodle');
+    var noodle = require('noodlejs');
 
-    // Do not display messages to the terminal and set 
+    // Do not display messages to the terminal and set
     // the default document type to json
-    
+
     noodle.configure({
       debug: false,
       defaultDocumentType: "json"
