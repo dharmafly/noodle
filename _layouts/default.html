@@ -33,17 +33,17 @@
     {% assign body_class = page.layout_type %}
 {% endif %}
 
-{% for section in sections %}
-  {% if page.url == section.path %}
-    {% if section.path == "/index.html" %}
-      {% assign ishome = true %}
-      {% assign title = site.project_name %}
-    {% else %}
+{% if page.url == '/' or page.url == '/index.html' %}
+  {% assign ishome = true %}
+  {% assign title = site.project_name %}
+{% else %}
+  {% for section in sections %}
+    {% if page.url == section.path %}
       {% assign sectionname = section.name %}
       {% assign title = sectionname | append:" : " | append:site.project_name %}
     {% endif %}
-  {% endif %}
-{% endfor %}
+  {% endfor %}
+{% endif %}
 
 {% if title == "" %}
   {% assign directories = page.url | split:"/" %}
