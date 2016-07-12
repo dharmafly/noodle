@@ -2,15 +2,15 @@
 <!--
 
 
-  _____  __                               ___ __        
+  _____  __                               ___ __
  |     \|  |~-.~-~.-.-~-~.-~-~-~-~.-~-.-.'  _|  |.-~.~-.
  |  |   |     |  _  |   _|        |  _  |   _|  ||  |  |
  |_____/|__|__|___._|__| |__|__|__|___._|__| |__||___  |
                                                  |_____|
 
   dharmafly.com
-  
-  
+
+
 -->
 
 {% assign ishome = false %}
@@ -64,7 +64,7 @@
 <html lang="en"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content=""> 
+    <meta name="viewport" content="">
     <title>{{ title }}</title>
     <script>
       var satya = satya || {};
@@ -81,10 +81,10 @@
     <link href="{{ stylesheet.url }}" rel="stylesheet">
     {% endfor %}
 
-    <link rel="shortcut icon" sizes="16x16" type="image/vnd.microsoft.icon" href="/img/{{ site.theme }}-favicon.ico"> 
+    <link rel="shortcut icon" sizes="16x16" type="image/vnd.microsoft.icon" href="/img/{{ site.theme }}-favicon.ico">
     <link rel="apple-touch-icon" href="/img/{{ site.theme }}-apple-touch-icon.png">
   </head>
-  
+
   <body class="{{ body_class }} loading">
     <header>
       <h1 class="title">
@@ -128,19 +128,21 @@
       </div>
     </footer>
 
+    <script src="/javascript/font-loader.js"></script>
+
     <script>
       satya.narrowScreen = window.screen.width < 480;
       satya.isltIE10 = false;
       satya.relative_path = '{{ relative_path }}/';
       satya.noConflict = '{{ site.jquery_no_conflict }}' === 'true' || false;
     </script>
-    
-    <!--[if lt IE 10]> 
+
+    <!--[if lt IE 10]>
       <script>
         satya.isltIE10 = true;
       </script>
     <![endif]-->
-      
+
     <!--[if IE 9]>
       <script src="/javascript/IEshims.js"></script>
     <![endif]-->
@@ -152,7 +154,7 @@
 
     {% for script in site.scripts %}
     <script src="{{ script.src }}"></script>
-    {% endfor %}   
+    {% endfor %}
 
     {% if site.ga_id %}
     <script>
@@ -166,6 +168,6 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       }, 500);
     </script>
-    {% endif %}    
+    {% endif %}
   </body>
 </html>
