@@ -56,7 +56,7 @@ Noodle as a node module
 -----------------------
 
 If you are interested in the node module just run ```npm install noodlejs```,
-require it and check out the [noodle api](http://noodlejs.com/reference/#noodle-as-node-module)  
+require it and check out the [noodle api](http://noodlejs.com/reference/#Noodle-as-node-module)  
 
 ```javascript
 var noodle = require('noodlejs');
