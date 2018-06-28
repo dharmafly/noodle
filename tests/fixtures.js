@@ -412,26 +412,26 @@ exports.queries.answers = {
                 {
                     "Order": {
                         "Date": "2003/07/04",
-                        "CustomerId": 123,
+                        "CustomerId": "123",
                         "CustomerName": "Acme Alpha",
                         "Item": [
                             {
-                                "ItemId": 987,
+                                "ItemId": "987",
                                 "ItemName": "Coupler",
-                                "Quantity": 5
+                                "Quantity": "5"
                             },
                             {
-                                "ItemId": 654,
+                                "ItemId": "654",
                                 "ItemName": "Connector",
                                 "Quantity": {
-                                    "unit": 12,
-                                    "$t": 3
+                                    "unit": "12",
+                                    "_@ttribute": "3"
                                 }
                             },
                             {
-                                "ItemId": 579,
+                                "ItemId": "579",
                                 "ItemName": "Clasp",
-                                "Quantity": 1
+                                "Quantity": "1"
                             }
                         ]
                     }
