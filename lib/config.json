@@ -19,7 +19,7 @@
     "catagories": {
       "normal": {
         "totalRequests": 1000,
-        "every":         3600000000
+        "every":         3600000
       },
       "whitelist": {
         "totalRequests": 10000,

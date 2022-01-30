@@ -24,7 +24,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "bin/noodle-server"
+    "start": "node --trace-warnings bin/noodle-server "
   },
   "engines": {
     "node": "0.6.x"
