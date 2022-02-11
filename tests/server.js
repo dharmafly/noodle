@@ -2,7 +2,7 @@ var url      = require('url'),
     fixtures = require('./fixtures');
 
 require('http').createServer(function (req, res) {
-  var serve = url.parse(req.url).pathname.split('/')[1];
+  var serve = URL(req.url).pathname.split('/')[1];
 
   if (req.method === 'POST') {
     parsePostData(req, function (data) {

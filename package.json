@@ -23,8 +23,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "bin/noodle-server"
+    "test": "mocha tests/*.js --recursive --reporter mocha-junit-reporter --timeout 60000 --exit",
+    "start": "node --trace-warnings bin/noodle-server "
   },
   "engines": {
     "node": "0.6.x"
