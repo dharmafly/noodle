@@ -1,4 +1,4 @@
-[noodle](http://noodlejs.com) 
+[noodle](https://noodle.dharmafly.com) 
 =============================
 
 noodle is a Node.js server and module for querying and scraping data from web documents. It features:
@@ -56,7 +56,7 @@ Noodle as a node module
 -----------------------
 
 If you are interested in the node module just run ```npm install noodlejs```,
-require it and check out the [noodle api](http://noodlejs.com/reference/#Noodle-as-node-module)  
+require it and check out the [noodle api](https://noodlejs.com/reference/#Noodle-as-node-module)  
 
 ```javascript
 var noodle = require('noodlejs');
@@ -88,5 +88,5 @@ Contribute
 
 Contributors and suggestions welcomed.
 
-- [http://noodlejs.com](http://noodlejs.com)  
+- [https://noodle.dharmafly.com](https://noodle.dharmafly.com)  
 - [https://github.com/dharmafly/noodle](https://github.com/dharmafly/noodle)  
